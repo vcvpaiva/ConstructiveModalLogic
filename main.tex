@@ -12,6 +12,11 @@
 
 \renewcommand{\Box}{\oblong}
 
+\newcommand{\F}{\mathop{\text{F}}}
+\renewcommand{\P}{\mathop{\text{P}}}
+\newcommand{\G}{\mathop{\text{G}}}
+\renewcommand{\H}{\mathop{\text{H}}}
+
 \begin{document}
 
 \maketitle
@@ -76,111 +81,172 @@ expect a perfect duality between possibility and necessity either.
 
 \section{Varieties of Constructive Temporal Logic}
 
-\subsection{The  system CS4 revisited} 
-
-In this section we recall the sequent calculus formalization of system
-CS4.  This formalization was formally known as IS4 and was proposed by
-Bierman and de Paiva \cite{CS4}.  The syntax of formulas is defined as
-follows:
+Each of the logics presented in this section are extensions of the
+single-conclusion formalization of Gentzen's LK which produces
+intuitionistic sequent calculus.  The syntax of formulas for LK is
+defined by the following grammar:
 \begin{center}
     \begin{math}
         \begin{array}{lllllllll}
-            A & ::= & p \mid \perp \mid A \land A \mid A \lor A \mid A \to A \mid \Box A \mid \Diamond A
+            A & ::= & p \mid \perp \mid A \land A \mid A \lor A \mid A \to B
         \end{array}
     \end{math}
 \end{center}
 The formula $p$ is taken from a set of countably many propositional
 constant.
 
-The sequent calculus for CS4 is defined in Figure~\ref{fig:CS4-seq}.
-\begin{figure}
-  \begin{center}
-    \begin{math}
-      \begin{array}{c}
-        \begin{array}{cccccccc}
-          \infer[\text{Id}]{\Delta,A \vdash A}{
-            \,
-          }
-          & \quad &
-          \infer[\text{Cut}]{\Gamma,\Delta \vdash C}{
-            \Gamma \vdash B
-            &
-            B,\Delta \vdash C
-          }
-          & \quad & 
-          \infer[\perp_{\mathcal{L}}]{\Gamma,\perp \vdash A}{
-            \,
-          }\\\\
-          \infer[\lor_{\mathcal{L}}]{\Gamma,A \lor B \vdash C}{
-            \Gamma,A \vdash C
-            &
-            \Gamma,B \vdash C
-          }
-          & \quad &
-          \infer[\lor_{\mathcal{R}_1}]{\Gamma \vdash A \lor B}{
-            \Gamma \vdash A
-          }
-          & \quad &
-          \infer[\lor_{\mathcal{R}_2}]{\Gamma \vdash A \lor B}{
-            \Gamma \vdash B
-          }\\\\
-          \infer[\land_{\mathcal{L}_1}]{\Gamma,A \land B \vdash C}{
-            \Gamma,A \vdash C
-          }
-          & \quad &
-          \infer[\land_{\mathcal{L}_2}]{\Gamma,A \land B \vdash C}{
-            \Gamma,B \vdash C
-          }
-          & \quad &
-          \infer[\land_{\mathcal{R}}]{\Gamma \vdash A \land B}{
-            \Gamma \vdash A
-            &
-            \Gamma \vdash B
-          }\\\\
-          
-        \end{array}
-        \\
-        \begin{array}{cccccccc}
-          \infer[\to_{\mathcal{L}}]{\Gamma,A \to B \vdash C}{
-            \Gamma \vdash A
-            &
-            \Gamma,B \vdash C
-          }
-          & \quad &
-          \infer[\to_{\mathcal{R}}]{\Gamma \vdash A \to B}{
-            \Gamma, A \vdash B
-          }\\\\
-          \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
-            \Gamma,A \vdash B
-          }
-          & \quad &
-          \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
-            \Box \Gamma \vdash A
-          }\\\\
-          \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
-            \Box\Gamma,A \vdash \Diamond B
-          }
-          & \quad &
-          \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
-            \Gamma \vdash A
-          }
-        \end{array}        
+We begin with an initial set of inference rules, and then each system
+presented in this section will be given as an extension of this
+initial system.  The set of initial inference rules are as follows:
+\begin{center}
+  \small
+  \begin{math}
+    \begin{array}{c}
+      \begin{array}{cccccccc}
+        \infer[\text{Id}]{\Delta,A \vdash A}{
+          \,
+        }
+        & \quad &
+        \infer[\text{Cut}]{\Gamma,\Delta \vdash C}{
+          \Gamma \vdash B
+          &
+          B,\Delta \vdash C
+        }
+        & \quad & 
+        \infer[\perp_{\mathcal{L}}]{\Gamma,\perp \vdash A}{
+          \,
+        }\\\\
+        \infer[\lor_{\mathcal{L}}]{\Gamma,A \lor B \vdash C}{
+          \Gamma,A \vdash C
+          &
+          \Gamma,B \vdash C
+        }
+        & \quad &
+        \infer[\lor_{\mathcal{R}_1}]{\Gamma \vdash A \lor B}{
+          \Gamma \vdash A
+        }
+        & \quad &
+        \infer[\lor_{\mathcal{R}_2}]{\Gamma \vdash A \lor B}{
+          \Gamma \vdash B
+        }\\\\
+        \infer[\land_{\mathcal{L}_1}]{\Gamma,A \land B \vdash C}{
+          \Gamma,A \vdash C
+        }
+        & \quad &
+        \infer[\land_{\mathcal{L}_2}]{\Gamma,A \land B \vdash C}{
+          \Gamma,B \vdash C
+        }
+        & \quad &
+        \infer[\land_{\mathcal{R}}]{\Gamma \vdash A \land B}{
+          \Gamma \vdash A
+          &
+          \Gamma \vdash B
+        }\\\\
+        
       \end{array}
-    \end{math}
-  \end{center}
-  \caption{Sequent Calculus for CS4}
-  \label{fig:CS4-seq}
-\end{figure}
+      \\
+      \begin{array}{cccccccc}
+        \infer[\to_{\mathcal{L}}]{\Gamma,A \to B \vdash C}{
+          \Gamma \vdash A
+          &
+          \Gamma,B \vdash C
+        }
+        & \quad &
+        \infer[\to_{\mathcal{R}}]{\Gamma \vdash A \to B}{
+          \Gamma, A \vdash B
+        }
+      \end{array}        
+    \end{array}
+  \end{math}
+\end{center}
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
 denoted by either $\Gamma$, $\Delta$, or a indexed version of the two,
-and a formula $C$.  Each logical connective of CS4 is determined by
-its left and right rule.  This system is indeed constructive, and
-hence, $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot
-A$, and $\Diamond A$ is not logically equivalent to $\lnot \Box \lnot
-A$.
+and a formula $C$.
+
+\subsection{The  system CS4 revisited} 
+
+In this section we recall the sequent calculus formalization of system
+CS4.  This formalization was formally known as IS4 and was proposed by
+Bierman and de Paiva \cite{CS4}.  The following rules in addition to
+the initial set of inference rules defines the sequent calculus for
+CS4:
+\begin{center}
+  \begin{math}
+    \begin{array}{ccccc}              
+      \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
+        \Gamma,A \vdash B
+      }
+      & \quad &
+      \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
+        \Box \Gamma \vdash A
+      }\\\\
+      \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
+        \Box\Gamma,A \vdash \Diamond B
+      }
+      & \quad &
+      \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
+        \Gamma \vdash A
+      }
+    \end{array}        
+  \end{math}
+\end{center}
+This system is indeed constructive, and hence, $\Box A$ is not
+logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
+not logically equivalent to $\lnot \Box \lnot A$.
 
 \subsection{Ewald's Temporal Logic}
-\subsection{Forward and Backward CS4}
+
+\begin{center}
+  \begin{math}
+    \begin{array}{cccccc}
+      \infer[\text{G}]{\G \Gamma \vdash \G C}{
+        \Gamma \vdash C
+      }
+      & \quad &
+      \infer[\text{H}]{\H\Gamma \vdash \H C}{
+        \Gamma \vdash C
+      }\\\\
+      \infer[\text{F}]{\G\Gamma,\F A \vdash \F B}{
+        \Gamma,A \vdash B
+      }
+      & \quad &
+      \infer[\text{P}]{\H\Gamma,\P A \vdash \P B}{
+        \Gamma,A \vdash B
+      }\\\\
+      \infer[\text{FH}]{\cdot \vdash \F\H A \to A}{
+        \,
+      }
+      & \quad &
+      \infer[\text{HF}]{\cdot \vdash A \to \H\F A}{
+        \,
+      }\\\\
+      \infer[\text{PG}]{\cdot \vdash \P\G A \to A}{
+        \,
+      }
+      & \quad &
+      \infer[\text{GP}]{\cdot \vdash A \to \G\P A}{
+        \,
+      }\\\\
+      \infer[\text{FG}_1]{\cdot \vdash (\F A \to \G B) \to G(A \to B)}{
+        \,
+      }
+      & \quad &
+      \infer[\text{FG}_2]{\cdot \vdash \F(A \to B) \to (\G A \to \F B)}{
+        \,
+      }\\\\
+      \infer[\text{PH}_1]{\cdot \vdash (\P A \to \H B) \to H(A \to B)}{
+        \,
+      }
+      & \quad &
+      \infer[\text{PH}_2]{\cdot \vdash \P(A \to B) \to (\H A \to \P B)}{
+        \,
+      }
+      
+    \end{array}
+  \end{math}
+\end{center}
+
+\section{Forward and Backward CS4}
 \section{Twice as nice?}
 
 
