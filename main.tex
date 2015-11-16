@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Constructing Our Temporal Logic}
+\author{Valeria de Paiva \and Harley Eades III}
+\date{October 2015}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{proof}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Generally  speaking, Temporal Logic is any system of rules and symbolism for representing, and reasoning about propositions qualified in terms of time. 
+Temporal logic is also one of the most traditional kinds of modal logic, introduced by Arthur Prior in the late 1950s,
+%, and for which important results were obtained by Hans Kamp. 
+but it is also one of the most controversial kinds of modal logic, as people have different intuitions about time, how to represent it, and how to reason about it. 
+
+There has been a huge amount of work in Modal Logic in the last sixty years, but mostly in classical modal logic. We are interested in constructive systems. In particular we are interested in a constructive version of temporal logic.
+
+Prior's  `Time and Modality'  introduced a propositional modal logic with two temporal connectives (modal operators), $F$ and $P$, corresponding to ``sometime in the future" and ``sometime in the past". Kamp's thesis  introduced the binary temporal operators ``Since" and ``Until" and proved what came to be known as Kamp's theorem. Kamp's theorem  shows that all temporal operators are definable in terms of "since" and "until" -- provided that the underlying temporal structure is a continuous linear ordering and provided that your basis is classical.
+
+Ewald \cite{ewald1986} has a first version of an intuitionistically based system. Basically, Ewald's system is a pair of Simpson-style IK operators\cite{simpson1994}, representing past and future over intuituionistic propositional logic.
+
+The intuitive reading of the operators is sensible:
+\begin{itemize}
+\item $P$ “It has at some time been the case that” 
+\item $F$ “It will at some time be the case that” 
+\item $H$ “It has always been the case that” 
+\item $G$  “It will always be the case that” 
+\end{itemize}
+Ewald and most of the researchers that followed his path of constructivization of tense logic, did so assuming a symmetry between past and future. This  symmetry between universal and existential quantifiers is not very characteristic of intuitionistic reasoning.
+
+As discussed by Simpson intuitionistic or constructive modal logic is full of questions. Simpson says:
+\begin{quote}
+Although much work has been done in the field, there is as yet no consensus
+on the correct viewpoint for considering intuitionistic modal logic.  In particular,
+there is no single semantic framework rivalling that of possible  world semantics
+for classical modal logic.  Indeed, there is not even any general agreement on what
+the intuitionistic analogue of the basic modal logic, K, is. 
+\end{quote}
+In an intuitionistic logic we do not expect perfect duality between quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg P(x)$) or even between conjunction and disjunction (De Morgan laws do not hold for intuitionistic propositional logic). So one should not expect a perfect duality between possibility and necessity either.
+
+\section{Varieties of Constructive Temporal Logic}
+
+\subsection{The  system CS4 revisited} 
+
+In this section we recall the sequent calculus formalization of system CS4.  This formalization was formally known as IS4 and was proposed by Bierman and de Paiva \cite{CS4}.  The syntax of formulas is defined as follows:
+\begin{center}
+    \begin{math}
+        \begin{array}{lllllllll}
+            A & ::= & p \mid \perp \mid A \land A \mid A \lor A \mid A \to A \mid \Box A \mid \Diamond A
+        \end{array}
+    \end{math}
+\end{center}
+The formula $p$ is taken from a set of countably many propositional
+constant.
+
+The sequent calculus for CS4 is define in Figure~\ref{fig:CS4-seq}.
+\begin{figure}
+  \begin{center}
+    \begin{math}
+      \begin{array}{c}
+        \begin{array}{cccccccc}
+          \infer[\text{Id}]{\Delta,A \vdash A}{
+            \,
+          }
+          & \quad &
+          \infer[\text{Cut}]{\Gamma,\Delta \vdash C}{
+            \Gamma \vdash B
+            &
+            B,\Delta \vdash C
+          }
+          & \quad & 
+          \infer[\perp_{\mathcal{L}}]{\Gamma,\perp \vdash A}{
+            \,
+          }\\\\
+          \infer[\lor_{\mathcal{L}}]{\Gamma,A \lor B \vdash C}{
+            \Gamma,A \vdash C
+            &
+            \Gamma,B \vdash C
+          }
+          & \quad &
+          \infer[\lor_{\mathcal{R}_1}]{\Gamma \vdash A \lor B}{
+            \Gamma \vdash A
+          }
+          & \quad &
+          \infer[\lor_{\mathcal{R}_2}]{\Gamma \vdash A \lor B}{
+            \Gamma \vdash B
+          }\\\\
+          \infer[\land_{\mathcal{L}_1}]{\Gamma,A \land B \vdash C}{
+            \Gamma,A \vdash C
+          }
+          & \quad &
+          \infer[\land_{\mathcal{L}_2}]{\Gamma,A \land B \vdash C}{
+            \Gamma,B \vdash C
+          }
+          & \quad &
+          \infer[\land_{\mathcal{R}}]{\Gamma \vdash A \land B}{
+            \Gamma \vdash A
+            &
+            \Gamma \vdash B
+          }\\\\
+          
+        \end{array}
+        \\
+        \begin{array}{cccccccc}
+          \infer[\to_{\mathcal{L}}]{\Gamma,A \to B \vdash C}{
+            \Gamma \vdash A
+            &
+            \Gamma,B \vdash C
+          }
+          & \quad &
+          \infer[\to_{\mathcal{R}}]{\Gamma \vdash A \to B}{
+            \Gamma, A \vdash B
+          }\\\\
+          \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
+            \Gamma,A \vdash B
+          }
+          & \quad &
+          \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
+            \Box \Gamma \vdash A
+          }\\\\
+          \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
+            \Box\Gamma,A \vdash \Diamond B
+          }
+          & \quad &
+          \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
+            \Gamma \vdash A
+          }
+        \end{array}        
+      \end{array}
+    \end{math}
+  \end{center}
+  \caption{Sequent Calculus for CS4}
+  \label{fig:CS4-seq}
+\end{figure}
+Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas, denoted by either $\Gamma$, $\Delta$, or a indexed version of the two, and a formula $C$.  Each logical conn
+
+\subsection{Ewald's Temporal Logic}
+\subsection{Forward and Backward CS4}
+\section{Twice as nice?}
+
+
+\section{Conclusion}
+``I always thought something was fundamentally wrong with the universe'' 
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
+
+References:
+Ewald's paper:Intuitionistic tense and modal logic
+http://journals.cambridge.org/action/displayAbstract?fromPage=online&aid=9081918&fileId=S0022481200031650
+
+Bierman and de Paiva:On an Intuitionistic Modal Logic (2001)
+(I'm now calling CS4 what was in this paper IS4)
+http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.5279
+
+Modalities in Constructive Logics and Type Theories Preface to the special issue on Intuitionistic Modal Logic and Application of the Journal of Logic and Computation, volume 14, number 4, August 2004. Guest Editors: Valeria de Paiva, Rajeev Gore' and Michael Mendler.
+http://www.cs.bham.ac.uk/~vdp/publications/final-preface.pdf
+
+and
+
+http://logcom.oxfordjournals.org/content/early/2015/06/12/logcom.exv042.extract
