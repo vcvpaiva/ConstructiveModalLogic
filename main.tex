@@ -12,10 +12,10 @@
 
 \renewcommand{\Box}{\oblong}
 
-\newcommand{\F}{\mathop{\text{F}}}
-\renewcommand{\P}{\mathop{\text{P}}}
-\newcommand{\G}{\mathop{\text{G}}}
-\renewcommand{\H}{\mathop{\text{H}}}
+\newcommand{\F}{\mathop{\textbf{F}}}
+\renewcommand{\P}{\mathop{\textbf{P}}}
+\newcommand{\G}{\mathop{\textbf{G}}}
+\renewcommand{\H}{\mathop{\textbf{H}}}
 
 \begin{document}
 
@@ -196,6 +196,12 @@ not logically equivalent to $\lnot \Box \lnot A$.
 
 \subsection{Ewald's Temporal Logic}
 
+Ewald proposed an intuitionistic temporal logic where the traditional
+modal operators, $\Box$ and $\Diamond$, have been decomposed into more
+canonical modal operators he calls $\F$, $\H$, $\G$, and $\P$
+\cite{ewald1986}.  The sequent calculus formalization of Ewald's
+temporal logic is defined by the following inference rules in addition
+to the initial set of inference rules given above:
 \begin{center}
   \begin{math}
     \begin{array}{cccccc}
@@ -227,25 +233,34 @@ not logically equivalent to $\lnot \Box \lnot A$.
       \infer[\text{GP}]{\cdot \vdash A \to \G\P A}{
         \,
       }\\\\
-      \infer[\text{FG}_1]{\cdot \vdash (\F A \to \G B) \to G(A \to B)}{
+      \infer[\text{FG}_1]{\cdot \vdash (\F A \to \G B) \to \G(A \to B)}{
         \,
       }
       & \quad &
       \infer[\text{FG}_2]{\cdot \vdash \F(A \to B) \to (\G A \to \F B)}{
         \,
       }\\\\
-      \infer[\text{PH}_1]{\cdot \vdash (\P A \to \H B) \to H(A \to B)}{
+      \infer[\text{PH}_1]{\cdot \vdash (\P A \to \H B) \to \H(A \to B)}{
         \,
       }
       & \quad &
       \infer[\text{PH}_2]{\cdot \vdash \P(A \to B) \to (\H A \to \P B)}{
         \,
-      }
-      
+      }      
     \end{array}
   \end{math}
 \end{center}
+Looking at Ewald's system in the present with a categorical eye we can
+now see that these new operators are adjoint functors
+\cite{Menni:2014}.  The rules $\text{G}$ and $\text{H}$ show that $\G$
+and $\H$ are functors, similarly, the rules $\text{F}$ and $\text{P}$
+do the same for the operators $\F$ and $\P$ when $\Gamma = \cdot$.
+Then the rules $\text{FH}$ and $\text{HF}$ give the co-unit and unit
+of the adjunction $F \dashv H$, and the rules $\text{PG}$ and
+$\text{GP}$ give the co-unit and unit of the adjunction $P \dashv G$.
 
+The following table describes the intuitive meaning of each of Ewald's
+operators:
 \section{Forward and Backward CS4}
 \section{Twice as nice?}
 
