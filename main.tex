@@ -174,7 +174,10 @@ The sequent calculus for CS4 is defined in Figure~\ref{fig:CS4-seq}.
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
 denoted by either $\Gamma$, $\Delta$, or a indexed version of the two,
 and a formula $C$.  Each logical connective of CS4 is determined by
-its left and right rule.
+its left and right rule.  This system is indeed constructive, and
+hence, $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot
+A$, and $\Diamond A$ is not logically equivalent to $\lnot \Box \lnot
+A$.
 
 \subsection{Ewald's Temporal Logic}
 \subsection{Forward and Backward CS4}
