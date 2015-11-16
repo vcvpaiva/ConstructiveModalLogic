@@ -7,24 +7,44 @@
 
 \usepackage{natbib}
 \usepackage{graphicx}
-\usepackage{amssymb, amsthm, amsmath}
+\usepackage{amssymb, amsthm, amsmath, stmaryrd, wasysym}
 \usepackage{proof}
+
+\renewcommand{\Box}{\oblong}
 
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
-Generally  speaking, Temporal Logic is any system of rules and symbolism for representing, and reasoning about propositions qualified in terms of time. 
-Temporal logic is also one of the most traditional kinds of modal logic, introduced by Arthur Prior in the late 1950s,
+Generally speaking, Temporal Logic is any system of rules and
+symbolism for representing, and reasoning about propositions qualified
+in terms of time.  Temporal logic is also one of the most traditional
+kinds of modal logic, introduced by Arthur Prior in the late 1950s,
 %, and for which important results were obtained by Hans Kamp. 
-but it is also one of the most controversial kinds of modal logic, as people have different intuitions about time, how to represent it, and how to reason about it. 
+but it is also one of the most controversial kinds of modal logic, as
+people have different intuitions about time, how to represent it, and
+how to reason about it.
 
-There has been a huge amount of work in Modal Logic in the last sixty years, but mostly in classical modal logic. We are interested in constructive systems. In particular we are interested in a constructive version of temporal logic.
+There has been a huge amount of work in Modal Logic in the last sixty
+years, but mostly in classical modal logic. We are interested in
+constructive systems. In particular we are interested in a
+constructive version of temporal logic.
 
-Prior's  `Time and Modality'  introduced a propositional modal logic with two temporal connectives (modal operators), $F$ and $P$, corresponding to ``sometime in the future" and ``sometime in the past". Kamp's thesis  introduced the binary temporal operators ``Since" and ``Until" and proved what came to be known as Kamp's theorem. Kamp's theorem  shows that all temporal operators are definable in terms of "since" and "until" -- provided that the underlying temporal structure is a continuous linear ordering and provided that your basis is classical.
+Prior's `Time and Modality' introduced a propositional modal logic
+with two temporal connectives (modal operators), $F$ and $P$,
+corresponding to ``sometime in the future" and ``sometime in the
+past". Kamp's thesis introduced the binary temporal operators ``Since"
+and ``Until" and proved what came to be known as Kamp's
+theorem. Kamp's theorem shows that all temporal operators are
+definable in terms of "since" and "until" -- provided that the
+underlying temporal structure is a continuous linear ordering and
+provided that your basis is classical.
 
-Ewald \cite{ewald1986} has a first version of an intuitionistically based system. Basically, Ewald's system is a pair of Simpson-style IK operators\cite{simpson1994}, representing past and future over intuituionistic propositional logic.
+Ewald \cite{ewald1986} has a first version of an intuitionistically
+based system. Basically, Ewald's system is a pair of Simpson-style IK
+operators\cite{simpson1994}, representing past and future over
+intuituionistic propositional logic.
 
 The intuitive reading of the operators is sensible:
 \begin{itemize}
@@ -33,23 +53,35 @@ The intuitive reading of the operators is sensible:
 \item $H$ “It has always been the case that” 
 \item $G$  “It will always be the case that” 
 \end{itemize}
-Ewald and most of the researchers that followed his path of constructivization of tense logic, did so assuming a symmetry between past and future. This  symmetry between universal and existential quantifiers is not very characteristic of intuitionistic reasoning.
+Ewald and most of the researchers that followed his path of
+constructivization of tense logic, did so assuming a symmetry between
+past and future. This symmetry between universal and existential
+quantifiers is not very characteristic of intuitionistic reasoning.
 
-As discussed by Simpson intuitionistic or constructive modal logic is full of questions. Simpson says:
+As discussed by Simpson intuitionistic or constructive modal logic is
+full of questions. Simpson says:
 \begin{quote}
-Although much work has been done in the field, there is as yet no consensus
-on the correct viewpoint for considering intuitionistic modal logic.  In particular,
-there is no single semantic framework rivalling that of possible  world semantics
-for classical modal logic.  Indeed, there is not even any general agreement on what
-the intuitionistic analogue of the basic modal logic, K, is. 
+Although much work has been done in the field, there is as yet no
+consensus on the correct viewpoint for considering intuitionistic
+modal logic.  In particular, there is no single semantic framework
+rivalling that of possible world semantics for classical modal logic.
+Indeed, there is not even any general agreement on what the
+intuitionistic analogue of the basic modal logic, K, is.
 \end{quote}
-In an intuitionistic logic we do not expect perfect duality between quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg P(x)$) or even between conjunction and disjunction (De Morgan laws do not hold for intuitionistic propositional logic). So one should not expect a perfect duality between possibility and necessity either.
+In an intuitionistic logic we do not expect perfect duality between
+quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg
+P(x)$) or even between conjunction and disjunction (De Morgan laws do
+not hold for intuitionistic propositional logic). So one should not
+expect a perfect duality between possibility and necessity either.
 
 \section{Varieties of Constructive Temporal Logic}
 
 \subsection{The  system CS4 revisited} 
 
-In this section we recall the sequent calculus formalization of system CS4.  This formalization was formally known as IS4 and was proposed by Bierman and de Paiva \cite{CS4}.  The syntax of formulas is defined as follows:
+In this section we recall the sequent calculus formalization of system
+CS4.  This formalization was formally known as IS4 and was proposed by
+Bierman and de Paiva \cite{CS4}.  The syntax of formulas is defined as
+follows:
 \begin{center}
     \begin{math}
         \begin{array}{lllllllll}
@@ -139,7 +171,10 @@ The sequent calculus for CS4 is defined in Figure~\ref{fig:CS4-seq}.
   \caption{Sequent Calculus for CS4}
   \label{fig:CS4-seq}
 \end{figure}
-Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas, denoted by either $\Gamma$, $\Delta$, or a indexed version of the two, and a formula $C$.  Each logical connective of CS4 is determined by its left and right rule.
+Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
+denoted by either $\Gamma$, $\Delta$, or a indexed version of the two,
+and a formula $C$.  Each logical connective of CS4 is determined by
+its left and right rule.
 
 \subsection{Ewald's Temporal Logic}
 \subsection{Forward and Backward CS4}
