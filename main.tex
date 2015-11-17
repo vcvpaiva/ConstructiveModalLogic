@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb, amsthm, amsmath, stmaryrd, wasysym}
 \usepackage{proof}
+\usepackage{enumerate}
 
 \renewcommand{\Box}{\oblong}
 
@@ -263,11 +264,31 @@ now see that these new operators are adjoint functors
 and $\H$ are functors, similarly, the rules $\text{F}$ and $\text{P}$
 do the same for the operators $\F$ and $\P$ when $\Gamma = \cdot$.
 Then the rules $\text{FH}$ and $\text{HF}$ give the co-unit and unit
-of the adjunction $F \dashv H$, and the rules $\text{PG}$ and
-$\text{GP}$ give the co-unit and unit of the adjunction $P \dashv G$.
+of the adjunction $\F \dashv \H$, and the rules $\text{PG}$ and
+$\text{GP}$ give the co-unit and unit of the adjunction $\P \dashv
+\G$.
 
-The following table describes the intuitive meaning of each of Ewald's
+The following describes the intuitive meaning of each of Ewald's
 operators:
+\begin{itemize}
+\item[] $\F$: ``it will be the case``  
+\item[] $\H$: ``it has always been the case``
+\item[] $\P$: ``it was the case``
+\item[] $\G$: ``it will always be the case``  
+\end{itemize}
+Using these operators it is possible to define the traditional modal
+operators by choosing one of the following definitions
+\cite{ewald1986}:
+\begin{enumerate}[i.]
+\item $\Box A := A \land \G A \land \H A$, $\Diamond A := A \lor \F A \lor \P A$; or
+\item $\Box A := A \land \G A$, $\Diamond A := A \lor \F A$.
+\end{enumerate}
+
+This system has a Kripke model, and an axiomatization (page 171 of
+\cite{ewald1986}), and is decidable.  Lastly, Ewald shows that by
+adopting various axioms for the modal operators different notions of
+time can be studied within this system.
+
 \section{Forward and Backward CS4}
 \section{Twice as nice?}
 
