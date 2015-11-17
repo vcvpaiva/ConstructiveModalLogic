@@ -79,11 +79,11 @@ P(x)$) or even between conjunction and disjunction (De Morgan laws do
 not hold for intuitionistic propositional logic). So one should not
 expect a perfect duality between possibility and necessity either.
 
-\section{Varieties of Constructive Temporal Logic}
+\section{Constructive Temporal Logics}
 
 Each of the logics presented in this section are extensions of the
-single-conclusion formalization of Gentzen's LK which produces
-intuitionistic sequent calculus.  The syntax of formulas for LK is
+single-conclusion formalization of Gentzen's  LJ which produces  the
+intuitionistic sequent calculus.  The syntax of formulas for LJ is
 defined by the following grammar:
 \begin{center}
     \begin{math}
@@ -166,8 +166,10 @@ and a formula $C$.
 \subsection{The  system CS4 revisited} 
 
 In this section we recall the sequent calculus formalization of system
-CS4.  This formalization was formally known as IS4 and was proposed by
-Bierman and de Paiva \cite{CS4}.  The following rules in addition to
+CS4.  This formalization was initially denoted by IS4 (Intuitionistic modal logic S4) and was proposed by
+Bierman and de Paiva \cite{CS4}.  Since  Simpson's systems,  framework starting from intuitionistic K,  were also called IK, IS4, IS5, it made more sense to change the name of Bierman and de Paiva's system to CS4.  
+
+The following rules in addition to
 the initial set of inference rules defines the sequent calculus for
 CS4:
 \begin{center}
@@ -193,6 +195,10 @@ CS4:
 This system is indeed constructive, and hence, $\Box A$ is not
 logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
+
+This systemem is very well behaved proof theoretically. We can show that it has a Hilbert-style presentation, and a Natural Deduction one, as well as a sequent formulation. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto \cite{} as well as the subformula property. The Natural Deduction formulation has a  colourful history, described in \cite{CS4}. One of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965}, hence it is still called sometimes Prawitz modal logic.
+
+Most interestingly the system has both Kripke and categorical semantics, described  respectively in \cite{alechinaetal} and \cite{CS4}. Since we can prove a Curry-Howard correspondence for this system, it has been used in several applications within programming language theory. Examples include \cite{hmm}.
 
 \subsection{Ewald's Temporal Logic}
 
