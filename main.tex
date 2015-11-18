@@ -142,11 +142,12 @@ denoted by either $\Gamma$, $\Delta$, or a numbered version of the two, and a fo
 \subsection{The constructive system S4} 
 
 In this section we recall the sequent calculus formalization of system CS4.  This formalization was initially denoted by IS4 (Intuitionistic modal logic S4) and was proposed by
-Bierman and de Paiva \cite{CS4}.  This systems gives rise to a complete family of systems, which are alternative to Simpson's systems. Since  Simpson's systems,  a framework starting from intuitionistic K,  were also called IK, IS4, IS5, it makes  sense to call the family of systems originating with the S4 above, the family of constructive modal systems, and Bierman and de Paiva's system CS4.  This is for instance how 
+Bierman and de Paiva \cite{CS4}.  This systems gives rise to a complete family of systems, which are alternative to Simpson's intuitionistic systems. Since  Simpson's systems,  a framework starting from intuitionistic K,  were also called IK, IS4, IS5, it makes  sense to call the family of systems originating with the S4 above, the family of constructive modal systems CS, and Bierman and de Paiva's system CS4.  This is for instance how \cite{arisaka2015} describe these systems. 
 
-The following rules in addition to
-the initial set of inference rules defines the sequent calculus for
-CS4:
+The main difference between systems IS4 and CS4 concerns the binary distribution of $\Diamond$ over disjunction and its nullary form.
+
+The following rules, in addition to
+the initial set of inference rules, defines the sequent calculus for CS4:
 \begin{center}
   \begin{math}
     \begin{array}{ccccc}              
@@ -171,12 +172,34 @@ This system is indeed constructive, and hence, $\Box A$ is not
 logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
 
-This systemem is very well behaved proof theoretically. We can show that it has a Hilbert-style presentation, and a Natural Deduction one, as well as a sequent formulation. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto \cite{ohnishi1957} as well as the subformula property. The Natural Deduction formulation has a  colourful history, described in \cite{CS4}. One of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965}, hence it is still called sometimes Prawitz modal logic.
+This systemem is very well behaved proof theoretically. We can show that it has a Hilbert-style presentation, and a Natural Deduction one, as well as a sequent formulation. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto \cite{ohnishi1957} as well as the subformula property. 
+
+The Natural Deduction formulation has a  colourful history, described in \cite{CS4}. One of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965}, hence it is still called sometimes Prawitz modal logic.
 
 Most interestingly the system has both Kripke and categorical semantics, described  respectively in \cite{alechinaetal} and \cite{CS4}. Since we can prove a Curry-Howard correspondence for this system, it has been used in several applications within programming language theory. 
 %Examples include \cite{hmm}.
+It is not so well-known, but this system can also be given a presentation in terms of a categorical adjunction, between two cartesian closed categories. This is described in both \cite{CS4} and \cite{icalp1998}. In \cite{CS4} this is called the multicontext formulation of CS4 and the rules are given (page 17) as follows:
 
-It is not so well-known, but this system can be given a presentation in terms of a categorical adjunction, between two cartesian closed categories. This is described in both \cite{CS4} and \cite{icalp1998}.
+\begin{center}
+  \begin{math}
+    \begin{array}{ccccc}              
+      \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
+        \Gamma,A \vdash B
+      }
+      & \quad &
+      \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
+        \Box \Gamma \vdash A
+      }\\\\
+      \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
+        \Box\Gamma,A \vdash \Diamond B
+      }
+      & \quad &
+      \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
+        \Gamma \vdash A
+      }
+    \end{array}        
+  \end{math}
+\end{center}
 
 \subsection{Ewald's Temporal Logic}
 
