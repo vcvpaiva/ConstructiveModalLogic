@@ -183,30 +183,39 @@ It is not so well-known, but this system can also be given a presentation in ter
 \begin{center}
   \begin{math}
     \begin{array}{ccccc}              
-      \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
-        \Gamma,A \vdash B
+      \infer[\Box_{\mathcal{I}}]{\Gamma; \Delta \vdash \Box A}{
+        \Gamma;\emptyset \vdash  A
       }
       & \quad &
-      \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
-        \Box \Gamma \vdash A
+      \infer[\Box_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \Box A \hspace{.1in}
+        \Gamma, A;\Delta \vdash B
       }\\\\
-      \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
-        \Box\Gamma,A \vdash \Diamond B
+      \infer[\Diamond_{\mathcal{I}}]{\Gamma;\Delta \vdash \Diamond A}{
+        \Gamma;\Delta \vdash A
       }
       & \quad &
-      \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
-        \Gamma \vdash A
+      \infer[\Diamond_{\mathcal{E}}]{\Gamma;\Delta \vdash \Diamond B}{
+        \Gamma ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
       }
     \end{array}        
   \end{math}
 \end{center}
 
+These rules have been shown by Benton\cite{benton1995} and Barber to correspond to (half of) the rules below in Ewald's system.
+
+\subsection{Heyting algebras with adjunctions HAA}
+%Need to define HAA (Heyting algebras with adjunctions) and see if we can show a reasonable duality theorem similar to Menni and Smith's corollary 3.5
+Menni and Smith \cite{Menni:2014} define a \textit{lattice with adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L, R$   are  monotone functions on $A$ that form a preorder $L\dashv R$ adjunction.
+
+
 \subsection{Ewald's Temporal Logic}
 
 Ewald proposed an intuitionistic temporal logic where the usual modal operators, $\Box$ and $\Diamond$, have been decomposed into more
-traditional modal operators he calls $\F$, $\H$, $\G$, and $\P$~\cite{ewald1986}.  The sequent calculus formalization of Ewald's
+traditional temporal operators  $\F$, $\H$, $\G$, and $\P$~\cite{ewald1986}.  
+
+The sequent calculus formalization of Ewald's
 temporal logic is defined by the following inference rules in addition
-to the initial set of inference rules given above:
+to the initial intuitionistic set of inference rules given above:
 \begin{center}
   \small
   \begin{math}
@@ -256,7 +265,7 @@ to the initial set of inference rules given above:
     \end{array}
   \end{math}
 \end{center}
-Looking at Ewald's system  with a present day categorical perspective it is easy to see that these new operators are adjoint functors~\cite{Menni:2014}.  
+Looking at Ewald's system  with a present day categorical perspective it is easy to see that these new operators can be seen as adjoint functors~\cite{Menni:2014}.  
 
 The rules $\text{G}$ and $\text{H}$ show that $\G$
 and $\H$ are functors, similarly, the rules $\text{F}$ and $\text{P}$
@@ -269,11 +278,13 @@ $\text{GP}$ give the co-unit and unit of the adjunction $\P \dashv
 The following describes the intuitive meaning of each of Ewald's
 operators:
 \begin{itemize}
-\item[] $\F$: ``it will be the case``  
-\item[] $\H$: ``it has always been the case``
-\item[] $\P$: ``it was the case``
-\item[] $\G$: ``it will always be the case``  
+\item[] $\F$: ``it will once be the case in the Future``  
+\item[] $\H$: ``it Has always been the case in the past``
+\item[] $\P$: ``it was once the case in the Past``
+\item[] $\G$: ``it's Going to  always be the case in the future``  
 \end{itemize}
+
+
 Using these operators it is possible to define the  modal
 operators by choosing one of the following definitions
 \cite{ewald1986}:
