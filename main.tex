@@ -31,6 +31,8 @@
 \newcommand{\cat}[1]{\mathcal{#1}}
 \newcommand{\pd}[0]{\times}
 \newcommand{\ihom}[0]{\rightarrow}
+\newcommand{\st}[2]{\mathsf{st}_{#1,#2}}
+\newcommand{\m}[1]{\mathsf{m}_{#1}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -42,8 +44,6 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{notn}[theorem]{Notation}
 \newtheorem{observation}[theorem]{Observation}
-
-
 
 \begin{document}
 
@@ -295,14 +295,38 @@ correspond to an adjunction of the categories.  \todo{add description
 
 \subsection{Single Adjoint Model of CS4}
 \label{subsec:single_adjoint_model_of_cs4}
-\todo{Threw this in a subsection for now, we can move it around, and reword as needed.}
+\todo{Threw this in a subsection for now, we can move it around, and
+  reword as needed.}
+
+The definitions in this section depend on the definitions of the
+categorical concepts of monoidal category, monoidal functor, and
+monoidal adjunction.  Due to space limitations we omit their
+definitions see \cite{benton1995} for their full definitions.
+Similarly, for the definitions of monoidal comonad and monad see
+\cite{CS4}.
+
+\begin{definition}
+  \label{def:comonad-strong-monad}
+  Suppose $(\Box, \epsilon, \delta, \m{A,B}, \m{I})$ is a monoidal
+  comonad on a cartesian closed category $\cat{C}$.  Then a
+  \emph{$\Box$-strong monad} is a monad $(\Diamond,\eta,\mu)$ on
+  $\cat{C}$ such that there exists a natural transformation:
+  \[
+  \st{A}{B} : \Box A \pd \Diamond B \to \Diamond(\Box A \pd B)
+  \]
+  subject to the following coherence conditions:
+\end{definition}
+
 
 \begin{definition}
   \label{def:CS4-single-adjoint-cat-model}
   A categorical model of CS4 consists of the following data:
   \begin{enumerate}
   \item A cartesian-closed category with coproducts, $(\cat{C},1,0,\pd,+,\ihom)$,
-  \item 
+  \item A pair of monoidal functors, $(J,n) : \cat{C} \to \cat{C}$ and
+    $(H,m) : \cat{C} \to \cat{C}$, which form a monoidal adjunction
+    with $J \dashv H$, and
+  \item A HJ-strong monad $(\Diamond, \eta, \mu, \st{A}{B})$.
   \end{enumerate}
 \end{definition}
 
