@@ -10,6 +10,7 @@
 \usepackage{amssymb, amsthm, amsmath, stmaryrd, wasysym}
 \usepackage{proof}
 \usepackage{enumerate}
+\usepackage{todonotes}
 
 \renewcommand{\Box}{\oblong}
 
@@ -24,17 +25,35 @@
 
 \section{Introduction}
 Generally speaking, Temporal Logic is any system of rules and
-symbolism for representing, and reasoning about propositions qualified in terms of time.  Temporal logic is also one of the most traditional kinds of modal logic, introduced by Arthur Prior in the late 1950s,
+symbolism for representing, and reasoning about propositions qualified
+in terms of time.  Temporal logic is also one of the most traditional
+kinds of modal logic, introduced by Arthur Prior in the late 1950s,
 %, and for which important results were obtained by Hans Kamp. 
-but it is also one of the most controversial kinds of modal logic, as people have different intuitions about time, how to represent it, and  how to reason about it.
+but it is also one of the most controversial kinds of modal logic, as
+people have different intuitions about time, how to represent it, and
+how to reason about it.
 
-There has been a huge amount of work in Modal Logic in the last sixty years, but mainly in classical modal logic. We are mostly interested in constructive systems. In particular we are interested in a constructive version of temporal logic that satisfies some well-known and desirable proof-theoretical properties, but that is also algebraically and category-theoretically well-behaved.
+There has been a huge amount of work in Modal Logic in the last sixty
+years, but mainly in classical modal logic. We are mostly interested
+in constructive systems. In particular we are interested in a
+constructive version of temporal logic that satisfies some well-known
+and desirable proof-theoretical properties, but that is also
+algebraically and category-theoretically well-behaved.
 
-Prior's `Time and Modality' introduced a propositional modal logic with two temporal connectives (modal operators), $F$ and $P$, corresponding to ``sometime in the {F}uture" and ``sometime in the {P}ast". Kamp's thesis introduced the binary temporal operators ``since" and ``until" and proved what came to be known as Kamp's theorem. Kamp's theorem shows that all temporal operators are definable in terms of ``since" and ``until" -- provided that the underlying temporal structure is a continuous linear ordering and provided that the logical basis is classical.
+Prior's `Time and Modality' introduced a propositional modal logic
+with two temporal connectives (modal operators), $F$ and $P$,
+corresponding to ``sometime in the {F}uture" and ``sometime in the
+{P}ast". Kamp's thesis introduced the binary temporal operators
+``since" and ``until" and proved what came to be known as Kamp's
+theorem. Kamp's theorem shows that all temporal operators are
+definable in terms of ``since" and ``until" -- provided that the
+underlying temporal structure is a continuous linear ordering and
+provided that the logical basis is classical.
 
-Ewald \cite{ewald1986} has produced a first version of an intuitionistically based temporal logic system. Basically, Ewald's system is a pair of Simpson-style IK
-operators\cite{simpson1994}, representing past and future over
-intuituionistic propositional logic.
+Ewald \cite{ewald1986} has produced a first version of an
+intuitionistically based temporal logic system. Basically, Ewald's
+system is a pair of Simpson-style IK operators \cite{simpson1994},
+representing past and future over intuituionistic propositional logic.
 
 The intuitive reading of the operators is sensible:
 \begin{itemize}
@@ -44,14 +63,20 @@ The intuitive reading of the operators is sensible:
 \item $G$  “It will always be the case that” 
 \end{itemize}
 Ewald and most of the researchers that followed his path of
-constructivization of tense logic, did so assuming a symmetry between past and future. This symmetry, as well as the symmetry between universal and existential
-quantifiers, both in the past and in the future, are at odds with
+constructivization of tense logic, did so assuming a symmetry between
+past and future. This symmetry, as well as the symmetry between
+universal and existential quantifiers, both in the past and in the
+future, are at odds with
 %is not very characteristic of 
 intuitionistic reasoning.
 
- Simpson remarks that intuitionistic or constructive modal logic is full of interesting questions. As he says:
+ Simpson remarks that intuitionistic or constructive modal logic is
+ full of interesting questions. As he says:
 \begin{quote}
-Although much work has been done in the field, there is as yet no consensus on the correct viewpoint for considering intuitionistic modal logic.  In particular, there is no single semantic framework rivalling that of possible world semantics for classical modal logic.
+Although much work has been done in the field, there is as yet no
+consensus on the correct viewpoint for considering intuitionistic
+modal logic.  In particular, there is no single semantic framework
+rivalling that of possible world semantics for classical modal logic.
 Indeed, there is not even any general agreement on what the
 intuitionistic analogue of the basic modal logic, K, is.
 \end{quote}
@@ -63,8 +88,10 @@ expect a perfect duality between possibility and necessity either.
 
 \section{Constructive Temporal Logics}
 
-Each of the logics presented in this section is an  extension of the single-conclusion formalization of Gentzen's  
-intuitionistic sequent calculus LJ.  The syntax of formulas for LJ is defined by the following grammar:
+Each of the logics presented in this section is an extension of the
+single-conclusion formalization of Gentzen's intuitionistic sequent
+calculus LJ.  The syntax of formulas for LJ is defined by the
+following grammar:
 \begin{center}
     \begin{math}
         \begin{array}{lllllllll}
@@ -72,9 +99,13 @@ intuitionistic sequent calculus LJ.  The syntax of formulas for LJ is defined by
         \end{array}
     \end{math}
 \end{center}
-The formula $p$ is taken from a set of countably many propositional constants.
+The formula $p$ is taken from a set of countably many propositional
+constants.
 
-We begin with an initial set of inference rules, and then each system presented in this section will be given as an extension of this initial system.  The set of initial inference rules, which just models propositional intuitionistic logic, are as follows:
+We begin with an initial set of inference rules, and then each system
+presented in this section will be given as an extension of this
+initial system.  The set of initial inference rules, which just models
+propositional intuitionistic logic, are as follows:
 \begin{center}
   \small
   \begin{math}
@@ -137,14 +168,26 @@ We begin with an initial set of inference rules, and then each system presented 
   \end{math}
 \end{center}
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
-denoted by either $\Gamma$, $\Delta$, or a numbered version of the two, and a formula $C$.
+denoted by either $\Gamma$, $\Delta$, or a numbered version of the
+two, and a formula $C$.
 
 \subsection{The constructive system S4} 
 
-In this section we recall the sequent calculus formalization of system CS4.  This formalization was initially denoted by IS4 (Intuitionistic modal logic S4) and was proposed by
-Bierman and de Paiva \cite{CS4}.  This systems gives rise to a complete family of systems, which are alternative to Simpson's intuitionistic systems. Since  Simpson's systems,  a framework starting from intuitionistic K,  were also called IK, IS4, IS5, it makes  sense to call the family of systems originating with the S4 above, the family of constructive modal systems CS, and Bierman and de Paiva's system CS4.  This is for instance how \cite{arisaka2015} describe these systems. 
+In this section we recall the sequent calculus formalization of system
+CS4.  This formalization was initially denoted by IS4 (Intuitionistic
+modal logic S4) and was proposed by Bierman and de Paiva \cite{CS4}.
+This systems gives rise to a complete family of systems, which are
+alternatives to Simpson's intuitionistic systems. Since Simpson's
+systems, a framework starting from intuitionistic K, were also called
+IK, IS4, IS5, it makes sense to call the family of systems originating
+with the S4 above, the family of constructive modal systems CS, and
+Bierman and de Paiva's system CS4.  This is for instance how
+\cite{arisaka2015} describe these systems.
 
-The main difference between systems IS4 and CS4 concerns the binary distribution of $\Diamond$ over disjunction ($\Diamond (A\lor B)\to \Diamond A\lor Diamond B$ and its nullary form $\Diamond \bot\bot$.
+The main difference between systems IS4 and CS4 concerns the binary
+distribution of $\Diamond$ over disjunction
+$\Diamond (A \lor B) \to \Diamond A \lor \Diamond B$
+and its nullary form $\Diamond \bot\bot$.
 
 The following rules, in addition to
 the initial set of inference rules, defines the sequent calculus for CS4:
@@ -172,17 +215,32 @@ This system is indeed constructive, and hence, $\Box A$ is not
 logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
 
-This systemem is very well behaved proof theoretically. We can show that it has a Hilbert-style presentation, and a Natural Deduction one, as well as a sequent formulation. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto \cite{ohnishi1957} as well as the subformula property. 
+This system is very well behaved proof theoretically. Bierman and de
+Paiva show that it has a Hilbert-style presentation, and a Natural
+Deduction one, as well as a sequent formulation. The sequent calculus
+satisfies cut-elimination, an old result from Ohnishi and Matsumoto
+\cite{ohnishi1957} as well as the subformula property.
 
-The Natural Deduction formulation has a  colourful history, described in \cite{CS4}. One of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965}, hence it is still called sometimes Prawitz modal logic.
+The Natural Deduction formulation has a colourful history, described
+in \cite{CS4}. One of its distinct features is that it was described
+in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
+hence it is still sometimes called Prawitz modal logic.
 
-Most interestingly the system has both Kripke and categorical semantics, described  respectively in \cite{alechinaetal} and \cite{CS4}. Since we can prove a Curry-Howard correspondence for this system, it has been used in several applications within programming language theory. 
+Most interestingly the system has both Kripke and categorical
+semantics, described respectively in \cite{alechinaetal} and
+\cite{CS4}. Since we can prove a Curry-Howard correspondence for this
+system, it has been used in several applications within programming
+language theory \todo{Do we have references for these applications?}.
 %Examples include \cite{hmm}.
 
 \subsection{Presenting CS4 as LNL}
-It is not so well-known, but this system can also be given a presentation in terms of a categorical adjunction, between two cartesian closed categories. 
+It is not so well-known, but this system can also be given a
+presentation in terms of a categorical adjunction, between two
+cartesian closed categories.
 
-This is described in both \cite{CS4} and \cite{icalp1998}. In \cite{CS4} this is called the multicontext formulation of CS4 and the rules are given (page 17) as follows:
+This is described in both \cite{CS4} and \cite{icalp1998}. In
+\cite{CS4} this is called the multicontext formulation of CS4 and the
+rules are given (page 17) as follows:
 
 \begin{center}
   \begin{math}
@@ -205,8 +263,9 @@ This is described in both \cite{CS4} and \cite{icalp1998}. In \cite{CS4} this is
   \end{math}
 \end{center}
 
-These rules have been shown by Benton\cite{benton1995} and Barber to correspond to an adjunction of the categories.
-{\tt add description from Benton here}
+These rules have been shown by Benton \cite{benton1995} and Barber to
+correspond to an adjunction of the categories.  {\tt add description
+  from Benton here}
 
 \section{Forward and Backward CS4}
 %\section{Twice as nice?}
@@ -215,18 +274,25 @@ These rules have been shown by Benton\cite{benton1995} and Barber to correspond 
 
 %this section is here just so I don't forget it 
 \subsection{Heyting algebras with adjunctions HAA}
-%Need to define HAA (Heyting algebras with adjunctions) and see if we can show a reasonable duality theorem similar to Menni and Smith's corollary 3.5
-Menni and Smith \cite{Menni:2014} define a \textit{lattice with adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L, R$   are  monotone functions on $A$ that form a preorder $L\dashv R$ adjunction.
+%Need to define HAA (Heyting algebras with adjunctions) and see if we
+%can show a reasonable duality theorem similar to Menni and Smith's
+%corollary 3.5
+Menni and Smith \cite{Menni:2014} define a \textit{lattice with
+  adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L,
+R$ are monotone functions on $A$ that form a preorder $L\dashv R$
+adjunction.
 
 
 \subsection{Ewald's Temporal Logic}
 
-Ewald proposed an intuitionistic temporal logic where the usual modal operators, $\Box$ and $\Diamond$, have been decomposed into more
-traditional temporal operators  $\F$, $\H$, $\G$, and $\P$~\cite{ewald1986}.  
+Ewald proposed an intuitionistic temporal logic where the usual modal
+operators, $\Box$ and $\Diamond$, have been decomposed into more
+traditional temporal operators $\F$, $\H$, $\G$, and
+$\P$~\cite{ewald1986}.
 
-The sequent calculus formalization of Ewald's
-temporal logic is defined by the following inference rules in addition
-to the initial intuitionistic set of inference rules given above:
+The sequent calculus formalization of Ewald's temporal logic is
+defined by the following inference rules in addition to the initial
+intuitionistic set of inference rules given above:
 \begin{center}
   \small
   \begin{math}
@@ -276,15 +342,16 @@ to the initial intuitionistic set of inference rules given above:
     \end{array}
   \end{math}
 \end{center}
-Looking at Ewald's system  with a present day categorical perspective it is easy to see that these new operators can be seen as adjoint functors~\cite{Menni:2014}.  
+Looking at Ewald's system with a present day categorical perspective
+it is easy to see that these new operators can be seen as adjoint
+functors~\cite{Menni:2014}.
 
-The rules $\text{G}$ and $\text{H}$ show that $\G$
-and $\H$ are functors, similarly, the rules $\text{F}$ and $\text{P}$
-do the same for the operators $\F$ and $\P$ when $\Gamma = \cdot$.
-Then the rules $\text{FH}$ and $\text{HF}$ give the co-unit and unit
-of the adjunction $\F \dashv \H$, and the rules $\text{PG}$ and
-$\text{GP}$ give the co-unit and unit of the adjunction $\P \dashv
-\G$.
+The rules $\text{G}$ and $\text{H}$ show that $\G$ and $\H$ are
+functors, similarly, the rules $\text{F}$ and $\text{P}$ do the same
+for the operators $\F$ and $\P$ when $\Gamma = \cdot$.  Then the rules
+$\text{FH}$ and $\text{HF}$ give the co-unit and unit of the
+adjunction $\F \dashv \H$, and the rules $\text{PG}$ and $\text{GP}$
+give the co-unit and unit of the adjunction $\P \dashv \G$.
 
 The following describes the intuitive meaning of each of Ewald's
 operators:
@@ -304,11 +371,10 @@ operators by choosing one of the following definitions
 \item $\Box A := A \land \G A$, $\Diamond A := A \lor \F A$.
 \end{enumerate}
 
-This system has a Kripke model, and an axiomatization (page 171 of \cite{ewald1986}), and is decidable.  Lastly, Ewald shows that by
+This system has a Kripke model, and an axiomatization (page 171 of
+\cite{ewald1986}), and is decidable.  Lastly, Ewald shows that by
 adopting various axioms for the modal operators different notions of
 time can be studied within this system.
-
-
 
 \section{Conclusion}
 %``I always thought something was fundamentally wrong with the universe'' 
