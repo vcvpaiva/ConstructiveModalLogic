@@ -10,14 +10,16 @@
 \usepackage{amssymb, amsthm, amsmath, stmaryrd}
 \usepackage[barr]{xy}
 
+%% This renames Barr's \Diamond command so that it doesn't conflict
+%% with our modality symbols.
 \let\BDiamond\Diamond
+\let\Diamond\relax
 
 \usepackage{wasysym}
 \usepackage{proof}
 \usepackage{enumerate}
 \usepackage{todonotes}
 \usepackage{hyperref}
-
 
 \renewcommand{\Box}{\oblong}
 
