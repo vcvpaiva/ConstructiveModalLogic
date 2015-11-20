@@ -7,11 +7,17 @@
 
 \usepackage{natbib}
 \usepackage{graphicx}
-\usepackage{amssymb, amsthm, amsmath, stmaryrd, wasysym}
+\usepackage{amssymb, amsthm, amsmath, stmaryrd}
+\usepackage[barr]{xy}
+
+\let\BDiamond\Diamond
+
+\usepackage{wasysym}
 \usepackage{proof}
 \usepackage{enumerate}
 \usepackage{todonotes}
 \usepackage{hyperref}
+
 
 \renewcommand{\Box}{\oblong}
 
@@ -19,6 +25,23 @@
 \renewcommand{\P}{\mathop{\textbf{P}}}
 \newcommand{\G}{\mathop{\textbf{G}}}
 \renewcommand{\H}{\mathop{\textbf{H}}}
+
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\pd}[0]{\times}
+\newcommand{\ihom}[0]{\rightarrow}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{notn}[theorem]{Notation}
+\newtheorem{observation}[theorem]{Observation}
+
+
 
 \begin{document}
 
@@ -267,6 +290,22 @@ rules are given (page 17) as follows:
 These rules have been shown by Benton \cite{benton1995} and Barber to
 correspond to an adjunction of the categories.  \todo{add description
   from Benton here}
+
+\subsection{Single Adjoint Model of CS4}
+\label{subsec:single_adjoint_model_of_cs4}
+\todo{Threw this in a subsection for now, we can move it around, and reword as needed.}
+
+\begin{definition}
+  \label{def:CS4-single-adjoint-cat-model}
+  A categorical model of CS4 consists of the following data:
+  \begin{enumerate}
+  \item A cartesian-closed category with coproducts, $(\cat{C},1,0,\pd,+,\ihom)$,
+  \item 
+  \end{enumerate}
+\end{definition}
+
+
+% subsection single_adjoint_model_of_cs4 (end)
 
 \section{Forward and Backward CS4}
 %\section{Twice as nice?}
