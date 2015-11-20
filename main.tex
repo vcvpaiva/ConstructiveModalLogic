@@ -144,7 +144,7 @@ denoted by either $\Gamma$, $\Delta$, or a numbered version of the two, and a fo
 In this section we recall the sequent calculus formalization of system CS4.  This formalization was initially denoted by IS4 (Intuitionistic modal logic S4) and was proposed by
 Bierman and de Paiva \cite{CS4}.  This systems gives rise to a complete family of systems, which are alternative to Simpson's intuitionistic systems. Since  Simpson's systems,  a framework starting from intuitionistic K,  were also called IK, IS4, IS5, it makes  sense to call the family of systems originating with the S4 above, the family of constructive modal systems CS, and Bierman and de Paiva's system CS4.  This is for instance how \cite{arisaka2015} describe these systems. 
 
-The main difference between systems IS4 and CS4 concerns the binary distribution of $\Diamond$ over disjunction and its nullary form.
+The main difference between systems IS4 and CS4 concerns the binary distribution of $\Diamond$ over disjunction ($\Diamond (A\lor B)\to \Diamond A\lor Diamond B$ and its nullary form $\Diamond \bot\bot$.
 
 The following rules, in addition to
 the initial set of inference rules, defines the sequent calculus for CS4:
@@ -178,7 +178,11 @@ The Natural Deduction formulation has a  colourful history, described in \cite{C
 
 Most interestingly the system has both Kripke and categorical semantics, described  respectively in \cite{alechinaetal} and \cite{CS4}. Since we can prove a Curry-Howard correspondence for this system, it has been used in several applications within programming language theory. 
 %Examples include \cite{hmm}.
-It is not so well-known, but this system can also be given a presentation in terms of a categorical adjunction, between two cartesian closed categories. This is described in both \cite{CS4} and \cite{icalp1998}. In \cite{CS4} this is called the multicontext formulation of CS4 and the rules are given (page 17) as follows:
+
+\subsection{Presenting CS4 as LNL}
+It is not so well-known, but this system can also be given a presentation in terms of a categorical adjunction, between two cartesian closed categories. 
+
+This is described in both \cite{CS4} and \cite{icalp1998}. In \cite{CS4} this is called the multicontext formulation of CS4 and the rules are given (page 17) as follows:
 
 \begin{center}
   \begin{math}
@@ -201,8 +205,15 @@ It is not so well-known, but this system can also be given a presentation in ter
   \end{math}
 \end{center}
 
-These rules have been shown by Benton\cite{benton1995} and Barber to correspond to (half of) the rules below in Ewald's system.
+These rules have been shown by Benton\cite{benton1995} and Barber to correspond to an adjunction of the categories.
+{\tt add description from Benton here}
 
+\section{Forward and Backward CS4}
+%\section{Twice as nice?}
+
+%(half of) the rules below in Ewald's system.
+
+%this section is here just so I don't forget it 
 \subsection{Heyting algebras with adjunctions HAA}
 %Need to define HAA (Heyting algebras with adjunctions) and see if we can show a reasonable duality theorem similar to Menni and Smith's corollary 3.5
 Menni and Smith \cite{Menni:2014} define a \textit{lattice with adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L, R$   are  monotone functions on $A$ that form a preorder $L\dashv R$ adjunction.
@@ -297,8 +308,6 @@ This system has a Kripke model, and an axiomatization (page 171 of \cite{ewald19
 adopting various axioms for the modal operators different notions of
 time can be studied within this system.
 
-\section{Forward and Backward CS4}
-\section{Twice as nice?}
 
 
 \section{Conclusion}
