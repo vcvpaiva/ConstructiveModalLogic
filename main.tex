@@ -311,15 +311,15 @@ We do need to recall however the notion of a functor-strong monad. In particular
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
-  Suppose $(\Box, \epsilon, \delta)$
-%  , \m{A,B}, \m{I})$
-  is a (monoidal)  comonad on a cartesian closed category $\cat{C}$.  Then a
-  \emph{$\Box$-strong monad} is a monad $(\Diamond,\eta,\mu)$ on
-  $\cat{C}$ such that there exists a natural transformation:
+  Suppose $(\Box, \epsilon, \delta)$ is a (monoidal) comonad on a
+  cartesian closed category $\cat{C}$.  Then a \emph{$\Box$-strong
+    monad} is a monad $(\Diamond,\eta,\mu)$ on $\cat{C}$ such that
+  there exists a natural transformation:
   \[
   \st{A}{B} : \Box A \pd \Diamond B \to \Diamond(\Box A \pd B)
   \]
   subject to the following coherence conditions:
+  
 \end{definition}
 
 \begin{definition}[model of CS4]
@@ -341,8 +341,11 @@ Now we want to see how to transform a model of CS4 using a pair comonad-monad as
   \begin{enumerate}
   \item A cartesian-closed category with coproducts $(\cat{C},1,0,\pd,+,\ihom)$;
   \item 
-  %A pair of monoidal functors, $(J,n) : \cat{C} \to \cat{C}$ and
-    A monoidal adjunction $ $J \dashv H$, where $(H,m)$ and  $(J,n)\colon \cat{C} \to \cat{C}$ are monoidal functors such that their composition HJ is a monoidal comonad (written as $\Box$);
+  %A pair of monoidal functors, $(J,n) : \cat{C} \to \cat{C}$ and A
+    monoidal adjunction $J \dashv H$, where $(H,m) \colon \cat{C} \to
+    \cat{C}$ and $(J,n)\colon \cat{C} \to \cat{C}$ are monoidal
+    functors such that their composition HJ is a monoidal comonad
+    (written as $\Box$);
   \item A $\Box$-strong monad $(\Diamond, \eta, \mu, \st{A}{B})$ subject to some conditions.
   \end{enumerate}
 \end{definition}
