@@ -259,7 +259,8 @@ system, it has been used in several applications within programming
 language theory \todo{Add references for these applications}.
 %Examples include \cite{hmm}.
 
-\subsection{Presenting CS4 as LNL}
+%\subsection{Presenting CS4 as LNL}
+\subsection{An adjunction CS4}
 It is not so well-known, but this system can also be given a
 presentation in terms of a categorical adjunction, between two
 cartesian closed categories.
@@ -288,9 +289,9 @@ rules are given (page 17) as follows:
     \end{array}        
   \end{math}
 \end{center}
+(Note that the rules are Natural Deduction rules, as it should be clear for the fact that they are introduction and elimination rules.)
 
-These rules have been shown by Benton \cite{benton1995} and Barber to
-correspond to an adjunction of the categories.  \todo{add description
+These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories, as we show in the next section.  \todo{add description
   from Benton here}
 
 \subsection{Models of CS4}
@@ -322,7 +323,7 @@ We do need to recall however the notion of a functor-strong monad. In particular
   subject to the following coherence conditions:
 \end{definition}
 
-\begin{definition}[model of CS4]
+\begin{definition}[CS4 model]
   \label{def:comonad-strong-monad}
   Suppose $\cat{C}$ is a cartesian category equipped with  a monoidal comonad $(\Box, \epsilon, \delta)$ and a
   \emph{$\Box$-strong monad} with the strength natural transformation
@@ -335,27 +336,36 @@ We do need to recall however the notion of a functor-strong monad. In particular
 Now we want to see how to transform a model of CS4 using a pair comonad-monad as above into a model of the same system using adjunctions.  Benton showed a similar result for linear type theory in \cite{benton1995}.
 
 
-\begin{definition}
+\begin{definition}[CS4 adjoint model]
   \label{def:CS4-single-adjoint-cat-model}
   An adjoint categorical model of CS4 consists of the following data:
   \begin{enumerate}
   \item A cartesian-closed category with coproducts $(\cat{C},1,0,\pd,+,\ihom)$;
   \item 
   %A pair of monoidal functors, $(J,n) : \cat{C} \to \cat{C}$ and
-    A monoidal adjunction $ $J \dashv H$, where $(H,m)$ and  $(J,n)\colon \cat{C} \to \cat{C}$ are monoidal functors such that their composition HJ is a monoidal comonad (written as $\Box$);
-  \item A $\Box$-strong monad $(\Diamond, \eta, \mu, \st{A}{B})$ subject to some conditions.
+    A monoidal adjunction  $J \dashv H$, where $(H,m)$ and  $(J,n)\colon \cat{C} \to \cat{C}$ are monoidal functors such that their composition HJ is a monoidal comonad (written as $\Box$);
+ \item A $\Box$-strong monad $(\Diamond, \eta, \mu, \st{A}{B})$ induced by the adjunction, subject to some conditions.
   \end{enumerate}
 \end{definition}
 
-Now the monoidal adjunction provides us with a monidal monad in \cat{C}. Which conditions do we need in the adjunction to make this monad, $\Box$-strong?
+Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $JH$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=HJ$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
 
+Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \to \Box (A\land B)$ and a map $m_{\top}\colon \top \to \Box \top$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
 
-%This definition of a categorical model of CS4 can be made much more symmetric, if we are in a situation where the HJ-strong monad $\Diamond$ is the left adjoint
+Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = JH$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon \top\to JH$ and multiplication given by $\mu\colon  JHJH\to JH$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...JH..$
+
+\textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
+
+\begin{theorem} An adjoint CS4 categorical model is a CS4 categorical model.
+\end{theorem}
+
 
 % subsection single_adjoint_model_of_cs4 (end)
 
-\section{Forward and Backward CS4}
-%\section{Twice as nice?}
+\section{Twice as nice?}
+Previous work on mdalities in Linear Logic made it clear that modalities, unlike canonical logical connectives such as conjunctions and disjunctions, are not unique up to iso in a given model. Thus we can have two sets of modalities, say $(\Box_1, \Diamond_1)$ and $(\Box_2, \Diamond_2)$ co-existing in a cartesian closed category $\cat{C}$ without problems. But this is not what we want, as we want holding for all times and for a (single) time, both in the future and in the past, so our two sets of modalities need to be related in  a sensible way.
+
+\subsection{Are past and future symmetric?}
 
 %(half of) the rules below in Ewald's system.
 
