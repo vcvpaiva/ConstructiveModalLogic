@@ -377,7 +377,7 @@ Now we want to see how to transform a model of CS4 using a pair comonad-monad as
 
 Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $JH$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=HJ$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
 
-Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \to \Box (A\land B)$ and a map $m_{\top}\colon \top \to \Box \top$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
+Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \to \Box (A\land B)$ and a map $m_{1}\colon 1 \to \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
 
 Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = JH$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon \top\to JH$ and multiplication given by $\mu\colon  JHJH\to JH$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...JH..$
 
