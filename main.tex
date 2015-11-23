@@ -302,7 +302,7 @@ This section depends on the definitions of the
 categorical concepts of monoidal category, monoidal functor, and
 monoidal adjunction, as well as the concepts of monoidal comonad and monad. 
 
-A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$, a generalization of traditional categorical products. A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \to \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\to F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_1\colon \top \to F(\top)$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). A monoidal adjunction is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. A monoidal comonad is a comonad on a monoidal category, with extra structure preserving the monoidal structure and similarly for the monoidal monads.
+A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$, a generalization of traditional categorical products. A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \to \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\to F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \to FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). A monoidal adjunction is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. A monoidal comonad is a comonad on a monoidal category, with extra structure preserving the monoidal structure and similarly for the monoidal monads.
 Due to space limitations we omit their full
 definitions see \cite{benton1995} for their details.
 Similarly, for the definitions of monoidal comonad and monad see
@@ -358,11 +358,17 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 \begin{theorem} An adjoint CS4 categorical model is a CS4 categorical model.
 \end{theorem}
 
+\textit{If we're lucky, I'm hoping we also have}
+
+\begin{theorem} A CS4 categorical model can be extended to a CS4 adjoint categorical model.
+\end{theorem}
 
 % subsection single_adjoint_model_of_cs4 (end)
 
 \section{Twice as nice?}
 Previous work on mdalities in Linear Logic made it clear that modalities, unlike canonical logical connectives such as conjunctions and disjunctions, are not unique up to iso in a given model. Thus we can have two sets of modalities, say $(\Box_1, \Diamond_1)$ and $(\Box_2, \Diamond_2)$ co-existing in a cartesian closed category $\cat{C}$ without problems. But this is not what we want, as we want holding for all times and for a (single) time, both in the future and in the past, so our two sets of modalities need to be related in  a sensible way.
+
+Work of Dzik et al \cite{dziketal2012,dziketal2014} and Menni and Smith \cite{Menni:2014}  indicates that the two adjunctions have to be twisted, that is, the  existential modality in the past corresponds to the universal modality in the future and vice-versa. Past and future are not completely symmetric, but the adjunctions keep track of the symmetry there is there for quantifiers (in first-order logic) and for modalities (existential and universal ones).
 
 \subsection{Are past and future symmetric?}
 
