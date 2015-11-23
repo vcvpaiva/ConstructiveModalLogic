@@ -405,8 +405,20 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
 \textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
-\begin{theorem} An adjoint CS4 categorical model is a CS4 categorical model.
-\end{theorem}
+\begin{theorem} An adjoint CS4 categorical model is a CS4 categorical model. \end{theorem}
+\begin{proof}
+  We know that $(H,n)$ and $(J,m)$ are monoidal endofunctors on
+  $\cat{C}$ which implies that there compositions $JH$ is monoidal
+  where
+  \[
+  \mathsf{p}_{A,B} = \m{HA,HB};J(\mathsf{n}_{A,B})
+  \colon \Diamond A \pd \Diamond B \to \Diamond(A \pd B)
+  \]
+  Using this we can now define the $\Box$-strength map as follows:
+  \[
+  \st{A}{B} = (\eta_{\Box A} \pd \id_{\Diamond B});\mathsf{p}_{\Box A,B} : \Box A \pd \Diamond B \to \Diamond(\Box A \pd B)
+  \]
+\end{proof}
 
 \textit{If we're lucky, I'm hoping we also have}
 
