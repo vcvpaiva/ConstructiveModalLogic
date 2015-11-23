@@ -323,10 +323,16 @@ We do need to recall however the notion of a functor-strong monad. In particular
   subject to the following coherence conditions:
   \begin{center}
     \begin{math}      
+      \begin{array}{lll}
+        \bfig
+      \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\epsilon_1 \times \id_A)```\Diamond(\pi_2)`\pi_2]
+      \morphism(0,1000)|m|/->/<0,-950>[`;\epsilon_1 \times \Diamond A]
+      \efig
+      &
       \bfig
-        \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\epsilon_1 \times \id_A)```\Diamond(\pi_2)`\pi_2]
-        \morphism(0,1000)|m|/->/<0,-950>[`;\epsilon_1 \times \Diamond A]
-        \efig
+      \btriangle<800,500>[\Box A \pd B`\Box A \pd \Diamond B`\Diamond(\Box A \pd B);\id_{\Box A} \pd \eta_{B}`\eta_{\Box A \times B}`\st_{A,B}]
+      \efig
+      \end{array}      
     \end{math}
     \\
     \begin{math}
@@ -347,6 +353,22 @@ We do need to recall however the notion of a functor-strong monad. In particular
 
         \morphism(350,-500)|a|/->/<800,0>[`;\st{A \times B}{C}]
         \efig
+    \end{math}
+    \\
+    \begin{math}
+      \bfig
+      \vSquares|ammmmma|/->`->```->``->/[
+        \Box A \times \Diamond\Diamond B`
+        \Box A \times \Diamond B`
+        \Diamond(\Box A \times \Diamond B)``
+        \Diamond\Diamond(\Box A \times B)`
+        \Diamond(\Box A \times B);
+        \id_{\Box A} \pd \mu_{B}`
+        \st{A}{\Diamond B}```
+        \Diamond(\st{A}{B})``
+        \mu_{\Box A \pd B}]
+      \morphism(1150,1000)|m|<0,-920>[`;\st{A}{B}]
+      \efig
     \end{math}
   \end{center}
 \end{definition}
