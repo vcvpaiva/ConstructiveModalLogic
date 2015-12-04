@@ -313,7 +313,7 @@ We do need to recall however the notion of a functor-strong monad. In particular
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
-  Suppose $(\Box, \epsilon, \delta)$ is a (monoidal) comonad on a
+  Suppose $(\Box, \varepsilon, \delta)$ is a (monoidal) comonad on a
   cartesian closed category $\cat{C}$.  Then a \emph{$\Box$-strong
     monad} is a monad $(\Diamond,\eta,\mu)$ on $\cat{C}$ such that
   there exists a natural transformation:
@@ -325,8 +325,8 @@ We do need to recall however the notion of a functor-strong monad. In particular
     \begin{math}      
       \begin{array}{lll}
         \bfig
-      \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\epsilon_1 \times \id_A)```\Diamond(\pi_2)`\pi_2]
-      \morphism(0,1000)|m|/->/<0,-950>[`;\epsilon_1 \times \Diamond A]
+      \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond(\pi_2)`\pi_2]
+      \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \Diamond A]
       \efig
       &
       \bfig
@@ -370,12 +370,24 @@ We do need to recall however the notion of a functor-strong monad. In particular
       \morphism(1150,1000)|m|<0,-920>[`;\st{A}{B}]
       \efig
     \end{math}
+    \\
+    \begin{math}
+      \bfig
+      \hSquares|aamaaaa|/->`->`->``=`->`->/[
+        \Box A \pd \Diamond 1`
+        \Diamond (\Box A \pd 1)`
+        \Diamond\Box A`
+        \Box A \pd 1`
+        \Box A`
+        \Diamond\Box A;\st{A}{1}`\Diamond(\rho_{\Box A})`\id_A \pd \varepsilon```\rho`\eta_{\Box A}]
+      \efig
+    \end{math}
   \end{center}
 \end{definition}
 
 \begin{definition}[CS4 model]
   \label{def:comonad-strong-monad}
-  Suppose $\cat{C}$ is a cartesian category equipped with  a monoidal comonad $(\Box, \epsilon, \delta)$ and a
+  Suppose $\cat{C}$ is a cartesian category equipped with  a monoidal comonad $(\Box, \varepsilon, \delta)$ and a
   \emph{$\Box$-strong monad} with the strength natural transformation
   \[
   \st{A}{B} : \Box A \pd \Diamond B \to \Diamond(\Box A \pd B)
