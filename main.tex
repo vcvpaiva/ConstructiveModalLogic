@@ -15,6 +15,11 @@
 \let\BDiamond\Diamond
 \let\Diamond\relax
 
+%% This renames Barr's \to to \mto.  This allows us to use \to for imp
+%% and \mto for a inline morphism.
+\let\mto\to
+\let\to\relax
+
 \usepackage{wasysym}
 \usepackage{proof}
 \usepackage{enumerate}
@@ -27,9 +32,6 @@
 \renewcommand{\P}{\mathop{\textbf{P}}}
 \newcommand{\G}{\mathop{\textbf{G}}}
 \renewcommand{\H}{\mathop{\textbf{H}}}
-
-\let\mto\to
-\let\to\relax
 
 \newcommand{\to}{\rightarrow}
 
