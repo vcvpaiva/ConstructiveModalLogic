@@ -303,13 +303,14 @@ This section depends on the definitions of the
 categorical concepts of monoidal category, monoidal functor, and
 monoidal adjunction, as well as the concepts of monoidal comonad and monad. 
 
-A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$, a generalization of traditional categorical products. A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \to \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\to F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \to FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). A monoidal adjunction is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. A monoidal comonad is a comonad on a monoidal category, with extra structure preserving the monoidal structure and similarly for the monoidal monads.
-Due to space limitations we omit their full
-definitions see \cite{benton1995} for their details.
-Similarly, for the definitions of monoidal comonad and monad see
+A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$, a generalization of traditional categorical products. A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \to \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\to F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \to FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). 
+
+A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. A monoidal comonad is a comonad on a monoidal category, with extra structure preserving the monoidal structure and similarly for the monoidal monad.
+%Due to space limitations we omit their full definitions see \cite{benton1995} for their details.
+%Similarly, for the definitions of monoidal comonad and monad see
 \cite{CS4}.
 
-We do need to recall however the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads.
+We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads.
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
@@ -404,23 +405,23 @@ Now we want to see how to transform a model of CS4 using a pair comonad-monad as
   \begin{enumerate}
   \item A cartesian-closed category with coproducts $(\cat{C},1,0,\pd,+,\ihom)$;
   \item 
-    A monoidal adjunction  $J \dashv H$, where $(H,m)$ and  $(J,n)\colon \cat{C} \to \cat{C}$ are monoidal functors such that their composition HJ is a monoidal comonad (written as $\Box$);
- \item A $\Box$-strong monad $(\Diamond, \eta, \mu, \st{A}{B})$ induced by the adjunction, subject to some conditions.
+    A monoidal adjunction  $J \dashv H$, where $(H,m)$ and  $(J,n)\colon \cat{C} \to \cat{C}$ are monoidal functors such that their composition HJ is a monoidal comonad, written as $\Box$;
+ \item The  monad $(\Diamond, \eta, \mu, \st{A}{B})$, induced by the adjunction $J \dashv H$,   is $\Box$-strong, subject to some conditions.
   \end{enumerate}
 \end{definition}
 
 Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $JH$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=HJ$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
 
-Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \to \Box (A\land B)$ and a map $m_{1}\colon 1 \to \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
+Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \to \Box (A\land B)$ together with a map $m_{1}\colon 1 \to \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
 
-Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = JH$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon \top\to JH$ and multiplication given by $\mu\colon  JHJH\to JH$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...JH..$
+Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = JH$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\to JH$ and multiplication given by $\mu\colon  JHJH\to JH$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...JH..$
 
 \textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
 \begin{theorem} An adjoint CS4 categorical model is a CS4 categorical model. \end{theorem}
 \begin{proof}
   We know that $(H,n)$ and $(J,m)$ are monoidal endofunctors on
-  $\cat{C}$ which implies that there compositions $JH$ is monoidal
+  $\cat{C}$ which implies that their composition $JH$ is monoidal
   where
   \[
   \mathsf{p}_{A,B} = \m{HA,HB};J(\mathsf{n}_{A,B})
@@ -430,6 +431,9 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   \[
   \st{A}{B} = (\eta_{\Box A} \pd \id_{\Diamond B});\mathsf{p}_{\Box A,B} : \Box A \pd \Diamond B \to \Diamond(\Box A \pd B)
   \]
+  We first need to show that $\st{A}{B}$ is a natural transformation, but since it's defined as a composition of natural transformations, this is immediate.
+  
+  To prove that the appropriate diagrams commute we first note that the triangle
 \end{proof}
 
 \textit{If we're lucky, I'm hoping we also have}
@@ -440,22 +444,28 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 % subsection single_adjoint_model_of_cs4 (end)
 
 \section{Twice as nice?}
-Previous work on mdalities in Linear Logic made it clear that modalities, unlike canonical logical connectives such as conjunctions and disjunctions, are not unique up to iso in a given model. Thus we can have two sets of modalities, say $(\Box_1, \Diamond_1)$ and $(\Box_2, \Diamond_2)$ co-existing in a cartesian closed category $\cat{C}$ without problems. But this is not what we want, as we want holding for all times and for a (single) time, both in the future and in the past, so our two sets of modalities need to be related in  a sensible way.
+Previous work on modalities in Linear Logic made it clear that modalities, unlike canonical logical connectives such as conjunctions and disjunctions, are not unique up to iso in a given model. Thus we can have two sets of modalities, say $(\Box_1, \Diamond_1)$ and $(\Box_2, \Diamond_2)$ co-existing in a cartesian closed category $\cat{C}$ without problems. But this is not what we want, as we want holding for all times and for a (single) time, both in the future and in the past, so our two sets of modalities need to be related in  a sensible way.
 
 Work of Dzik et al \cite{dziketal2012,dziketal2014} and Menni and Smith \cite{Menni:2014}  indicates that the two adjunctions have to be twisted, that is, the  existential modality in the past corresponds to the universal modality in the future and vice-versa. Past and future are not completely symmetric, but the adjunctions keep track of the symmetry there is there for quantifiers (in first-order logic) and for modalities (existential and universal ones).
 
-\subsection{Are past and future symmetric?}
+%\subsection{Are past and future symmetric?}
 
 %(half of) the rules below in Ewald's system.
 
-\subsection{Heyting algebras with adjunctions HAA}
-\todo{Need to define HAA (Heyting algebras with adjunctions) and see if we
-can show a reasonable duality theorem similar to Menni and Smith's
-corollary 3.5}
-Menni and Smith \cite{Menni:2014} define a \textit{lattice with
-  adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L,
-R$ are monotone functions on $A$ that form a preorder $L\dashv R$
-adjunction.
+\subsection{Algebras with Adjunctions}
+%\todo{Need to  see if we can show a reasonable duality theorem similar to Menni and Smith's corollary 3.5}
+Menni and Smith \cite{Menni:2014} (in page 4) define a \textit{Boolean algebra with an adjunction} BAA as a triple $(B, \Diamond, H)$ where $B$ is a Boolean algebra and $\Diamond, H$ are monotone functions such that $\Diamond$ is left adjoint to $H$, $\Diamond \dashv H$. A morphism is a Boolean algebra morphism $f\colon B\to B'$  preserving both $\Diamond, H$. BAAs and their moprhisms form a category $\sf BAA$.
+Clearly nothing in the definition makes reference to the classical (or otherwise) character of the underlying logic and hence we can define \textit{Heyting algebras with adjunctions} HAA exactly in the same manner, as   triples $(H, \Diamond, H)$ where we have the adjunction $\Diamond \dashv H$.  \textit{Mutatits mutandis} we have the category $\sf HAA$. 
+
+
+
+Menni and Smith also consider the category $\sf BAO$ of Boolean algebras with operators. Objects of $\sf BAO$ are pairs of $(B,\Diamond)$ with $B$ a Boolean algebra and $\Diamond \colon B\to B$ the operator, which is a function preserving finite suprema. Dualizing this we can consider the category $\sf HAO$ of Heyting algebras with operators, where $\Box\colon H\to H$ is a function preserving finite infima.
+
+Menni and Smith then go on to consider `double' BAAs of the form $(B, \Diamond \dashv H, P\dashv \Box)$, where $B$ is a Boolean algebra, $\Diamond$, $\Box$, $H$ and $P$ are  monotone functions  such that $\Diamond \dashv H$ and $ P\dashv\Box$ are adjunctions and a strict duality is asserted between $\Box$ and $\Diamond$ (namely $\Box=\neg \Diamond\neg$) and between $H$ and $P$ (namely $P=\neg H\neg$). Constructivizing these can be done easily by considering the Heyting algebra $H$ with similar adjunctions $(H, \Diamond \dashv G, P\dashv \Box)$ and not taking the very strict duality at face value.
+
+Menni and Smith then state that \begin{quote} Altogether the category $\sf BAA$ provides an algebraic semantics for normal temporal logic, just as $\sf BAO$ provides an algebraic semantics for normal modal logic (Theorem 5.27 loc.cit.).\end{quote} We would like to assert and prove the theorem that ``the category $\sf HAA$ provides an algebraic semantics for a version of constructive temporal logic, just as $\sf HAO$ provides an algebraic semantics for a constructive modal logic".
+
+%They also define \textit{lattice with  adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L,R$ are monotone functions on $A$ that form a preorder $L\dashv R$ adjunction.
 
 
 \subsection{Ewald's Temporal Logic}
