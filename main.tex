@@ -333,14 +333,43 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
     \begin{math}      
       \begin{array}{lll}
         \bfig
-      \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond(\lambda)`\lambda]
-      \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \Diamond A]
+      \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
+      \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
       \efig
       &
       \bfig
       \btriangle<800,500>[\Box A \pd B`\Box A \pd \Diamond B`\Diamond(\Box A \pd B);\id_{\Box A} \pd \eta_{B}`\eta_{\Box A \times B}`\st_{A,B}]
       \efig
       \end{array}      
+    \end{math}
+    \\
+    %% \begin{math}
+    %%   \bfig
+    %%   \hSquares|aamaaaa|/->`->`->``=`->`->/[
+    %%     \Box A \pd \Diamond 1`
+    %%     \Diamond (\Box A \pd 1)`
+    %%     \Diamond\Box A`
+    %%     \Box A \pd 1`
+    %%     \Box A`
+    %%     \Diamond\Box A;\st{A}{1}`\Diamond(\rho_{\Box A})`\id_A \pd \varepsilon```\rho`\eta_{\Box A}]
+    %%   \efig
+    %% \end{math}
+    \begin{math}
+      \bfig
+      \hSquares|aamaaaa|/->`->`->```->`/[
+        \Box A \times 1`
+        \Box A \times \Diamond 1`
+        \Diamond (\Box A \times 1)`
+        \Box A`
+        A`
+        ;
+        \id_{\Box A} \times \eta`
+        \st{A}{1}`
+        \rho```
+        \varepsilon`]
+      \qtriangle(1944,0)/->``->/<800,500>[\Diamond (\Box A \times 1)`\Diamond\Box A`\Diamond A;\Diamond \rho``\Diamond\varepsilon]
+      \morphism(1040,0)/->/<1630,0>[`;\eta_A]
+      \efig
     \end{math}
     \\
     \begin{math}
@@ -377,19 +406,7 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
         \mu_{\Box A \pd B}]
       \morphism(1150,1000)|m|<0,-920>[`;\st{A}{B}]
       \efig
-    \end{math}
-    \\
-    \begin{math}
-      \bfig
-      \hSquares|aamaaaa|/->`->`->``=`->`->/[
-        \Box A \pd \Diamond 1`
-        \Diamond (\Box A \pd 1)`
-        \Diamond\Box A`
-        \Box A \pd 1`
-        \Box A`
-        \Diamond\Box A;\st{A}{1}`\Diamond(\rho_{\Box A})`\id_A \pd \varepsilon```\rho`\eta_{\Box A}]
-      \efig
-    \end{math}
+    \end{math}        
   \end{center}
 \end{definition}
 
