@@ -442,7 +442,7 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
 Now we want to see how to transform a model of CS4 using a pair comonad-monad as above into a model of the same system using adjunctions.  Benton showed a similar result for linear type theory in \cite{benton1995}.
 
 
-\begin{definition}[CS4 adjoint model]
+\begin{definition}[adjoint CS4 model]
   \label{def:CS4-single-adjoint-cat-model}
   An adjoint categorical model of CS4 consists of the following data:
   \begin{enumerate}
@@ -461,22 +461,40 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
 \textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
-\begin{theorem} An adjoint CS4 categorical model is a CS4 categorical model. \end{theorem}
+\begin{theorem}
+  An adjoint CS4 categorical model is a CS4 categorical model.
+\end{theorem}
 \begin{proof}
-  We know that $(H,n)$ and $(J,m)$ are monoidal endofunctors on
-  $\cat{C}$ which implies that their composition $JH$ is monoidal
-  where
+  We must show that given the definition of an adjoint CS4 categorical
+  model (Definition~\ref{def:CS4-single-adjoint-cat-model}) we can
+  define an appropriate monad and comonad on a CCC with coproducts
+  where the monad is strong with respect to the comonad.
+
+  Suppose $(H,m)$ and $(J,n)$ are the adjoint monoidal functors given
+  in Definition~\ref{def:CS4-single-adjoint-cat-model} such that $J
+  \dashv H$.  Furthermore, define $\Box = HJ$ and $\Diamond = JH$.  It
+  is a well-known fact about adjoints that $\Box$ is a comonad and
+  $\Diamond$ is a monad.  By definition we assumed that $\Box$ is
+  monoidal, but we must show that $\Diamond$ is also monoidal.
+
+  We know that both $(H,n)$ and $(J,m)$ are monoidal endofunctors on
+  $\cat{C}$ which implies that their composition $\Diamond$ is
+  monoidal where
   \[
   \mathsf{p}_{A,B} = \m{HA,HB};J(\mathsf{n}_{A,B})
   \colon \Diamond A \pd \Diamond B \mto \Diamond(A \pd B)
   \]
-  Using this we can now define the $\Box$-strength map as follows:
+  Using this we can also define the $\Box$-strength map as follows:
   \[
   \st{A}{B} = (\eta_{\Box A} \pd \id_{\Diamond B});\mathsf{p}_{\Box A,B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
-  We first need to show that $\st{A}{B}$ is a natural transformation, but since it's defined as a composition of natural transformations, this is immediate.
+  We can see that $\st{A}{B}$ is a natural transformation, because it
+  is defined as a composition of natural transformations.
   
-  To prove that the appropriate diagrams commute we first note that the triangle
+  %% To prove that the appropriate diagrams commute we first note that
+  %% the triangle  
+  At this point we must show that all of the appropriate diagrams
+  given in Definition~\ref{def:comonad-strong-monad} commute.
 \end{proof}
 
 \textit{If we're lucky, I'm hoping we also have}
