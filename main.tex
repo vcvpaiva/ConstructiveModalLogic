@@ -311,10 +311,14 @@ monoidal adjunction, as well as the concepts of monoidal comonad and monad.
 
 A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$, a generalization of traditional categorical products. A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\mto F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \mto FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). 
 
-A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. A monoidal comonad is a comonad on a monoidal category, with extra structure preserving the monoidal structure and similarly for the monoidal monad.
+A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. 
+
+A monoidal comonad is a comonad $(\Box,\varepsilon, \delta)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the following diagrams.
+
+
+Similarly for a monoidal monad.
 %Due to space limitations we omit their full definitions see \cite{benton1995} for their details.
-%Similarly, for the definitions of monoidal comonad and monad see
-\cite{CS4}.
+%Similarly, for the definitions of monoidal comonad and monad see\cite{CS4}.
 
 We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads.
 
