@@ -487,19 +487,61 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   where the monad is strong with respect to the comonad.
 
   Suppose $(H,m)$ and $(J,n)$ are the adjoint monoidal functors given
-  in Definition~\ref{def:CS4-single-adjoint-cat-model} such that $J
-  \dashv H$.  Furthermore, define $\Box = HJ$ and $\Diamond = JH$.  It
-  is a well-known fact about adjoints that $\Box$ is a comonad and
-  $\Diamond$ is a monad.  By definition we assumed that $\Box$ is
-  monoidal, but we must show that $\Diamond$ is also monoidal.
+  in Definition~\ref{def:CS4-single-adjoint-cat-model}, and define
+  $\Box = HJ$ and $\Diamond = JH$. Furthermore, suppose $J \dashv H$,
+  $\varepsilon : \Box A \to A$, and $\eta : A \to \Diamond A$.  It is
+  a well-known fact about adjoints that $(\Box, \varepsilon, \delta)$,
+  where $\delta : \Box A \to \Box\Box A$ is a comonad, and $(\Diamond,
+  \eta, \mu)$, where $\mu : \Diamond\Diamond A \to \Diamond A$ is a
+  monad.  By definition we assumed that $\Box$ is monoidal, but we
+  must show that $\Diamond$ is also monoidal.
 
   We know that both $(H,n)$ and $(J,m)$ are monoidal endofunctors on
   $\cat{C}$ which implies that their composition $\Diamond$ is
   monoidal where
   \[
-  \mathsf{p}_{A,B} = \m{HA,HB};J(\mathsf{n}_{A,B})
-  \colon \Diamond A \pd \Diamond B \mto \Diamond(A \pd B)
+  \begin{array}{lll}
+    \mathsf{p}_{\top} = \eta_{\top} : A \to \Diamond A\\
+    \mathsf{p}_{A,B} = \m{HA,HB};J(\mathsf{n}_{A,B})
+    \colon \Diamond A \pd \Diamond B \mto \Diamond(A \pd B)
+  \end{array}
   \]
+  and the following diagrams commute:
+  \begin{center}
+    \begin{math}
+      \begin{array}{cccc}
+        \bfig
+        \vSquares|ammmmma|/->`->`->``->`->`->/[
+          (\Diamond A \times \Diamond B) \times \Diamond C`
+          \Diamond A \times (\Diamond B \times \Diamond C)`
+          \Diamond(A \times B) \times \Diamond C`
+          \Diamond A \times \Diamond(B \times C)`
+          \Diamond ((A \times B) \times C)`
+          \Diamond (A \times (B \times C));
+          \alpha`
+          \mathsf{p}_{A,B} \times \id_{\Diamond C}`
+          \id_{\Diamond A} \times \mathsf{p}_{B,C}``
+          \mathsf{p}_{A \times B,C}`
+          \mathsf{p}_{A,B \times C}`
+          \Diamond \alpha]
+        \efig
+        & &
+        \begin{array}{lll}
+          \bfig
+          \hSquares|ammmmaa|/->``->`<-``->`/[A`B``C`D`;f``h`g``i`]
+          \efig\\
+          \bfig
+          \hSquares|ammmmaa|/->``->`<-``->`/[A`B``C`D`;f``h`g``i`]
+          \efig
+        \end{array}\\
+        & \bfig
+          \hSquares|ammmmaa|/->``->`<-``->`/[A`B``C`D`;f``h`g``i`]
+          \efig
+        &
+      \end{array}
+    \end{math}
+  \end{center}
+
   Using this we can also define the $\Box$-strength map as follows:
   \[
   \st{A}{B} = (\eta_{\Box A} \pd \id_{\Diamond B});\mathsf{p}_{\Box A,B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
