@@ -41,6 +41,7 @@
 \newcommand{\st}[2]{\mathsf{st}_{#1,#2}}
 \newcommand{\id}[0]{\mathsf{id}}
 \newcommand{\m}[1]{\mathsf{m}_{#1}}
+\newcommand{\p}[1]{\mathsf{p}_{#1}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -377,7 +378,7 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
     \end{math}
     \\
     \begin{math}
-        \bfig
+      \bfig
         \vSquares|ammmmmm|/->`->`->```->`/[
           \Box A \times (\Box B \times \Diamond C)`
           \Box A \times \Diamond(\Box B \times C)`
@@ -447,7 +448,7 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
 \end{definition}
 
 \begin{definition}[CS4 model]
-  \label{def:comonad-strong-monad}
+  \label{def:CS4-model}
   Suppose $\cat{C}$ is a cartesian category equipped with  a monoidal comonad $(\Box, \varepsilon, \delta)$ and a
   \emph{$\Box$-strong monad} with the strength natural transformation
   \[
@@ -489,61 +490,152 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
   Suppose $(H,m)$ and $(J,n)$ are the adjoint monoidal functors given
   in Definition~\ref{def:CS4-single-adjoint-cat-model}, and define
-  $\Box = HJ$ and $\Diamond = JH$. Furthermore, suppose $J \dashv H$,
-  $\varepsilon : \Box A \to A$, and $\eta : A \to \Diamond A$.  It is
-  a well-known fact about adjoints that $(\Box, \varepsilon, \delta)$,
-  where $\delta : \Box A \to \Box\Box A$ is a comonad, and $(\Diamond,
-  \eta, \mu)$, where $\mu : \Diamond\Diamond A \to \Diamond A$ is a
-  monad.  By definition we assumed that $\Box$ is monoidal, but we
-  must show that $\Diamond$ is also monoidal.
-
-  We know that both $(H,n)$ and $(J,m)$ are monoidal endofunctors on
-  $\cat{C}$ which implies that their composition $\Diamond$ is
-  monoidal where
+  $\Box = HJ$ and $\Diamond = JH$.  By definition we assumed that
+  $(\Box, q)$, where $q_{A,B} : \Box A \times \Box B \to \Box (A
+  \times B)$, is monoidal, but we must show that $\Diamond$ is also
+  monoidal.  We know that both $(H,n)$ and $(J,m)$ are monoidal
+  endofunctors on $\cat{C}$ which implies that their composition
+  $\Diamond$ is monoidal where
   \[
   \begin{array}{lll}
-    \mathsf{p}_{\top} = \eta_{\top} : A \to \Diamond A\\
+    \mathsf{p}_{1} = \eta_{1} : 1 \to \Diamond 1\\
     \mathsf{p}_{A,B} = \m{HA,HB};J(\mathsf{n}_{A,B})
     \colon \Diamond A \pd \Diamond B \mto \Diamond(A \pd B)
   \end{array}
   \]
-  and the following diagrams commute:
-  \begin{center}
-    \begin{math}
-      \begin{array}{cccc}
-        \bfig
-        \vSquares|ammmmma|/->`->`->``->`->`->/[
-          (\Diamond A \times \Diamond B) \times \Diamond C`
-          \Diamond A \times (\Diamond B \times \Diamond C)`
-          \Diamond(A \times B) \times \Diamond C`
-          \Diamond A \times \Diamond(B \times C)`
-          \Diamond ((A \times B) \times C)`
-          \Diamond (A \times (B \times C));
-          \alpha`
-          \mathsf{p}_{A,B} \times \id_{\Diamond C}`
-          \id_{\Diamond A} \times \mathsf{p}_{B,C}``
-          \mathsf{p}_{A \times B,C}`
-          \mathsf{p}_{A,B \times C}`
-          \Diamond \alpha]
-        \efig
-        & &
-        \begin{array}{lll}
-          \bfig
-          \hSquares|ammmmaa|/->``->`<-``->`/[A`B``C`D`;f``h`g``i`]
-          \efig\\
-          \bfig
-          \hSquares|ammmmaa|/->``->`<-``->`/[A`B``C`D`;f``h`g``i`]
-          \efig
-        \end{array}\\
-        & \bfig
-          \hSquares|ammmmaa|/->``->`<-``->`/[A`B``C`D`;f``h`g``i`]
-          \efig
-        &
-      \end{array}
-    \end{math}
-  \end{center}
+  and the following diagrams commute (proofs omitted):
+  \begin{mathpar}
+    \scriptsize
+    \bfig
+    \vSquares|ammmmma|/->`->`->``->`->`->/[
+      (\Diamond A \times \Diamond B) \times \Diamond C`
+      \Diamond A \times (\Diamond B \times \Diamond C)`
+      \Diamond(A \times B) \times \Diamond C`
+      \Diamond A \times \Diamond(B \times C)`
+      \Diamond ((A \times B) \times C)`
+      \Diamond (A \times (B \times C));
+      \alpha`
+      \mathsf{p}_{A,B} \times \id_{\Diamond C}`
+      \id_{\Diamond A} \times \mathsf{p}_{B,C}``
+      \mathsf{p}_{A \times B,C}`
+      \mathsf{p}_{A,B \times C}`
+      \Diamond \alpha]
+    \efig
+    \and
+    \bfig
+    \hSquares|ammmmaa|/->``->`<-``->`/[
+      1 \times \Diamond A`
+      \Diamond A``
+      \Diamond 1 \times \Diamond A`
+      \Diamond(1 \times A)`;
+      \lambda_{\Diamond A}``
+      \mathsf{p}_{1} \times \id_{\Diamond A}`
+      \Diamond \lambda_A``
+      \mathsf{p}_{1,A}`]
+    \efig
+    \and
+    \bfig
+    \hSquares|ammmmaa|/->``->`<-``->`/[
+      \Diamond A \times 1`
+      \Diamond A``
+      \Diamond A \times \Diamond 1`
+      \Diamond(A \times 1)`;
+      \rho_{\Diamond A}``
+      \id_{\Diamond A} \times \mathsf{p}_{1}`
+      \Diamond \rho_A``
+      \mathsf{p}_{A,1}`]
+    \efig
+    \and
+    \bfig
+    \hSquares|ammmmaa|/->``->`->``->`/[
+      \Diamond A \times \Diamond B`
+      \Diamond B \times \Diamond A``
+      \Diamond (A \times B)`
+      \Diamond (B \times A)`;
+      \beta_{\Diamond A,\Diamond B}``
+      \mathsf{p}_{A,B}`
+      \mathsf{p}_{B,A}``
+      \Diamond\beta_{A,B}`]
+    \efig
+  \end{mathpar}
 
-  Using this we can also define the $\Box$-strength map as follows:
+  Furthermore, suppose $J \dashv H$, where the unit, $\varepsilon :
+  \Box A \to A$, and the counit, $\eta : A \to \Diamond A$, are
+  monoidal natural transformations.  This implies that the following
+  diagrams commute:
+  \begin{mathpar}
+    \bfig
+    \btriangle<800,500>[A \times B`\Diamond A \times \Diamond B`\Diamond (A \times B);\eta_A \times \eta_B`\eta_{A \times B}`\mathsf{p}_{A,B}]
+    \efig
+    \and
+    \bfig
+    \qtriangle<800,500>[\Box A \times \Box B`\Box (A \times B)`A \times B;\mathsf{q}_{A,B}`\varepsilon_A \times \varepsilon_B`\varepsilon_{A \times B}]
+    \efig
+    \and
+    \bfig
+    \qtriangle<800,500>[1`J 1`\Diamond 1;n_{1}`\eta_1`J m_1]       
+    \efig
+    \and
+    \bfig
+    \hSquares|ammmmaa|/->``=`->``<-`/[
+      \Box 1`
+      1``
+      \Box 1`
+      H 1`;
+      \varepsilon_1```
+      m_1``
+      H n_1`]
+    \efig
+    \and
+    \bfig
+    \qtriangle<800,500>[H A`H\Box A`H A;\eta_{H A}`\id_{H A}`H\varepsilon_A]       
+    \efig
+    \and
+    \bfig
+    \qtriangle<800,500>[J A`\Box J A`J A;J\eta_A`\id_{J A}`\varepsilon_{J A}]
+    \efig    
+  \end{mathpar}
+  It is a well-known fact about adjoints that $(\Box, \varepsilon,
+  \delta)$, where $\delta : \Box A \to \Box\Box A$ is a comonad, and
+  $(\Diamond, \eta, \mu)$, where $\mu : \Diamond\Diamond A \to
+  \Diamond A$ is a monad.  Thus, the following diagrams commute:
+  \begin{mathpar}
+    \bfig
+    \hSquares|ammmmaa|/->``->`->``->`/[
+      \Diamond^3 A`
+      \Diamond^2 A``
+      \Diamond^2 A`
+      \Diamond A`;
+      \Diamond \mu_A``
+      \mu_{\Diamond A}`
+      \mu_A``
+      \mu_A`]
+    \efig
+    \and
+    \bfig
+    \qtriangle/->`=`->/<800,500>[\Diamond A`\Diamond^2 A`\Diamond A;\eta_{\Diamond A}``\mu_A]
+    \btriangle(0,0)/->`=`->/<800,500>[\Diamond A`\Diamond^2 A`\Diamond A;\Diamond \eta_{A}``\mu_A]
+    \efig
+    \and
+    \bfig
+    \hSquares|ammmmaa|/->``->`->``->`/[
+      \Box A`
+      \Box^2 A``
+      \Box^2 A`
+      \Box^3 A`;
+      \delta_A``
+      \delta_A`
+      \delta_{\Box A}``
+      \Box\delta_A`]
+    \efig
+    \and
+    \bfig
+    \qtriangle/->`=`->/<800,500>[\Box A`\Box^2 A`\Box A;\delta_A``\Box \varepsilon]
+    \btriangle(0,0)/->`=`->/<800,500>[\Box A`\Box^2 A`\Box A;\delta_A``\varepsilon_{\Box A}]
+    \efig
+  \end{mathpar}
+
+  We can now define the $\Box$-strength map as follows:
   \[
   \st{A}{B} = (\eta_{\Box A} \pd \id_{\Diamond B});\mathsf{p}_{\Box A,B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
@@ -552,8 +644,195 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   
   %% To prove that the appropriate diagrams commute we first note that
   %% the triangle  
-  At this point we must show that all of the appropriate diagrams
-  given in Definition~\ref{def:comonad-strong-monad} commute.
+  Next we must show that all of the appropriate diagrams given in
+  Definition~\ref{def:comonad-strong-monad} commute.
+  \begin{itemize}
+  \item[Case.] \ \\
+    $$
+    \bfig
+    \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
+    \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
+    \efig
+    $$
+    This diagram commutes by the following equational reasoning:
+    \begin{center}
+      \begin{math}
+        \begin{array}{rllllllll}
+          & & \st{1}{A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
+          \text{(Definition of $\mathsf{st}$)}
+          & = & (\eta_{\Box 1} \times \id_{\Diamond A});\p{\Box 1,\Diamond A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
+          \text{(Naturality of $\mathsf{p}$)}
+          & = & (\eta_{\Box 1} \times \id_{\Diamond A});(\Diamond \varepsilon_1 \times \Diamond\id_A);\p{1,A};\Diamond\lambda_A\\
+          \text{(Functoriality of $\times$)}
+          & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\Diamond\id_A));\p{1,A};\Diamond\lambda_A\\
+          & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+          \text{(Naturality of $\eta$)}
+          & = & ((\varepsilon_1;\eta_{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+          \text{(Definition of $\mathsf{p}$)}
+          & = & ((\varepsilon_1;\p{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+          \text{(Functoriality of $\times$)}
+          & = & (\varepsilon_1 \times \id_{\Diamond A});(\p{1} \times \id_{\Diamond A});\p{1,A};\Diamond\lambda_A\\
+          \text{($\Diamond$ is Symmetric Monoidal)}
+          & = & (\varepsilon_1 \times \id_{\Diamond A});\lambda_{\Diamond A}\\
+        \end{array}
+      \end{math}
+    \end{center}
+    
+  \item[Case.] \ \\
+    $$
+    \bfig
+    \btriangle<800,500>[
+      \Box A \pd B`
+      \Box A \pd \Diamond B`
+      \Diamond(\Box A \pd B);
+      \id_{\Box A} \pd \eta_{B}`
+      \eta_{\Box A \times B}`
+      \st{A}{B}]
+    \efig
+    $$
+
+    The previous diagram commutes, because the following diagram commutes:
+    $$
+    \bfig
+    \btriangle|ama|/->`->`->/<1500,500>[
+      \Box A \pd B`
+      \Box A \pd \Diamond B`
+      \Diamond\Box A \pd \Diamond B;
+      \id_{\Box A} \pd \eta_{B}`
+      \eta_{\Box A} \pd \eta_B`
+      \eta_{\Box A} \pd \id_{\Diamond B}]
+
+    \qtriangle(0,0)/->``<-/<1500,500>[
+      \Box A \pd B`
+      \Diamond (\Box A \times B)`
+      \Diamond\Box A \pd \Diamond B;
+      \eta_{\Box A \times B}``
+      \p{\Box A,B}]
+
+    \place(250,200)[1]
+    \place(1200,300)[2]
+    \efig
+    $$
+    \noindent
+    Diagram 1 clearly commutes, and diagram 2 commutes because $\eta$
+    is a symmetric monoidal natural transformation.
+    
+  \item[Case.]\ \\
+    $$
+    \bfig
+    \hSquares|aamaaaa|/->`->`->```->`/[
+      \Box A \times 1`
+      \Box A \times \Diamond 1`
+      \Diamond (\Box A \times 1)`
+      \Box A`
+      A`
+      ;
+      \id_{\Box A} \times \eta_1`
+      \st{A}{1}`
+      \rho_{\Box A}```
+      \varepsilon_A`]
+    \qtriangle(1978,0)/->``->/<800,500>[\Diamond (\Box A \times 1)`\Diamond\Box A`\Diamond A;\Diamond \rho_{\Box A}``\Diamond\varepsilon_A]
+    \morphism(1060,0)/->/<1640,0>[`;\eta_A]
+    \efig
+    $$
+    \noindent
+    Recall that
+    $\st{A}{1} = (\eta_{\Box A} \pd \id_{\Diamond 1});\p{\Box A,1}$.
+    Now the previous diagram commutes, because the following diagram commutes:
+    $$
+    \bfig
+    \btriangle|mma|<1444,1000>[\Box A \pd 1`\Diamond\Box A \pd \Diamond 1`\Diamond(\Box A \pd 1);\eta_{\Box A} \pd \eta_1`\eta_{\Box A \pd 1}`\p{\Box A,1}]
+    \dtriangle(-1000,0)/->``->/<1000,1000>[\Box A \pd 1`\Box A \pd 1`\Diamond\Box A \pd \Diamond 1;\id_{\Box A} \pd \eta_1``\eta_{\Box A} \pd
+      \id_{\Diamond 1}]
+
+    \hSquares(0,0)/->`->```<-``/<1000>[\Box A \pd 1`\Box A`\Diamond\Box A```\Diamond (\Box A \times 1);\rho_{\Box A}`\eta_{\Box A}```\Diamond (\rho_{\Box A})``]
+
+    \square(746,1000)/->`<-`<-`/<698,500>[A`\Diamond A`\Box A`\Diamond\Box A;\eta_A`\varepsilon_A`\Diamond\varepsilon_A`]
+
+    \place(-400,300)[1]
+    \place(400,300)[2]
+    \place(1100,700)[3]
+    \place(1100,1250)[4]
+    \efig
+    $$
+    \noindent
+    Diagram 1 commutes by functorality of $\times$, diagram 2 commutes
+    because $\eta$ is a monoidal natural transformation, and diagrams
+    3 and 4 commute by naturality of $\eta$.
+
+  \item[Case.]\ \\
+    $$
+    \bfig
+    \vSquares|ammmmmm|/->`->`->```->`/[
+      \Box A \times (\Box B \times \Diamond C)`
+      \Box A \times \Diamond(\Box B \times C)`
+      (\Box A \times \Box B) \times \Diamond C`
+      \Diamond(\Box A \times (\Box B \times C))``
+      \Diamond((\Box A \times \Box B) \times C);
+      \id_{\Box A} \pd \st{B}{C}`
+      \alpha`
+      \st{A}{\Box B \times C}```
+      \Diamond(\alpha)`]
+    \morphism(1554,0)|m|/->/<0,-500>[`\Diamond(\Box(A \times B) \times C);\Diamond(\m{A,B} \times \id_C)]
+    
+    \morphism(0,500)|m|/->/<0,-1000>[`\Box(A \times B) \times \Diamond C;\m{A,B} \times \id_{\Diamond C}]
+
+    \morphism(350,-500)|a|/->/<800,0>[`;\st{A \times B}{C}]
+    \efig
+    $$
+
+  \item[Case.]\ \\
+    $$
+    \bfig
+    \vSquares|ammmmma|/->`->```->``->/[
+      \Box A \times \Diamond\Diamond B`
+      \Box A \times \Diamond B`
+      \Diamond(\Box A \times \Diamond B)``
+      \Diamond\Diamond(\Box A \times B)`
+      \Diamond(\Box A \times B);
+      \id_{\Box A} \pd \mu_{B}`
+      \st{A}{\Diamond B}```
+      \Diamond(\st{A}{B})``
+      \mu_{\Box A \pd B}]
+    \morphism(1150,1000)|m|<0,-920>[`;\st{A}{B}]
+    \efig
+    $$
+
+  \item[Case.]\ \\
+    $$
+    \bfig
+    \hSquares|aamamaa|/``->``->`->`->/[
+      \Box A \times \Diamond B``
+      \Diamond B \times \Box A`
+      \Diamond B \times \Box A`
+      \Diamond B \times \Diamond \Box A`
+      \Diamond (B \times \Box A);``
+      \beta``
+      \Diamond \beta`
+      \id_{\Diamond B} \pd \eta_{\Box A}`
+      \mathsf{n}_{B,\Box A}]
+    \morphism(200,500)<1883,0>[`;\st{A}{B}]
+    \efig
+    $$
+
+  \item[Case.]\ \\
+    $$
+    \bfig
+    \hSquares|aamamaa|/``->``->`->`->/[
+      \Box A \times \Diamond B``
+      \Diamond(\Box A \times B)`
+      A \times \Diamond B`
+      \Diamond A \times \Diamond B`
+      \Diamond (A \times B);``
+      \varepsilon_A \times \id_{\Diamond B}``
+      \Diamond(\varepsilon_A \times \id_{B})`
+      \eta_A \times \id_{\Diamond B}`
+      \m{A,B}]
+    \morphism(200,500)<1605,0>[`;\st{A}{B}]
+    \efig
+    $$
+  \end{itemize}
+
 \end{proof}
 
 \textit{If we're lucky, I'm hoping we also have}
