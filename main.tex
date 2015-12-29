@@ -27,6 +27,7 @@
 \usepackage{enumerate}
 \usepackage{todonotes}
 \usepackage{hyperref}
+\usepackage{graphicx}
 
 \renewcommand{\Box}{\oblong}
 
@@ -386,9 +387,9 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
           \Diamond(\Box A \times (\Box B \times C))``
           \Diamond((\Box A \times \Box B) \times C);
           \id_{\Box A} \pd \st{B}{C}`
-          \alpha`
+          \alpha^{-1}`
           \st{A}{\Box B \times C}```
-          \Diamond(\alpha)`]
+          \Diamond\alpha^{-1}`]
         \morphism(1554,0)|m|/->/<0,-500>[`\Diamond(\Box(A \times B) \times C);\Diamond(\m{A,B} \times \id_C)]
         
         \morphism(0,500)|m|/->/<0,-1000>[`\Box(A \times B) \times \Diamond C;\m{A,B} \times \id_{\Diamond C}]
@@ -770,9 +771,9 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
       \Diamond(\Box A \times (\Box B \times C))``
       \Diamond((\Box A \times \Box B) \times C);
       \id_{\Box A} \pd \st{B}{C}`
-      \alpha`
+      \alpha^{-1}`
       \st{A}{\Box B \times C}```
-      \Diamond(\alpha)`]
+      \Diamond\alpha^{-1}`]
     \morphism(1554,0)|m|/->/<0,-500>[`\Diamond(\Box(A \times B) \times C);\Diamond(\m{A,B} \times \id_C)]
     
     \morphism(0,500)|m|/->/<0,-1000>[`\Box(A \times B) \times \Diamond C;\m{A,B} \times \id_{\Diamond C}]
@@ -780,6 +781,127 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     \morphism(350,-500)|a|/->/<800,0>[`;\st{A \times B}{C}]
     \efig
     $$
+    \noindent
+    Recall that:
+    \[
+    \begin{array}{rlll}
+      \st{B}{C}              & = & (\eta_{\Box B} \pd \id_{\Diamond C});\p{\Box B,C}\\
+      \st{A \pd B}{C}        & = & (\eta_{\Box (A \pd B)} \pd \id_{\Diamond C});\p{\Box (A \pd B),C}\\
+      \st{A}{\Box B \pd C} & = & (\eta_{\Box A} \pd \id_{\Diamond (\Box B \pd C)});\p{\Box A,(\Box B \pd C)}\\
+    \end{array}
+    \]
+    In addition, we require the following diagram (whose commutativity
+    is implied by the fact that $\Diamond$ is a symmetric monoidal
+    functor):
+    $$
+    \bfig
+    \vSquares|ammmmma|/->`->`->``->`->`->/[
+      \Diamond A \pd (\Diamond B \pd \Diamond C)`
+      (\Diamond A \pd \Diamond B) \pd \Diamond C`
+      \Diamond A \pd \Diamond (B \pd C)`
+      \Diamond (A \pd B) \pd \Diamond C`
+      \Diamond (A \pd (B \pd C))`
+      \Diamond ((A \pd B) \pd C);
+      \alpha^{-1}_{\Diamond A,\Diamond B,\Diamond C}`
+      \id_{\Diamond A} \pd \p{B,C}`
+      \p{A,B} \pd \id_{\Diamond C}``
+      \p{A,B \pd C}`
+      \p{A \pd B,C}`
+      \Diamond\alpha^{-1}_{A,B,C}]
+    \efig
+    $$
+    \noindent
+    Finally, this case follows because the following diagram commutes:
+    \begin{center}
+      \rotatebox{90}{$
+    \bfig
+    \btriangle|mmm|<1769,1000>[
+      \Box A \pd (\Diamond\Box B \pd \Diamond C)`
+      \Diamond\Box A \pd (\Diamond\Box B \pd \Diamond C)`
+      \Diamond\Box A \pd (\Diamond\Box B \pd C);
+      \eta_{\Box A} \pd \id_{\Diamond \Box B \pd C}`
+      \eta_{\Box A} \pd \p{\Box B,C}`
+      \id_{\Diamond\Box A} \pd \p{\Box B,C}]
+
+    \qtriangle|mam|/->``->/<1769,1000>[
+      \Box A \pd (\Diamond\Box B \pd \Diamond C)`
+      \Box A \pd \Diamond (\Box B \pd C)`
+      \Diamond\Box A \pd (\Diamond\Box B \pd C);
+      \id_{\Box A} \pd \p{\Box B,C}``
+      \eta_{\Box A} \pd \id_{\Diamond (\Box B \pd C)}]    
+
+    \qtriangle(-1800,0)|mmm|<1800,1000>[
+      \Box A \pd (\Box B \pd \Diamond C)`
+      \Box A \pd (\Diamond\Box B \pd \Diamond C)`
+      \Diamond\Box A \pd (\Diamond\Box B \pd \Diamond C);
+      \id_{\Box A} \pd (\eta_{\Box B} \pd \id_{\Diamond C})`
+      \eta_{\Box A} \pd (\eta_{\Box B} \pd \id_{\Diamond C})`
+      \eta_{\Box A} \pd \id_{\Diamond \Box B \pd C}]
+
+    \square(0,-500)|mmmm|/`->`->`/<1769,500>[
+      \Diamond\Box A \pd (\Diamond\Box B \pd \Diamond C)`
+      \Diamond\Box A \pd (\Diamond\Box B \pd C)`
+      (\Diamond\Box A \pd \Diamond\Box B) \pd \Diamond C`
+      \Diamond (\Box A \pd (\Box B \pd C));`
+      \alpha_{\Diamond\Box A,\Diamond\Box B,\Diamond C}`
+      \p{\Box A,\Box B \pd C}`]   
+
+    \square(0,-1000)|mmmm|/`->`->`/<1769,500>[
+      (\Diamond\Box A \pd \Diamond\Box B) \pd \Diamond C`
+      \Diamond (\Box A \pd (\Box B \pd C))`
+      \Diamond (\Box A \pd \Box B) \pd \Diamond C`
+      \Diamond ((\Box A \pd \Box B) \pd C);`
+      \p{\Box A,\Box B} \pd \id_{\Diamond C}`
+      \Diamond \alpha_{\Box A,\Box B,C}`]        
+
+    \square(0,-1500)|mmmm|<1769,500>[
+      \Diamond (\Box A \pd \Box B) \pd \Diamond C`
+      \Diamond ((\Box A \pd \Box B) \pd C)`
+      \Diamond\Box(A \pd B) \pd \Diamond C`
+      \Diamond (\Box(A \pd B) \pd C);
+      \p{\Box A \pd \Box B, C}`
+      \Diamond \m{A,B} \pd \id_{\Diamond C}`
+      \Diamond (\m{A,B} \pd \id_C)`
+      \p{\Box (A \pd B),C}]
+
+    \btriangle(-1800,-500)|mmm|/->``->/<1800,1500>[
+      \Box A \pd (\Box B \pd \Diamond C)`
+      (\Box A \pd \Box B) \pd \Diamond C`
+      (\Diamond\Box A \pd \Diamond\Box B) \pd \Diamond C;
+      \alpha_{\Box A,\Box B,\Diamond C}``
+      (\eta_{\Box A} \pd \eta_{\Box B}) \pd \id_{\Diamond C}]
+
+    \qtriangle(-1800,-1000)|mmm|/`->`/<1800,500>[
+      (\Box A \pd \Box B) \pd \Diamond C`
+      (\Diamond\Box A \pd \Diamond\Box B) \pd \Diamond C`
+      \Diamond (\Box A \pd \Box B) \pd \Diamond C;`
+      \eta_{\Box A \pd \Box B} \pd \id_{\Diamond C}`]
+
+    \btriangle(-1800,-1500)|mmm|/->``->/<1800,1000>[
+      (\Box A \pd \Box B) \pd \Diamond C`
+      \Box(A \pd B) \pd \Diamond C`
+      \Diamond\Box(A \pd B) \pd \Diamond C;
+      \m{A,B} \pd \id_{\Diamond C}``
+      \eta_{\Box (A \pd B)} \pd \id_{\Diamond C}]
+
+    \place(1200,700)[1]
+    \place(500,300)[2]
+    \place(900,-500)[3]
+    \place(900,-1250)[4]
+    \place(-500,700)[5]
+    \place(-1000,0)[6]
+    \place(-400,-700)[7]
+    \place(-1000,-1100)[8]
+    \efig
+    $}
+    \end{center}
+    Diagrams 1, 2 and 5 commute by functorality of $\times$, diagram 3
+    commutes by the additional diagram from above, diagram 4 commutes
+    by naturality of $\mathsf{p}$, diagram 6 commutes by naturality of
+    $\alpha$, diagram 7 commutes by the fact that $\eta$ is a monoidal
+    natural transformation, and diagram 8 commutes by naturality of
+    $\eta$.
+    
 
   \item[Case.]\ \\
     $$
