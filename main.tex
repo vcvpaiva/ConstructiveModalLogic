@@ -986,9 +986,10 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     because $\mu$ is a monoidal natural transformation, diagram 3
     commutes because $\mu$ is the monadic multiplication and by
     functorality of $\times$, and diagrams 4 and 5 commute by
-    functorality of $\times$,
+    functoriality of $\times$,
     
   \item[Case.]\ \\
+  \textit{6. commuting $\beta$ interacts with $\Diamond$}
     $$
     \bfig
     \hSquares|aamamaa|/``->``->`->`->/[
@@ -998,14 +999,15 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
       \Diamond B \times \Diamond \Box A`
       \Diamond (B \times \Box A);``
       \beta``
-      \Diamond \beta`
+      st_{B,\Box A}`
       \id_{\Diamond B} \pd \eta_{\Box A}`
       \mathsf{n}_{B,\Box A}]
-    \morphism(200,500)<1883,0>[`;\st{A}{B}]
+    \morphism(200,500)<1883,0>[`;\beta]
     \efig
     $$
 
   \item[Case.]\ \\
+ \textit{7.  $\varepsilon$ interacts with $\Diamond$ and its monoidicity} 
     $$
     \bfig
     \hSquares|aamamaa|/``->``->`->`->/[
@@ -1025,8 +1027,9 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
 \end{proof}
 
-\textit{If we're lucky, I'm hoping we also have}
-
+%\textit{If we're lucky, I'm hoping we also have}
+Now we would like, following Benton's lead, to
+prove the converse result. That is
 \begin{theorem} A CS4 categorical model can be extended to a CS4 adjoint categorical model.
 \end{theorem}
 
