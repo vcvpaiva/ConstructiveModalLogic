@@ -29,9 +29,6 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 
-\let\b\relax
-\let\d\relax
-
 \renewcommand{\Box}{\oblong}
 
 \newcommand{\F}{\mathop{\textbf{F}}}
@@ -44,12 +41,8 @@
 \newcommand{\ihom}[0]{\rightarrow}
 \newcommand{\st}[2]{\mathsf{st}_{#1,#2}}
 \newcommand{\id}[0]{\mathsf{id}}
-\newcommand{\b}[1]{\mathsf{b}_{#1}}
-\newcommand{\d}[1]{\mathsf{d}_{#1}}
 \newcommand{\m}[1]{\mathsf{m}_{#1}}
-\newcommand{\n}[1]{\mathsf{n}_{#1}}
 \newcommand{\p}[1]{\mathsf{p}_{#1}}
-\newcommand{\q}[1]{\mathsf{q}_{#1}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -479,11 +472,11 @@ Now we want to see how to transform a model of CS4 using a pair comonad-monad as
   \end{enumerate}
 \end{definition}
 
-Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $HJ$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=HJ$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
+Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $JH$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=HJ$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
 
 Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \mto \Box (A\land B)$ together with a map $m_{1}\colon 1 \mto \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
 
-Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = HJ$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\mto HJ$ and multiplication given by $\mu\colon  HJHJ\mto HJ$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...HJ..$
+Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = JH$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\mto JH$ and multiplication given by $\mu\colon  JHJH\mto JH$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...JH..$
 
 \textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
@@ -498,7 +491,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
   Suppose $(H,m)$ and $(J,n)$ are the adjoint monoidal functors given
   in Definition~\ref{def:CS4-single-adjoint-cat-model}, and define
-  $\Box = JH$ and $\Diamond = HJ$.  By definition we assumed that
+  $\Box = HJ$ and $\Diamond = JH$.  By definition we assumed that
   $(\Box, q)$, where $q_{A,B} : \Box A \times \Box B \to \Box (A
   \times B)$, is monoidal, but we must show that $\Diamond$ is also
   monoidal.  We know that both $(H,n)$ and $(J,m)$ are monoidal
@@ -606,18 +599,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   It is a well-known fact about adjoints that $(\Box, \varepsilon,
   \delta)$, where $\delta : \Box A \to \Box\Box A$ is a comonad, and
   $(\Diamond, \eta, \mu)$, where $\mu : \Diamond\Diamond A \to
-  \Diamond A$ is a monad. In addition, $\mu$ and $\delta$ are monoidal
-  natural transformations where we have the following:
-  \[
-  \begin{array}{lll}
-    \d{1} = \p{1};\Diamond\p{1} : 1 \mto \Diamond^2 1\\
-    \d{A,B} =  \p{\Diamond A,\Diamond B};\Diamond\p{A,B} : \Diamond^2 A \times \Diamond^2 B \mto \Diamond^2 (A \times B)\\
-    \\
-    \b{1} = \q{1};\Box\q{1} : 1 \mto \Box^2 1\\
-    \b{A,B} = \q{\Box A,\Box B};\Box\q{A,B} : \Box^2 A \times \Box^2 B \mto \Box^2 (A \times B)\\
-  \end{array}
-  \]
-  Thus, the following diagrams commute (proofs omitted):
+  \Diamond A$ is a monad.  Thus, the following diagrams commute:
   \begin{mathpar}
     \bfig
     \hSquares|ammmmaa|/->``->`->``->`/[
@@ -651,75 +633,6 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     \bfig
     \qtriangle/->`=`->/<800,500>[\Box A`\Box^2 A`\Box A;\delta_A``\Box \varepsilon]
     \btriangle(0,0)/->`=`->/<800,500>[\Box A`\Box^2 A`\Box A;\delta_A``\varepsilon_{\Box A}]
-    \efig
-    \and
-    %% \bfig   
-    %% \vSquares|ammmmma|/->`->```->``->/[
-    %%   \Diamond^2 A \times \Diamond^2 B`
-    %%   \Diamond A \times \Diamond B`
-    %%   \Diamond(\Diamond A \times \Diamond B)``
-    %%   \Diamond^2(A \times B)`
-    %%   \Diamond(A \times B);
-    %%   \mu_A \times \mu_B`
-    %%   \p{\Diamond A,\Diamond B}```
-    %%   \Diamond\p{A,B}``
-    %%   \mu_{A \times B}]
-    %% \morphism(1108,0)/<-/<0,1000>[\Diamond(A \times B)`\Diamond A \times \Diamond B;\p{A,B}]
-    %% \efig
-    \and
-    \bfig
-    \square<1000,1000>[
-      \Diamond^2 A \times \Diamond^2 B`
-      \Diamond A \times \Diamond B`
-      \Diamond^2(A \times B)`
-      \Diamond(A \times B);
-      \mu_A \times \mu_B`
-      \d{A,B}`
-      \p{A,B}`
-      \mu_{A \times B}]
-    \efig
-    \and
-    \bfig
-    \Vtriangle/->`<-`<-/[
-      \Diamond^2 1`
-      \Diamond 1`
-      1;
-      \mu_1`
-      \d{1}`
-      \p{1}]
-    \efig
-    \and        
-    \bfig
-    \square<1000,1000>[
-      \Box A \times \Box B`
-      \Box^2 A \times \Box^2 B`
-      \Box(A \times B)`
-      \Box^2(A \times B);
-      \delta_A \times \delta_B`
-      \q{A,B}`
-      \b{A,B}`
-      \delta_{A \times B}]
-    %% \vSquares|ammmmma|/->``->```->`->/[
-    %%   \Box A \times \Box B`
-    %%   \Box^2 A \times \Box^2 B``
-    %%   \Box(\Box A \times \Box B)`
-    %%   \Box(A \times B)`
-    %%   \Box^2(A \times B);
-    %%   \varepsilon_A \times \varepsilon_B``
-    %%   \q{\Box A,\Box B}```
-    %%   \Box\q{A,B}`
-    %%   \varepsilon_{A \times B}]
-    %% \morphism(0,0)/<-/<0,1000>[\Box(A \times B)`\Box A \times \Box B;\q{A,B}]
-    \efig
-    \and
-    \bfig
-    \Vtriangle/->`<-`<-/[
-      \Box 1`
-      \Box^2 1`
-      1;
-      \delta_1`
-      \q{1}`
-      \d{1}]
     \efig
   \end{mathpar}
 
@@ -1073,9 +986,10 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     because $\mu$ is a monoidal natural transformation, diagram 3
     commutes because $\mu$ is the monadic multiplication and by
     functorality of $\times$, and diagrams 4 and 5 commute by
-    functorality of $\times$.
+    functoriality of $\times$,
     
   \item[Case.]\ \\
+  \textit{6. commuting $\beta$ interacts with $\Diamond$}
     $$
     \bfig
     \hSquares|aamamaa|/``->``->`->`->/[
@@ -1085,14 +999,15 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
       \Diamond B \times \Diamond \Box A`
       \Diamond (B \times \Box A);``
       \beta``
-      \Diamond \beta`
+      st_{B,\Box A}`
       \id_{\Diamond B} \pd \eta_{\Box A}`
       \mathsf{n}_{B,\Box A}]
-    \morphism(200,500)<1883,0>[`;\st{A}{B}]
+    \morphism(200,500)<1883,0>[`;\beta]
     \efig
     $$
 
   \item[Case.]\ \\
+ \textit{7.  $\varepsilon$ interacts with $\Diamond$ and its monoidicity} 
     $$
     \bfig
     \hSquares|aamamaa|/``->``->`->`->/[
@@ -1112,8 +1027,9 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
 \end{proof}
 
-\textit{If we're lucky, I'm hoping we also have}
-
+%\textit{If we're lucky, I'm hoping we also have}
+Now we would like to, following Benton's lead, 
+prove the converse result. That is
 \begin{theorem} A CS4 categorical model can be extended to a CS4 adjoint categorical model.
 \end{theorem}
 
