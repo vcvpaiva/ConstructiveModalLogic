@@ -29,6 +29,9 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 
+\let\b\relax
+\let\d\relax
+
 \renewcommand{\Box}{\oblong}
 
 \newcommand{\F}{\mathop{\textbf{F}}}
@@ -41,8 +44,12 @@
 \newcommand{\ihom}[0]{\rightarrow}
 \newcommand{\st}[2]{\mathsf{st}_{#1,#2}}
 \newcommand{\id}[0]{\mathsf{id}}
+\newcommand{\b}[1]{\mathsf{b}_{#1}}
+\newcommand{\d}[1]{\mathsf{d}_{#1}}
 \newcommand{\m}[1]{\mathsf{m}_{#1}}
+\newcommand{\n}[1]{\mathsf{n}_{#1}}
 \newcommand{\p}[1]{\mathsf{p}_{#1}}
+\newcommand{\q}[1]{\mathsf{q}_{#1}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -599,7 +606,18 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   It is a well-known fact about adjoints that $(\Box, \varepsilon,
   \delta)$, where $\delta : \Box A \to \Box\Box A$ is a comonad, and
   $(\Diamond, \eta, \mu)$, where $\mu : \Diamond\Diamond A \to
-  \Diamond A$ is a monad.  Thus, the following diagrams commute:
+  \Diamond A$ is a monad.  In addition, $\mu$ and $\delta$ are monoidal
+  natural transformations where we have the following:
+  \[
+  \begin{array}{lll}
+    \d{1} = \p{1};\Diamond\p{1} : 1 \mto \Diamond^2 1\\
+    \d{A,B} =  \p{\Diamond A,\Diamond B};\Diamond\p{A,B} : \Diamond^2 A \times \Diamond^2 B \mto \Diamond^2 (A \times B)\\
+    \\
+    \b{1} = \q{1};\Box\q{1} : 1 \mto \Box^2 1\\
+    \b{A,B} = \q{\Box A,\Box B};\Box\q{A,B} : \Box^2 A \times \Box^2 B \mto \Box^2 (A \times B)\\
+  \end{array}
+  \]
+  Thus, the following diagrams commute:
   \begin{mathpar}
     \bfig
     \hSquares|ammmmaa|/->``->`->``->`/[
@@ -633,6 +651,75 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     \bfig
     \qtriangle/->`=`->/<800,500>[\Box A`\Box^2 A`\Box A;\delta_A``\Box \varepsilon]
     \btriangle(0,0)/->`=`->/<800,500>[\Box A`\Box^2 A`\Box A;\delta_A``\varepsilon_{\Box A}]
+    \efig
+    \and
+    %% \bfig   
+    %% \vSquares|ammmmma|/->`->```->``->/[
+    %%   \Diamond^2 A \times \Diamond^2 B`
+    %%   \Diamond A \times \Diamond B`
+    %%   \Diamond(\Diamond A \times \Diamond B)``
+    %%   \Diamond^2(A \times B)`
+    %%   \Diamond(A \times B);
+    %%   \mu_A \times \mu_B`
+    %%   \p{\Diamond A,\Diamond B}```
+    %%   \Diamond\p{A,B}``
+    %%   \mu_{A \times B}]
+    %% \morphism(1108,0)/<-/<0,1000>[\Diamond(A \times B)`\Diamond A \times \Diamond B;\p{A,B}]
+    %% \efig
+    \and
+    \bfig
+    \square<1000,1000>[
+      \Diamond^2 A \times \Diamond^2 B`
+      \Diamond A \times \Diamond B`
+      \Diamond^2(A \times B)`
+      \Diamond(A \times B);
+      \mu_A \times \mu_B`
+      \d{A,B}`
+      \p{A,B}`
+      \mu_{A \times B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`<-`<-/[
+      \Diamond^2 1`
+      \Diamond 1`
+      1;
+      \mu_1`
+      \d{1}`
+      \p{1}]
+    \efig
+    \and        
+    \bfig
+    \square<1000,1000>[
+      \Box A \times \Box B`
+      \Box^2 A \times \Box^2 B`
+      \Box(A \times B)`
+      \Box^2(A \times B);
+      \delta_A \times \delta_B`
+      \q{A,B}`
+      \b{A,B}`
+      \delta_{A \times B}]
+    %% \vSquares|ammmmma|/->``->```->`->/[
+    %%   \Box A \times \Box B`
+    %%   \Box^2 A \times \Box^2 B``
+    %%   \Box(\Box A \times \Box B)`
+    %%   \Box(A \times B)`
+    %%   \Box^2(A \times B);
+    %%   \varepsilon_A \times \varepsilon_B``
+    %%   \q{\Box A,\Box B}```
+    %%   \Box\q{A,B}`
+    %%   \varepsilon_{A \times B}]
+    %% \morphism(0,0)/<-/<0,1000>[\Box(A \times B)`\Box A \times \Box B;\q{A,B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`<-`<-/[
+      \Box 1`
+      \Box^2 1`
+      1;
+      \delta_1`
+      \q{1}`
+      \d{1}]
     \efig
   \end{mathpar}
 
