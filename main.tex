@@ -649,6 +649,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   Definition~\ref{def:comonad-strong-monad} commute.
   \begin{itemize}
   \item[Case.] \ \\
+  \textit{1. the object 1 behaves as the unit for products}
     $$
     \bfig
     \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
@@ -680,6 +681,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     \end{center}
     
   \item[Case.] \ \\
+  \textit{2. unit $\eta$ of the monad and strength interact well, $\Box  A $ is a parameter}
     $$
     \bfig
     \btriangle<800,500>[
@@ -719,6 +721,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     is a symmetric monoidal natural transformation.
     
   \item[Case.]\ \\
+  \textit{3. co-unit of the comonad $\varepsilon$ and unit of the monad $\eta$ interact well?}
     $$
     \bfig
     \hSquares|aamaaaa|/->`->`->```->`/[
@@ -762,6 +765,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     3 and 4 commute by naturality of $\eta$.
 
   \item[Case.]\ \\
+  \textit{4. associativity $\alpha$ interacts with co-monoidicity of $\Box$}
     $$
     \bfig
     \vSquares|ammmmmm|/->`->`->```->`/[
@@ -904,6 +908,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     
 
   \item[Case.]\ \\
+  \textit{5.  strength interacts with monoidicity of $\Diamond$}
     $$
     \bfig
     \vSquares|ammmmma|/->`->```->``->/[
@@ -927,7 +932,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
       \st{A}{\Diamond B} & = & (\eta_{\Box A} \pd \id_{\Diamond \Diamond B});\p{\Box A,\Diamond B}\\
     \end{array}
     \]
-    
+
   \item[Case.]\ \\
     $$
     \bfig
