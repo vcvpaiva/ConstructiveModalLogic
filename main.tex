@@ -927,6 +927,61 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
       \st{A}{\Diamond B} & = & (\eta_{\Box A} \pd \id_{\Diamond \Diamond B});\p{\Box A,\Diamond B}\\
     \end{array}
     \]
+    This case follows from the fact that the following diagram
+    commutes:
+    \begin{center}
+      \rotatebox{90}{$\bfig
+    \qtriangle|mmm|<1500,1000>[
+      \Box A \pd \Diamond\Diamond B`
+      \Box A \pd \Diamond B`
+      \Diamond\Box A \pd \Diamond B;
+      \id_{\Box A} \pd \mu_B`
+      \eta_{\Box A} \pd \mu_B`
+      \eta_{\Box A} \pd \id_{\Diamond B}]
+
+    \morphism(-1500,1000)|m|/<-/<1500,0>[
+      \Diamond\Box A \pd \Diamond\Diamond B`
+      \Box A \pd \Diamond\Diamond B;
+      \eta_{\Box A} \pd \id_{\Diamond\Diamond B}]
+
+    \btriangle(-1500,0)|mmm|<3000,1000>[
+      \Diamond\Box A \pd \Diamond\Diamond B`
+      \Diamond\Diamond\Box A \pd \Diamond\Diamond B`
+      \Diamond\Box A \pd \Diamond B;
+      \Diamond\eta_{\Box A} \pd \id_{\Diamond\Diamond B}`
+      \id_{\Diamond\Box A} \pd \mu_B`
+      \mu_{\Box A} \pd \mu_B]
+
+    \square(-3000,0)|mmmm|/<-`->``<-/<1500,1000>[
+      \Diamond(\Box A \pd \Diamond B)`
+      \Diamond\Box A \pd \Diamond\Diamond B`
+      \Diamond(\Diamond\Box A \pd \Diamond B)`
+      \Diamond\Diamond\Box A \pd \Diamond\Diamond B;
+      \p{\Box A,\Diamond B}`
+      \Diamond (\eta_{\Box A} \pd \id_{\Diamond B})``
+      \p{\Diamond\Box A,\Diamond B}]
+
+    \square(-3000,-500)|mmmm|/`->`->`->/<4500,500>[
+      \Diamond (\Diamond\Box A \pd \Diamond B)`
+      \Diamond\Box A \pd \Diamond B`
+      \Diamond\Diamond (\Box A \pd B)`
+      \Diamond (\Box A \pd B);`
+      \Diamond (\p{\Box A,B})`
+      \p{\Box A,B}`
+      \mu_{\Box A \pd B}]
+
+    \place(-2300,500)[1]
+    \place(-800,-250)[2]
+    \place(-800,400)[3]
+    \place(0,700)[4]
+    \place(1050,700)[5]
+    \efig$}
+    \end{center}       
+    Diagram commutes by naturality of $\mathsf{p}$, diagram 2 commutes
+    because $\mu$ is a monoidal natural transformation, diagram 3
+    commutes because $\mu$ is the monadic multiplication and by
+    functorality of $\times$, and diagrams 4 and 5 commute by
+    functorality of $\times$,
     
   \item[Case.]\ \\
     $$
