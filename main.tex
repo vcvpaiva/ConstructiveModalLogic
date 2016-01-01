@@ -1133,10 +1133,36 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
       \varepsilon_A \times \id_{\Diamond B}``
       \Diamond(\varepsilon_A \times \id_{B})`
       \eta_A \times \id_{\Diamond B}`
-      \m{A,B}]
+      \p{A,B}]
     \morphism(200,500)<1605,0>[`;\st{A}{B}]
     \efig
     $$
+    \noindent
+    The previous diagram commutes by commutativity of the following
+    diagram:
+    $$
+    \bfig
+    \hSquares|aammmaa|[
+      \Box A \times \Diamond B`
+      \Diamond\Box A \times \Diamond B`
+      \Diamond (\Box A \times B)`
+      A \times \Diamond B`
+      \Diamond A \times \Diamond B`
+      \Diamond (A \times B);
+      \eta_{\Box A} \times \id_{\Diamond B}`
+      \p{\Box A,B}`
+      \varepsilon_A \times \id_{\Diamond B}`
+      \Diamond\varepsilon_A \times \id_{\Diamond B}`
+      \Diamond (\varepsilon_A \times \id_B)`
+      \eta_A \times \id_{\Diamond B}`
+      \p{A,B}]
+    \place(1750,250)[1]
+    \place(600,250)[2]
+    \efig
+    $$
+    \noindent
+    Diagram 1 commutes by naturality of $\mathsf{p}$, and diagram 2
+    commutes by naturality of $\eta$.
   \end{itemize}
 
 \end{proof}
