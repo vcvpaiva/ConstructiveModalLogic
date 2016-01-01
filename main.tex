@@ -742,30 +742,69 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
     \efig
     $$
-    This diagram commutes by the following equational reasoning:
-    \begin{center}
-      \begin{math}
-        \begin{array}{rllllllll}
-          & & \st{1}{A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
-          \text{(Definition of $\mathsf{st}$)}
-          & = & (\eta_{\Box 1} \times \id_{\Diamond A});\p{\Box 1,\Diamond A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
-          \text{(Naturality of $\mathsf{p}$)}
-          & = & (\eta_{\Box 1} \times \id_{\Diamond A});(\Diamond \varepsilon_1 \times \Diamond\id_A);\p{1,A};\Diamond\lambda_A\\
-          \text{(Functoriality of $\times$)}
-          & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\Diamond\id_A));\p{1,A};\Diamond\lambda_A\\
-          & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
-          \text{(Naturality of $\eta$)}
-          & = & ((\varepsilon_1;\eta_{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
-          \text{(Definition of $\mathsf{p}$)}
-          & = & ((\varepsilon_1;\p{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
-          \text{(Functoriality of $\times$)}
-          & = & (\varepsilon_1 \times \id_{\Diamond A});(\p{1} \times \id_{\Diamond A});\p{1,A};\Diamond\lambda_A\\
-          \text{($\Diamond$ is Symmetric Monoidal)}
-          & = & (\varepsilon_1 \times \id_{\Diamond A});\lambda_{\Diamond A}\\
-        \end{array}
-      \end{math}
-    \end{center}
-    
+    This diagram commutes by commutativity of the following diagram:
+    %% Equational version:
+    %% \begin{center}
+    %%   \begin{math}
+    %%     \begin{array}{rllllllll}
+    %%       & & \st{1}{A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
+    %%       \text{(Definition of $\mathsf{st}$)}
+    %%       & = & (\eta_{\Box 1} \times \id_{\Diamond A});\p{\Box 1,\Diamond A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
+    %%       \text{(Naturality of $\mathsf{p}$)}
+    %%       & = & (\eta_{\Box 1} \times \id_{\Diamond A});(\Diamond \varepsilon_1 \times \Diamond\id_A);\p{1,A};\Diamond\lambda_A\\
+    %%       \text{(Functoriality of $\times$)}
+    %%       & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\Diamond\id_A));\p{1,A};\Diamond\lambda_A\\
+    %%       & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+    %%       \text{(Naturality of $\eta$)}
+    %%       & = & ((\varepsilon_1;\eta_{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+    %%       \text{(Definition of $\mathsf{p}$)}
+    %%       & = & ((\varepsilon_1;\p{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+    %%       \text{(Functoriality of $\times$)}
+    %%       & = & (\varepsilon_1 \times \id_{\Diamond A});(\p{1} \times \id_{\Diamond A});\p{1,A};\Diamond\lambda_A\\
+    %%       \text{($\Diamond$ is Symmetric Monoidal)}
+    %%       & = & (\varepsilon_1 \times \id_{\Diamond A});\lambda_{\Diamond A}\\
+    %%     \end{array}
+    %%   \end{math}
+    %% \end{center}
+    $$
+    \bfig
+    \square|amma|<1000,500>[
+      \Diamond\Box 1 \times \Diamond A`
+      \Diamond (\Box 1 \times A)`
+      \Diamond 1 \times \Diamond A`
+      \Diamond (1 \times A);
+      \p{\Box 1,A}`
+      \Diamond \varepsilon_1 \times \id_{\Diamond A}`
+      \Diamond (\varepsilon_1 \times \id_A)`
+      \p{1,A}]
+
+    \square(-1000,0)|amma|<1000,500>[
+      \Box 1 \times \Diamond A`
+      \Diamond\Box 1 \times \Diamond A`
+      1 \times \Diamond A`
+      \Diamond 1 \times \Diamond A;
+      \eta_{\Box 1} \times \id_{\Diamond A}`
+      \varepsilon_1 \times \id_{\Diamond A}`
+      \Diamond \varepsilon_1 \times \id_{\Diamond A}`
+      (\p{1} = \eta_1) \times \id_{\Diamond A}]
+
+    \qtriangle(-1000,-500)|mmm|/`->`->/<2000,500>[
+      1 \times \Diamond A`
+      \Diamond (1 \times A)`
+      \Diamond A;`
+      \lambda_{\Diamond A}`
+      \Diamond\lambda_A]
+
+    \place(500,250)[1]
+    \place(-500,250)[2]
+    \place(500,-200)[3]
+    \efig
+    $$
+    \noindent
+    Diagram 1 commutes by naturality of $\mathsf{p}$, diagram 2
+    commutes by naturality of $\eta$, and diagram 3 commutes because
+    $\Diamond$ is a symmetric monoidal functor.
+
   \item[] \textit{Case 2. unit $\eta$ of the monad and strength interact well, $\Box  A $ is a parameter}
     $$
     \bfig
