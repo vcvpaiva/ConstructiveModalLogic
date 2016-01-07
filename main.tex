@@ -276,7 +276,7 @@ Similarly for a monoidal monad.
 %Due to space limitations we omit their full definitions see \cite{benton1995} for their details.
 %Similarly, for the definitions of monoidal comonad and monad see\cite{CS4}.
 
-We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{cs4}, but not much used since then.
+We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then.
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
@@ -427,11 +427,11 @@ We want to see how to transform a model of CS4 using a pair comonad-monad as abo
   \end{enumerate}
 \end{definition}
 
-Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $JH$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=HJ$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
+Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $HJ$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=JH$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
 
 Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \mto \Box (A\land B)$ together with a map $m_{1}\colon 1 \mto \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
 
-Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = JH$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\mto JH$ and multiplication given by $\mu\colon  JHJH\mto JH$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...JH..$
+Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = HJ$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\mto JH$ and multiplication given by $\mu\colon  HJHJ\mto HJ$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...HJ..$
 
 \textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
@@ -446,7 +446,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
   Suppose $(H,m)$ and $(J,n)$ are the adjoint monoidal functors given
   in Definition~\ref{def:CS4-single-adjoint-cat-model}, and define
-  $\Box = HJ$ and $\Diamond = JH$.  By definition we assumed that
+  $\Box = JH$ and $\Diamond = HJ$.  By definition we assumed that
   $(\Box, q)$, where $q_{A,B} : \Box A \times \Box B \to \Box (A
   \times B)$, is monoidal, but we must show that $\Diamond$ is also
   monoidal.  We know that both $(H,n)$ and $(J,m)$ are monoidal
