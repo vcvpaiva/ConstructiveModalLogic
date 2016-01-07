@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Constructive Temporal Logic, Categorically}
+\title{Constructive Modal Logic Revisited}
 \author{Valeria de Paiva \and Harley Eades III}
 \date{October 2015}
 
@@ -67,69 +67,8 @@
 \maketitle
 
 \section{Introduction}
-Generally speaking, Temporal Logic is any system of rules and
-symbolism for representing, and reasoning about propositions qualified
-in terms of time.  Temporal logic is also one of the most traditional
-kinds of modal logic, introduced by Arthur Prior in the late 1950s,
-%, and for which important results were obtained by Hans Kamp. 
-but it is also one of the most controversial kinds of modal logic, as
-people have different intuitions about time, how to represent it, and
-how to reason about it.
 
-There has been a huge amount of work in Modal Logic in the last sixty
-years, but mainly in classical modal logic. We are mostly interested
-in constructive systems. In particular we are interested in a
-constructive version of temporal logic that satisfies some well-known
-and desirable proof-theoretical properties, but that is also
-algebraically and category-theoretically well-behaved.
-
-Prior's `Time and Modality' introduced a propositional modal logic
-with two temporal connectives (modal operators), $F$ and $P$,
-corresponding to ``sometime in the {F}uture" and ``sometime in the
-{P}ast". Kamp's thesis introduced the binary temporal operators
-``since" and ``until" and proved what came to be known as Kamp's
-theorem. Kamp's theorem shows that all temporal operators are
-definable in terms of ``since" and ``until" -- provided that the
-underlying temporal structure is a continuous linear ordering and
-provided that the logical basis is classical.
-
-Ewald \cite{ewald1986} has produced a first version of an
-intuitionistically based temporal logic system. Basically, Ewald's
-system is a pair of Simpson-style IK operators \cite{simpson1994},
-representing past and future over intuituionistic propositional logic.
-
-The intuitive reading of the operators is sensible:
-\begin{itemize}
-\item $P$ “It has at some time been the case that” 
-\item $F$ “It will at some time be the case that” 
-\item $H$ “It has always been the case that” 
-\item $G$  “It will always be the case that” 
-\end{itemize}
-Ewald and most of the researchers that followed his path of
-constructivization of tense logic, did so assuming a symmetry between
-past and future. This symmetry, as well as the symmetry between
-universal and existential quantifiers, both in the past and in the
-future, are at odds with
-%is not very characteristic of 
-intuitionistic reasoning.
-
- Simpson remarks that intuitionistic or constructive modal logic is
- full of interesting questions. As he says:
-\begin{quote}
-Although much work has been done in the field, there is as yet no
-consensus on the correct viewpoint for considering intuitionistic
-modal logic.  In particular, there is no single semantic framework
-rivalling that of possible world semantics for classical modal logic.
-Indeed, there is not even any general agreement on what the
-intuitionistic analogue of the basic modal logic, K, is.
-\end{quote}
-In an intuitionistic logic we do not expect perfect duality between
-quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg
-P(x)$) or even between conjunction and disjunction (De Morgan laws do
-not hold for intuitionistic propositional logic). So one should not
-expect a perfect duality between possibility and necessity either.
-
-\section{Constructive Temporal Logics}
+\section{Constructive Modal Logic}
 
 Each of the logics presented in this section is an extension of the
 single-conclusion formalization of Gentzen's intuitionistic sequent
@@ -142,12 +81,11 @@ following grammar:
         \end{array}
     \end{math}
 \end{center}
-The formula $p$ is taken from a set of countably many propositional
-constants.
+The formula $p$ is taken from a set of countably many propositional atoms. The constant $\top$ could be added, but it is the negation of the the falsum constant $\bot$.
 
 We begin with an initial set of inference rules, and then each system
-presented in this section will be given as an extension of this
-initial system.  The set of initial inference rules, which just models
+presented will be given as an extension of this
+initial system.  The  initial inference rules, which just model
 propositional intuitionistic logic, are as follows:
 \begin{center}
   \small
@@ -211,14 +149,13 @@ propositional intuitionistic logic, are as follows:
   \end{math}
 \end{center}
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
-denoted by either $\Gamma$, $\Delta$, or a numbered version of the
-two, and a formula $C$.
+(written as either $\Gamma$, $\Delta$, or a numbered version of either), and a formula $C$. The intuitive meaning is that the conjunction of the formulas in $\Gamma$ entails the formula $C$.
 
-\subsection{The constructive system S4} 
+\subsection{The constructive system CS4} 
 
 In this section we recall the sequent calculus formalization of system
-CS4.  This formalization was initially denoted by IS4 (Intuitionistic
-modal logic S4) and was proposed by Bierman and de Paiva \cite{CS4}.
+CS4.  This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially it was  written as IS4 (for Intuitionistic
+system S4).
 This systems gives rise to a complete family of systems, which are
 alternatives to Simpson's intuitionistic systems. Since Simpson's
 systems, a framework starting from intuitionistic K, were also called
@@ -230,7 +167,8 @@ Bierman and de Paiva's system CS4.  This is for instance how
 The main difference between systems IS4 and CS4 concerns the binary
 distribution of $\Diamond$ over disjunction
 $\Diamond (A \lor B) \to \Diamond A \lor \Diamond B$
-and its nullary form $\Diamond \bot\bot$.
+and its nullary form 
+$\Diamond \bot \to \bot$. The system CS4 does not satisfy these traditional distributions that are basic in classical modal logic. Some philosophical significance can be attached to this distribution, or lack thereof, and we discuss it later. First we define the system.
 
 The following rules, in addition to
 the initial set of inference rules, defines the sequent calculus for CS4:
@@ -254,20 +192,19 @@ the initial set of inference rules, defines the sequent calculus for CS4:
     \end{array}        
   \end{math}
 \end{center}
-This system is indeed constructive, and hence, $\Box A$ is not
-logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
+Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as well-behaved as the propositional ones. This system is indeed constructive, and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
 
-This system is very well behaved proof theoretically. Bierman and de
-Paiva show that it has a Hilbert-style presentation, and a Natural
-Deduction one, as well as a sequent formulation. The sequent calculus
+This system has a nice proof theory, as far as modal logics are concerned. Bierman and de
+Paiva \cite{CS4} show that it has a Hilbert-style presentation,  a Natural
+Deduction presentation, as well as a sequent calculus one. The sequent calculus
 satisfies cut-elimination, an old result from Ohnishi and Matsumoto
-\cite{ohnishi1957} as well as the subformula property.
+\cite{ohnishi1957}, as well as the subformula property.
 
 The Natural Deduction formulation has a colourful history, described
 in \cite{CS4}. One of its distinct features is that it was described
 in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
-hence it is still sometimes called Prawitz modal logic.
+hence it is still sometimes called Prawitz S4 modal logic.
 
 Most interestingly the system has both Kripke and categorical
 semantics, described respectively in \cite{alechinaetal} and
@@ -277,12 +214,12 @@ language theory \todo{Add references for these applications}.
 %Examples include \cite{hmm}.
 
 %\subsection{Presenting CS4 as LNL}
-\subsection{An adjunction CS4}
-It is not so well-known, but this system can also be given a
+\subsection{The adjunction CS4 modal calculus}
+This is not so well-known, but this system can  be given a
 presentation in terms of a categorical adjunction, between two
 cartesian closed categories.
 
-This is described in both \cite{CS4} and \cite{icalp1998}. In
+This presentation is described  both in \cite{CS4} and in \cite{icalp1998}. In
 \cite{CS4} this is called the multicontext formulation of CS4 and the
 rules are given (page 17) as follows:
 
@@ -315,22 +252,31 @@ These rules have been shown by Benton \cite{benton1995} and Barber to correspond
 \label{subsec:single_adjoint_model_of_cs4}
 %\todo{Threw this in a subsection for now, we can move it around, and reword as needed.} sounds good!
 
-This section depends on the definitions of the
-categorical concepts of monoidal category, monoidal functor, and
-monoidal adjunction, as well as the concepts of monoidal comonad and monad. 
+This section requires  some categorical definitions that are not the most straightforward.  We need categorical concepts of monoidal category, monoidal functor, and monoidal adjunction, as well as the concepts of monoidal comonad and monad. 
 
-A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$, a generalization of traditional categorical products. A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\mto F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \mto FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). 
+A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\times, 1, \alpha, \rho, \lambda)$, usually a generalization of traditional categorical products, such that  MacLane's pentagon for associativity holds
+\[ \bfig
+      \vSquares|ammmmma|/>``>```>`>/[(W \times (X \times Y))\times Z `((W \times X) \times Y)\times Z)``(W\times X)\times (Y\times Z)`W \times ((X \times Y)\times Z)`W \times (X \times (Y\times Z));\alpha\times 1``\alpha```\alpha`1\times \alpha]
+      \morphism(0,1000)|m|/->/<0,-950>[`;\alpha]
+      \efig\]
+    and such that 1 is the unit for the product, so in particular it satisfies the triangle below.
+    \[ \]
+    
+    
+  A monoidal category can be symmetric or commutative (meaning $A\times B$ is isomorphic to $B\times A$) or not. If it is symmetric we call the isomorphism $\beta\colon A\times B\to B\times A$, for a \textit{braid}. 
+       Commutativity of the product brings along the three diagrams below. While these are traditional diagrams that can be simplified, having them in full generality helps to see how the strength (the new component) has to interact with this structure.
 
-A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural trasnformations too. 
+A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\times F(B)\mto F(A \times B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{1}\colon 1 \mto F1$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). This means another three commuting diagrams, one for associativity, one for left, one for right isos. Since a product is symmetric, one more commuting diagram, preserving $\beta$.
 
-A monoidal comonad is a comonad $(\Box,\varepsilon, \delta)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the following diagrams.
+Then given monoidal functors $(F,m)$ and $(G,n)$ a monoidal natural transformation from $F$ to $G$ is a natural transformation which is compatible with the comparison maps $m$ and $n$, which means the next two diagrams commute too.
 
-
+A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural transformations too. Finally,
+a monoidal comonad is a comonad $(\Box,\varepsilon, \delta)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the following diagrams.{\todo{add diagrams here}}
 Similarly for a monoidal monad.
 %Due to space limitations we omit their full definitions see \cite{benton1995} for their details.
 %Similarly, for the definitions of monoidal comonad and monad see\cite{CS4}.
 
-We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads.
+We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{cs4}, but not much used since then.
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
@@ -462,10 +408,12 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
   \[
   \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
-  This is a model of CS4 as defined and showed sound and complete in \cite{CS4}.
+  This is a model of CS4 as defined and showed sound and complete in \cite{CS4}. We call this structure a \textit{modal category}, as it is the only kind of modality we consider in this note.
 \end{definition}
 
-Now we want to see how to transform a model of CS4 using a pair comonad-monad as above into a model of the same system using adjunctions.  Benton showed a similar result for linear type theory in \cite{benton1995}.
+Seven commuting diagrams is quite a lot of structure to require. We share the reader's feeling that we should be able to provide something simpler instead and proceed to do so.
+
+We want to see how to transform a model of CS4 using a pair comonad-monad as above (i.e a modal category) into a model of the system using adjunctions.  Benton showed a similar result for linear type theory in \cite{benton1995}.
 
 
 \begin{definition}[adjoint CS4 model]
@@ -488,7 +436,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 \textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
 \begin{theorem}
-  An adjoint CS4 categorical model is a CS4 categorical model.
+  An adjoint CS4 categorical model is a modal category.
 \end{theorem}
 \begin{proof}
   We must show that given the definition of an adjoint CS4 categorical
@@ -1204,6 +1152,9 @@ Now we would like to, following Benton's lead,
 prove the converse result. That is
 \begin{theorem} A CS4 categorical model can be extended to a CS4 adjoint categorical model.
 \end{theorem}
+This is similar to section 2.2.2 in Benton's work \cite{benton1994}, which shows that a \textit{linear category implies a LNL model}. 
+
+We know that both the comonad and the monad we have in the definition of a modal category can each provides us with an infinite collection of adjunctions, between the Co-Keisli and the Eilenberg-Moore categories. Thus we need to choose the appropriate adjunction and prove that is monoidal. This is the hard proof in the linear logic case.
 
 % subsection single_adjoint_model_of_cs4 (end)
 
@@ -1346,3 +1297,68 @@ http://www.cs.bham.ac.uk/~vdp/publications/final-preface.pdf
 and
 
 http://logcom.oxfordjournals.org/content/early/2015/06/12/logcom.exv042.extract
+
+old introduction
+Generally speaking, Temporal Logic is any system of rules and
+symbolism for representing, and reasoning about propositions qualified
+in terms of time.  Temporal logic is also one of the most traditional
+kinds of modal logic, introduced by Arthur Prior in the late 1950s,
+%, and for which important results were obtained by Hans Kamp. 
+but it is also one of the most controversial kinds of modal logic, as
+people have different intuitions about time, how to represent it, and
+how to reason about it.
+
+There has been a huge amount of work in Modal Logic in the last sixty
+years, but mainly in classical modal logic. We are mostly interested
+in constructive systems. In particular we are interested in a
+constructive version of temporal logic that satisfies some well-known
+and desirable proof-theoretical properties, but that is also
+algebraically and category-theoretically well-behaved.
+
+Prior's `Time and Modality' introduced a propositional modal logic
+with two temporal connectives (modal operators), $F$ and $P$,
+corresponding to ``sometime in the {F}uture" and ``sometime in the
+{P}ast". Kamp's thesis introduced the binary temporal operators
+``since" and ``until" and proved what came to be known as Kamp's
+theorem. Kamp's theorem shows that all temporal operators are
+definable in terms of ``since" and ``until" -- provided that the
+underlying temporal structure is a continuous linear ordering and
+provided that the logical basis is classical.
+
+Ewald \cite{ewald1986} has produced a first version of an
+intuitionistically based temporal logic system. Basically, Ewald's
+system is a pair of Simpson-style IK operators \cite{simpson1994},
+representing past and future over intuituionistic propositional logic.
+
+The intuitive reading of the operators is sensible:
+\begin{itemize}
+\item $P$ “It has at some time been the case that” 
+\item $F$ “It will at some time be the case that” 
+\item $H$ “It has always been the case that” 
+\item $G$  “It will always be the case that” 
+\end{itemize}
+Ewald and most of the researchers that followed his path of
+constructivization of tense logic, did so assuming a symmetry between
+past and future. This symmetry, as well as the symmetry between
+universal and existential quantifiers, both in the past and in the
+future, are at odds with
+%is not very characteristic of 
+intuitionistic reasoning.
+
+ Simpson remarks that intuitionistic or constructive modal logic is
+ full of interesting questions. As he says:
+\begin{quote}
+Although much work has been done in the field, there is as yet no
+consensus on the correct viewpoint for considering intuitionistic
+modal logic.  In particular, there is no single semantic framework
+rivalling that of possible world semantics for classical modal logic.
+Indeed, there is not even any general agreement on what the
+intuitionistic analogue of the basic modal logic, K, is.
+\end{quote}
+In an intuitionistic logic we do not expect perfect duality between
+quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg
+P(x)$) or even between conjunction and disjunction (De Morgan laws do
+not hold for intuitionistic propositional logic). So one should not
+expect a perfect duality between possibility and necessity either. 
+
+It has been thought for a while that temporal logic should consist of two modal systems intertwinned. Some times the modal systems are K modal systems, some times S5. Here we will consider S4 systems, so we start by recalling some facts about S4 constructive modal logic.
