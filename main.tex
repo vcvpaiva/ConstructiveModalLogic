@@ -263,14 +263,16 @@ A monoidal category is simply a category $\cat{C}$  equipped with a tensor produ
     \[ \]
     
     
-  A monoidal category can be symmetric or commutative (meaning $A\times B$ is isomorphic to $B\times A$) or not. If it is symmetric we call the isomorphism $\beta\colon A\times B\to B\times A$, for a \textit{braid}. 
+  A monoidal category can be symmetric or commutative (meaning $A\times B$ is isomorphic to $B\times A$) or not. If it is symmetric we call the isomorphism going from $ A\times B$ to $B\times A$, $\beta$, for  \textit{braid}. 
        Commutativity of the product brings along the three diagrams below. While these are traditional diagrams that can be simplified, having them in full generality helps to see how the strength (the new component) has to interact with this structure.
 
 A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\times F(B)\mto F(A \times B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{1}\colon 1 \mto F1$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). This means another three commuting diagrams, one for associativity, one for left, one for right isos. Since a product is symmetric, one more commuting diagram, preserving $\beta$.
 
 Then given monoidal functors $(F,m)$ and $(G,n)$ a monoidal natural transformation from $F$ to $G$ is a natural transformation which is compatible with the comparison maps $m$ and $n$, which means the next two diagrams commute too.
 
-A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural transformations too. Finally,
+A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural transformations too. If instead the monoidal categories are cartesian closed categories, what happens? Surely the result corresponding to Benton's proposition 1 in \cite{benton1995} remains true, after all a cartesian closed category is also a symmetric monoidal closed category. But do we get anything else?
+
+Finally,
 a monoidal comonad is a comonad $(\Box,\varepsilon, \delta)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the following diagrams.{\todo{add diagrams here}}
 Similarly for a monoidal monad.
 %Due to space limitations we omit their full definitions see \cite{benton1995} for their details.
