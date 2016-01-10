@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb, amsthm, amsmath, stmaryrd}
 \usepackage{mathpartir}
+\usepackage{cmll}
 \usepackage[barr]{xy}
 
 %% This renames Barr's \Diamond command so that it doesn't conflict
@@ -50,6 +51,8 @@
 \newcommand{\n}[1]{\mathsf{n}_{#1}}
 \newcommand{\p}[1]{\mathsf{p}_{#1}}
 \newcommand{\q}[1]{\mathsf{q}_{#1}}
+\newcommand{\limp}[0]{\multimap}
+\newcommand{\Hom}[3]{\mathsf{Hom}_{#1}(#2,#3)}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -1283,6 +1286,274 @@ time can be studied within this system.
 
 \bibliographystyle{plain}
 \bibliography{references}
+
+\appendix
+
+\section{Symmetric Monoidal Closed Categories}
+\label{sec:symmetric_monoidal_closed_categories}
+
+\begin{definition}
+  \label{def:monoidal-category}
+  A \textbf{symmetric monoidal category (SMC)} is a category, $\cat{M}$,
+  with the following data:
+  \begin{itemize}
+  \item An object $I$ of $\cat{M}$,
+  \item A bi-functor $\otimes : \cat{M} \times \cat{M} \mto \cat{M}$,
+  \item The following natural isomorphisms:
+    \[
+    \begin{array}{lll}
+      \lambda_A : I \otimes A \mto A\\
+      \rho_A : A \otimes I \mto A\\      
+      \alpha_{A,B,C} : (A \otimes B) \otimes C \mto A \otimes (B \otimes C)\\
+    \end{array}
+    \]
+  \item A natural transformation:
+    \[
+    \beta_{A,B} : A \otimes B \mto B \otimes A
+    \]
+  \item Subject to the following coherence diagrams:
+    \begin{mathpar}
+      \bfig
+      \vSquares|ammmmma|/->`->```->``<-/[
+        ((A \otimes B) \otimes C) \otimes D`
+        (A \otimes (B \otimes C)) \otimes D`
+        (A \otimes B) \otimes (C \otimes D)``
+        A \otimes (B \otimes (C \otimes D))`
+        A \otimes ((B \otimes C) \otimes D);
+        \alpha_{A,B,C} \otimes \id_D`
+        \alpha_{A \otimes B,C,D}```
+        \alpha_{A,B,C \otimes D}``
+        \id_A \otimes \alpha_{B,C,D}]      
+      
+      \morphism(1433,1000)|m|<0,-1000>[
+        (A \otimes (B \otimes C)) \otimes D`
+        A \otimes ((B \otimes C) \otimes D);
+        \alpha_{A,B \otimes C,D}]
+      \efig
+      \and
+      \bfig
+      \hSquares|aammmaa|/->`->`->``->`->`->/[
+        (A \otimes B) \otimes C`
+        A \otimes (B \otimes C)`
+        (B \otimes C) \otimes A`
+        (B \otimes A) \otimes C`
+        B \otimes (A \otimes C)`
+        B \otimes (C \otimes A);
+        \alpha_{A,B,C}`
+        \beta_{A,B \otimes C}`
+        \beta_{A,B} \otimes \id_C``
+        \alpha_{B,C,A}`
+        \alpha_{B,A,C}`
+        \id_B \otimes \beta_{A,C}]
+      \efig      
+    \end{mathpar}
+    \begin{mathpar}
+      \bfig
+      \Vtriangle[
+        (A \otimes I) \otimes B`
+        A \otimes (I \otimes B)`
+        A \otimes B;
+        \alpha_{A,I,B}`
+        \rho_{A}`
+        \lambda_{B}]
+      \efig
+      \and
+      \bfig
+      \btriangle[
+        A \otimes B`
+        B \otimes A`
+        A \otimes B;
+        \beta_{A,B}`
+        \id_{A \otimes B}`
+        \beta_{B,A}]
+      \efig
+      \and
+      \bfig
+      \Vtriangle[
+        I \otimes A`
+        A \otimes I`
+        A;
+        \beta_{I,A}`
+        \lambda_A`
+        \rho_A]
+      \efig
+    \end{mathpar}    
+  \end{itemize}
+\end{definition}
+
+\begin{definition}
+  \label{def:SMCC}
+  A \textbf{symmetric monoidal closed category (SMCC)} is a symmetric
+  monoidal category, $(\cat{M},I,\otimes)$, such that, for any object
+  $B$ of $\cat{M}$, the functor $- \otimes B : \cat{M} \mto \cat{M}$
+  has a specified right adjoint.  Hence, for any objects $A$ and $C$
+  of $\cat{M}$ there is an object $A \limp B$ of $\cat{M}$ and a
+  natural bijection:
+  \[
+  \Hom{\cat{M}}{A \otimes B}{C} \cong \Hom{\cat{M}}{A}{B \limp C}
+  \]
+\end{definition}
+
+\begin{definition}
+  \label{def:SMCFUN}
+  Suppose $(\cat{M}_1,I_1,\otimes_1,\alpha_1,\lambda_1,\rho_1,\beta_1)$ and\\
+  $(\cat{M}_2,I_2,\otimes_2,\alpha_2,\lambda_2,\rho_2,\beta_2)$ are SMCs.  Then a
+  \textbf{symmetric monoidal functor} is a functor $F : \cat{M}_1 \mto
+  \cat{M}_2$, a map $m_I : I_2 \mto FI_1$ and a natural transformation
+  $m_{A,B} : FA \otimes_2 FB \mto F(A \otimes_1 B)$ subject to the
+  following coherence conditions:
+  \begin{mathpar}
+    \bfig
+    \vSquares|ammmmma|/->`->`->``->`->`->/[
+      (FA \otimes_2 FB) \otimes_2 FC`
+      FA \otimes_2 (FB \otimes_2 FC)`
+      F(A \otimes_1 B) \otimes_2 FC`
+      FA \otimes_2 F(B \otimes_1 C)`
+      F((A \otimes_1 B) \otimes_1 C)`
+      F(A \otimes_1 (B \otimes_1 C));
+      {\alpha_2}_{FA,FB,FC}`
+      m_{A,B} \otimes \id_{FC}`
+      \id_{FA} \otimes m_{B,C}``
+      m_{A \otimes_1 B,C}`
+      m_{A,B \otimes_1 C}`
+      F{\alpha_1}_{A,B,C}]
+    \efig
+    \and
+    \bfig
+    \square|amma|/->`->`<-`->/<1000,500>[
+      I_2 \otimes_2 FA`
+      FA`
+      FI_1 \otimes_2 FA`
+      F(I_1 \otimes_1 A);
+      {\lambda_2}_{FA}`
+      m_{I} \otimes \id_{FA}`
+      F{\lambda_1}_{A}`
+      m_{I_1,A}]
+    \efig
+    \and
+    \bfig
+    \square|amma|/->`->`<-`->/<1000,500>[
+      FA \otimes_2 I_2`
+      FA`
+      FA \otimes_2 FI_1`
+      F(A \otimes_1 I_1);
+      {\rho_2}_{FA}`
+      \id_{FA} \otimes m_{I}`
+      F{\rho_1}_{A}`
+      m_{A,I_1}]
+    \efig
+    \and
+    \bfig
+    \square|amma|/->`->`->`->/<1000,500>[
+      FA \otimes_2 FB`
+      FB \otimes_2 FA`
+      F(A \otimes_1 B)`
+      F(B \otimes_1 A);
+      {\beta_2}_{FA,FB}`
+      m_{A,B}`
+      m_{B,A}`
+      F{\beta_1}_{A,B}]
+    \efig
+  \end{mathpar}
+\end{definition}
+
+\begin{definition}
+  \label{def:SMCNAT}
+  Suppose $(\cat{M}_1,I_1,\otimes_1)$ and $(\cat{M}_2,I_2,\otimes_2)$
+  are SMCs, and $(F,m)$ and $(G,n)$ are a symmetric monoidal functors
+  between $\cat{M}_1$ and $\cat{M}_2$.  Then a \textbf{symmetric
+    monoidal natural transformation} is a natural transformation,
+  $f : F \mto G$, subject to the following coherence diagrams:
+  \begin{mathpar}
+    \bfig
+    \square<1000,500>[
+      FA \otimes_2 FB`
+      F(A \otimes_1 B)`
+      GA \otimes_2 GB`
+      G(A \otimes_1 B);
+      m_{A,B}`
+      f_A \otimes_2 f_B`
+      f_{A \otimes_1 B}`
+      n_{A,B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`<-`<-/[
+      FI_1`
+      GI_1`
+      I_2;
+      f_{I_1}`
+      m_{I_1}`
+      n_{I_1}]
+    \efig
+  \end{mathpar}  
+\end{definition}
+
+\begin{definition}
+  \label{def:SMCADJ}
+  A \textbf{symmetric monoidal adjunction} between two SMCs
+  $\cat{M}_1$ and $\cat{M}_2$ is an ordinary adjunction where the
+  adjoint functors are symmetric monoidal functors, and the unit and
+  counit are symmetric monoidal natural transformations.
+
+  Suppose $(\cat{M}_1,I_1,\otimes_1)$ and $(\cat{M}_2,I_2,\otimes_2)$
+  are SMCs, and $(F,m)$ is a symmetric monoidal functor between
+  $\cat{M}_1$ and $\cat{M}_2$ and $(G,n)$ is a symmetric monoidal
+  functor between $\cat{M}_2$ and $\cat{M}_1$.  Then a
+  \textbf{symmetric monoidal adjunction} is an ordinary adjunction
+  $\cat{M}_1 : F \dashv G : \cat{M}_2$ such that the unit,
+  $\varepsilon : A \to GFA$, and the counit, $\eta_A : FGA \to A$, are
+  symmetric monoidal natural transformations.  Thus, the following
+  diagrams must commute:
+  \begin{mathpar}
+    \bfig
+    \qtriangle<1000,500>[
+      FGA \otimes_1 FGB`
+      FG(A \otimes_1 B)`
+      A \otimes_1 B;
+      \q{A,B}`
+      \eta_A \otimes_1 \eta_B`
+      \eta_{A \otimes_1 B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`<-`<-/[
+      FGI_1`
+      I_1`
+      I_1;
+      \eta_{I_1}`
+      \q{I_1}`
+      \id_{I_1}]
+    \efig
+    \and
+    \bfig
+    \dtriangle<1000,500>[
+      A \otimes_2 B`
+      GFA \otimes_2 GFB`
+      GF(A \otimes_2 B);
+      \varepsilon_A \otimes_2 \varepsilon_B`
+      \varepsilon_{A \otimes_2 B}`
+      \p{A,B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`<-`<-/[
+      I_2`
+      GFI_2`
+      I_2;
+      \varepsilon_{I_2}`
+      \id_{I_2}`
+      p_{I_2}]
+    \efig
+  \end{mathpar}
+  Note that $\p{}$ and $\q{}$ exist because $(FG,\q{})$ and
+  $(GF,\p{})$ are symmetric monoidal functors.
+\end{definition}
+
+
+% section symmetric_monoidal_categories (end)
+
+
 \end{document}
 
 References:
@@ -1364,3 +1635,4 @@ not hold for intuitionistic propositional logic). So one should not
 expect a perfect duality between possibility and necessity either. 
 
 It has been thought for a while that temporal logic should consist of two modal systems intertwinned. Some times the modal systems are K modal systems, some times S5. Here we will consider S4 systems, so we start by recalling some facts about S4 constructive modal logic.
+
