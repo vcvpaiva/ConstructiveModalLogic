@@ -32,6 +32,7 @@
 
 \let\b\relax
 \let\d\relax
+\let\t\relax
 
 \renewcommand{\Box}{\oblong}
 
@@ -51,6 +52,7 @@
 \newcommand{\n}[1]{\mathsf{n}_{#1}}
 \newcommand{\p}[1]{\mathsf{p}_{#1}}
 \newcommand{\q}[1]{\mathsf{q}_{#1}}
+\newcommand{\t}[0]{\mathsf{t}}
 \newcommand{\limp}[0]{\multimap}
 \newcommand{\Hom}[3]{\mathsf{Hom}_{#1}(#2,#3)}
 
@@ -1544,9 +1546,37 @@ time can be studied within this system.
   Note that $\p{}$ and $\q{}$ exist because $(FG,\q{})$ and
   $(GF,\p{})$ are symmetric monoidal functors.
 \end{definition}
-
-
 % section symmetric_monoidal_categories (end)
+
+\section{Cartesian Closed Categories and Symmetric Monoidal Adjunctions}
+\label{sec:cartesian_closed_categories_and_symmetric_monoidal_adjunctions}
+In this appendix we consider simplifications that arise when the SMCCs
+in a symmetric monoidal adjunction are cartesian closed.  The first
+big simplification is that when a SMCC is cartesian we no longer have
+to specify all of the SMC structure, because they become provable.
+The following lemma prove this fact.
+
+\begin{lemma}
+  \label{lemma:CCC-is-SMC}
+  Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a CCC.  Then the
+  following define the unitors and the associators of an SMC:
+  \[
+  \begin{array}{rll}
+    \lambda_A & = & \pi_2 : 1 \times A \mto A\\
+    \lambda^{-1}_A & = & \langle \t_A , \id_A  \rangle : A \mto 1 \times A\\
+    \\
+    \rho_A & = & \pi_1 : A \times 1 \mto A\\
+    \rho^{-1}_A & = & \langle \id_A , \t_A  \rangle : A \mto A \times 1\\
+    \\
+    \alpha_{A,B,C} & = & \langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle : (A \times B) \times C \mto A \times (B \times C)\\
+    \alpha^{-1}_{A,B,C} & = & \langle \id_A \times \pi_1, \pi_2;\pi_2 \rangle : A \times (B \times C) \mto (A \times B) \times C\\
+  \end{array}
+  \]
+\end{lemma}
+
+
+
+% section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
 
 
 \end{document}
