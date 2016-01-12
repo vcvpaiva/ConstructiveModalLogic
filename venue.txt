@@ -1,0 +1,113 @@
+Important dates:
+================
+
+* Submission Deadline: March 3 
+* Notification: April 8
+* Proceedings: April 18 
+* Conference: May 23-26
+
+CFP
+===
+
+The 32nd Conference on the Mathematical Foundations of Programming
+Semantics (MFPS XXXII) will take place on the campus of the Carnegie
+Mellon University, Pittsburgh, USA, between 23 and 26 May 2016. MFPS
+conferences are dedicated to the areas of mathematics, logic, and
+computer science that are related to models of computation in general,
+and to semantics of programming languages in particular. This is a
+forum where researchers in mathematics and computer science can meet
+and exchange ideas. The participation of researchers in neighbouring
+areas is strongly encouraged.
+
+Topics include, but are not limited to, the following:
+bio-computation; concurrent qualitative and quantitative distributed
+systems; process calculi; probabilistic systems; constructive
+mathematics; domain theory and categorical models; formal languages;
+formal methods; game semantics; lambda calculus; programming-language
+theory; quantum computation; security; topological models; logic; type
+systems; type theory. We also welcome contributions that address
+applications of semantics to novel areas such as complex systems,
+markets, and networks, for example.
+
+Conference home page: mfps-2016.au.dk
+
+## INVITED SPEAKERS
+
+*  Peter Selinger, Dalhousie
+*  Brigitte Pientka, McGill
+*  Steve Brookes, CMU
+*  Nathalie Bertrand, Inria 
+
+## TUTORIAL SPEAKERS AND SPECIAL SESSIONS
+
+*  Peter O'Hearn
+  - Concurrency, special session in honour of Steve Brookes' 60th Birthday
+*  Andrew Appel, Princeton
+  - Verification
+*  Stephen Chong, Harvard
+  - Security
+*  Dan Roy, Toronto
+  - Probabilistic Programming
+
+## SUBMISSION
+
+### Important dates:
+
+* Submission Deadline: March 3 
+* Notification: April 8
+* Proceedings: April 18 
+* Conference: May 23-26
+
+
+### Submitting
+
+Submissions should be prepared using the [ENTCS
+Macros](http://www.entcs.org/), in the form of a PDF file not
+exceeding 15 pages. Submissions are open on
+[EasyChair](https://easychair.org/conferences/?conf=mfps2016).
+
+### Proceedings
+
+A preliminary version will be distributed at the meeting. Final
+proceedings will appear in ENTCS after the meeting.
+
+## PROGRAM COMMITTEE:
+
+Achim Jung, Birmingham, UK
+Andre Scedrov, UPenn, USA
+Andrej Bauer, Ljubljana, Slovenia
+Andrzej Murawski, Warwick, UK,
+Bart Jacobs, Radboud U, Netherlands
+Bob Coecke, Oxford, UK
+Cameron Freer, Cambridge MA, USA
+Catherine Meadows, NRL , USA
+Catuscia Palamidessi, INRIA, France
+Christine Tasson, PPS Paris, France
+Claudio Russo, MSR Cambridge, UK
+Dusko Pavlovic, Hawaii, US
+Helle Hvid Hansen, TU Delft, Netherlands
+Hugo Herbelin, Paris, France
+Jean Krivine, Paris, France,
+Joel Ouaknine, Oxford, UK
+Lars Birkedal (Chair), Aarhus, Denmark
+Michael Mislove, Tulane, USA
+Neel Krishnaswami, Birmingham, UK
+Paul Blain Levy, Birmingham, UK,
+Peter Dybjer, Chalmers, Sweden
+Prakash Panangaden, Montreal, Canada
+Stefan Milius, Erlangen, Germany
+Steve Brookes, CMU, USA
+Steve Zdancewic, UPenn, USA
+
+## LOCAL ORGANISERS:
+
+* Steve Brookes
+
+
+--
+Lars Birkedal
+Professor, Head of Department of Computer Science
+Aarhus University
+Head of Logic and Semantics Group
+www.cs.au.dk/~birke
+birke...@cs.au.dk
