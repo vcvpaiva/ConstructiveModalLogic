@@ -1789,6 +1789,51 @@ No other simplifications arise.  The definitions of natural
 transformations between product functors is the same as the definition
 of symmetric monoidal natural transformations, and the same goes for
 symmetric monoidal adjunctions.
+
+\begin{lemma}[Product Functors Isomorphisms]
+  \label{lemma:product_functors_iso}
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor, then
+  $m_{A,B} : FA \times FB \mto F(A \times B)$ and $m_1 : 1 \mto F1$ are
+  isomorphisms.
+\end{lemma}
+\begin{proof}
+  Define $m^{-1}_1 = \t_{F 1} : 1 \mto F1$.  Then we have the following:
+  \[
+  \begin{array}{lll}
+    m_1;t_{F1} = \id_{1} & \text{(Uniqueness)}\\    
+  \end{array}
+  \]
+  and
+  \[
+  \begin{array}{llll}
+    t_{F1};m_1
+    & = & F\t_t & \text{(Product Functor)}\\
+    & = & F\id_t & \text{(Uniqueness)}\\
+    & = & \id_{Ft}     
+  \end{array}
+  \]
+
+  Now define $m^{-1}_{A,B} = \langle F\pi_1, F\pi_2 \rangle$.  Then we have the following:
+  \[
+  \begin{array}{llll}
+    m_{A,B};m^{-1}_{A,B}
+    & = & m_{A,B};\langle F\pi_1, F\pi_2 \rangle & \text{(Definition)}\\
+    & = & \langle m_{A,B};F\pi_1, m_{A,B};F\pi_2 \rangle & \text{(P1)}\\
+    & = & \langle \pi_1, \pi_2 \rangle & \text{(Product Functor)}\\
+    & = & \id_{FA \times FB} & \text{(Cartesian)}\\
+  \end{array}
+  \]
+  and
+  \[
+  \begin{array}{llll}
+    m^{-1}_{A,B};m_{A,B}
+    & = & \langle F\pi_1, F\pi_2 \rangle;m_{A,B} & \text{(Definition)}\\
+    & = & F(\langle \pi_1, \pi_2 \rangle) & \text{(Product Functor)}\\
+    & = & F(\id_{A \times B}) & \text{(Cartesian)}\\
+    & = & \id_{F(A \times B)}\\    
+  \end{array}
+  \]
+\end{proof}
 % section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
 \end{document}
 
