@@ -1559,7 +1559,7 @@ The following lemma prove this fact.
 \begin{lemma}
   \label{lemma:CCC-is-SMC}
   Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a CCC.  Then the
-  following define the unitors and the associators of an SMC:
+  following defines the structure of an SMC:
   \[
   \begin{array}{rll}
     \lambda_A & = & \pi_2 : 1 \times A \mto A\\
@@ -1570,11 +1570,210 @@ The following lemma prove this fact.
     \\
     \alpha_{A,B,C} & = & \langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle : (A \times B) \times C \mto A \times (B \times C)\\
     \alpha^{-1}_{A,B,C} & = & \langle \id_A \times \pi_1, \pi_2;\pi_2 \rangle : A \times (B \times C) \mto (A \times B) \times C\\
+    \\
+    \beta_{A,B} & = & \langle \pi_2, \pi_1 \rangle : A \times B \mto B \times A\\
   \end{array}
   \]
+  Each of the above morphisms satisfy the appropriate diagrams.
 \end{lemma}
 
+It turns out that we can also simplify the definition of symmetric
+monoidal functor between cartesian categories.
 
+\begin{definition}
+  \label{def:prod-functor}
+  A \textbf{product functor}, $(F,m) : \cat{C}_1 \to \cat{C}_2$,
+  between two cartesian categories consists of an ordinary functor $F
+  : \cat{C}_1 \to \cat{C}_2$, a natural transformation $m_{A,B} : FA
+  \times FB \mto F(A \times B)$, and a map $m_1 : 1 \to F1$ subject to the
+  following coherence diagrams:
+  \begin{mathpar}
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FA \times FB`
+      F(A \times B)`
+      FA;
+      m_{A.B}`
+      \pi_1`
+      F\pi_1]
+    \efig
+    \and
+    \bfig    
+    \btriangle|mmm|<1000,500>[
+      FA \times FB`
+      F(A \times B)`
+      FB;
+      m_{A.B}`
+      \pi_2`
+      F\pi_2]
+    \efig
+    \and
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FC`
+      FA \times FB`
+      F(A \times B);
+      \langle Ff, Fg \rangle`
+      F(\langle f, g \rangle)`
+      m_{A,B}]
+    \efig
+  \end{mathpar} 
+\end{definition}
+
+\begin{lemma}[Product Functors are Symmetric Monoidal]
+  \label{lemma:product_functors_are_symmetric_monoidal}
+  If $(F,m) : \cat{C}_1 \to \cat{C}_2$ is a product functor, then
+  $(F,m)$ is a symmetric monoidal functor.
+\end{lemma}
+\begin{proof}
+  We simply show that each diagram in the definition of symmetric
+  monoidal functor commutes.  This proof requires the following facts
+  about cartesian categories:
+  \[
+  \begin{array}{lll}
+    f;\langle g , h \rangle = \langle f;g, f;g \rangle & \text{(P1)}\\
+    \\
+    f \times g = \langle \pi;f , \pi_2;g \rangle & \text{(P2)}\\
+    \\
+    \langle f , g \rangle;(h \times i) = \langle f;h, g;i \rangle & \text{(P3)}\\
+    \\
+    (f \times g);\pi_1 = \pi_1;f & \text{(P4)}\\
+    \\
+    (f \times g);\pi_2 = \pi_2;g & \text{(P5)}\\
+  \end{array}
+  \]
+  \begin{itemize}
+  \item[] Associativity:\ \\
+    \[
+    \bfig
+    \vSquares|ammmmma|/->`->`->``->`->`->/[
+      (FA \times FB) \times FC`
+      FA \times (FB \times FC)`
+      F(A \times B) \times FC`
+      FA \times F(B \times C)`
+      F((A \times B) \times C)`
+      F(A \times (B \times C));
+      {\alpha}_{FA,FB,FC}`
+      m_{A,B} \times \id_{FC}`
+      \id_{FA} \times m_{B,C}``
+      m_{A \times B,C}`
+      m_{A,B \times C}`
+      F{\alpha}_{A,B,C}]
+    \efig
+    \]
+    In this case it is easiest to show that each side of the diagram
+    reduces to the same morphism.
+
+    First, the right side reduces in the following way:
+    \begin{center}
+      \begin{math}
+        \begin{array}{lll}
+          \alpha_{FA,FB,FC};(\id_{FA} \times m_{B,C});m_{A,B \times C} \\
+          \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, \pi_2 \times \id_{FC} \rangle;(\id_{FA} \times m_{B,C});m_{A,B \times C} & \text{(Definition)}\\
+          \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P3)}\\
+        \end{array}
+      \end{math}
+    \end{center}
+
+    Now the left side reduces to the same morphism:
+    \[
+    \scriptsize
+    \begin{array}{lll}
+      (m_{A,B} \times \id_{FC});m_{A \times B,C};\underline{F\alpha_{A,B,C}} \\
+    \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});m_{A \times B,C};\underline{F(\langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle)} & \text{(Definition)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\underline{m_{A \times B,C};\langle F\pi_1;F\pi_1, F(\pi_2 \times \id_C) \rangle;m_{A,B \times C}} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \underline{m_{A \times B,C};F\pi_1};F\pi_1, m_{A \times B,C};F(\pi_2 \times \id_C) \rangle;m_{A,B \times C} & \text{(P1)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, m_{A \times B,C};\underline{F(\pi_2 \times \id_C)} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, m_{A \times B,C};\underline{F(\langle \pi_1;\pi_2, \pi_2 \rangle)} \rangle;m_{A,B \times C} & \text{(P2)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \underline{m_{A \times B,C};\langle F\pi_1;F\pi_2, F\pi_2 \rangle};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \langle \underline{m_{A \times B,C};F\pi_1};F\pi_2, \underline{m_{A \times B,C};F\pi_2} \rangle;m_{B,C} \rangle;m_{A,B \times C} & \text{(P1)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \underline{\langle \pi_1;F\pi_2, \pi_2 \rangle};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= \underline{(m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, (F\pi_2 \times \id_{FC});m_{B,C} \rangle};m_{A,B \times C} & \text{(P2)}\\
+   \,\,\,\,\,\,\,\,= \langle \underline{(m_{A,B} \times \id_{FC});\pi_1};F\pi_1, (m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P1)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\underline{m_{A,B};F\pi_1}, (m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P4)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, \underline{(m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC})};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\underline{(m_{A,B};F\pi_2)} \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(Functor)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+    \end{array}
+    \]
+
+  \item[] Left Unitor:\\
+    \[
+    \bfig
+    \square|amma|/->`->`<-`->/<1000,500>[
+      1 \times FA`
+      FA`
+      F1 \times FA`
+      F(1 \times A);
+      {\lambda}_{FA}`
+      m_{1} \times \id_{FA}`
+      F{\lambda}_{A}`
+      m_{1,A}]
+    \efig
+    \]
+  
+  First, notice that $\lambda_{FA} = \pi_2$. We can show the following:
+  \[
+  \begin{array}{lll}
+    (m_1 \times \id_{FA});m_{1,A};F\lambda_A\\
+    \,\,\,\,\,\,\,\,= (m_1 \times \id_{FA});m_{1,A};F\pi_2 & \text{(Definition)}\\
+    \,\,\,\,\,\,\,\,= (m_1 \times \id_{FA});\pi_2 & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,= \pi_2 & \text{(P5)}\\
+  \end{array}
+  \]
+
+\item[] Right Unitor:\\
+  \[
+  \bfig
+  \square|amma|/->`->`<-`->/<1000,500>[
+    FA \times 1`
+    FA`
+    FA \times F1`
+    F(A \times 1);
+    {\rho}_{FA}`
+    \id_{FA} \times m_{1}`
+    F{\rho}_{A}`
+    m_{A,1}]
+  \efig
+  \]
+  \end{itemize}
+  This case is similar to the previous one:
+  \[
+  \begin{array}{lll}
+    (\id_{FA} \times m_1);m_{A,1};F\rho_A\\
+    \,\,\,\,\,\,\,\,=  (\id_{FA} \times m_1);m_{A,1};F\pi_1 & \text{(Definition)}\\
+    \,\,\,\,\,\,\,\,=  (\id_{FA} \times m_1);\pi_1 & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,=  \pi_1 & \text{(P4)}\\
+    \,\,\,\,\,\,\,\,=  \rho_{FA} & \text{(Definition)}\\
+  \end{array}
+  \]
+
+\item[] Symmetry:\\
+  \[
+  \bfig
+  \square|amma|/->`->`->`->/<1000,500>[
+    FA \times FB`
+    FB \times FA`
+    F(A \times B)`
+    F(B \times A);
+    {\beta}_{FA,FB}`
+    m_{A,B}`
+    m_{B,A}`
+    F{\beta}_{A,B}]
+  \efig
+  \]
+  First, notice that $\beta_{A,B} = \langle \pi_2, \pi_1 \rangle$.  Thus, we have the following:
+  \[
+  \begin{array}{lll}
+    \beta_{FA,FB};m_{B,A}\\
+    \,\,\,\,\,\,\,\,=  \langle \pi_2, \pi_1 \rangle;m_{B,A} & \text{(Definition)}\\
+    \,\,\,\,\,\,\,\,=  \langle m_{A,B};F\pi_2, m_{A,B};F\pi_1 \rangle;m_{B,A} & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,=  m_{A,B};\langle F\pi_2, F\pi_1 \rangle;m_{B,A} & \text{(P1)}\\
+    \,\,\,\,\,\,\,\,=  m_{A,B};F(\langle \pi_2, \pi_1 \rangle) & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,=  m_{A,B};F\beta_{A,B} & \text{(Definition)}\\
+  \end{array}
+  \]
+\end{proof}
 
 % section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
 
