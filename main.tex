@@ -17,7 +17,6 @@
 %% with our modality symbols.
 \let\BDiamond\Diamond
 \let\Diamond\relax
-
 %% This renames Barr's \to to \mto.  This allows us to use \to for imp
 %% and \mto for a inline morphism.
 \let\mto\to
@@ -77,7 +76,9 @@
 
 \section{Constructive Modal Logic}
 
-We present twEach of the logics presented in this section is an extension of the
+We present two versions of  the intuionistic or constructive modal logic S4, to be written as CS4. 
+
+We start by recalling the basic sequent calculus for intuitonistic propositional logic. Each of the logics presented in this section is an extension of the
 single-conclusion formalization of Gentzen's intuitionistic sequent
 calculus LJ.  The syntax of formulas for LJ is defined by the
 following grammar:
@@ -91,8 +92,7 @@ following grammar:
 The formula $p$ is taken from a set of countably many propositional atoms. The constant $\top$ could be added, but it is the negation of the the falsum constant $\bot$.
 
 We begin with an initial set of inference rules, and then each system
-presented will be given as an extension of this
-initial system.  The  initial inference rules, which just model
+presented will be given as an extension of this initial system.  The  initial inference rules, which just model
 propositional intuitionistic logic, are as follows:
 \begin{center}
   \small
@@ -158,24 +158,30 @@ propositional intuitionistic logic, are as follows:
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
 (written as either $\Gamma$, $\Delta$, or a numbered version of either), and a formula $C$. The intuitive meaning is that the conjunction of the formulas in $\Gamma$ entails the formula $C$.
 
-\subsection{The constructive system CS4} 
+\subsection{The constructive system S4} 
 
-In this section we recall the sequent calculus formalization of system
-CS4.  This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially it was  written as IS4 (for Intuitionistic
-system S4).
-This systems gives rise to a complete family of systems, which are
-alternatives to Simpson's intuitionistic systems. Since Simpson's
-systems, a framework starting from intuitionistic K, were also called
-IK, IS4, IS5, it makes sense to call the family of systems originating
+We recall the sequent calculus formalization of system
+CS4.  This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially  was called  IS4 (for Intuitionistic system S4).
+This system gives rise to a complete family of systems, which are
+alternative to Simpson's intuitionistic systems. Since Simpson's
+systems form a framework starting from intuitionistic K, that were also called
+IK, IS4, IS5,   it made sense to call the family of systems originating
 with the S4 above, the family of constructive modal systems CS, and
 Bierman and de Paiva's system CS4.  This is for instance how
 \cite{arisaka2015} describe these systems.
 
 The main difference between systems IS4 and CS4 concerns the binary
-distribution of $\Diamond$ over disjunction
-$\Diamond (A \lor B) \to \Diamond A \lor \Diamond B$
-and its nullary form 
-$\Diamond \bot \to \bot$. The system CS4 does not satisfy these traditional distributions that are basic in classical modal logic. Some philosophical significance can be attached to this distribution, or lack thereof, and we discuss it later. The sequent calculus for CS4 is defined in Figure~\ref{fig:CS4}.
+distribution of possibility $\Diamond$ over disjunction (in binary and
+nullary forms):
+$$\Diamond (A \lor B) \to \Diamond A \lor \Diamond B$$
+$$\Diamond \bot \to \bot$$ The system CS4 does not satisfy these
+traditional distributions that are basic to classical modal
+logic. Some philosophical significance can be attached to this
+distribution, or lack thereof, and we discuss it later. First we
+define the system.
+
+The rules in Figure~\ref{fig:CS4}, in addition to the initial set of
+inference rules, define the sequent calculus for CS4.
 \begin{figure}
   \begin{mdframed}
     \begin{center}
@@ -202,7 +208,6 @@ $\Diamond \bot \to \bot$. The system CS4 does not satisfy these traditional dist
   \caption{CS4}
   \label{fig:CS4}
 \end{figure}
-
 Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as well-behaved as the propositional ones. This system is indeed constructive, and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
 
@@ -224,8 +229,8 @@ system, it has been used in several applications within programming
 language theory \todo{Add references for these applications}.
 %Examples include \cite{hmm}.
 
-%\subsection{Presenting CS4 as LNL}
-\subsection{The adjunction CS4 modal calculus}
+
+\subsection{The adjunction modal calculus}
 This is not so well-known, but this system can  be given a
 presentation in terms of a categorical adjunction, between two
 cartesian closed categories.
@@ -259,43 +264,60 @@ rules are given (page 17) in Figure~\ref{fig:ADJCS4}.
   \caption{The Adjunction CS4 Modal Calculus}
   \label{fig:ADJCS4}
 \end{figure}
+(Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.)
 
-(Note that the rules are Natural Deduction rules, as it should be clear for the fact that they are introduction and elimination rules.)
-
-These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories in the case of Linear Logic.  %\todo{add description from Benton here}
+These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories in the case of Linear Logic.  
 
 \section{Categorical Models}
-The main motivation for considering both systems of constructive modal logic described before is that we can provide them with categorical semantics.
-\label{subsec:single_adjoint_model_of_cs4}
-%\todo{Threw this in a subsection for now, we can move it around, and reword as needed.} sounds good!
+\label{sec:single_adjoint_model_of_cs4}
+The main motivation for considering both systems of constructive modal logic described above is that we can provide  categorical semantics for them.
 
-This section requires  some categorical definitions that are not the most straightforward.  We need categorical concepts of monoidal category, monoidal functor, and monoidal adjunction, as well as the concepts of monoidal comonad and monad. 
+This will require  some categorical definitions that are not the most traditional ones, hence  these are provided in the appendix A, but discussed briefly here.  We will need the categorical concepts of 
+\begin{enumerate}
+    \item {(symmetric) monoidal category},
+    \item {(symmetric) monoidal functor},
+    \item {(symmetric) monoidal natural transformation},
+    \item {(symmetric) monoidal adjunction},
+    \item {monoidal comonad}, 
+    \item {monoidal monad.}
+\end{enumerate}  
+%which we describe in the appendix A.
 
-A monoidal category is simply a category $\cat{C}$  equipped with a tensor product structure $(\times, 1, \alpha, \rho, \lambda)$, usually a generalization of traditional categorical products, such that  MacLane's pentagon for associativity holds
-\[ \bfig
-      \vSquares|ammmmma|/>``>```>`>/[(W \times (X \times Y))\times Z `((W \times X) \times Y)\times Z)``(W\times X)\times (Y\times Z)`W \times ((X \times Y)\times Z)`W \times (X \times (Y\times Z));\alpha\times 1``\alpha```\alpha`1\times \alpha]
-      \morphism(0,1000)|m|/->/<0,-950>[`;\alpha]
-      \efig\]
-    and such that 1 is the unit for the product, so in particular it satisfies the triangle below.
-    \[ \]
+\subsection{Basic notions}
+A  monoidal category (see definition 6 %\label{def:monoidal-category}
+in the appendix A) is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$,  a generalization of traditional categorical products, satisfying two coherence conditions: MacLane's pentagon condition relating associativity of tensor to its bifunctorial structure, and the triangle condition relating the unit of the tensor $I$ to the natural transformations $\rho$ and $\lambda$,  plus the unit equation $\rho_I=\lambda_I$.
     
-    
-  A monoidal category can be symmetric or commutative (meaning $A\times B$ is isomorphic to $B\times A$) or not. If it is symmetric we call the isomorphism going from $ A\times B$ to $B\times A$, $\beta$, for  \textit{braid}. 
-       Commutativity of the product brings along the three diagrams below. While these are traditional diagrams that can be simplified, having them in full generality helps to see how the strength (the new component) has to interact with this structure.
+  A monoidal category can be symmetric, meaning that the tensor product $A\otimes B$ is isomorphic to $B\otimes A$, or not. If the monoidal category is symmetric we call $\beta$ (for  \textit{braid}) the isomorphism going from $ A\otimes B$ to $B\otimes A$. 
+  Commutativity of the tensor product brings along  three new diagrams, see definition ?.
+  
+  While these are traditional diagrams that can be simplified, having them in full generality helps us to see how the strength (the new component we add) has to interact with the established structure.
 
-A monoidal functor between two monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\times F(B)\mto F(A \times B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{1}\colon 1 \mto F1$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). This means another three commuting diagrams, one for associativity, one for left, one for right isos. Since a product is symmetric, one more commuting diagram, preserving $\beta$.
+A (symmetric) monoidal functor between two (symmetric) monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\mto F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \mto FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). This means another three commuting diagrams, one for associativity, one for left, one for right isos. Since the tensor product we consider is symmetric, one more commuting diagram is neccessary, preserving $\beta$, see definition 8 %\label{def:SMCFUN} 
+in the appendix.
 
-Then given monoidal functors $(F,m)$ and $(G,n)$ a monoidal natural transformation from $F$ to $G$ is a natural transformation which is compatible with the comparison maps $m$ and $n$, which means the next two diagrams commute too.
+Then given monoidal functors $(F,m)$ and $(G,n)$ a monoidal natural transformation from $F$ to $G$ is a natural transformation which is compatible with the comparison maps $m$ and $n$, which means the two extra diagrams in definition 9 in the appendix commute too.
 
-A monoidal adjunction $J \dashv H, $ is an adjunction  where both functors are monoidal and the unit, and co-unit are monoidal natural transformations too. If instead the monoidal categories are cartesian closed categories, what happens? Surely the result corresponding to Benton's proposition 1 in \cite{benton1995} remains true, after all a cartesian closed category is also a symmetric monoidal closed category. But do we get anything else?
+A (symmetric) monoidal adjunction $F \dashv G$ is an adjunction  where both functors $F,G$  are (symmetric) monoidal functors and the unit, and the co-unit are (symmetric) monoidal natural transformations too. 
 
-Finally,
-a monoidal comonad is a comonad $(\Box,\varepsilon, \delta)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the following diagrams.{\todo{add diagrams here}}
+Lastly, a (symmetric) monoidal comonad is a comonad $(\Box,\varepsilon, \delta, m)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the  diagrams in definition 11 in appendix A.{\todo{add diagrams there}}
 Similarly for a monoidal monad.
-%Due to space limitations we omit their full definitions see \cite{benton1995} for their details.
-%Similarly, for the definitions of monoidal comonad and monad see\cite{CS4}.
 
-We do need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then.
+If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the result corresponding to Benton's proposition 1 in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in appendix B.
+
+\subsection{Modelling Modal sstems}
+Now to model a constructive modal system like CS4 we first recall that to model simply intuitionistic propositions we need a category  $\cat{C}$ with products, coproducts and internal-homs, to model, respectively conjunctions, disjunctions and logic implications. Then we recap that to model a necessity-like S4 operator we will need a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on $\cat{C}$.
+
+\begin{definition}[monoidal comonad]
+  \label{def:monoidal comonad}
+  Suppose $\cat{C}$ is a cartesian closed category. Then $(\Box, \varepsilon, \delta,m)$ is a \emph{(monoidal) comonad} on $\cat{C}$ if $(\Box, \varepsilon, \delta)$ is a comonad in $\cat{C}$  such that
+  there exists a natural transformation:
+  \[
+  m_{A, B} : \Box A \pd \Box B \mto \Box( A \pd B)
+  \]
+  subject to the following coherence conditions:
+  \end{definition}
+  
+We also need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then.
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
@@ -313,7 +335,7 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
         \bfig
       \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
       \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
-      \place(500,500)[1]
+      \place(500,500)[(1)]
       \efig
       & \quad & 
       \bfig
@@ -432,43 +454,47 @@ We do need to recall the notion of a functor-strong monad. In particular we are 
   \end{center}
 \end{definition}
 
-\begin{definition}[CS4 model]
+Seven commuting diagrams is quite a lot of structure to require. We share the reader's feeling that we should be able to provide something simpler   and shall proceed to do so. But first we discuss why these seven commuting diagrams seem sensible.
+
+\begin{definition}[modal category]
   \label{def:CS4-model}
   Suppose $\cat{C}$ is a cartesian category equipped with  a monoidal comonad $(\Box, \varepsilon, \delta)$ and a
   \emph{$\Box$-strong monad} with the strength natural transformation
   \[
   \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
-  This is a model of CS4 as defined and showed sound and complete in \cite{CS4}. We call this structure a \textit{modal category}, as it is the only kind of modality we consider in this note.
+  This is a model of CS4 as defined and showed sound and complete in \cite{CS4}. We call this structure a \textit{modal category}, as CS4 is the only kind of modality we consider in this note.
 \end{definition}
 
-Seven commuting diagrams is quite a lot of structure to require. We share the reader's feeling that we should be able to provide something simpler instead and proceed to do so.
+
 
 We want to see how to transform a model of CS4 using a pair comonad-monad as above (i.e a modal category) into a model of the system using adjunctions.  Benton showed a similar result for linear type theory in \cite{benton1995}.
 
 
-\begin{definition}[adjoint CS4 model]
+\begin{definition}[adjoint model]
   \label{def:CS4-single-adjoint-cat-model}
   An adjoint categorical model of CS4 consists of the following data:
   \begin{enumerate}
   \item A cartesian-closed category with coproducts $(\cat{C},1,0,\pd,+,\ihom)$;
   \item 
-    A monoidal adjunction  $J \dashv H$, where $(H,m)$ and  $(J,n)\colon \cat{C} \mto \cat{C}$ are monoidal functors such that their composition HJ is a monoidal comonad, written as $\Box$;
- \item The  monad $(\Diamond, \eta, \mu, \st{A}{B})$, induced by the adjunction $J \dashv H$,   is $\Box$-strong, subject to some conditions.
+    A monoidal adjunction  $F \dashv G$, where $(F,m)$ and  $(G,n)\colon \cat{C} \mto \cat{C}$ are monoidal functors such that their composition $GF$ is a monoidal comonad, written as $\Box$;
+ \item The  monad $(\Diamond, \eta, \mu, \st{A}{B})$, induced by the adjunction $F \dashv G$,   is $\Box$-strong.
   \end{enumerate}
 \end{definition}
 
-Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $HJ$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=JH$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
+Now the existence of any (monoidal or not) adjunction provides us with a (monoidal) monad $FG$ in $\cat{C}$, as well as a (monoidal) comonad $\Box=GF$ on $\cat{C}$. Which conditions do we need in the adjunction to make this induced monad $\Box$-strong, if any?
 
-Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $J \dashv H$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \mto \Box (A\land B)$ together with a map $m_{1}\colon 1 \mto \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
+Following Benton's description in page 5 of \cite{benton1995}, we recall (his lemma 2) that given a monoidal adjunction $F \dashv G$  we have, not only a comonad $(\Box, \varepsilon, \delta)$ but also a natural transformation, $q$, whose components $q_{A,B}\colon\Box A\land \Box B \mto \Box (A\land B)$ together with a map $m_{1}\colon 1 \mto \Box 1$ make $(\Box, q)$ a symmetric monoidal functor and $\varepsilon, \delta$ monoidal natural transformations.
 
 Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = HJ$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\mto JH$ and multiplication given by $\mu\colon  HJHJ\mto HJ$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...HJ..$
 
-\textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
+%\textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
 \begin{theorem}
   An adjoint CS4 categorical model is a modal category.
 \end{theorem}
+
+\iffalse
 \begin{proof}
   We must show that given the definition of an adjoint CS4 categorical
   model (Definition~\ref{def:CS4-single-adjoint-cat-model}) we can
@@ -1177,6 +1203,8 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   \end{itemize}
 
 \end{proof}
+\fi 
+
 
 %\textit{If we're lucky, I'm hoping we also have}
 Now we would like to, following Benton's lead, 
@@ -1194,13 +1222,14 @@ prove the converse result. That is
   \]
   
 \end{proof}
-This is similar to section 2.2.2 in Benton's work \cite{benton1994},
+This is similar to section 2.2.2 in Benton's work \cite{benton1995},
 which shows that a \textit{linear category implies a LNL model}.
 
 We know that both the comonad and the monad we have in the definition of a modal category can each provides us with an infinite collection of adjunctions, between the Co-Keisli and the Eilenberg-Moore categories. Thus we need to choose the appropriate adjunction and prove that is monoidal. This is the hard proof in the linear logic case.
 
 % subsection single_adjoint_model_of_cs4 (end)
 
+<<<<<<< HEAD
 \section{Twice as nice?}
 Previous work on modalities in Linear Logic made it clear that modalities, unlike canonical logical connectives such as conjunctions and disjunctions, are not unique up to iso in a given model. Thus we can have two sets of modalities, say $(\Box_1, \Diamond_1)$ and $(\Box_2, \Diamond_2)$ co-existing in a cartesian closed category $\cat{C}$ without problems. But this is not what we want, as we want holding for all times and for a (single) time, both in the future and in the past, so our two sets of modalities need to be related in  a sensible way.
 
@@ -1225,107 +1254,6 @@ Menni and Smith then state that \begin{quote} Altogether the category $\sf BAA$ 
 
 %They also define \textit{lattice with  adjunction} as a triple $(A, L, R)$ where $A$ is a lattice, and $L,R$ are monotone functions on $A$ that form a preorder $L\dashv R$ adjunction.
 
-
-\subsection{Ewald's Temporal Logic}
-
-Ewald proposed an intuitionistic temporal logic where the usual modal
-operators, $\Box$ and $\Diamond$, have been decomposed into more
-traditional temporal operators $\F$, $\H$, $\G$, and
-$\P$~\cite{ewald1986}.
-
-The sequent calculus formalization of Ewald's temporal logic is
-defined in Figure~\ref{fig:ewald-TL} in addition to the initial
-intuitionistic set of inference rules given above.
-\begin{figure}
-  \begin{mdframed}
-    \begin{center}
-      \small
-      \begin{math}
-        \begin{array}{cccccc}
-          \infer[\text{G}]{\G \Gamma \vdash \G C}{
-            \Gamma \vdash C
-          }
-          & \quad &
-          \infer[\text{H}]{\H\Gamma \vdash \H C}{
-            \Gamma \vdash C
-          }\\\\
-          \infer[\text{F}]{\G\Gamma,\F A \vdash \F B}{
-            \Gamma,A \vdash B
-          }
-          & \quad &
-          \infer[\text{P}]{\H\Gamma,\P A \vdash \P B}{
-            \Gamma,A \vdash B
-          }\\\\
-          \infer[\text{FH}]{\cdot \vdash \F\H A \to A}{
-            \,
-          }
-          & \quad &
-          \infer[\text{HF}]{\cdot \vdash A \to \H\F A}{
-            \,
-          }\\\\
-          \infer[\text{PG}]{\cdot \vdash \P\G A \to A}{
-            \,
-          }
-          & \quad &
-          \infer[\text{GP}]{\cdot \vdash A \to \G\P A}{
-            \,
-          }\\\\
-          \infer[\text{FG}_1]{\cdot \vdash (\F A \to \G B) \to \G(A \to B)}{
-            \,
-          }
-          & \quad &
-          \infer[\text{FG}_2]{\cdot \vdash \F(A \to B) \to (\G A \to \F B)}{
-            \,
-          }\\\\
-          \infer[\text{PH}_1]{\cdot \vdash (\P A \to \H B) \to \H(A \to B)}{
-            \,
-          }
-          & \quad &
-          \infer[\text{PH}_2]{\cdot \vdash \P(A \to B) \to (\H A \to \P B)}{
-            \,
-          }      
-        \end{array}
-      \end{math}
-    \end{center}
-  \end{mdframed}
-  \caption{Ewald's Temporal Logic}
-  \label{fig:ewald-TL}
-\end{figure}
-
-Looking at Ewald's system with a present day categorical perspective
-it is easy to see that these new operators can be seen as adjoint
-functors~\cite{Menni:2014}.
-
-The rules $\text{G}$ and $\text{H}$ show that $\G$ and $\H$ are
-functors, similarly, the rules $\text{F}$ and $\text{P}$ do the same
-for the operators $\F$ and $\P$ when $\Gamma = \cdot$.  Then the rules
-$\text{FH}$ and $\text{HF}$ give the co-unit and unit of the
-adjunction $\F \dashv \H$, and the rules $\text{PG}$ and $\text{GP}$
-give the co-unit and unit of the adjunction $\P \dashv \G$.
-
-The following describes the intuitive meaning of each of Ewald's
-operators:
-\begin{itemize}
-\item[] $\F$: ``it will once be the case in the Future``  
-\item[] $\H$: ``it Has always been the case in the past``
-\item[] $\P$: ``it was once the case in the Past``
-\item[] $\G$: ``it's Going to  always be the case in the future``  
-\end{itemize}
-
-
-Using these operators it is possible to define the  modal
-operators by choosing one of the following definitions
-\cite{ewald1986}:
-\begin{enumerate}[i.]
-\item $\Box A := A \land \G A \land \H A$, $\Diamond A := A \lor \F A \lor \P A$; or
-\item $\Box A := A \land \G A$, $\Diamond A := A \lor \F A$.
-\end{enumerate}
-
-This system has a Kripke model, and an axiomatization (page 171 of
-\cite{ewald1986}), and is decidable.  Lastly, Ewald shows that by
-adopting various axioms for the modal operators different notions of
-time can be studied within this system.
-
 \section{Conclusion}
 %``I always thought something was fundamentally wrong with the universe'' 
 
@@ -1333,567 +1261,13 @@ time can be studied within this system.
 \bibliography{references}
 
 \appendix
+\input{appA.tex}
+\input{appB.tex}
 
-\section{Symmetric Monoidal Closed Categories}
-\label{sec:symmetric_monoidal_closed_categories}
 
-\begin{definition}
-  \label{def:monoidal-category}
-  A \textbf{symmetric monoidal category (SMC)} is a category, $\cat{M}$,
-  with the following data:
-  \begin{itemize}
-  \item An object $I$ of $\cat{M}$,
-  \item A bi-functor $\otimes : \cat{M} \times \cat{M} \mto \cat{M}$,
-  \item The following natural isomorphisms:
-    \[
-    \begin{array}{lll}
-      \lambda_A : I \otimes A \mto A\\
-      \rho_A : A \otimes I \mto A\\      
-      \alpha_{A,B,C} : (A \otimes B) \otimes C \mto A \otimes (B \otimes C)\\
-    \end{array}
-    \]
-  \item A natural transformation:
-    \[
-    \beta_{A,B} : A \otimes B \mto B \otimes A
-    \]
-  \item Subject to the following coherence diagrams:
-    \begin{mathpar}
-      \bfig
-      \vSquares|ammmmma|/->`->```->``<-/[
-        ((A \otimes B) \otimes C) \otimes D`
-        (A \otimes (B \otimes C)) \otimes D`
-        (A \otimes B) \otimes (C \otimes D)``
-        A \otimes (B \otimes (C \otimes D))`
-        A \otimes ((B \otimes C) \otimes D);
-        \alpha_{A,B,C} \otimes \id_D`
-        \alpha_{A \otimes B,C,D}```
-        \alpha_{A,B,C \otimes D}``
-        \id_A \otimes \alpha_{B,C,D}]      
-      
-      \morphism(1433,1000)|m|<0,-1000>[
-        (A \otimes (B \otimes C)) \otimes D`
-        A \otimes ((B \otimes C) \otimes D);
-        \alpha_{A,B \otimes C,D}]
-      \efig
-      \and
-      \bfig
-      \hSquares|aammmaa|/->`->`->``->`->`->/[
-        (A \otimes B) \otimes C`
-        A \otimes (B \otimes C)`
-        (B \otimes C) \otimes A`
-        (B \otimes A) \otimes C`
-        B \otimes (A \otimes C)`
-        B \otimes (C \otimes A);
-        \alpha_{A,B,C}`
-        \beta_{A,B \otimes C}`
-        \beta_{A,B} \otimes \id_C``
-        \alpha_{B,C,A}`
-        \alpha_{B,A,C}`
-        \id_B \otimes \beta_{A,C}]
-      \efig      
-    \end{mathpar}
-    \begin{mathpar}
-      \bfig
-      \Vtriangle[
-        (A \otimes I) \otimes B`
-        A \otimes (I \otimes B)`
-        A \otimes B;
-        \alpha_{A,I,B}`
-        \rho_{A}`
-        \lambda_{B}]
-      \efig
-      \and
-      \bfig
-      \btriangle[
-        A \otimes B`
-        B \otimes A`
-        A \otimes B;
-        \beta_{A,B}`
-        \id_{A \otimes B}`
-        \beta_{B,A}]
-      \efig
-      \and
-      \bfig
-      \Vtriangle[
-        I \otimes A`
-        A \otimes I`
-        A;
-        \beta_{I,A}`
-        \lambda_A`
-        \rho_A]
-      \efig
-    \end{mathpar}    
-  \end{itemize}
-\end{definition}
-
-\begin{definition}
-  \label{def:SMCC}
-  A \textbf{symmetric monoidal closed category (SMCC)} is a symmetric
-  monoidal category, $(\cat{M},I,\otimes)$, such that, for any object
-  $B$ of $\cat{M}$, the functor $- \otimes B : \cat{M} \mto \cat{M}$
-  has a specified right adjoint.  Hence, for any objects $A$ and $C$
-  of $\cat{M}$ there is an object $A \limp B$ of $\cat{M}$ and a
-  natural bijection:
-  \[
-  \Hom{\cat{M}}{A \otimes B}{C} \cong \Hom{\cat{M}}{A}{B \limp C}
-  \]
-\end{definition}
-
-\begin{definition}
-  \label{def:SMCFUN}
-  Suppose $(\cat{M}_1,I_1,\otimes_1,\alpha_1,\lambda_1,\rho_1,\beta_1)$ and\\
-  $(\cat{M}_2,I_2,\otimes_2,\alpha_2,\lambda_2,\rho_2,\beta_2)$ are SMCs.  Then a
-  \textbf{symmetric monoidal functor} is a functor $F : \cat{M}_1 \mto
-  \cat{M}_2$, a map $m_I : I_2 \mto FI_1$ and a natural transformation
-  $m_{A,B} : FA \otimes_2 FB \mto F(A \otimes_1 B)$ subject to the
-  following coherence conditions:
-  \begin{mathpar}
-    \bfig
-    \vSquares|ammmmma|/->`->`->``->`->`->/[
-      (FA \otimes_2 FB) \otimes_2 FC`
-      FA \otimes_2 (FB \otimes_2 FC)`
-      F(A \otimes_1 B) \otimes_2 FC`
-      FA \otimes_2 F(B \otimes_1 C)`
-      F((A \otimes_1 B) \otimes_1 C)`
-      F(A \otimes_1 (B \otimes_1 C));
-      {\alpha_2}_{FA,FB,FC}`
-      m_{A,B} \otimes \id_{FC}`
-      \id_{FA} \otimes m_{B,C}``
-      m_{A \otimes_1 B,C}`
-      m_{A,B \otimes_1 C}`
-      F{\alpha_1}_{A,B,C}]
-    \efig
-    \and
-    \bfig
-    \square|amma|/->`->`<-`->/<1000,500>[
-      I_2 \otimes_2 FA`
-      FA`
-      FI_1 \otimes_2 FA`
-      F(I_1 \otimes_1 A);
-      {\lambda_2}_{FA}`
-      m_{I} \otimes \id_{FA}`
-      F{\lambda_1}_{A}`
-      m_{I_1,A}]
-    \efig
-    \and
-    \bfig
-    \square|amma|/->`->`<-`->/<1000,500>[
-      FA \otimes_2 I_2`
-      FA`
-      FA \otimes_2 FI_1`
-      F(A \otimes_1 I_1);
-      {\rho_2}_{FA}`
-      \id_{FA} \otimes m_{I}`
-      F{\rho_1}_{A}`
-      m_{A,I_1}]
-    \efig
-    \and
-    \bfig
-    \square|amma|/->`->`->`->/<1000,500>[
-      FA \otimes_2 FB`
-      FB \otimes_2 FA`
-      F(A \otimes_1 B)`
-      F(B \otimes_1 A);
-      {\beta_2}_{FA,FB}`
-      m_{A,B}`
-      m_{B,A}`
-      F{\beta_1}_{A,B}]
-    \efig
-  \end{mathpar}
-\end{definition}
-
-\begin{definition}
-  \label{def:SMCNAT}
-  Suppose $(\cat{M}_1,I_1,\otimes_1)$ and $(\cat{M}_2,I_2,\otimes_2)$
-  are SMCs, and $(F,m)$ and $(G,n)$ are a symmetric monoidal functors
-  between $\cat{M}_1$ and $\cat{M}_2$.  Then a \textbf{symmetric
-    monoidal natural transformation} is a natural transformation,
-  $f : F \mto G$, subject to the following coherence diagrams:
-  \begin{mathpar}
-    \bfig
-    \square<1000,500>[
-      FA \otimes_2 FB`
-      F(A \otimes_1 B)`
-      GA \otimes_2 GB`
-      G(A \otimes_1 B);
-      m_{A,B}`
-      f_A \otimes_2 f_B`
-      f_{A \otimes_1 B}`
-      n_{A,B}]
-    \efig
-    \and
-    \bfig
-    \Vtriangle/->`<-`<-/[
-      FI_1`
-      GI_1`
-      I_2;
-      f_{I_1}`
-      m_{I_1}`
-      n_{I_1}]
-    \efig
-  \end{mathpar}  
-\end{definition}
-
-\begin{definition}
-  \label{def:SMCADJ}
-  Suppose $(\cat{M}_1,I_1,\otimes_1)$ and $(\cat{M}_2,I_2,\otimes_2)$
-  are SMCs, and $(F,m)$ is a symmetric monoidal functor between
-  $\cat{M}_1$ and $\cat{M}_2$ and $(G,n)$ is a symmetric monoidal
-  functor between $\cat{M}_2$ and $\cat{M}_1$.  Then a
-  \textbf{symmetric monoidal adjunction} is an ordinary adjunction
-  $\cat{M}_1 : F \dashv G : \cat{M}_2$ such that the unit,
-  $\varepsilon : A \to GFA$, and the counit, $\eta_A : FGA \to A$, are
-  symmetric monoidal natural transformations.  Thus, the following
-  diagrams must commute:
-  \begin{mathpar}
-    \bfig
-    \qtriangle<1000,500>[
-      FGA \otimes_1 FGB`
-      FG(A \otimes_1 B)`
-      A \otimes_1 B;
-      \q{A,B}`
-      \eta_A \otimes_1 \eta_B`
-      \eta_{A \otimes_1 B}]
-    \efig
-    \and
-    \bfig
-    \Vtriangle/->`<-`<-/[
-      FGI_1`
-      I_1`
-      I_1;
-      \eta_{I_1}`
-      \q{I_1}`
-      \id_{I_1}]
-    \efig
-    \and
-    \bfig
-    \dtriangle<1000,500>[
-      A \otimes_2 B`
-      GFA \otimes_2 GFB`
-      GF(A \otimes_2 B);
-      \varepsilon_A \otimes_2 \varepsilon_B`
-      \varepsilon_{A \otimes_2 B}`
-      \p{A,B}]
-    \efig
-    \and
-    \bfig
-    \Vtriangle/->`<-`<-/[
-      I_2`
-      GFI_2`
-      I_2;
-      \varepsilon_{I_2}`
-      \id_{I_2}`
-      p_{I_2}]
-    \efig
-  \end{mathpar}
-  Note that $\p{}$ and $\q{}$ exist because $(FG,\q{})$ and
-  $(GF,\p{})$ are symmetric monoidal functors.
-\end{definition}
-% section symmetric_monoidal_categories (end)
-
-\section{Cartesian Closed Categories and Symmetric Monoidal Adjunctions}
-\label{sec:cartesian_closed_categories_and_symmetric_monoidal_adjunctions}
-In this appendix we consider simplifications that arise when the SMCCs
-in a symmetric monoidal adjunction are cartesian closed.  The first
-big simplification is that when a SMCC is cartesian we no longer have
-to specify all of the SMC structure, because they become provable.
-The following lemma prove this fact.
-
-\begin{lemma}
-  \label{lemma:CCC-is-SMC}
-  Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a CCC.  Then the
-  following defines the structure of an SMC:
-  \[
-  \begin{array}{rll}
-    \lambda_A & = & \pi_2 : 1 \times A \mto A\\
-    \lambda^{-1}_A & = & \langle \t_A , \id_A  \rangle : A \mto 1 \times A\\
-    \\
-    \rho_A & = & \pi_1 : A \times 1 \mto A\\
-    \rho^{-1}_A & = & \langle \id_A , \t_A  \rangle : A \mto A \times 1\\
-    \\
-    \alpha_{A,B,C} & = & \langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle : (A \times B) \times C \mto A \times (B \times C)\\
-    \alpha^{-1}_{A,B,C} & = & \langle \id_A \times \pi_1, \pi_2;\pi_2 \rangle : A \times (B \times C) \mto (A \times B) \times C\\
-    \\
-    \beta_{A,B} & = & \langle \pi_2, \pi_1 \rangle : A \times B \mto B \times A\\
-  \end{array}
-  \]
-  Each of the above morphisms satisfy the appropriate diagrams.
-\end{lemma}
-
-It turns out that we can also simplify the definition of symmetric
-monoidal functor between cartesian categories.
-
-\begin{definition}
-  \label{def:prod-functor}
-  A \textbf{product functor}, $(F,m) : \cat{C}_1 \to \cat{C}_2$,
-  between two cartesian categories consists of an ordinary functor $F
-  : \cat{C}_1 \to \cat{C}_2$, a natural transformation $m_{A,B} : FA
-  \times FB \mto F(A \times B)$, and a map $m_1 : 1 \to F1$ subject to the
-  following coherence diagrams:
-  \begin{mathpar}
-    \bfig
-    \btriangle|mmm|<1000,500>[
-      FA \times FB`
-      F(A \times B)`
-      FA;
-      m_{A.B}`
-      \pi_1`
-      F\pi_1]
-    \efig
-    \and
-    \bfig    
-    \btriangle|mmm|<1000,500>[
-      FA \times FB`
-      F(A \times B)`
-      FB;
-      m_{A.B}`
-      \pi_2`
-      F\pi_2]
-    \efig
-    \and
-    \bfig
-    \btriangle|mmm|<1000,500>[
-      FC`
-      FA \times FB`
-      F(A \times B);
-      \langle Ff, Fg \rangle`
-      F(\langle f, g \rangle)`
-      m_{A,B}]
-    \efig
-    \and
-    \bfig
-    \btriangle|mmm|<1000,500>[
-      FA`
-      1`
-      F1;
-      \t_{FA}`
-      F\t_{A}`
-      m_1]
-    \efig
-  \end{mathpar} 
-\end{definition}
-
-\begin{lemma}[Product Functors are Symmetric Monoidal]
-  \label{lemma:product_functors_are_symmetric_monoidal}
-  If $(F,m) : \cat{C}_1 \to \cat{C}_2$ is a product functor, then
-  $(F,m)$ is a symmetric monoidal functor.
-\end{lemma}
-\begin{proof}
-  We simply show that each diagram in the definition of symmetric
-  monoidal functor commutes.  This proof requires the following facts
-  about cartesian categories:
-  \[
-  \begin{array}{lll}
-    f;\langle g , h \rangle = \langle f;g, f;g \rangle & \text{(P1)}\\
-    \\
-    f \times g = \langle \pi_1;f , \pi_2;g \rangle & \text{(P2)}\\
-    \\
-    \langle f , g \rangle;(h \times i) = \langle f;h, g;i \rangle & \text{(P3)}\\
-    \\
-    (f \times g);\pi_1 = \pi_1;f & \text{(P4)}\\
-    \\
-    (f \times g);\pi_2 = \pi_2;g & \text{(P5)}\\
-  \end{array}
-  \]
-  \begin{itemize}
-  \item[] Associativity:\ \\
-    \[
-    \bfig
-    \vSquares|ammmmma|/->`->`->``->`->`->/[
-      (FA \times FB) \times FC`
-      FA \times (FB \times FC)`
-      F(A \times B) \times FC`
-      FA \times F(B \times C)`
-      F((A \times B) \times C)`
-      F(A \times (B \times C));
-      {\alpha}_{FA,FB,FC}`
-      m_{A,B} \times \id_{FC}`
-      \id_{FA} \times m_{B,C}``
-      m_{A \times B,C}`
-      m_{A,B \times C}`
-      F{\alpha}_{A,B,C}]
-    \efig
-    \]
-    In this case it is easiest to show that each side of the diagram
-    reduces to the same morphism.
-
-    First, the right side reduces in the following way:
-    \begin{center}
-      \begin{math}
-        \begin{array}{lll}
-          \alpha_{FA,FB,FC};(\id_{FA} \times m_{B,C});m_{A,B \times C} \\
-          \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, \pi_2 \times \id_{FC} \rangle;(\id_{FA} \times m_{B,C});m_{A,B \times C} & \text{(Definition)}\\
-          \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P3)}\\
-        \end{array}
-      \end{math}
-    \end{center}
-
-    Now the left side reduces to the same morphism:
-    \[
-    \scriptsize
-    \begin{array}{lll}
-      (m_{A,B} \times \id_{FC});m_{A \times B,C};\underline{F\alpha_{A,B,C}} \\
-    \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});m_{A \times B,C};\underline{F(\langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle)} & \text{(Definition)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\underline{m_{A \times B,C};\langle F\pi_1;F\pi_1, F(\pi_2 \times \id_C) \rangle;m_{A,B \times C}} & \text{(Product Functor)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \underline{m_{A \times B,C};F\pi_1};F\pi_1, m_{A \times B,C};F(\pi_2 \times \id_C) \rangle;m_{A,B \times C} & \text{(P1)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, m_{A \times B,C};\underline{F(\pi_2 \times \id_C)} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, m_{A \times B,C};\underline{F(\langle \pi_1;\pi_2, \pi_2 \rangle)} \rangle;m_{A,B \times C} & \text{(P2)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \underline{m_{A \times B,C};\langle F\pi_1;F\pi_2, F\pi_2 \rangle};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \langle \underline{m_{A \times B,C};F\pi_1};F\pi_2, \underline{m_{A \times B,C};F\pi_2} \rangle;m_{B,C} \rangle;m_{A,B \times C} & \text{(P1)}\\
-   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \underline{\langle \pi_1;F\pi_2, \pi_2 \rangle};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
-   \,\,\,\,\,\,\,\,= \underline{(m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, (F\pi_2 \times \id_{FC});m_{B,C} \rangle};m_{A,B \times C} & \text{(P2)}\\
-   \,\,\,\,\,\,\,\,= \langle \underline{(m_{A,B} \times \id_{FC});\pi_1};F\pi_1, (m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P1)}\\
-   \,\,\,\,\,\,\,\,= \langle \pi_1;\underline{m_{A,B};F\pi_1}, (m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P4)}\\
-   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, \underline{(m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC})};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
-   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\underline{(m_{A,B};F\pi_2)} \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(Functor)}\\
-   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
-    \end{array}
-    \]
-
-  \item[] Left Unitor:\\
-    \[
-    \bfig
-    \square|amma|/->`->`<-`->/<1000,500>[
-      1 \times FA`
-      FA`
-      F1 \times FA`
-      F(1 \times A);
-      {\lambda}_{FA}`
-      m_{1} \times \id_{FA}`
-      F{\lambda}_{A}`
-      m_{1,A}]
-    \efig
-    \]
-  
-  First, notice that $\lambda_{FA} = \pi_2$. We can show the following:
-  \[
-  \begin{array}{lll}
-    (m_1 \times \id_{FA});m_{1,A};F\lambda_A\\
-    \,\,\,\,\,\,\,\,= (m_1 \times \id_{FA});m_{1,A};F\pi_2 & \text{(Definition)}\\
-    \,\,\,\,\,\,\,\,= (m_1 \times \id_{FA});\pi_2 & \text{(Product Functor)}\\
-    \,\,\,\,\,\,\,\,= \pi_2 & \text{(P5)}\\
-  \end{array}
-  \]
-
-\item[] Right Unitor:\\
-  \[
-  \bfig
-  \square|amma|/->`->`<-`->/<1000,500>[
-    FA \times 1`
-    FA`
-    FA \times F1`
-    F(A \times 1);
-    {\rho}_{FA}`
-    \id_{FA} \times m_{1}`
-    F{\rho}_{A}`
-    m_{A,1}]
-  \efig
-  \]
-  \end{itemize}
-  This case is similar to the previous one:
-  \[
-  \begin{array}{lll}
-    (\id_{FA} \times m_1);m_{A,1};F\rho_A\\
-    \,\,\,\,\,\,\,\,=  (\id_{FA} \times m_1);m_{A,1};F\pi_1 & \text{(Definition)}\\
-    \,\,\,\,\,\,\,\,=  (\id_{FA} \times m_1);\pi_1 & \text{(Product Functor)}\\
-    \,\,\,\,\,\,\,\,=  \pi_1 & \text{(P4)}\\
-    \,\,\,\,\,\,\,\,=  \rho_{FA} & \text{(Definition)}\\
-  \end{array}
-  \]
-
-\item[] Symmetry:\\
-  \[
-  \bfig
-  \square|amma|/->`->`->`->/<1000,500>[
-    FA \times FB`
-    FB \times FA`
-    F(A \times B)`
-    F(B \times A);
-    {\beta}_{FA,FB}`
-    m_{A,B}`
-    m_{B,A}`
-    F{\beta}_{A,B}]
-  \efig
-  \]
-  First, notice that $\beta_{A,B} = \langle \pi_2, \pi_1 \rangle$.  Thus, we have the following:
-  \[
-  \begin{array}{lll}
-    \beta_{FA,FB};m_{B,A}\\
-    \,\,\,\,\,\,\,\,=  \langle \pi_2, \pi_1 \rangle;m_{B,A} & \text{(Definition)}\\
-    \,\,\,\,\,\,\,\,=  \langle m_{A,B};F\pi_2, m_{A,B};F\pi_1 \rangle;m_{B,A} & \text{(Product Functor)}\\
-    \,\,\,\,\,\,\,\,=  m_{A,B};\langle F\pi_2, F\pi_1 \rangle;m_{B,A} & \text{(P1)}\\
-    \,\,\,\,\,\,\,\,=  m_{A,B};F(\langle \pi_2, \pi_1 \rangle) & \text{(Product Functor)}\\
-    \,\,\,\,\,\,\,\,=  m_{A,B};F\beta_{A,B} & \text{(Definition)}\\
-  \end{array}
-  \]
-\end{proof}
-
-No other simplifications arise.  The definitions of natural
-transformations between product functors is the same as the definition
-of symmetric monoidal natural transformations, and the same goes for
-symmetric monoidal adjunctions.
-
-\begin{lemma}[Product Functors Isomorphisms]
-  \label{lemma:product_functors_iso}
-  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor, then
-  $m_{A,B} : FA \times FB \mto F(A \times B)$ and $m_1 : 1 \mto F1$ are
-  isomorphisms.
-\end{lemma}
-\begin{proof}
-  Define $m^{-1}_1 = \t_{F 1} : F1 \mto 1$.  Then we have the following:
-  \[
-  \begin{array}{lll}
-    m_1;t_{F1} = \id_{1} & \text{(Uniqueness)}\\    
-  \end{array}
-  \]
-  and
-  \[
-  \begin{array}{llll}
-    t_{F1};m_1
-    & = & F\t_t & \text{(Product Functor)}\\
-    & = & F\id_t & \text{(Uniqueness)}\\
-    & = & \id_{Ft}     
-  \end{array}
-  \]
-
-  Now define $m^{-1}_{A,B} = \langle F\pi_1, F\pi_2 \rangle$.  Then we have the following:
-  \[
-  \begin{array}{llll}
-    m_{A,B};m^{-1}_{A,B}
-    & = & m_{A,B};\langle F\pi_1, F\pi_2 \rangle & \text{(Definition)}\\
-    & = & \langle m_{A,B};F\pi_1, m_{A,B};F\pi_2 \rangle & \text{(P1)}\\
-    & = & \langle \pi_1, \pi_2 \rangle & \text{(Product Functor)}\\
-    & = & \id_{FA \times FB} & \text{(Cartesian)}\\
-  \end{array}
-  \]
-  and
-  \[
-  \begin{array}{llll}
-    m^{-1}_{A,B};m_{A,B}
-    & = & \langle F\pi_1, F\pi_2 \rangle;m_{A,B} & \text{(Definition)}\\
-    & = & F(\langle \pi_1, \pi_2 \rangle) & \text{(Product Functor)}\\
-    & = & F(\id_{A \times B}) & \text{(Cartesian)}\\
-    & = & \id_{F(A \times B)}\\    
-  \end{array}
-  \]
-\end{proof}
-% section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
-
-\begin{lemma}[Symmetric Monoidal Adjunctions have Isomorphic Left-adjoints]
-  \label{lemma:product_functors_iso}
-  If $(F,m)\dashv (G,n) : \cat{C}_1 \mto \cat{C}_2$ is any symmetric monoidal adjunction, then
-  $F$  is an 
-  isomorphism. 
-\end{lemma}
 \end{document}
 
-References:
-Ewald's paper:Intuitionistic tense and modal logic
-http://journals.cambridge.org/action/displayAbstract?fromPage=online&aid=9081918&fileId=S0022481200031650
 
-Bierman and de Paiva:On an Intuitionistic Modal Logic (2001)
-(I'm now calling CS4 what was in this paper IS4)
-http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.30.5279
 
 Modalities in Constructive Logics and Type Theories Preface to the special issue on Intuitionistic Modal Logic and Application of the Journal of Logic and Computation, volume 14, number 4, August 2004. Guest Editors: Valeria de Paiva, Rajeev Gore' and Michael Mendler.
 http://www.cs.bham.ac.uk/~vdp/publications/final-preface.pdf
@@ -1902,68 +1276,5 @@ and
 
 http://logcom.oxfordjournals.org/content/early/2015/06/12/logcom.exv042.extract
 
-old introduction
-Generally speaking, Temporal Logic is any system of rules and
-symbolism for representing, and reasoning about propositions qualified
-in terms of time.  Temporal logic is also one of the most traditional
-kinds of modal logic, introduced by Arthur Prior in the late 1950s,
-%, and for which important results were obtained by Hans Kamp. 
-but it is also one of the most controversial kinds of modal logic, as
-people have different intuitions about time, how to represent it, and
-how to reason about it.
 
-There has been a huge amount of work in Modal Logic in the last sixty
-years, but mainly in classical modal logic. We are mostly interested
-in constructive systems. In particular we are interested in a
-constructive version of temporal logic that satisfies some well-known
-and desirable proof-theoretical properties, but that is also
-algebraically and category-theoretically well-behaved.
-
-Prior's `Time and Modality' introduced a propositional modal logic
-with two temporal connectives (modal operators), $F$ and $P$,
-corresponding to ``sometime in the {F}uture" and ``sometime in the
-{P}ast". Kamp's thesis introduced the binary temporal operators
-``since" and ``until" and proved what came to be known as Kamp's
-theorem. Kamp's theorem shows that all temporal operators are
-definable in terms of ``since" and ``until" -- provided that the
-underlying temporal structure is a continuous linear ordering and
-provided that the logical basis is classical.
-
-Ewald \cite{ewald1986} has produced a first version of an
-intuitionistically based temporal logic system. Basically, Ewald's
-system is a pair of Simpson-style IK operators \cite{simpson1994},
-representing past and future over intuituionistic propositional logic.
-
-The intuitive reading of the operators is sensible:
-\begin{itemize}
-\item $P$ “It has at some time been the case that” 
-\item $F$ “It will at some time be the case that” 
-\item $H$ “It has always been the case that” 
-\item $G$  “It will always be the case that” 
-\end{itemize}
-Ewald and most of the researchers that followed his path of
-constructivization of tense logic, did so assuming a symmetry between
-past and future. This symmetry, as well as the symmetry between
-universal and existential quantifiers, both in the past and in the
-future, are at odds with
-%is not very characteristic of 
-intuitionistic reasoning.
-
- Simpson remarks that intuitionistic or constructive modal logic is
- full of interesting questions. As he says:
-\begin{quote}
-Although much work has been done in the field, there is as yet no
-consensus on the correct viewpoint for considering intuitionistic
-modal logic.  In particular, there is no single semantic framework
-rivalling that of possible world semantics for classical modal logic.
-Indeed, there is not even any general agreement on what the
-intuitionistic analogue of the basic modal logic, K, is.
-\end{quote}
-In an intuitionistic logic we do not expect perfect duality between
-quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg
-P(x)$) or even between conjunction and disjunction (De Morgan laws do
-not hold for intuitionistic propositional logic). So one should not
-expect a perfect duality between possibility and necessity either. 
-
-It has been thought for a while that temporal logic should consist of two modal systems intertwinned. Some times the modal systems are K modal systems, some times S5. Here we will consider S4 systems, so we start by recalling some facts about S4 constructive modal logic.
 
