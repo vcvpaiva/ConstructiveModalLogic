@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{amssymb, amsthm, amsmath, stmaryrd}
 \usepackage{mathpartir}
+\usepackage{mdframed}           % For the boxes around the systems.
 \usepackage{cmll}
 \usepackage[barr]{xy}
 
@@ -173,30 +174,34 @@ The main difference between systems IS4 and CS4 concerns the binary
 distribution of $\Diamond$ over disjunction
 $\Diamond (A \lor B) \to \Diamond A \lor \Diamond B$
 and its nullary form 
-$\Diamond \bot \to \bot$. The system CS4 does not satisfy these traditional distributions that are basic in classical modal logic. Some philosophical significance can be attached to this distribution, or lack thereof, and we discuss it later. First we define the system.
+$\Diamond \bot \to \bot$. The system CS4 does not satisfy these traditional distributions that are basic in classical modal logic. Some philosophical significance can be attached to this distribution, or lack thereof, and we discuss it later. The sequent calculus for CS4 is defined in Figure~\ref{fig:CS4}.
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \begin{math}
+        \begin{array}{ccccc}              
+          \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
+            \Gamma,A \vdash B
+          }
+          & \quad &
+          \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
+            \Box \Gamma \vdash A
+          }\\\\
+          \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
+            \Box\Gamma,A \vdash \Diamond B
+          }
+          & \quad &
+          \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
+            \Gamma \vdash A
+          }
+        \end{array}        
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{CS4}
+  \label{fig:CS4}
+\end{figure}
 
-The following rules, in addition to
-the initial set of inference rules, defines the sequent calculus for CS4:
-\begin{center}
-  \begin{math}
-    \begin{array}{ccccc}              
-      \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A \vdash B}{
-        \Gamma,A \vdash B
-      }
-      & \quad &
-      \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
-        \Box \Gamma \vdash A
-      }\\\\
-      \infer[\Diamond_{\mathcal{L}}]{\Delta,\Box\Gamma,\Diamond A \vdash \Diamond B}{
-        \Box\Gamma,A \vdash \Diamond B
-      }
-      & \quad &
-      \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
-        \Gamma \vdash A
-      }
-    \end{array}        
-  \end{math}
-\end{center}
 Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as well-behaved as the propositional ones. This system is indeed constructive, and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
 
@@ -226,28 +231,34 @@ cartesian closed categories.
 
 This presentation is described  both in \cite{CS4} and in \cite{icalp1998}. In
 \cite{CS4} this is called the multicontext formulation of CS4 and the
-rules are given (page 17) as follows:
+rules are given (page 17) in Figure~\ref{fig:ADJCS4}.
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \begin{math}
+        \begin{array}{ccccc}              
+          \infer[\Box_{\mathcal{I}}]{\Gamma; \Delta \vdash \Box A}{
+            \Gamma;\emptyset \vdash  A
+          }
+          & \quad &
+          \infer[\Box_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \Box A \hspace{.1in}
+            \Gamma, A;\Delta \vdash B
+          }\\\\
+          \infer[\Diamond_{\mathcal{I}}]{\Gamma;\Delta \vdash \Diamond A}{
+            \Gamma;\Delta \vdash A
+          }
+          & \quad &
+          \infer[\Diamond_{\mathcal{E}}]{\Gamma;\Delta \vdash \Diamond B}{
+            \Gamma ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
+          }
+        \end{array}        
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{The Adjunction CS4 Modal Calculus}
+  \label{fig:ADJCS4}
+\end{figure}
 
-\begin{center}
-  \begin{math}
-    \begin{array}{ccccc}              
-      \infer[\Box_{\mathcal{I}}]{\Gamma; \Delta \vdash \Box A}{
-        \Gamma;\emptyset \vdash  A
-      }
-      & \quad &
-      \infer[\Box_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \Box A \hspace{.1in}
-        \Gamma, A;\Delta \vdash B
-      }\\\\
-      \infer[\Diamond_{\mathcal{I}}]{\Gamma;\Delta \vdash \Diamond A}{
-        \Gamma;\Delta \vdash A
-      }
-      & \quad &
-      \infer[\Diamond_{\mathcal{E}}]{\Gamma;\Delta \vdash \Diamond B}{
-        \Gamma ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
-      }
-    \end{array}        
-  \end{math}
-\end{center}
 (Note that the rules are Natural Deduction rules, as it should be clear for the fact that they are introduction and elimination rules.)
 
 These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories, as we show in the next section.  \todo{add description
@@ -1180,6 +1191,7 @@ prove the converse result. That is
   \[
   \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
+  
 \end{proof}
 This is similar to section 2.2.2 in Benton's work \cite{benton1994},
 which shows that a \textit{linear category implies a LNL model}.
@@ -1221,57 +1233,64 @@ traditional temporal operators $\F$, $\H$, $\G$, and
 $\P$~\cite{ewald1986}.
 
 The sequent calculus formalization of Ewald's temporal logic is
-defined by the following inference rules in addition to the initial
-intuitionistic set of inference rules given above:
-\begin{center}
-  \small
-  \begin{math}
-    \begin{array}{cccccc}
-      \infer[\text{G}]{\G \Gamma \vdash \G C}{
-        \Gamma \vdash C
-      }
-      & \quad &
-      \infer[\text{H}]{\H\Gamma \vdash \H C}{
-        \Gamma \vdash C
-      }\\\\
-      \infer[\text{F}]{\G\Gamma,\F A \vdash \F B}{
-        \Gamma,A \vdash B
-      }
-      & \quad &
-      \infer[\text{P}]{\H\Gamma,\P A \vdash \P B}{
-        \Gamma,A \vdash B
-      }\\\\
-      \infer[\text{FH}]{\cdot \vdash \F\H A \to A}{
-        \,
-      }
-      & \quad &
-      \infer[\text{HF}]{\cdot \vdash A \to \H\F A}{
-        \,
-      }\\\\
-      \infer[\text{PG}]{\cdot \vdash \P\G A \to A}{
-        \,
-      }
-      & \quad &
-      \infer[\text{GP}]{\cdot \vdash A \to \G\P A}{
-        \,
-      }\\\\
-      \infer[\text{FG}_1]{\cdot \vdash (\F A \to \G B) \to \G(A \to B)}{
-        \,
-      }
-      & \quad &
-      \infer[\text{FG}_2]{\cdot \vdash \F(A \to B) \to (\G A \to \F B)}{
-        \,
-      }\\\\
-      \infer[\text{PH}_1]{\cdot \vdash (\P A \to \H B) \to \H(A \to B)}{
-        \,
-      }
-      & \quad &
-      \infer[\text{PH}_2]{\cdot \vdash \P(A \to B) \to (\H A \to \P B)}{
-        \,
-      }      
-    \end{array}
-  \end{math}
-\end{center}
+defined in Figure~\ref{fig:ewald-TL} in addition to the initial
+intuitionistic set of inference rules given above.
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \small
+      \begin{math}
+        \begin{array}{cccccc}
+          \infer[\text{G}]{\G \Gamma \vdash \G C}{
+            \Gamma \vdash C
+          }
+          & \quad &
+          \infer[\text{H}]{\H\Gamma \vdash \H C}{
+            \Gamma \vdash C
+          }\\\\
+          \infer[\text{F}]{\G\Gamma,\F A \vdash \F B}{
+            \Gamma,A \vdash B
+          }
+          & \quad &
+          \infer[\text{P}]{\H\Gamma,\P A \vdash \P B}{
+            \Gamma,A \vdash B
+          }\\\\
+          \infer[\text{FH}]{\cdot \vdash \F\H A \to A}{
+            \,
+          }
+          & \quad &
+          \infer[\text{HF}]{\cdot \vdash A \to \H\F A}{
+            \,
+          }\\\\
+          \infer[\text{PG}]{\cdot \vdash \P\G A \to A}{
+            \,
+          }
+          & \quad &
+          \infer[\text{GP}]{\cdot \vdash A \to \G\P A}{
+            \,
+          }\\\\
+          \infer[\text{FG}_1]{\cdot \vdash (\F A \to \G B) \to \G(A \to B)}{
+            \,
+          }
+          & \quad &
+          \infer[\text{FG}_2]{\cdot \vdash \F(A \to B) \to (\G A \to \F B)}{
+            \,
+          }\\\\
+          \infer[\text{PH}_1]{\cdot \vdash (\P A \to \H B) \to \H(A \to B)}{
+            \,
+          }
+          & \quad &
+          \infer[\text{PH}_2]{\cdot \vdash \P(A \to B) \to (\H A \to \P B)}{
+            \,
+          }      
+        \end{array}
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{Ewald's Temporal Logic}
+  \label{fig:ewald-TL}
+\end{figure}
+
 Looking at Ewald's system with a present day categorical perspective
 it is easy to see that these new operators can be seen as adjoint
 functors~\cite{Menni:2014}.
