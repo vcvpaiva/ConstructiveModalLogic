@@ -211,7 +211,7 @@
   diagrams must commute:
   \begin{mathpar}
     \bfig
-    \qtriangle<1000,500>[
+    \qtriangle|amm|<1000,500>[
       FGA \otimes_1 FGB`
       FG(A \otimes_1 B)`
       A \otimes_1 B;
@@ -221,17 +221,16 @@
     \efig
     \and
     \bfig
-    \Vtriangle/->`<-`<-/[
+    \Vtriangle|amm|/->`<-`=/[
       FGI_1`
       I_1`
       I_1;
       \eta_{I_1}`
-      \q{I_1}`
-      \id_{I_1}]
+      \q{I_1}`]
     \efig
     \and
     \bfig
-    \dtriangle<1000,500>[
+    \dtriangle|mmb|<1000,500>[
       A \otimes_2 B`
       GFA \otimes_2 GFB`
       GF(A \otimes_2 B);
@@ -241,16 +240,188 @@
     \efig
     \and
     \bfig
-    \Vtriangle/->`<-`<-/[
+    \Vtriangle|amm|/->`=`<-/[
       I_2`
       GFI_2`
       I_2;
-      \varepsilon_{I_2}`
-      \id_{I_2}`
+      \varepsilon_{I_2}``
       p_{I_2}]
     \efig
   \end{mathpar}
   Note that $\p{}$ and $\q{}$ exist because $(FG,\q{})$ and
   $(GF,\p{})$ are symmetric monoidal functors.
+\end{definition}
+
+\begin{definition}
+  \label{def:symm-monoidal-monad}
+  A \textbf{symmetric monoidal monad} on a symmetric monoidal
+  category $\cat{C}$ is a triple $(T,\eta, \mu)$, where
+  $(T,\n{})$ is a symmetric monoidal endofunctor on $\cat{C}$,
+  $\eta_A : A \mto TA$ and $\mu_A : T^2A \to TA$ are
+  symmetric monoidal natural transformations, which make the following
+  diagrams commute:
+  \begin{mathpar}
+    \bfig
+    \square|ammb|<600,600>[
+      T^3 A`
+      T^2A`
+      T^2A`
+      TA;
+      \mu_{TA}`
+      T\mu_A`
+      \mu_A`
+      \mu_A]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`<-`=`->`<-/<600,600>[
+      TA`
+      TA`
+      T^2 A`
+      TA;`
+      \mu_A``
+      \eta_{TA}`
+      T\eta_A]
+    \efig
+  \end{mathpar}
+  The assumption that $\eta$ and $\mu$ are symmetric
+  monoidal natural transformations amount to the following diagrams
+  commuting:
+  \begin{mathpar}
+    \bfig
+    \dtriangle|mmb|<1000,600>[
+      A \otimes B`
+      TA \otimes TB`
+      T(A \otimes B);
+      \eta_A \otimes \eta_B`
+      \eta_A`
+      \n{A,B}]    
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`=`<-/<600,600>[
+      I`
+      TI`
+      I;
+      \eta_I``
+      \n{I}]
+    \efig
+  \end{mathpar}
+  \begin{mathpar}
+    \bfig
+    \square|ammm|/->`->``/<1050,600>[
+      T^2 A \otimes T^2 B`
+      T(TA \otimes TB)`
+      TA \otimes TB`;
+      \n{TA,TB}`
+      \mu_A \otimes \mu_B``]
+
+    \square(850,0)|ammm|/->``->`/<1050,600>[
+      T(TA \otimes TB)`
+      T^2(A \otimes B)``
+      T(A \otimes B);
+      T\n{A,B}``
+      \mu_{A \otimes B}`]
+    \morphism(-200,0)<2100,0>[TA \otimes TB`T(A \otimes B);\n{A,B}]
+    \efig
+    \and
+    \bfig
+    \square|ammb|/->`->`->`<-/<600,600>[
+      I`
+      TI`
+      TI`
+      TI;
+      \n{I}`
+      \n{T}`
+      T\n{I}`
+      \mu_I]
+    \efig
+  \end{mathpar}
+\end{definition}
+
+\begin{definition}
+  \label{def:symm-monoidal-comonad}
+  A \textbf{symmetric monoidal comonad} on a symmetric monoidal
+  category $\cat{C}$ is a triple $(T,\varepsilon, \delta)$, where
+  $(T,\m{})$ is a symmetric monoidal endofunctor on $\cat{C}$,
+  $\varepsilon_A : TA \mto A$ and $\delta_A : TA \to T^2 A$ are
+  symmetric monoidal natural transformations, which make the following
+  diagrams commute:
+  \begin{mathpar}
+    \bfig
+    \square|amma|<600,600>[
+      TA`
+      T^2A`
+      T^2A`
+      T^3A;
+      \delta_A`
+      \delta_A`
+      T\delta_A`
+      \delta_{TA}]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`->`=`<-`->/<600,600>[
+      TA`
+      TA`
+      T^2 A`
+      TA;`
+      \delta_A``
+      \varepsilon_{TA}`
+      T\varepsilon_A]
+    \efig
+  \end{mathpar}
+  The assumption that $\varepsilon$ and $\delta$ are symmetric
+  monoidal natural transformations amount to the following diagrams
+  commuting:
+  \begin{mathpar}
+    \bfig
+    \qtriangle|amm|/->`->`->/<1000,600>[
+      TA \otimes TB`
+      T(A \otimes B)`
+      A \otimes B;
+      \m{A,B}`
+      \varepsilon_A \otimes \varepsilon_B`
+    \varepsilon_{A \otimes B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle|amm|/->`<-`=/<600,600>[
+      TI`
+      I`
+      I;
+      \m{I}`
+      \varepsilon_I`]
+    \efig    
+  \end{mathpar}
+  \begin{mathpar}
+    \bfig
+    \square|amab|/`->``->/<1050,600>[
+      TA \otimes TB``
+      T^2A \otimes T^2B`
+      T(TA \otimes TB);`
+      \delta_A \otimes \delta_B``
+      \m{TA,TB}]
+    \square(1050,0)|mmmb|/``->`->/<1050,600>[`
+      T(A \otimes B)`
+      T(TA \otimes TB)`
+      T^2(A \otimes B);``
+      \delta_{A \otimes B}`
+      T\m{A,B}]
+    \morphism(0,600)<2100,0>[TA \otimes TB`T(A \otimes B);\m{A,B}]
+    \efig
+    \and
+    \bfig
+    \square<600,600>[
+      I`
+      TI`
+      TI`
+      T^2I;
+      \m{I}`
+      \m{I}`
+      \delta_I`
+      T\m{I}]
+    \efig
+  \end{mathpar}
 \end{definition}
 % section symmetric_monoidal_categories (end)
