@@ -85,9 +85,6 @@ monoidal functor between cartesian categories.
   If $(F,m) : \cat{C}_1 \to \cat{C}_2$ is a product functor betwen cartesian categories, then
   $(F,m)$ is a symmetric monoidal functor.
 \end{lemma}
-
-{\tt Harley, surely the idea is that any symmetric monoidal functor between cccs becomes a product functor? I think it's clear that a product functor is a symm monoidal functor, no? the same way it's clear that a ccc is an smcc, lemma 12 only shows how to see it.}
-
 \iffalse
 \begin{proof}
   We simply show that each diagram in the definition of symmetric
@@ -240,6 +237,56 @@ monoidal functor between cartesian categories.
 \end{proof}
 \fi 
 
+The definition of a natural transformation between product functors is
+the same as the definition of a symmetric monoidal natural
+transformation. And the same goes for symmetric monoidal adjunctions.
+
+\begin{lemma}[Product Functors Isomorphisms]
+  \label{lemma:product_functors_iso}
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor between cccs, then
+  $m_{A,B} : FA \times FB \mto F(A \times B)$ and $m_1 : 1 \mto F1$ are
+  isomorphisms.
+\end{lemma}
+\begin{proof}
+  Define $m^{-1}_1 = \t_{F 1} : F1 \mto 1$.  Then we have the following:
+  \[
+  \begin{array}{lll}
+    m_1;t_{F1} = \id_{1} & \text{(Uniqueness)}\\    
+  \end{array}
+  \]
+  and
+  \[
+  \begin{array}{llll}
+    t_{F1};m_1
+    & = & F\t_t & \text{(Product Functor)}\\
+    & = & F\id_t & \text{(Uniqueness)}\\
+    & = & \id_{Ft}     
+  \end{array}
+  \]
+
+  Now define $m^{-1}_{A,B} = \langle F\pi_1, F\pi_2 \rangle$.  Then we have the following:
+  \[
+  \begin{array}{llll}
+    m_{A,B};m^{-1}_{A,B}
+    & = & m_{A,B};\langle F\pi_1, F\pi_2 \rangle & \text{(Definition)}\\
+    & = & \langle m_{A,B};F\pi_1, m_{A,B};F\pi_2 \rangle & \text{(P1)}\\
+    & = & \langle \pi_1, \pi_2 \rangle & \text{(Product Functor)}\\
+    & = & \id_{FA \times FB} & \text{(Cartesian)}\\
+  \end{array}
+  \]
+  and
+  \[
+  \begin{array}{llll}
+    m^{-1}_{A,B};m_{A,B}
+    & = & \langle F\pi_1, F\pi_2 \rangle;m_{A,B} & \text{(Definition)}\\
+    & = & F(\langle \pi_1, \pi_2 \rangle) & \text{(Product Functor)}\\
+    & = & F(\id_{A \times B}) & \text{(Cartesian)}\\
+    & = & \id_{F(A \times B)}\\    
+  \end{array}
+  \]
+\end{proof}
+% section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
+
 \begin{lemma}[Strong Symmetric Monoidal Functors are Product Functors]
   \label{lemma:strong-symmetric_monoidal_functors_are_product_functors}
   If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a strong symmetric monoidal
@@ -324,68 +371,70 @@ monoidal functor between cartesian categories.
   \item[] Case 4.\\    
     \[
     \bfig
-      \btriangle|mmm|<1000,500>[
-        FC`
-        FA \times FB`
-        F(A \times B);
-        \langle Ff, Fg \rangle`
-        F(\langle f, g \rangle)`
-        m_{A,B}]
-      \efig
-      \]
-      
+    \btriangle|mmm|<1000,500>[
+      FC`
+      FA \times FB`
+      F(A \times B);
+      \langle Ff, Fg \rangle`
+      F(\langle f, g \rangle)`
+      m_{A,B}]
+    \efig
+    \]
+    First, note that the following diagrams commute:
+    \[
+    \bfig
+    \Atrianglepair|mmmaa|/->`->`->`<-`->/<1000,600>[
+      FA \times FB`
+      FA`
+      F(A \times B)`
+      FB;
+      \pi_1`
+      \m{A,B}`
+      \pi_2`
+      F\pi_1`
+      F\pi_2]
+    \morphism(1000,1200)|m|<0,-600>[FC`FA \times FB;\langle Ff, Fg \rangle]
+    \morphism(1000,1200)/{@{>}@/^-1em/}/<-1000,-1200>[FC`FA;Ff]
+    \morphism(1000,1200)/{@{>}@/^1em/}/<1000,-1200>[FC`FB;Fg]
+    \place(600,600)[1]
+    \place(1400,600)[2]
+    \place(750,250)[3]
+    \place(1230,250)[4]
+    \efig
+    \]
+    Diagrams 1 and 2 hold by the universal mapping property for the
+    cartesian product, and diagrams three and four hold by cases two
+    and three of this proof.
+
+    We now have the following two bits of equational reasoning:
+    \[
+    \begin{array}{lllll}
+      F(\langle f,g \rangle);\m{A,B}^{-1};\pi_1
+      & = & F(\langle f,g \rangle);\m{A,B}^{-1};\m{A,B};F\pi_1 & \text{(Diagram 3)}\\
+      & = & F(\langle f,g \rangle);F\pi_1 & \text{}\\
+      & = & F(\langle f,g \rangle;\pi_1) & \text{}\\
+      & = & Ff & \text{(Cartesian)}\\
+    \end{array}      
+    \]
+    and
+    \[
+    \begin{array}{lllll}
+      F(\langle f,g \rangle);\m{A,B}^{-1};\pi_2
+      & = & F(\langle f,g \rangle);\m{A,B}^{-1};\m{A,B};F\pi_2 & \text{(Diagram 4)}\\
+      & = & F(\langle f,g \rangle);F\pi_2 & \text{}\\
+      & = & F(\langle f,g \rangle;\pi_2) & \text{}\\
+      & = & Fg & \text{(Cartesian)}\\
+    \end{array}      
+    \]
+    Thus, by the uniqueness of $\langle Ff,Fg \rangle$, due to the
+    universal mapping property of the cartesian product, it must be
+    the case that the following holds:
+    \[
+    F(\langle f,g \rangle);\m{A,B}^{-1} = \langle Ff,Fg \rangle
+    \]
+    Thus, $F(\langle f,g \rangle) = \langle Ff,Fg \rangle;\m{A,B}$.
   \end{itemize}  
 \end{proof}
-
-The definition of a natural transformation between product functors is
-the same as the definition of a symmetric monoidal natural
-transformation. And the same goes for symmetric monoidal adjunctions.
-
-\begin{lemma}[Product Functors Isomorphisms]
-  \label{lemma:product_functors_iso}
-  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor between cccs, then
-  $m_{A,B} : FA \times FB \mto F(A \times B)$ and $m_1 : 1 \mto F1$ are
-  isomorphisms.
-\end{lemma}
-\begin{proof}
-  Define $m^{-1}_1 = \t_{F 1} : F1 \mto 1$.  Then we have the following:
-  \[
-  \begin{array}{lll}
-    m_1;t_{F1} = \id_{1} & \text{(Uniqueness)}\\    
-  \end{array}
-  \]
-  and
-  \[
-  \begin{array}{llll}
-    t_{F1};m_1
-    & = & F\t_t & \text{(Product Functor)}\\
-    & = & F\id_t & \text{(Uniqueness)}\\
-    & = & \id_{Ft}     
-  \end{array}
-  \]
-
-  Now define $m^{-1}_{A,B} = \langle F\pi_1, F\pi_2 \rangle$.  Then we have the following:
-  \[
-  \begin{array}{llll}
-    m_{A,B};m^{-1}_{A,B}
-    & = & m_{A,B};\langle F\pi_1, F\pi_2 \rangle & \text{(Definition)}\\
-    & = & \langle m_{A,B};F\pi_1, m_{A,B};F\pi_2 \rangle & \text{(P1)}\\
-    & = & \langle \pi_1, \pi_2 \rangle & \text{(Product Functor)}\\
-    & = & \id_{FA \times FB} & \text{(Cartesian)}\\
-  \end{array}
-  \]
-  and
-  \[
-  \begin{array}{llll}
-    m^{-1}_{A,B};m_{A,B}
-    & = & \langle F\pi_1, F\pi_2 \rangle;m_{A,B} & \text{(Definition)}\\
-    & = & F(\langle \pi_1, \pi_2 \rangle) & \text{(Product Functor)}\\
-    & = & F(\id_{A \times B}) & \text{(Cartesian)}\\
-    & = & \id_{F(A \times B)}\\    
-  \end{array}
-  \]
-\end{proof}
-% section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
 
 \begin{lemma}[Symmetric Monoidal Adjunctions have Isomorphisms as Left-adjoints]
   \label{lemma:product_functors_iso}
