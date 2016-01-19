@@ -306,9 +306,10 @@ Similarly for a monoidal monad.
 If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the results corresponding to Benton's  in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in appendix B.
 
 \subsection{Modelling Modal sstems}
-Now to model a constructive modal system like CS4 we first recall that to model simply intuitionistic propositions we need a category  $\cat{C}$ with products, coproducts and internal-homs, to model, respectively conjunctions, disjunctions and logic implications. Now in appendix B we dscussed
+Now to model a constructive modal system like CS4 we first recall that to model simply intuitionistic propositions we need a category  $\cat{C}$ with products, coproducts and internal-homs, to model, respectively conjunctions, disjunctions and logic implications. 
 
-Then we recap that to model a necessity-like S4 operator we will need a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on $\cat{C}$.
+In appendix B we discuss how to adapt the monoidal-like conditions to cartesian products.
+Thus we recap that to model a necessity-like S4 operator we will need a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on the cartesian closed category $\cat{C}$.
 
 \begin{definition}[monoidal comonad]
   \label{def:monoidal comonad}
@@ -317,10 +318,88 @@ Then we recap that to model a necessity-like S4 operator we will need a (symmetr
   \[
   m_{A, B} : \Box A \pd \Box B \mto \Box( A \pd B)
   \]
-  subject to the following coherence conditions:
-  \end{definition}
+  subject to the following  conditions:
   
-We also need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then.
+   \begin{mathpar}
+    \bfig
+    \square|amma|<600,600>[
+      \Box A`
+      \Box ^2A`
+      \Box ^2A`
+      \Box ^3A;
+      \delta_A`
+      \delta_A`
+      \Box\delta_A`
+      \delta_{\Box A}]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`->`=`<-`->/<600,600>[
+      \Box A`
+      \Box A`
+      \Box^2 A`
+      \Box A;`
+      \delta_A``
+      \varepsilon_{\Box A}`
+      \Box\varepsilon_A]
+    \efig
+  \end{mathpar}
+  The assumption that $\varepsilon$ and $\delta$ are symmetric
+  monoidal natural transformations amount to the following diagrams
+  commuting:
+  \begin{mathpar}
+    \bfig
+    \qtriangle|amm|/->`->`->/<1000,600>[
+      \Box A \times \Box B`
+      \Box (A \times B)`
+      A \times B;
+      \m{A,B}`
+      \varepsilon_A \times \varepsilon_B`
+    \varepsilon_{A \times B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle|amm|/->`<-`=/<600,600>[
+      \Box 1`
+      1`
+      1;
+      \m{I}`
+      \varepsilon_1`]
+    \efig    
+  \end{mathpar}
+  \begin{mathpar}
+    \bfig
+    \square|amab|/`->``->/<1050,600>[
+      \Box A \times \Box B``
+      \Box^2A \times \Box ^2B`
+      \Box (\Box A \times \Box B);`
+      \delta_A \times \delta_B``
+      \m{\Box A,\Box B}]
+    \square(1050,0)|mmmb|/``->`->/<1050,600>[`
+      \Box (A \otimes B)`
+      \Box (\Box A \times \Box B)`
+      \Box ^2(A \times B);``
+      \delta_{A \times B}`
+      \Box \m{A,B}]
+    \morphism(0,600)<2100,0>[\Box A \times \Box B`\Box (A \times B);\m{A,B}]
+    \efig
+    \and
+    \bfig
+    \square<600,600>[
+      1`
+      \Box 1`
+      \Box 1`
+      \Box^21;
+      \m{1}`
+      \m{1}`
+      \delta_1`
+      \Box \m{1}]
+    \efig
+  \end{mathpar}
+  \end{definition}
+  Note that the two first diagrams are the definition of a comonad. The two second diagrams are the interaction of the natural transformation $\varepsilon$ with the monoidal structure $m$ (in particular they show that $\Box 1$ and $1$ are equiprovable). The third last two diagrams are the interactions of the comultiplication $\delta$ with the monoidal structure $m$.
+  
+We also need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then. This structure is interesting, as it is much less symmetric than the ones we have dealt with so far.The strength
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
@@ -332,6 +411,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
   \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
   subject to the following coherence conditions:
+  (still need the diagrams for a monad here)
   \begin{center}
     \begin{math}      
       \begin{array}{lllll}
