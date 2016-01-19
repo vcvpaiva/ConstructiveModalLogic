@@ -242,12 +242,12 @@ monoidal functor between cartesian categories.
 
 No other simplifications arise.  The definition of a natural
 transformation between product functors is the same as the definition
-of a symmetric monoidal natural transformation, and the same goes for
+of a symmetric monoidal natural transformation. And the same goes for
 symmetric monoidal adjunctions.
 
 \begin{lemma}[Product Functors Isomorphisms]
   \label{lemma:product_functors_iso}
-  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor, then
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor between cccs, then
   $m_{A,B} : FA \times FB \mto F(A \times B)$ and $m_1 : 1 \mto F1$ are
   isomorphisms.
 \end{lemma}
@@ -291,9 +291,12 @@ symmetric monoidal adjunctions.
 \end{proof}
 % section cartesian_closed_categories_and_symmetric_monoidal_adjunctions (end)
 
-\begin{lemma}[Symmetric Monoidal Adjunctions have Isomorphic Left-adjoints]
+\begin{lemma}[Symmetric Monoidal Adjunctions have Isomorphisms as Left-adjoints]
   \label{lemma:product_functors_iso}
   If $(F,m)\dashv (G,n) : \cat{C}_1 \mto \cat{C}_2$ is any symmetric monoidal adjunction, then
   $F$  is an 
   isomorphism. 
 \end{lemma}
+Proof in Benton's LNL-tech report.
+
+Now if we have a symmetric monoidal adjunction between product functors, connecting cccs $\cat{C}_1, \cat{C}_2$, can we say anything else about the unit and co-unit? what about the other monoidal natural transformation $n$? what happens if $\cat{C}_1$ is isomorphic to $\cat{C}_2$?
