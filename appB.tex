@@ -240,10 +240,109 @@ monoidal functor between cartesian categories.
 \end{proof}
 \fi 
 
-No other simplifications arise.  The definition of a natural
-transformation between product functors is the same as the definition
-of a symmetric monoidal natural transformation. And the same goes for
-symmetric monoidal adjunctions.
+{\tt I am starting out as strict as possible, but I don't see how to
+  prove the first case of the proof below without $m_1$ being an iso.}
+
+\begin{lemma}[Semi-Strong Symmetric Monoidal Functors are Product Functors]
+  \label{lemma:semi-strong-symmetric_monoidal_functors_are_product_functors}
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a symmetric monoidal
+  functor between cccs and $m_1 : 1 \to F1$ is an isomorphism, then
+  $(F,m)$ is a product functor.
+\end{lemma}
+\begin{proof}
+  \ \\
+  \begin{itemize}
+  \item[] Case 1.\\
+    \[
+      \bfig
+      \btriangle|mmm|<1000,500>[
+        FA`
+        1`
+        F1;
+        \t_{FA}`
+        F\t_{A}`
+        m_1]
+      \efig
+    \]
+    This case follows because it must be the case that
+    \[F\t_{A};\m{1}^{-1} = \t_{FA} : FA \mto 1\]
+    by the uniqueness of the terminal arrow.
+    
+  \item[] Case 2.\\
+    \[
+      \bfig
+      \btriangle|mmm|<1000,500>[
+        FA \times FB`
+        F(A \times B)`
+        FA;
+        m_{A,B}`
+        \pi_1`
+        F\pi_1]
+      \efig
+      \]
+      First, $\rho_A = \pi_1 : A \times 1 \mto A$, and hence, we have the following:
+      \[
+      \begin{array}{lll}
+        (\id_A \times \t_A);\rho_1 & = & \langle \pi_1;\id_A, \pi_2;\t_A \rangle;\rho_1\\
+        & = & \langle \pi_1;\id_A, \pi_2;\t_A \rangle;\pi_1\\
+        & = & \pi_1 : A \times B \mto A
+      \end{array}
+      \]
+      This case follows by the following equational reasoning:
+      \[
+      \begin{array}{llllllll}
+        \m{A,B};F\pi_1
+        & = & \m{A,B};F(\id_A \times \t_B);F\rho_A & \text{(Above Equation)}\\
+        & = & (\id_{FA} \times F(\t_{B}));\m{A,1};F\rho_A & \text{(Naturality of $\m{}$)}\\
+        & = & (\id_{FA} \times \t_{FB};\m{1});\m{A,1};F\rho_A & \text{(Case 1)}\\
+        & = & \langle \id_{FA} \times \t_{FB} \rangle;(\id_{FA} \times \m{1});\m{A,1};F\rho_A & \text{(Cartesian)}\\
+        & = & \langle \id_{FA} \times \t_{FB} \rangle;\rho_{FA} & \text{($F$ is Symmetric Monoidal)}\\
+        & = & \langle \id_{FA} \times \t_{FB} \rangle;\pi_1 & \text{(Cartesian)}\\
+        & = & \pi_1 & \text{(Cartesian)}\\ 
+      \end{array}
+      \]
+    
+  \item[] Case 3.\\    
+    \[
+      \bfig    
+      \btriangle|mmm|<1000,500>[
+        FA \times FB`
+        F(A \times B)`
+        FB;
+        m_{A,B}`
+        \pi_2`
+        F\pi_2]
+      \efig
+    \]
+    First, $\lambda_A = \pi_2 : 1 \times A \mto A$, and hence, we have the following:
+      \[
+      \begin{array}{lll}
+        (\t_A \times \id_A);\lambda_A & = & \langle \pi_1;\t_A, \pi_2;\id_A \rangle;\lambda_A\\
+        & = & \langle \pi_1;\t_A, \pi_2;\id_A \rangle;\pi_2\\
+        & = & \pi_2 : A \times B \mto B
+      \end{array}
+      \]
+      This case follows from similar equational reasoning
+      as the previous case.      
+      
+  \item[] Case 4.\\    
+    \[
+    \bfig
+      \btriangle|mmm|<1000,500>[
+        FC`
+        FA \times FB`
+        F(A \times B);
+        \langle Ff, Fg \rangle`
+        F(\langle f, g \rangle)`
+        m_{A,B}]
+      \efig
+      \]
+  \end{itemize}  
+\end{proof}
+
+The definition of a natural transformation between product functors is
+the same as the definition of a symmetric monoidal natural
+transformation. And the same goes for symmetric monoidal adjunctions.
 
 \begin{lemma}[Product Functors Isomorphisms]
   \label{lemma:product_functors_iso}
