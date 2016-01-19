@@ -94,6 +94,7 @@ The formula $p$ is taken from a set of countably many propositional atoms. The c
 We begin with an initial set of inference rules, and then each system
 presented will be given as an extension of this initial system.  The  initial inference rules, which just model
 propositional intuitionistic logic, are as follows:
+
 \begin{center}
   \small
   \begin{math}
@@ -205,7 +206,7 @@ inference rules, define the sequent calculus for CS4.
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{CS4}
+  \caption{CS4 modal rules}
   \label{fig:CS4}
 \end{figure}
 Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as well-behaved as the propositional ones. This system is indeed constructive, and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
@@ -261,7 +262,7 @@ rules are given (page 17) in Figure~\ref{fig:ADJCS4}.
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{The Adjunction CS4 Modal Calculus}
+  \caption{The adjunction modal calculus}
   \label{fig:ADJCS4}
 \end{figure}
 (Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.)
@@ -302,14 +303,16 @@ A (symmetric) monoidal adjunction $F \dashv G$ is an adjunction  where both func
 Lastly, a (symmetric) monoidal comonad is a comonad $(\Box,\varepsilon, \delta, m)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the  diagrams in definition 11 in appendix A.{\todo{add diagrams there}}
 Similarly for a monoidal monad.
 
-If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the result corresponding to Benton's proposition 1 in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in appendix B.
+If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the results corresponding to Benton's  in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in appendix B.
 
 \subsection{Modelling Modal sstems}
-Now to model a constructive modal system like CS4 we first recall that to model simply intuitionistic propositions we need a category  $\cat{C}$ with products, coproducts and internal-homs, to model, respectively conjunctions, disjunctions and logic implications. Then we recap that to model a necessity-like S4 operator we will need a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on $\cat{C}$.
+Now to model a constructive modal system like CS4 we first recall that to model simply intuitionistic propositions we need a category  $\cat{C}$ with products, coproducts and internal-homs, to model, respectively conjunctions, disjunctions and logic implications. Now in appendix B we dscussed
+
+Then we recap that to model a necessity-like S4 operator we will need a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on $\cat{C}$.
 
 \begin{definition}[monoidal comonad]
   \label{def:monoidal comonad}
-  Suppose $\cat{C}$ is a cartesian closed category. Then $(\Box, \varepsilon, \delta,m)$ is a \emph{(monoidal) comonad} on $\cat{C}$ if $(\Box, \varepsilon, \delta)$ is a comonad in $\cat{C}$  such that
+  Suppose $\cat{C}$ is a cartesian closed category. Then $(\Box, \varepsilon, \delta,m)$ is a \emph{(symmetric monoidal) comonad} on $\cat{C}$ if $(\Box, \varepsilon, \delta)$ is a (symmetric) comonad in $\cat{C}$ thais is monoidal, that is such that
   there exists a natural transformation:
   \[
   m_{A, B} : \Box A \pd \Box B \mto \Box( A \pd B)

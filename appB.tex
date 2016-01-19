@@ -4,9 +4,9 @@ In this appendix we consider simplifications that arise when the categories
 in a symmetric monoidal adjunction are cartesian closed.  The first
 big simplification is that when a SMCC is cartesian we no longer have
 to specify all of the SMC structure, because some of the structure becomes provable.
-The following lemma explains this fact.
+The following lemma explains this.
 
-\begin{lemma}
+\begin{lemma}[cccs are smccs]
   \label{lemma:CCC-is-SMC}
   Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a CCC.  Then the
   following defines the structure of an SMC:
@@ -27,7 +27,7 @@ The following lemma explains this fact.
   Each of the above morphisms satisfy the appropriate diagrams.
 \end{lemma}
 
-It turns out that we can also simplify the definition of symmetric
+It turns out that we can also simplify the definition of a symmetric
 monoidal functor between cartesian categories.
 
 \begin{definition}
@@ -82,9 +82,13 @@ monoidal functor between cartesian categories.
 
 \begin{lemma}[Product Functors are Symmetric Monoidal]
   \label{lemma:product_functors_are_symmetric_monoidal}
-  If $(F,m) : \cat{C}_1 \to \cat{C}_2$ is a product functor, then
+  If $(F,m) : \cat{C}_1 \to \cat{C}_2$ is a product functor betwen cartesian categories, then
   $(F,m)$ is a symmetric monoidal functor.
 \end{lemma}
+
+{\tt Harley, surely the idea is that any symmetric monoidal functor between cccs becomes a product functor? I think it's clear that a product functor is a symm monoidal functor, no? the same way it's clear that a ccc is an smcc, lemma 12 only shows how to see it.}
+
+\iffalse
 \begin{proof}
   We simply show that each diagram in the definition of symmetric
   monoidal functor commutes.  This proof requires the following facts
@@ -234,10 +238,11 @@ monoidal functor between cartesian categories.
   \end{array}
   \]
 \end{proof}
+\fi 
 
-No other simplifications arise.  The definitions of natural
-transformations between product functors is the same as the definition
-of symmetric monoidal natural transformations, and the same goes for
+No other simplifications arise.  The definition of a natural
+transformation between product functors is the same as the definition
+of a symmetric monoidal natural transformation, and the same goes for
 symmetric monoidal adjunctions.
 
 \begin{lemma}[Product Functors Isomorphisms]
