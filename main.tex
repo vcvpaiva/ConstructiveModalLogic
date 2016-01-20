@@ -396,7 +396,8 @@ Thus we recap that to model a necessity-like S4 operator we will need a (symmetr
       \Box \m{1}]
     \efig
   \end{mathpar}
-  \end{definition}
+\end{definition}
+
   Note that the two first diagrams are the definition of a comonad. The two second diagrams are the interaction of the natural transformation $\varepsilon$ with the monoidal structure $m$ (in particular they show that $\Box 1$ and $1$ are equiprovable). The  last two diagrams are the interaction of the comultiplication $\delta$ with the monoidal structure $m$.
   
 We also need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then. This structure is interesting, as it is much less symmetric than the ones we have dealt with, so far. The strength natural transformation $\st{A}{B}$ has to deal with both $\Box$ and $\Diamond$ structures.
@@ -692,6 +693,329 @@ Finally, the interesting ones. The equations that mix the comonad with the monad
     \end{math}        
   \end{center}
 \end{definition}
+
+\begin{definition}[$\Box$-strong monad]
+  \label{def:comonad-strong-monad}
+  Suppose $(\Box, \varepsilon, \delta)$ is a (monoidal) comonad on a
+  cartesian closed category $\cat{C}$.  Then a \emph{$\Box$-strong
+    monad} is a monad $(\Diamond,\eta,\mu)$ on $\cat{C}$ such that
+  there exists a natural transformation:
+  \[
+  \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
+  \]
+  subject to the following  conditions, described by the diagrams.
+  
+  First $\Box$ is a monoidal comonad. Hence (as before) we have six diagrams. Two for $\Box$ comonad:
+  \begin{mathpar}
+    \bfig
+    \square|amma|<600,600>[
+      \Box A`
+      \Box ^2A`
+      \Box ^2A`
+      \Box ^3A;
+      \delta_A`
+      \delta_A`
+      \Box\delta_A`
+      \delta_{\Box A}]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`->`=`<-`->/<600,600>[
+      \Box A`
+      \Box A`
+      \Box^2 A`
+      \Box A;`
+      \delta_A``
+      \varepsilon_{\Box A}`
+      \Box\varepsilon_A]
+    \efig
+  \end{mathpar}
+  And four for $\varepsilon$ and $\delta$ as symmetric monoidal natural transformations:
+  \begin{mathpar}
+    \bfig
+    \qtriangle|amm|/->`->`->/<1000,600>[
+      \Box A \times \Box B`
+      \Box (A \times B)`
+      A \times B;
+      \m{A,B}`
+      \varepsilon_A \times \varepsilon_B`
+    \varepsilon_{A \times B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle|amm|/<-`->`=/<600,600>[
+      \Box 1`
+      1`
+      1;
+      \m{1}`
+      \varepsilon_1`]
+    \efig    
+  \end{mathpar}
+  \begin{mathpar}
+    \bfig
+    \square|amab|/`->``->/<1050,600>[
+      \Box A \times \Box B``
+      \Box^2A \times \Box ^2B`
+      \Box (\Box A \times \Box B);`
+      \delta_A \times \delta_B``
+      \m{\Box A,\Box B}]
+    \square(1050,0)|mmmb|/``->`->/<1050,600>[`
+      \Box (A \times B)`
+      \Box (\Box A \times \Box B)`
+      \Box ^2(A \times B);``
+      \delta_{A \times B}`
+      \Box \m{A,B}]
+    \morphism(0,600)<2100,0>[\Box A \times \Box B`\Box (A \times B);\m{A,B}]
+    \efig
+    \and
+    \bfig
+    \square<600,600>[
+      1`
+      \Box 1`
+      \Box 1`
+      \Box^21;
+      \m{1}`
+      \m{1}`
+      \delta_1`
+      \Box \m{1}]
+    \efig
+  \end{mathpar}
+  
+ Second $\Diamond$ is a  (monoidal) monad:
+   \begin{mathpar}
+    \bfig
+    \square|ammb|<600,600>[
+      \Diamond^3 A`
+      \Diamond^2A`
+      \Diamond^2A`
+      \Diamond A;
+      \mu_{\Diamond A}`
+      \Diamond \mu_A`
+      \mu_A`
+      \mu_A]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`<-`=`->`<-/<600,600>[
+      \Diamond A`
+      \Diamond A`
+      \Diamond ^2 A`
+      \Diamond A;`
+      \mu_A``
+      \eta_{\Diamond A}`
+      \Diamond \eta_A]
+    \efig
+  \end{mathpar}
+  And, as before,  $\mu$ and $\eta$ are monoidal natural transformations:
+   \begin{mathpar}
+    \bfig
+    \dtriangle|mmb|<1000,600>[
+      A \times B`
+      \Diamond A \times \Diamond B`
+      \Diamond (A \times B);
+      \eta_A \times \eta_B`
+      \eta_{A\times B}`
+      \n{A,B}]    
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`=`<-/<600,600>[
+      1`
+      \Diamond 1`
+      1;
+      \eta_1``
+      \n{1}]
+    \efig
+  \end{mathpar}
+  
+  \begin{mathpar}
+    \bfig
+    \square|ammm|/->`->``/<1050,600>[
+      \Diamond ^2 A \times\Diamond ^2 B`
+      \Diamond (\Diamond A\times\Diamond B)`
+      \Diamond A \times \Diamond B`;
+      \n{\Diamond A,\Diamond B}`
+      \mu_A \times \mu_B``]
+
+    \square(850,0)|ammm|/->``->`/<1050,600>[
+      \Diamond (\Diamond A\times\Diamond B)`
+      \Diamond ^2(A \times B)``
+      \Diamond (A \times B);
+      \Diamond \n{A,B}``
+      \mu_{A \times B}`]
+    \morphism(-200,0)<2100,0>[\Diamond A \times \Diamond B`\Diamond (A \times B);\n{A,B}]
+    \efig
+    \and
+    \bfig
+    \square|ammb|/->`->`->`<-/<600,600>[
+      1`
+      \Diamond 1`
+      \Diamond 1`
+      \Diamond^2 1;
+      \n{1}`
+      \n{1}`
+      \Diamond\n{1}`
+      \mu_1]
+    \efig
+  \end{mathpar}
+
+Finally, the interesting ones. The equations that mix the comonad with the monad structure:
+
+\begin{center}
+  \begin{math}
+    \begin{array}{lll}
+      \bfig
+      \square|amma|<850,600>[
+        \Box A \times \Diamond B`
+        \Diamond (A \times B)`
+        \Box A`
+        \Diamond\Box A;
+        \st{A}{B}`
+        \pi_1`
+        \Diamond\pi_1`
+        \eta_A]
+      \efig
+      & \quad &
+      \bfig
+      \qtriangle<850,600>[
+        \Box A \times \Diamond B`
+        \Diamond (\Box A \times B)`
+        \Diamond B;
+        \st{A}{B}`
+        \pi_2`
+        \Diamond\pi_2]
+      \efig
+    \end{array}
+  \end{math}
+  \\
+  \vspace{30px} 
+  \begin{math}
+    \bfig
+    \btriangle<800,500>[\Box A \pd B`\Box A \pd \Diamond B`\Diamond(\Box A \pd B);\id_{\Box A} \pd \eta_{B}`\eta_{\Box A \times B}`\st_{A,B}]
+    \place(200,200)[(2)]
+    \efig
+  \end{math}
+    \\
+    \vspace{30px}
+    %% \begin{math}
+    %%   \bfig
+    %%   \hSquares|aamaaaa|/->`->`->``=`->`->/[
+    %%     \Box A \pd \Diamond 1`
+    %%     \Diamond (\Box A \pd 1)`
+    %%     \Diamond\Box A`
+    %%     \Box A \pd 1`
+    %%     \Box A`
+    %%     \Diamond\Box A;\st{A}{1}`\Diamond(\rho_{\Box A})`\id_A \pd \varepsilon```\rho`\eta_{\Box A}]
+    %%   \efig
+    %% \end{math}  
+    \vspace{30px}
+    \begin{math}
+      \bfig
+        \vSquares|ammmmmm|/->`->`->```->`/[
+          \Box A \times (\Box B \times \Diamond C)`
+          \Box A \times \Diamond(\Box B \times C)`
+          (\Box A \times \Box B) \times \Diamond C`
+          \Diamond(\Box A \times (\Box B \times C))``
+          \Diamond((\Box A \times \Box B) \times C);
+          \id_{\Box A} \pd \st{B}{C}`
+          \alpha^{-1}`
+          \st{A}{\Box B \times C}```
+          \Diamond\alpha^{-1}`]
+        \morphism(1554,0)|m|/->/<0,-500>[`\Diamond(\Box(A \times B) \times C);\Diamond(\m{A,B} \times \id_C)]
+        
+        \morphism(0,500)|m|/->/<0,-1000>[`\Box(A \times B) \times \Diamond C;\m{A,B} \times \id_{\Diamond C}]
+
+        \morphism(350,-500)|a|/->/<800,0>[`;\st{A \times B}{C}]
+        \place(800,350)[(4)]
+        \efig
+    \end{math}
+    \\
+    \vspace{30px}
+    \begin{math}
+      \bfig
+      \vSquares|ammmmma|/->`->```->``->/[
+        \Box A \times \Diamond\Diamond B`
+        \Box A \times \Diamond B`
+        \Diamond(\Box A \times \Diamond B)``
+        \Diamond\Diamond(\Box A \times B)`
+        \Diamond(\Box A \times B);
+        \id_{\Box A} \pd \mu_{B}`
+        \st{A}{\Diamond B}```
+        \Diamond(\st{A}{B})``
+        \mu_{\Box A \pd B}]
+      \morphism(1150,1000)|m|<0,-920>[`;\st{A}{B}]
+      \place(600,500)[(5)]
+      \efig
+    \end{math}
+    \\
+    \vspace{30px}
+    \begin{math}
+      \bfig
+      \hSquares|aamamaa|/``->``->`->`->/[
+        \Box A \times \Diamond B``
+        \Diamond B \times \Box A`
+        \Diamond B \times \Box A`
+        \Diamond B \times \Diamond \Box A`
+        \Diamond (B \times \Box A);``
+        \beta``
+        \Diamond \beta`
+        \id_{\Diamond B} \pd \eta_{\Box A}`
+        \mathsf{n}_{B,\Box A}]
+      \morphism(200,500)<1883,0>[`;\st{A}{B}]
+      \place(1100,250)[(6)]
+      \efig
+    \end{math}
+    \\
+    \vspace{30px}
+    \begin{math}
+      \bfig
+      \hSquares|aamamaa|/``->``->`->`->/[
+        \Box A \times \Diamond B``
+        \Diamond(\Box A \times B)`
+        A \times \Diamond B`
+        \Diamond A \times \Diamond B`
+        \Diamond (A \times B);``
+        \varepsilon_A \times \id_{\Diamond B}``
+        \Diamond(\varepsilon_A \times \id_{B})`
+        \eta_A \times \id_{\Diamond B}`
+        \m{A,B}]
+      \morphism(200,500)<1605,0>[`;\st{A}{B}]
+      \place(1000,250)[(7)]
+      \efig
+    \end{math}        
+  \end{center}
+\end{definition}
+
+\begin{lemma}
+  \label{lemma:alternate-mix-diagrams}
+  The following diagrams are provable from the diagrams of the
+  previous definition:
+  \begin{mathpar}
+      \bfig
+      \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
+      \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
+      \place(500,500)[(1)]                  
+      \efig
+      \and
+      \bfig
+      \hSquares|aamaaaa|/->`->`->```->`/[
+        \Box A \times 1`
+        \Box A \times \Diamond 1`
+        \Diamond (\Box A \times 1)`
+        \Box A`
+        A`
+        ;
+        \id_{\Box A} \times \eta`
+        \st{A}{1}`
+        \rho```
+        \varepsilon`]
+      \qtriangle(1944,0)/->``->/<800,500>[\Diamond (\Box A \times 1)`\Diamond\Box A`\Diamond A;\Diamond \rho``\Diamond\varepsilon]
+      \morphism(1040,0)/->/<1630,0>[`;\eta_A]
+      \place(1350,250)[(3)]
+      \efig
+  \end{mathpar}
+\end{lemma}
+
 
 Seven commuting diagrams is quite a lot of structure to require. We share the reader's feeling that we should be able to provide something simpler   and shall proceed to do so. But first we discuss why these seven commuting diagrams seem sensible.
 
