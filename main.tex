@@ -359,11 +359,11 @@ Thus we recap that to model a necessity-like S4 operator we will need a (symmetr
     \efig
     \and
     \bfig
-    \Vtriangle|amm|/->`<-`=/<600,600>[
+    \Vtriangle|amm|/<-`->`=/<600,600>[
       \Box 1`
       1`
       1;
-      \m{I}`
+      \m{1}`
       \varepsilon_1`]
     \efig    
   \end{mathpar}
@@ -376,7 +376,7 @@ Thus we recap that to model a necessity-like S4 operator we will need a (symmetr
       \delta_A \times \delta_B``
       \m{\Box A,\Box B}]
     \square(1050,0)|mmmb|/``->`->/<1050,600>[`
-      \Box (A \otimes B)`
+      \Box (A \times B)`
       \Box (\Box A \times \Box B)`
       \Box ^2(A \times B);``
       \delta_{A \times B}`
@@ -397,9 +397,9 @@ Thus we recap that to model a necessity-like S4 operator we will need a (symmetr
     \efig
   \end{mathpar}
   \end{definition}
-  Note that the two first diagrams are the definition of a comonad. The two second diagrams are the interaction of the natural transformation $\varepsilon$ with the monoidal structure $m$ (in particular they show that $\Box 1$ and $1$ are equiprovable). The third last two diagrams are the interactions of the comultiplication $\delta$ with the monoidal structure $m$.
+  Note that the two first diagrams are the definition of a comonad. The two second diagrams are the interaction of the natural transformation $\varepsilon$ with the monoidal structure $m$ (in particular they show that $\Box 1$ and $1$ are equiprovable). The  last two diagrams are the interaction of the comultiplication $\delta$ with the monoidal structure $m$.
   
-We also need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then. This structure is interesting, as it is much less symmetric than the ones we have dealt with so far.The strength
+We also need to recall the notion of a functor-strong monad. In particular we are interested in $\Box$-strong monads. The notion was introduced in \cite{CS4}, but not much used since then. This structure is interesting, as it is much less symmetric than the ones we have dealt with, so far. The strength natural transformation $\st{A}{B}$ has to deal with both $\Box$ and $\Diamond$ structures.
 
 \begin{definition}[$\Box$-strong monad]
   \label{def:comonad-strong-monad}
@@ -410,8 +410,164 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
   \[
   \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
   \]
-  subject to the following coherence conditions:
-  (still need the diagrams for a monad here)
+  subject to the following  conditions, described by the diagrams.
+  
+  First $\Box$ is a monoidal comonad. Hence (as before) we have six diagrams. Two for $\Box$ comonad:
+  \begin{mathpar}
+    \bfig
+    \square|amma|<600,600>[
+      \Box A`
+      \Box ^2A`
+      \Box ^2A`
+      \Box ^3A;
+      \delta_A`
+      \delta_A`
+      \Box\delta_A`
+      \delta_{\Box A}]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`->`=`<-`->/<600,600>[
+      \Box A`
+      \Box A`
+      \Box^2 A`
+      \Box A;`
+      \delta_A``
+      \varepsilon_{\Box A}`
+      \Box\varepsilon_A]
+    \efig
+  \end{mathpar}
+  And four for $\varepsilon$ and $\delta$ as symmetric monoidal natural transformations:
+  \begin{mathpar}
+    \bfig
+    \qtriangle|amm|/->`->`->/<1000,600>[
+      \Box A \times \Box B`
+      \Box (A \times B)`
+      A \times B;
+      \m{A,B}`
+      \varepsilon_A \times \varepsilon_B`
+    \varepsilon_{A \times B}]
+    \efig
+    \and
+    \bfig
+    \Vtriangle|amm|/<-`->`=/<600,600>[
+      \Box 1`
+      1`
+      1;
+      \m{1}`
+      \varepsilon_1`]
+    \efig    
+  \end{mathpar}
+  \begin{mathpar}
+    \bfig
+    \square|amab|/`->``->/<1050,600>[
+      \Box A \times \Box B``
+      \Box^2A \times \Box ^2B`
+      \Box (\Box A \times \Box B);`
+      \delta_A \times \delta_B``
+      \m{\Box A,\Box B}]
+    \square(1050,0)|mmmb|/``->`->/<1050,600>[`
+      \Box (A \times B)`
+      \Box (\Box A \times \Box B)`
+      \Box ^2(A \times B);``
+      \delta_{A \times B}`
+      \Box \m{A,B}]
+    \morphism(0,600)<2100,0>[\Box A \times \Box B`\Box (A \times B);\m{A,B}]
+    \efig
+    \and
+    \bfig
+    \square<600,600>[
+      1`
+      \Box 1`
+      \Box 1`
+      \Box^21;
+      \m{1}`
+      \m{1}`
+      \delta_1`
+      \Box \m{1}]
+    \efig
+  \end{mathpar}
+  
+ Second $\Diamond$ is a  (monoidal) monad:
+   \begin{mathpar}
+    \bfig
+    \square|ammb|<600,600>[
+      \Diamond^3 A`
+      \Diamond^2A`
+      \Diamond^2A`
+      \Diamond A;
+      \mu_{\Diamond A}`
+      \Diamond \mu_A`
+      \mu_A`
+      \mu_A]
+    \efig
+    \and
+    \bfig
+    \Atrianglepair/=`<-`=`->`<-/<600,600>[
+      \Diamond A`
+      \Diamond A`
+      \Diamond ^2 A`
+      \Diamond A;`
+      \mu_A``
+      \eta_{\Diamond A}`
+      \Diamond \eta_A]
+    \efig
+  \end{mathpar}
+  And, as before,  $\mu$ and $\eta$ are monoidal natural transformations:
+   \begin{mathpar}
+    \bfig
+    \dtriangle|mmb|<1000,600>[
+      A \times B`
+      \Diamond A \times \Diamond B`
+      \Diamond (A \times B);
+      \eta_A \times \eta_B`
+      \eta_{A\times B}`
+      \n{A,B}]    
+    \efig
+    \and
+    \bfig
+    \Vtriangle/->`=`<-/<600,600>[
+      1`
+      \Diamond 1`
+      1;
+      \eta_1``
+      \n{1}]
+    \efig
+  \end{mathpar}
+  
+  \begin{mathpar}
+    \bfig
+    \square|ammm|/->`->``/<1050,600>[
+      \Diamond ^2 A \times\Diamond ^2 B`
+      \Diamond (\Diamond A\times\Diamond B)`
+      \Diamond A \times \Diamond B`;
+      \n{\Diamond A,\Diamond B}`
+      \mu_A \times \mu_B``]
+
+    \square(850,0)|ammm|/->``->`/<1050,600>[
+      \Diamond (\Diamond A\times\Diamond B)`
+      \Diamond ^2(A \times B)``
+      \Diamond (A \times B);
+      \Diamond \n{A,B}``
+      \mu_{A \times B}`]
+    \morphism(-200,0)<2100,0>[\Diamond A \times \Diamond B`\Diamond (A \times B);\n{A,B}]
+    \efig
+    \and
+    \bfig
+    \square|ammb|/->`->`->`<-/<600,600>[
+      1`
+      \Diamond 1`
+      \Diamond 1`
+      \Diamond^2 1;
+      \n{1}`
+      \n{1}`
+      \Diamond\n{1}`
+      \mu_1]
+    \efig
+  \end{mathpar}
+
+Finally, the interesting ones. The equations that mix the comonad with the monad structure:
+
   \begin{center}
     \begin{math}      
       \begin{array}{lllll}
@@ -423,7 +579,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
       & \quad & 
       \bfig
       \btriangle<800,500>[\Box A \pd B`\Box A \pd \Diamond B`\Diamond(\Box A \pd B);\id_{\Box A} \pd \eta_{B}`\eta_{\Box A \times B}`\st_{A,B}]
-      \place(200,200)[2]
+      \place(200,200)[(2)]
       \efig
       \end{array}      
     \end{math}
@@ -455,7 +611,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
         \varepsilon`]
       \qtriangle(1944,0)/->``->/<800,500>[\Diamond (\Box A \times 1)`\Diamond\Box A`\Diamond A;\Diamond \rho``\Diamond\varepsilon]
       \morphism(1040,0)/->/<1630,0>[`;\eta_A]
-      \place(1350,250)[3]
+      \place(1350,250)[(3)]
       \efig
     \end{math}
     \\
@@ -477,7 +633,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
         \morphism(0,500)|m|/->/<0,-1000>[`\Box(A \times B) \times \Diamond C;\m{A,B} \times \id_{\Diamond C}]
 
         \morphism(350,-500)|a|/->/<800,0>[`;\st{A \times B}{C}]
-        \place(800,350)[4]
+        \place(800,350)[(4)]
         \efig
     \end{math}
     \\
@@ -495,7 +651,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
         \Diamond(\st{A}{B})``
         \mu_{\Box A \pd B}]
       \morphism(1150,1000)|m|<0,-920>[`;\st{A}{B}]
-      \place(600,500)[5]
+      \place(600,500)[(5)]
       \efig
     \end{math}
     \\
@@ -513,7 +669,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
         \id_{\Diamond B} \pd \eta_{\Box A}`
         \mathsf{n}_{B,\Box A}]
       \morphism(200,500)<1883,0>[`;\st{A}{B}]
-      \place(1100,250)[6]
+      \place(1100,250)[(6)]
       \efig
     \end{math}
     \\
@@ -531,7 +687,7 @@ We also need to recall the notion of a functor-strong monad. In particular we ar
         \eta_A \times \id_{\Diamond B}`
         \m{A,B}]
       \morphism(200,500)<1605,0>[`;\st{A}{B}]
-      \place(1000,250)[7]
+      \place(1000,250)[(7)]
       \efig
     \end{math}        
   \end{center}
