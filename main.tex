@@ -1053,6 +1053,47 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 
 %\textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
 
+\textit{The following theorem now depends on these results.  Perhaps
+  we should have a section on product functors in the main text?}
+
+\begin{lemma}[Symmetric Monoidal Adjunctions have Strong Left-adjoints]
+  \label{lemma:product_functors_strong}
+  If $(F,m) \dashv (G,n) : \cat{C}_1 \mto \cat{C}_2$ is any symmetric
+  monoidal adjunction, then $F$ is strong.
+\end{lemma}
+\begin{proof}
+  In \cite{benton1995} Benton shows that this result holds for an LNL
+  model, but his exact proof works for the case when both categories
+  in the adjunction are symmetric monoidal.  
+\end{proof}
+
+\begin{lemma}[Strong Symmetric Monoidal Functors are Product Functors]
+  \label{lemma:strong-symmetric_monoidal_functors_are_product_functors}
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a strong symmetric monoidal
+  functor between cartesian-closed categories, then $(F,m)$ is a
+  product functor.
+\end{lemma}
+\begin{proof}
+  See Appendix~\ref{sec:cartesian_closed_categories_and_symmetric_monoidal_adjunctions}.
+\end{proof}
+
+\begin{lemma}[Symmetric Monoidal Adjunctions and Product Functors]
+  \label{lemma:adjoint-CCC-prod-func}
+  Suppose $(F,m) : \cat{C}_1 \to \cat{C}_2$ and $(G,n) : \cat{C}_2 \to
+  \cat{C}_1$ are symmetric monoidal functors between cartesian-closed
+  categories, and $F \vdash G$ is a symmetric monoidal adjunction.
+  Then $(F,m)$ and $(G,n)$ are product functors.
+\end{lemma}
+\begin{proof}
+  We know from Lemma~\ref{lemma:product_functors_strong} $(F,m)$ is
+  strong, and hence, by
+  Lemma~\ref{lemma:strong-symmetric_monoidal_functors_are_product_functors}
+  it is a product functor.
+
+  Now we must show that $(G,n)$ is strong, but it is a right adjoint,
+  and hence, preserves all limits.  Thus, it is strong.
+\end{proof}
+
 \begin{theorem}
   An adjoint CS4 categorical model is a modal category.
 \end{theorem}
@@ -1768,6 +1809,29 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
 \end{proof}
 \fi 
 
+\begin{lemma}[Modal Isomorphisms]
+  \label{lemma:modal_isomorphisms}
+  In any adjoint CS4 categorical model the following isomorphisms hold:
+  \[
+  \begin{array}{ccccccc}
+    \begin{array}{lll}
+      \Box 1 & \cong & 1\\
+      \Diamond 1 & \cong & 1\\    
+    \end{array}
+    & \quad &
+    \begin{array}{lll}
+      \Box (A \times B) & \cong & \Box A \times \Box B\\
+      \Diamond (A \times B) & \cong & \Diamond A \times \Diamond B\\    
+    \end{array}
+  \end{array}
+  \]
+\end{lemma}
+\begin{proof}
+  Suppose $\cat{C} : (F,m) \dashv (G,n) : \cat{C}$ is the adjunction
+  in the adjoint CS4 categorical model.  Then $\Box = GF$ and
+  $\Diamond = FG$.  We know that $(F,m)$ and $(G,n)$ are both product
+  functors and strong.  Thus, we obtain our required isomorphisms.
+\end{proof}
 
 %\textit{If we're lucky, I'm hoping we also have}
 Now we would like to, following Benton's lead, 
