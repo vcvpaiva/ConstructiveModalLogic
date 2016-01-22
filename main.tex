@@ -867,7 +867,7 @@ Finally, the interesting ones. The equations that mix the comonad with the monad
       \bfig
       \square|amma|<850,600>[
         \Box A \times \Diamond B`
-        \Diamond (A \times B)`
+        \Diamond (\Box A \times B)`
         \Box A`
         \Diamond\Box A;
         \st{A}{B}`
@@ -1098,7 +1098,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   An adjoint CS4 categorical model is a modal category.
 \end{theorem}
 
-\iffalse
+%% \iffalse
 \begin{proof}
   We must show that given the definition of an adjoint CS4 categorical
   model (Definition~\ref{def:CS4-single-adjoint-cat-model}) we can
@@ -1344,75 +1344,162 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   Next we must show that all of the appropriate diagrams given in
   Definition~\ref{def:comonad-strong-monad} commute.
   \begin{itemize}
-  \item[] \textit{Case 1. the object 1 behaves as the unit for products}
-    $$
+  \item[] \textit{Case 1. the first projection interacts with $\Diamond$:}
+    \[
     \bfig
-    \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
-    \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
+    \square|amma|<850,600>[
+      \Box A \times \Diamond B`
+      \Diamond (\Box A \times B)`
+      \Box A`
+      \Diamond\Box A;
+      \st{A}{B}`
+      \pi_1`
+      \Diamond\pi_1`
+      \eta_A]
     \efig
-    $$
-    This diagram commutes by commutativity of the following diagram:
-    %% Equational version:
-    %% \begin{center}
-    %%   \begin{math}
-    %%     \begin{array}{rllllllll}
-    %%       & & \st{1}{A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
-    %%       \text{(Definition of $\mathsf{st}$)}
-    %%       & = & (\eta_{\Box 1} \times \id_{\Diamond A});\p{\Box 1,\Diamond A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
-    %%       \text{(Naturality of $\mathsf{p}$)}
-    %%       & = & (\eta_{\Box 1} \times \id_{\Diamond A});(\Diamond \varepsilon_1 \times \Diamond\id_A);\p{1,A};\Diamond\lambda_A\\
-    %%       \text{(Functoriality of $\times$)}
-    %%       & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\Diamond\id_A));\p{1,A};\Diamond\lambda_A\\
-    %%       & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
-    %%       \text{(Naturality of $\eta$)}
-    %%       & = & ((\varepsilon_1;\eta_{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
-    %%       \text{(Definition of $\mathsf{p}$)}
-    %%       & = & ((\varepsilon_1;\p{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
-    %%       \text{(Functoriality of $\times$)}
-    %%       & = & (\varepsilon_1 \times \id_{\Diamond A});(\p{1} \times \id_{\Diamond A});\p{1,A};\Diamond\lambda_A\\
-    %%       \text{($\Diamond$ is Symmetric Monoidal)}
-    %%       & = & (\varepsilon_1 \times \id_{\Diamond A});\lambda_{\Diamond A}\\
-    %%     \end{array}
-    %%   \end{math}
-    %% \end{center}
-    $$
+    \]
+    This diagrams commutes, because the following diagram commutes:
+    \[
     \bfig
-    \square|amma|<1000,500>[
-      \Diamond\Box 1 \times \Diamond A`
-      \Diamond (\Box 1 \times A)`
-      \Diamond 1 \times \Diamond A`
-      \Diamond (1 \times A);
-      \p{\Box 1,A}`
-      \Diamond \varepsilon_1 \times \id_{\Diamond A}`
-      \Diamond (\varepsilon_1 \times \id_A)`
-      \p{1,A}]
+    \square|ammm|/->`->``/<1500,2000>[
+      \Box A \times \Diamond B`
+      \Diamond\Box A \times \Diamond B`
+      \Box A`;
+      \eta_{\Box A} \times \id_{\Diamond B}`
+      \pi_1``]
 
-    \square(-1000,0)|amma|<1000,500>[
-      \Box 1 \times \Diamond A`
-      \Diamond\Box 1 \times \Diamond A`
-      1 \times \Diamond A`
-      \Diamond 1 \times \Diamond A;
-      \eta_{\Box 1} \times \id_{\Diamond A}`
-      \varepsilon_1 \times \id_{\Diamond A}`
-      \Diamond \varepsilon_1 \times \id_{\Diamond A}`
-      (\p{1} = \eta_1) \times \id_{\Diamond A}]
+    \square(1500,0)|ammm|/->``->`/<1500,2000>[
+      \Diamond\Box A \times \Diamond B`
+      \Diamond (\Box A \times B)``
+      \Diamond\Box A;
+      \p{\Box A,B}``
+      \Diamond\pi_1`]
 
-    \qtriangle(-1000,-500)|mmm|/`->`->/<2000,500>[
-      1 \times \Diamond A`
-      \Diamond (1 \times A)`
-      \Diamond A;`
-      \lambda_{\Diamond A}`
-      \Diamond\lambda_A]
+    \morphism<3000,0>[\Box A`\Diamond\Box A;\eta_{\Box A}]
 
-    \place(500,250)[1]
-    \place(-500,250)[2]
-    \place(500,-200)[3]
-    \efig
-    $$
-    \noindent
-    Diagram 1 commutes by naturality of $\mathsf{p}$, diagram 2
-    commutes by naturality of $\eta$, and diagram 3 commutes because
-    $\Diamond$ is a symmetric monoidal functor.
+    \morphism(484,1500)<1000,0>[
+      \Box A \times 1`
+      \Diamond\Box A \times \Diamond 1;
+      \eta_{\Box A} \times \eta_1]
+
+    \morphism(1484,1500)<700,-500>[
+      \Diamond\Box A \times \Diamond 1`
+      \Diamond(\Box A \times 1);
+      \p{\Box A,1}]
+
+    \morphism(484,1500)|m|/{@{>}@/_1em/}/<1700,-500>[
+      \Box A \times 1`
+      \Diamond(\Box A \times 1);
+      \eta_{\Box A \times 1}]
+
+    \morphism(484,1500)|m|<700,-800>[
+      \Box A \times 1`
+      \Box A;
+      \pi_1]
+
+    \morphism(0,2000)|m|<484,-500>[
+      \Box A \times \Diamond B`
+      \Box A \times 1;
+      \id_{\Box A} \times \t_{\Diamond B}]
+
+    \morphism(1500,2000)|m|<-17,-500>[
+      \Diamond\Box A \times \Diamond B`
+      \Diamond\Box A \times \Diamond 1;
+      \id_{\Diamond\Box A} \times \Diamond\t_{B}]
+
+    \morphism(3000,2000)|m|<-815,-1000>[
+      \Diamond(\Box A \times B)`
+      \Diamond(\Box A \times 1);
+      \Diamond (id_{\Box A} \times \t_{B})]
+
+    \morphism(2184,1000)|m|<816,-1000>[
+      \Diamond(\Box A \times 1)`
+      \Diamond\Box A;
+      \Diamond\pi_1]
+
+    \morphism(1184,700)|m|<1816,-700>[
+      \Box A`
+      \Diamond\Box A;
+      \eta_{\Box A}]
+    
+    \place(2700,1000)[1]
+    \place(2150,1700)[2]
+    \place(800,1750)[3]
+    \place(1300,1300)[4]
+    \place(1800,800)[5]
+    \place(500,500)[6]
+    \efig    
+    \]
+
+    %% \item[] \textit{Case 1. the object 1 behaves as the unit for products}
+  %%   $$
+  %%   \bfig
+  %%   \vSquares|ammmmma|/>``>```>`>/[\Box 1 \times \Diamond A`\Diamond (\Box 1 \times A)``\Diamond(1 \times A)`1 \times \Diamond A`\Diamond A;\st{1}{A}``\Diamond(\varepsilon_1 \times \id_A)```\Diamond\lambda`\lambda]
+  %%   \morphism(0,1000)|m|/->/<0,-950>[`;\varepsilon_1 \times \id_{\Diamond A}]
+  %%   \efig
+  %%   $$
+  %%   This diagram commutes by commutativity of the following diagram:
+  %%   %% Equational version:
+  %%   %% \begin{center}
+  %%   %%   \begin{math}
+  %%   %%     \begin{array}{rllllllll}
+  %%   %%       & & \st{1}{A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
+  %%   %%       \text{(Definition of $\mathsf{st}$)}
+  %%   %%       & = & (\eta_{\Box 1} \times \id_{\Diamond A});\p{\Box 1,\Diamond A};\Diamond (\varepsilon_1 \times \id_A);\Diamond\lambda_A\\
+  %%   %%       \text{(Naturality of $\mathsf{p}$)}
+  %%   %%       & = & (\eta_{\Box 1} \times \id_{\Diamond A});(\Diamond \varepsilon_1 \times \Diamond\id_A);\p{1,A};\Diamond\lambda_A\\
+  %%   %%       \text{(Functoriality of $\times$)}
+  %%   %%       & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\Diamond\id_A));\p{1,A};\Diamond\lambda_A\\
+  %%   %%       & = & ((\eta_{\Box 1};\Diamond \varepsilon_1) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+  %%   %%       \text{(Naturality of $\eta$)}
+  %%   %%       & = & ((\varepsilon_1;\eta_{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+  %%   %%       \text{(Definition of $\mathsf{p}$)}
+  %%   %%       & = & ((\varepsilon_1;\p{1}) \times (\id_{\Diamond A};\id_{\Diamond A}));\p{1,A};\Diamond\lambda_A\\
+  %%   %%       \text{(Functoriality of $\times$)}
+  %%   %%       & = & (\varepsilon_1 \times \id_{\Diamond A});(\p{1} \times \id_{\Diamond A});\p{1,A};\Diamond\lambda_A\\
+  %%   %%       \text{($\Diamond$ is Symmetric Monoidal)}
+  %%   %%       & = & (\varepsilon_1 \times \id_{\Diamond A});\lambda_{\Diamond A}\\
+  %%   %%     \end{array}
+  %%   %%   \end{math}
+  %%   %% \end{center}
+  %%   $$
+  %%   \bfig
+  %%   \square|amma|<1000,500>[
+  %%     \Diamond\Box 1 \times \Diamond A`
+  %%     \Diamond (\Box 1 \times A)`
+  %%     \Diamond 1 \times \Diamond A`
+  %%     \Diamond (1 \times A);
+  %%     \p{\Box 1,A}`
+  %%     \Diamond \varepsilon_1 \times \id_{\Diamond A}`
+  %%     \Diamond (\varepsilon_1 \times \id_A)`
+  %%     \p{1,A}]
+
+  %%   \square(-1000,0)|amma|<1000,500>[
+  %%     \Box 1 \times \Diamond A`
+  %%     \Diamond\Box 1 \times \Diamond A`
+  %%     1 \times \Diamond A`
+  %%     \Diamond 1 \times \Diamond A;
+  %%     \eta_{\Box 1} \times \id_{\Diamond A}`
+  %%     \varepsilon_1 \times \id_{\Diamond A}`
+  %%     \Diamond \varepsilon_1 \times \id_{\Diamond A}`
+  %%     (\p{1} = \eta_1) \times \id_{\Diamond A}]
+
+  %%   \qtriangle(-1000,-500)|mmm|/`->`->/<2000,500>[
+  %%     1 \times \Diamond A`
+  %%     \Diamond (1 \times A)`
+  %%     \Diamond A;`
+  %%     \lambda_{\Diamond A}`
+  %%     \Diamond\lambda_A]
+
+  %%   \place(500,250)[1]
+  %%   \place(-500,250)[2]
+  %%   \place(500,-200)[3]
+  %%   \efig
+  %%   $$
+  %%   \noindent
+  %%   Diagram 1 commutes by naturality of $\mathsf{p}$, diagram 2
+  %%   commutes by naturality of $\eta$, and diagram 3 commutes because
+  %%   $\Diamond$ is a symmetric monoidal functor.
 
   \item[] \textit{Case 2. unit $\eta$ of the monad and strength interact well, $\Box  A $ is a parameter}
     $$
@@ -1453,48 +1540,48 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     Diagram 1 clearly commutes, and diagram 2 commutes because $\eta$
     is a symmetric monoidal natural transformation.
     
-  \item[] \textit{Case 3. co-unit of the comonad $\varepsilon$ and unit of the monad $\eta$ interact well?}
-    $$
-    \bfig
-    \hSquares|aamaaaa|/->`->`->```->`/[
-      \Box A \times 1`
-      \Box A \times \Diamond 1`
-      \Diamond (\Box A \times 1)`
-      \Box A`
-      A`
-      ;
-      \id_{\Box A} \times \eta_1`
-      \st{A}{1}`
-      \rho_{\Box A}```
-      \varepsilon_A`]
-    \qtriangle(1978,0)/->``->/<800,500>[\Diamond (\Box A \times 1)`\Diamond\Box A`\Diamond A;\Diamond \rho_{\Box A}``\Diamond\varepsilon_A]
-    \morphism(1060,0)/->/<1640,0>[`;\eta_A]
-    \efig
-    $$
-    \noindent
-    Recall that
-    $\st{A}{1} = (\eta_{\Box A} \pd \id_{\Diamond 1});\p{\Box A,1}$.
-    Now the previous diagram commutes, because the following diagram commutes:
-    $$
-    \bfig
-    \btriangle|mma|<1444,1000>[\Box A \pd 1`\Diamond\Box A \pd \Diamond 1`\Diamond(\Box A \pd 1);\eta_{\Box A} \pd \eta_1`\eta_{\Box A \pd 1}`\p{\Box A,1}]
-    \dtriangle(-1000,0)/->``->/<1000,1000>[\Box A \pd 1`\Box A \pd 1`\Diamond\Box A \pd \Diamond 1;\id_{\Box A} \pd \eta_1``\eta_{\Box A} \pd
-      \id_{\Diamond 1}]
+  %% \item[] \textit{Case 3. co-unit of the comonad $\varepsilon$ and unit of the monad $\eta$ interact well?}
+  %%   $$
+  %%   \bfig
+  %%   \hSquares|aamaaaa|/->`->`->```->`/[
+  %%     \Box A \times 1`
+  %%     \Box A \times \Diamond 1`
+  %%     \Diamond (\Box A \times 1)`
+  %%     \Box A`
+  %%     A`
+  %%     ;
+  %%     \id_{\Box A} \times \eta_1`
+  %%     \st{A}{1}`
+  %%     \rho_{\Box A}```
+  %%     \varepsilon_A`]
+  %%   \qtriangle(1978,0)/->``->/<800,500>[\Diamond (\Box A \times 1)`\Diamond\Box A`\Diamond A;\Diamond \rho_{\Box A}``\Diamond\varepsilon_A]
+  %%   \morphism(1060,0)/->/<1640,0>[`;\eta_A]
+  %%   \efig
+  %%   $$
+  %%   \noindent
+  %%   Recall that
+  %%   $\st{A}{1} = (\eta_{\Box A} \pd \id_{\Diamond 1});\p{\Box A,1}$.
+  %%   Now the previous diagram commutes, because the following diagram commutes:
+  %%   $$
+  %%   \bfig
+  %%   \btriangle|mma|<1444,1000>[\Box A \pd 1`\Diamond\Box A \pd \Diamond 1`\Diamond(\Box A \pd 1);\eta_{\Box A} \pd \eta_1`\eta_{\Box A \pd 1}`\p{\Box A,1}]
+  %%   \dtriangle(-1000,0)/->``->/<1000,1000>[\Box A \pd 1`\Box A \pd 1`\Diamond\Box A \pd \Diamond 1;\id_{\Box A} \pd \eta_1``\eta_{\Box A} \pd
+  %%     \id_{\Diamond 1}]
 
-    \hSquares(0,0)/->`->```<-``/<1000>[\Box A \pd 1`\Box A`\Diamond\Box A```\Diamond (\Box A \times 1);\rho_{\Box A}`\eta_{\Box A}```\Diamond (\rho_{\Box A})``]
+  %%   \hSquares(0,0)/->`->```<-``/<1000>[\Box A \pd 1`\Box A`\Diamond\Box A```\Diamond (\Box A \times 1);\rho_{\Box A}`\eta_{\Box A}```\Diamond (\rho_{\Box A})``]
 
-    \square(746,1000)/->`<-`<-`/<698,500>[A`\Diamond A`\Box A`\Diamond\Box A;\eta_A`\varepsilon_A`\Diamond\varepsilon_A`]
+  %%   \square(746,1000)/->`<-`<-`/<698,500>[A`\Diamond A`\Box A`\Diamond\Box A;\eta_A`\varepsilon_A`\Diamond\varepsilon_A`]
 
-    \place(-400,300)[1]
-    \place(400,300)[2]
-    \place(1100,700)[3]
-    \place(1100,1250)[4]
-    \efig
-    $$
-    \noindent
-    Diagram 1 commutes by functorality of $\times$, diagram 2 commutes
-    because $\eta$ is a monoidal natural transformation, and diagrams
-    3 and 4 commute by naturality of $\eta$.
+  %%   \place(-400,300)[1]
+  %%   \place(400,300)[2]
+  %%   \place(1100,700)[3]
+  %%   \place(1100,1250)[4]
+  %%   \efig
+  %%   $$
+  %%   \noindent
+  %%   Diagram 1 commutes by functorality of $\times$, diagram 2 commutes
+  %%   because $\eta$ is a monoidal natural transformation, and diagrams
+  %%   3 and 4 commute by naturality of $\eta$.
 
   \item[] \textit{Case 4. associativity $\alpha$ interacts with co-monoidicity of $\Box$}
     $$
@@ -1807,7 +1894,7 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
   \end{itemize}
 
 \end{proof}
-\fi 
+%% \fi 
 
 \begin{lemma}[Modal Isomorphisms]
   \label{lemma:modal_isomorphisms}
