@@ -303,13 +303,500 @@ A (symmetric) monoidal adjunction $F \dashv G$ is an adjunction  where both func
 Lastly, a (symmetric) monoidal comonad is a comonad $(\Box,\varepsilon, \delta, m)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the  diagrams in definition 11 in appendix A.{\todo{add diagrams there}}
 Similarly for a monoidal monad.
 
-If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the results corresponding to Benton's  in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in appendix B.
+If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the results corresponding to Benton's  in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in the next section.
 
-\subsection{Modelling Modal sstems}
-Now to model a constructive modal system like CS4 we first recall that to model simply intuitionistic propositions we need a category  $\cat{C}$ with products, coproducts and internal-homs, to model, respectively conjunctions, disjunctions and logic implications. 
+\subsection{Cartesian Closed Adjunctions}
+\label{subsec:cartesian_closed_adjunctions}
+Cartesian closed categories are particular types of symmetric monoidal
+closed categories where the tensor product is the cartesian product.
+The following lemma summarizes the symmetric monoidal structure in a
+cartesian closed category whose proof is well known.
+\begin{lemma}[CCCs are SMCs]
+  \label{lemma:CCC-is-SMC}
+  Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a cartesian closed
+  category.  Then the following defines the structure of a symmetric
+  monoidal category:
+  \[
+  \begin{array}{rll}
+    \lambda_A & = & \pi_2 : 1 \times A \mto A\\
+    \lambda^{-1}_A & = & \langle \t_A , \id_A  \rangle : A \mto 1 \times A\\
+    \\
+    \rho_A & = & \pi_1 : A \times 1 \mto A\\
+    \rho^{-1}_A & = & \langle \id_A , \t_A  \rangle : A \mto A \times 1\\
+    \\
+    \alpha_{A,B,C} & = & \langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle : (A \times B) \times C \mto A \times (B \times C)\\
+    \alpha^{-1}_{A,B,C} & = & \langle \id_A \times \pi_1, \pi_2;\pi_2 \rangle : A \times (B \times C) \mto (A \times B) \times C\\
+    \\
+    \beta_{A,B} & = & \langle \pi_2, \pi_1 \rangle : A \times B \mto B \times A\\
+  \end{array}
+  \]
+  Each of the above morphisms satisfy the appropriate diagrams.
+\end{lemma}
 
-In appendix B we discuss how to adapt the monoidal-like conditions to cartesian products.
-Thus we recap that to model a necessity-like S4 operator we will need a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on the cartesian closed category $\cat{C}$.
+As we can see from the previous definition cartesian products are less
+strict than arbitrary tensor products.  We can capitalize on this fact
+and obtain a simplified notion of symmetric monoidal functors between
+cartesian closed categories.
+
+\begin{definition}
+  \label{def:prod-functor}
+  A \textbf{product functor}, $(F,m) : \cat{C}_1 \to \cat{C}_2$,
+  between two cartesian categories consists of an ordinary functor $F
+  : \cat{C}_1 \to \cat{C}_2$, a natural transformation $m_{A,B} : FA
+  \times FB \mto F(A \times B)$, and a map $m_1 : 1 \to F1$ subject to the
+  following coherence diagrams:
+  \begin{mathpar}
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FA \times FB`
+      F(A \times B)`
+      FA;
+      m_{A.B}`
+      \pi_1`
+      F\pi_1]
+    \efig
+    \and
+    \bfig    
+    \btriangle|mmm|<1000,500>[
+      FA \times FB`
+      F(A \times B)`
+      FB;
+      m_{A.B}`
+      \pi_2`
+      F\pi_2]
+    \efig
+    \and
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FC`
+      FA \times FB`
+      F(A \times B);
+      \langle Ff, Fg \rangle`
+      F(\langle f, g \rangle)`
+      m_{A,B}]
+    \efig
+    \and
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FA`
+      1`
+      F1;
+      \t_{FA}`
+      F\t_{A}`
+      m_1]
+    \efig
+  \end{mathpar} 
+\end{definition}
+
+As is expected we can show that product functors are indeed symmetric
+monoidal functors.
+\begin{lemma}[Product Functors are Symmetric Monoidal]
+  \label{lemma:product_functors_are_symmetric_monoidal}
+  If $(F,m) : \cat{C}_1 \to \cat{C}_2$ is a product functor betwen cartesian categories, then
+  $(F,m)$ is a symmetric monoidal functor.
+\end{lemma}
+\iffalse
+\begin{proof}
+  We simply show that each diagram in the definition of symmetric
+  monoidal functor commutes.  This proof requires the following facts
+  about cartesian categories:
+  \[
+  \begin{array}{lll}
+    f;\langle g , h \rangle = \langle f;g, f;g \rangle & \text{(P1)}\\
+    \\
+    f \times g = \langle \pi_1;f , \pi_2;g \rangle & \text{(P2)}\\
+    \\
+    \langle f , g \rangle;(h \times i) = \langle f;h, g;i \rangle & \text{(P3)}\\
+    \\
+    (f \times g);\pi_1 = \pi_1;f & \text{(P4)}\\
+    \\
+    (f \times g);\pi_2 = \pi_2;g & \text{(P5)}\\
+  \end{array}
+  \]
+  \begin{itemize}
+  \item[] Associativity:\ \\
+    \[
+    \bfig
+    \vSquares|ammmmma|/->`->`->``->`->`->/[
+      (FA \times FB) \times FC`
+      FA \times (FB \times FC)`
+      F(A \times B) \times FC`
+      FA \times F(B \times C)`
+      F((A \times B) \times C)`
+      F(A \times (B \times C));
+      {\alpha}_{FA,FB,FC}`
+      m_{A,B} \times \id_{FC}`
+      \id_{FA} \times m_{B,C}``
+      m_{A \times B,C}`
+      m_{A,B \times C}`
+      F{\alpha}_{A,B,C}]
+    \efig
+    \]
+    In this case it is easiest to show that each side of the diagram
+    reduces to the same morphism.
+
+    First, the right side reduces in the following way:
+    \begin{center}
+      \begin{math}
+        \begin{array}{lll}
+          \alpha_{FA,FB,FC};(\id_{FA} \times m_{B,C});m_{A,B \times C} \\
+          \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, \pi_2 \times \id_{FC} \rangle;(\id_{FA} \times m_{B,C});m_{A,B \times C} & \text{(Definition)}\\
+          \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P3)}\\
+        \end{array}
+      \end{math}
+    \end{center}
+
+    Now the left side reduces to the same morphism:
+    \[
+    \scriptsize
+    \begin{array}{lll}
+      (m_{A,B} \times \id_{FC});m_{A \times B,C};\underline{F\alpha_{A,B,C}} \\
+    \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});m_{A \times B,C};\underline{F(\langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle)} & \text{(Definition)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\underline{m_{A \times B,C};\langle F\pi_1;F\pi_1, F(\pi_2 \times \id_C) \rangle;m_{A,B \times C}} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \underline{m_{A \times B,C};F\pi_1};F\pi_1, m_{A \times B,C};F(\pi_2 \times \id_C) \rangle;m_{A,B \times C} & \text{(P1)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, m_{A \times B,C};\underline{F(\pi_2 \times \id_C)} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, m_{A \times B,C};\underline{F(\langle \pi_1;\pi_2, \pi_2 \rangle)} \rangle;m_{A,B \times C} & \text{(P2)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \underline{m_{A \times B,C};\langle F\pi_1;F\pi_2, F\pi_2 \rangle};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \langle \underline{m_{A \times B,C};F\pi_1};F\pi_2, \underline{m_{A \times B,C};F\pi_2} \rangle;m_{B,C} \rangle;m_{A,B \times C} & \text{(P1)}\\
+   \,\,\,\,\,\,\,\,= (m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, \underline{\langle \pi_1;F\pi_2, \pi_2 \rangle};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= \underline{(m_{A,B} \times \id_{FC});\langle \pi_1;F\pi_1, (F\pi_2 \times \id_{FC});m_{B,C} \rangle};m_{A,B \times C} & \text{(P2)}\\
+   \,\,\,\,\,\,\,\,= \langle \underline{(m_{A,B} \times \id_{FC});\pi_1};F\pi_1, (m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P1)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\underline{m_{A,B};F\pi_1}, (m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(P4)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, \underline{(m_{A,B} \times \id_{FC});(F\pi_2 \times \id_{FC})};m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\underline{(m_{A,B};F\pi_2)} \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(Functor)}\\
+   \,\,\,\,\,\,\,\,= \langle \pi_1;\pi_1, (\pi_2 \times \id_{FC});m_{B,C} \rangle;m_{A,B \times C} & \text{(Product Functor)}\\
+    \end{array}
+    \]
+
+  \item[] Left Unitor:\\
+    \[
+    \bfig
+    \square|amma|/->`->`<-`->/<1000,500>[
+      1 \times FA`
+      FA`
+      F1 \times FA`
+      F(1 \times A);
+      {\lambda}_{FA}`
+      m_{1} \times \id_{FA}`
+      F{\lambda}_{A}`
+      m_{1,A}]
+    \efig
+    \]
+  
+  First, notice that $\lambda_{FA} = \pi_2$. We can show the following:
+  \[
+  \begin{array}{lll}
+    (m_1 \times \id_{FA});m_{1,A};F\lambda_A\\
+    \,\,\,\,\,\,\,\,= (m_1 \times \id_{FA});m_{1,A};F\pi_2 & \text{(Definition)}\\
+    \,\,\,\,\,\,\,\,= (m_1 \times \id_{FA});\pi_2 & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,= \pi_2 & \text{(P5)}\\
+  \end{array}
+  \]
+
+\item[] Right Unitor:\\
+  \[
+  \bfig
+  \square|amma|/->`->`<-`->/<1000,500>[
+    FA \times 1`
+    FA`
+    FA \times F1`
+    F(A \times 1);
+    {\rho}_{FA}`
+    \id_{FA} \times m_{1}`
+    F{\rho}_{A}`
+    m_{A,1}]
+  \efig
+  \]
+  \end{itemize}
+  This case is similar to the previous one:
+  \[
+  \begin{array}{lll}
+    (\id_{FA} \times m_1);m_{A,1};F\rho_A\\
+    \,\,\,\,\,\,\,\,=  (\id_{FA} \times m_1);m_{A,1};F\pi_1 & \text{(Definition)}\\
+    \,\,\,\,\,\,\,\,=  (\id_{FA} \times m_1);\pi_1 & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,=  \pi_1 & \text{(P4)}\\
+    \,\,\,\,\,\,\,\,=  \rho_{FA} & \text{(Definition)}\\
+  \end{array}
+  \]
+
+\item[] Symmetry:\\
+  \[
+  \bfig
+  \square|amma|/->`->`->`->/<1000,500>[
+    FA \times FB`
+    FB \times FA`
+    F(A \times B)`
+    F(B \times A);
+    {\beta}_{FA,FB}`
+    m_{A,B}`
+    m_{B,A}`
+    F{\beta}_{A,B}]
+  \efig
+  \]
+  First, notice that $\beta_{A,B} = \langle \pi_2, \pi_1 \rangle$.  Thus, we have the following:
+  \[
+  \begin{array}{lll}
+    \beta_{FA,FB};m_{B,A}\\
+    \,\,\,\,\,\,\,\,=  \langle \pi_2, \pi_1 \rangle;m_{B,A} & \text{(Definition)}\\
+    \,\,\,\,\,\,\,\,=  \langle m_{A,B};F\pi_2, m_{A,B};F\pi_1 \rangle;m_{B,A} & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,=  m_{A,B};\langle F\pi_2, F\pi_1 \rangle;m_{B,A} & \text{(P1)}\\
+    \,\,\,\,\,\,\,\,=  m_{A,B};F(\langle \pi_2, \pi_1 \rangle) & \text{(Product Functor)}\\
+    \,\,\,\,\,\,\,\,=  m_{A,B};F\beta_{A,B} & \text{(Definition)}\\
+  \end{array}
+  \]
+\end{proof}
+\fi
+\noindent
+However, it turns out that any product functor is a strong.
+\begin{lemma}[Product Functors Isomorphisms]
+  \label{lemma:product_functors_iso}
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a product functor, then
+  $m_{A,B} : FA \times FB \mto F(A \times B)$ and $m_1 : 1 \mto F1$ are
+  isomorphisms.
+\end{lemma}
+\iffalse
+\begin{proof}
+  Define $m^{-1}_1 = \t_{F 1} : F1 \mto 1$.  Then we have the following:
+  \[
+  \begin{array}{lll}
+    m_1;t_{F1} = \id_{1} & \text{(Uniqueness)}\\    
+  \end{array}
+  \]
+  and
+  \[
+  \begin{array}{llll}
+    t_{F1};m_1
+    & = & F\t_t & \text{(Product Functor)}\\
+    & = & F\id_t & \text{(Uniqueness)}\\
+    & = & \id_{Ft}     
+  \end{array}
+  \]
+
+  Now define $m^{-1}_{A,B} = \langle F\pi_1, F\pi_2 \rangle$.  Then we have the following:
+  \[
+  \begin{array}{llll}
+    m_{A,B};m^{-1}_{A,B}
+    & = & m_{A,B};\langle F\pi_1, F\pi_2 \rangle & \text{(Definition)}\\
+    & = & \langle m_{A,B};F\pi_1, m_{A,B};F\pi_2 \rangle & \text{(P1)}\\
+    & = & \langle \pi_1, \pi_2 \rangle & \text{(Product Functor)}\\
+    & = & \id_{FA \times FB} & \text{(Cartesian)}\\
+  \end{array}
+  \]
+  and
+  \[
+  \begin{array}{llll}
+    m^{-1}_{A,B};m_{A,B}
+    & = & \langle F\pi_1, F\pi_2 \rangle;m_{A,B} & \text{(Definition)}\\
+    & = & F(\langle \pi_1, \pi_2 \rangle) & \text{(Product Functor)}\\
+    & = & F(\id_{A \times B}) & \text{(Cartesian)}\\
+    & = & \id_{F(A \times B)}\\    
+  \end{array}
+  \]
+\end{proof}
+\fi
+\noindent
+A more surprising result is that any strong symmetric monoidal functor
+between cartesian closed categories is a product functor.
+\begin{lemma}[Strong Symmetric Monoidal Functors are Product Functors]
+  \label{lemma:strong-symmetric_monoidal_functors_are_product_functors}
+  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a strong symmetric monoidal
+  functor between cartesian closed categories, then $(F,m)$ is a
+  product functor.
+\end{lemma}
+\iffalse
+\begin{proof}
+  \ \\
+  \begin{itemize}
+  \item[] Case 1.\\
+    \[
+      \bfig
+      \btriangle|mmm|<1000,500>[
+        FA`
+        1`
+        F1;
+        \t_{FA}`
+        F\t_{A}`
+        m_1]
+      \efig
+    \]
+    This case follows because it must be the case that
+    \[F\t_{A};\m{1}^{-1} = \t_{FA} : FA \mto 1\]
+    by the uniqueness of the terminal arrow.
+    
+  \item[] Case 2.\\
+    \[
+      \bfig
+      \btriangle|mmm|<1000,500>[
+        FA \times FB`
+        F(A \times B)`
+        FA;
+        m_{A,B}`
+        \pi_1`
+        F\pi_1]
+      \efig
+      \]
+      First, $\rho_A = \pi_1 : A \times 1 \mto A$, and hence, we have the following:
+      \[
+      \begin{array}{lll}
+        (\id_A \times \t_A);\rho_1 & = & \langle \pi_1;\id_A, \pi_2;\t_A \rangle;\rho_1\\
+        & = & \langle \pi_1;\id_A, \pi_2;\t_A \rangle;\pi_1\\
+        & = & \pi_1 : A \times B \mto A
+      \end{array}
+      \]
+      This case follows by the following equational reasoning:
+      \[
+      \begin{array}{llllllll}
+        \m{A,B};F\pi_1
+        & = & \m{A,B};F(\id_A \times \t_B);F\rho_A & \text{(Above Equation)}\\
+        & = & (\id_{FA} \times F(\t_{B}));\m{A,1};F\rho_A & \text{(Naturality of $\m{}$)}\\
+        & = & (\id_{FA} \times \t_{FB};\m{1});\m{A,1};F\rho_A & \text{(Case 1)}\\
+        & = & \langle \id_{FA} \times \t_{FB} \rangle;(\id_{FA} \times \m{1});\m{A,1};F\rho_A & \text{(Cartesian)}\\
+        & = & \langle \id_{FA} \times \t_{FB} \rangle;\rho_{FA} & \text{($F$ is Symmetric Monoidal)}\\
+        & = & \langle \id_{FA} \times \t_{FB} \rangle;\pi_1 & \text{(Cartesian)}\\
+        & = & \pi_1 & \text{(Cartesian)}\\ 
+      \end{array}
+      \]
+    
+  \item[] Case 3.\\    
+    \[
+      \bfig    
+      \btriangle|mmm|<1000,500>[
+        FA \times FB`
+        F(A \times B)`
+        FB;
+        m_{A,B}`
+        \pi_2`
+        F\pi_2]
+      \efig
+    \]
+    First, $\lambda_A = \pi_2 : 1 \times A \mto A$, and hence, we have the following:
+      \[
+      \begin{array}{lll}
+        (\t_A \times \id_A);\lambda_A & = & \langle \pi_1;\t_A, \pi_2;\id_A \rangle;\lambda_A\\
+        & = & \langle \pi_1;\t_A, \pi_2;\id_A \rangle;\pi_2\\
+        & = & \pi_2 : A \times B \mto B
+      \end{array}
+      \]
+      This case follows from similar equational reasoning
+      as the previous case.      
+      
+  \item[] Case 4.\\    
+    \[
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FC`
+      FA \times FB`
+      F(A \times B);
+      \langle Ff, Fg \rangle`
+      F(\langle f, g \rangle)`
+      m_{A,B}]
+    \efig
+    \]
+    First, note that the following diagrams commute:
+    \[
+    \bfig
+    \Atrianglepair|mmmaa|/->`->`->`<-`->/<1000,600>[
+      FA \times FB`
+      FA`
+      F(A \times B)`
+      FB;
+      \pi_1`
+      \m{A,B}`
+      \pi_2`
+      F\pi_1`
+      F\pi_2]
+    \morphism(1000,1200)|m|<0,-600>[FC`FA \times FB;\langle Ff, Fg \rangle]
+    \morphism(1000,1200)/{@{>}@/^-1em/}/<-1000,-1200>[FC`FA;Ff]
+    \morphism(1000,1200)/{@{>}@/^1em/}/<1000,-1200>[FC`FB;Fg]
+    \place(600,600)[1]
+    \place(1400,600)[2]
+    \place(750,250)[3]
+    \place(1230,250)[4]
+    \efig
+    \]
+    Diagrams 1 and 2 hold by the universal mapping property for the
+    cartesian product, and diagrams three and four hold by cases two
+    and three of this proof.
+
+    We now have the following two bits of equational reasoning:
+    \[
+    \begin{array}{lllll}
+      F(\langle f,g \rangle);\m{A,B}^{-1};\pi_1
+      & = & F(\langle f,g \rangle);\m{A,B}^{-1};\m{A,B};F\pi_1 & \text{(Diagram 3)}\\
+      & = & F(\langle f,g \rangle);F\pi_1 & \text{}\\
+      & = & F(\langle f,g \rangle;\pi_1) & \text{}\\
+      & = & Ff & \text{(Cartesian)}\\
+    \end{array}      
+    \]
+    and
+    \[
+    \begin{array}{lllll}
+      F(\langle f,g \rangle);\m{A,B}^{-1};\pi_2
+      & = & F(\langle f,g \rangle);\m{A,B}^{-1};\m{A,B};F\pi_2 & \text{(Diagram 4)}\\
+      & = & F(\langle f,g \rangle);F\pi_2 & \text{}\\
+      & = & F(\langle f,g \rangle;\pi_2) & \text{}\\
+      & = & Fg & \text{(Cartesian)}\\
+    \end{array}      
+    \]
+    Thus, by the uniqueness of $\langle Ff,Fg \rangle$, due to the
+    universal mapping property of the cartesian product, it must be
+    the case that the following holds:
+    \[
+    F(\langle f,g \rangle);\m{A,B}^{-1} = \langle Ff,Fg \rangle
+    \]
+    Thus, $F(\langle f,g \rangle) = \langle Ff,Fg \rangle;\m{A,B}$.
+  \end{itemize}  
+\end{proof}
+\fi
+
+Benton showed that the left adjoint in any symmetric monoidal
+adjunction between a cartesian closed category and a symmetric
+monoidal closed category is strong \cite{benton1995}, but this result
+can be generalized to arbitrary symmetric monoidal categories.
+
+\begin{lemma}[Symmetric Monoidal Adjunctions have Strong Left-adjoints]
+  \label{lemma:product_functors_strong}
+  If $(F,m) \dashv (G,n) : \cat{C}_1 \mto \cat{C}_2$ is any symmetric
+  monoidal adjunction, then $F$ is strong.
+\end{lemma}
+\begin{proof}
+  In \cite{benton1995} Benton shows that this result holds for an LNL
+  model, but his exact proof works for the case when both categories
+  in the adjunction are symmetric monoidal.  
+\end{proof}
+
+Finally, using the previous result we can show that the left adjoint
+of any symmetric monoidal adjunction between cartesian closed
+categories is a product functor.  In addition, it turns out that we
+can exploit the fact that right adjoints preserve limits to obtain
+that both functors in the adjunction are in fact product functors.
+
+\begin{lemma}[Symmetric Monoidal Adjunctions and Product Functors]
+  \label{lemma:adjoint-CCC-prod-func}
+  Suppose $(F,m) : \cat{C}_1 \to \cat{C}_2$ and $(G,n) : \cat{C}_2 \to
+  \cat{C}_1$ are symmetric monoidal functors between cartesian-closed
+  categories, and $F \vdash G$ is a symmetric monoidal adjunction.
+  Then $(F,m)$ and $(G,n)$ are product functors.
+\end{lemma}
+\begin{proof}
+  We know from Lemma~\ref{lemma:product_functors_strong} $(F,m)$ is
+  strong, and hence, by
+  Lemma~\ref{lemma:strong-symmetric_monoidal_functors_are_product_functors}
+  it is a product functor.  Now we must show that $(G,n)$ is strong,
+  but it is a right adjoint, and hence, preserves all limits.  Thus,
+  it is strong.
+\end{proof}
+% subsection cartesian_closed_adjunctions (end)
+
+\subsection{Modeling Modal Systems}
+Now to model a constructive modal system like CS4 we first recall that
+to model simply intuitionistic propositions we need a category
+$\cat{C}$ with products, coproducts and internal-homs, to model,
+respectively conjunctions, disjunctions and logic implications.
+
+Thus we recap that to model a necessity-like S4 operator we will need
+a (symmetric monoidal) comonad $(\Box,\varepsilon, \delta, m)$ on the
+cartesian closed category $\cat{C}$.
 
 \begin{definition}[monoidal comonad]
   \label{def:monoidal comonad}
@@ -759,47 +1246,6 @@ Following Benton's description in page 5 of \cite{benton1995}, we recall (his le
 Now we need to look at the monad functor in $\cat{C}$ arising from the adjunction $J \dashv H$, which we will call $\Diamond = HJ$ for obvious reasons. We need to show that $\Diamond$ is a monoidal monad, with unit given by $\eta\colon 1\mto JH$ and multiplication given by $\mu\colon  HJHJ\mto HJ$, where $\eta$ is the counit of the adjunction and $\mu$ has components given by $...HJ..$
 
 %\textit{In the best possible scenario we don't need any conditions,the conditions on the monoidal adjunction do everything for us. in the worst scenario we have to add the morphisms that make a monad strong with respect to its associated comonad. I'm betting that we don't have to add anything.}
-
-\textit{The following theorem now depends on these results.  Perhaps
-  we should have a section on product functors in the main text?}
-
-\begin{lemma}[Symmetric Monoidal Adjunctions have Strong Left-adjoints]
-  \label{lemma:product_functors_strong}
-  If $(F,m) \dashv (G,n) : \cat{C}_1 \mto \cat{C}_2$ is any symmetric
-  monoidal adjunction, then $F$ is strong.
-\end{lemma}
-\begin{proof}
-  In \cite{benton1995} Benton shows that this result holds for an LNL
-  model, but his exact proof works for the case when both categories
-  in the adjunction are symmetric monoidal.  
-\end{proof}
-
-\begin{lemma}[Strong Symmetric Monoidal Functors are Product Functors]
-  \label{lemma:strong-symmetric_monoidal_functors_are_product_functors}
-  If $(F,m) : \cat{C}_1 \mto \cat{C}_2$ is a strong symmetric monoidal
-  functor between cartesian-closed categories, then $(F,m)$ is a
-  product functor.
-\end{lemma}
-\begin{proof}
-  See Appendix~\ref{sec:cartesian_closed_categories_and_symmetric_monoidal_adjunctions}.
-\end{proof}
-
-\begin{lemma}[Symmetric Monoidal Adjunctions and Product Functors]
-  \label{lemma:adjoint-CCC-prod-func}
-  Suppose $(F,m) : \cat{C}_1 \to \cat{C}_2$ and $(G,n) : \cat{C}_2 \to
-  \cat{C}_1$ are symmetric monoidal functors between cartesian-closed
-  categories, and $F \vdash G$ is a symmetric monoidal adjunction.
-  Then $(F,m)$ and $(G,n)$ are product functors.
-\end{lemma}
-\begin{proof}
-  We know from Lemma~\ref{lemma:product_functors_strong} $(F,m)$ is
-  strong, and hence, by
-  Lemma~\ref{lemma:strong-symmetric_monoidal_functors_are_product_functors}
-  it is a product functor.
-
-  Now we must show that $(G,n)$ is strong, but it is a right adjoint,
-  and hence, preserves all limits.  Thus, it is strong.
-\end{proof}
 
 \begin{theorem}
   An adjoint CS4 categorical model is a modal category.
@@ -1673,7 +2119,7 @@ We know that both the comonad and the monad we have in the definition of a modal
 
 \appendix
 \input{appA.tex}
-\input{appB.tex}
+%% \input{appB.tex}
 
 
 \end{document}
