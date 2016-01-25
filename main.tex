@@ -1583,7 +1583,11 @@ Now we need to look at the monad functor in $\cat{C}$ arising from the adjunctio
     \place(500,500)[6]
     \efig    
     \]
-
+    Diagrams 1 and 6 commute because we are in a cartesian closed
+    category, diagram 2 commutes by naturality of $\p{}$, diagram 3
+    commutes because $\Diamond$ is a product functor, diagram 4
+    commutes because $\eta$ is the unit of a symmetric monoidal
+    adjunction, and diagram 5 commutes by naturality of $\eta$.
     
   \item[] \textit{Case 2. the second projection interacts with $\Diamond$:}
     \[
@@ -2119,7 +2123,7 @@ We know that both the comonad and the monad we have in the definition of a modal
 
 \appendix
 \input{appA.tex}
-%% \input{appB.tex}
+\input{appB.tex}
 
 
 \end{document}
