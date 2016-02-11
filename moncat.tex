@@ -1,4 +1,4 @@
-\section{Monoidal  Categories}
+\section{Monoidal  and Cartesian Categories}
 \label{sec:symmetric_monoidal_closed_categories}
 
 \begin{definition}
@@ -90,10 +90,119 @@
   \end{itemize}
 \end{definition}
 
+A \textit{cartesian  category} is a symmetric monoidal  category whose tensor product is a bona fide cartesian product (these are always symmetric) and its unit $I$ is a real terminal object 1.
+Simply instantiating the definition above we have  four natural transformations and 5 commuting diagrams.
+
+%\begin{definition}
+  \label{def:monoidal-category}
+  A \textbf{cartesian category (CC)} is a category, $\cat{M}$,
+  with the following data:
+  \begin{itemize}
+  \item An object $1$ of $\cat{M}$,
+  \item A bi-functor $\times : \cat{M} \times \cat{M} \mto \cat{M}$,
+  \item The following natural isomorphisms:
+    \[
+    \begin{array}{lll}
+      \lambda_A : 1 \times A \mto A\\
+      \rho_A : A \times 1 \mto A\\      
+      \alpha_{A,B,C} : (A \times B) \times C \mto A \times (B \times C)\\
+    \end{array}
+    \]
+  \item A symmetry natural transformation:
+    \[
+    \beta_{A,B} : A \times B \mto B \times A
+    \]
+  \item Subject to the following coherence diagrams:
+    \begin{mathpar}
+      \bfig
+      \vSquares|ammmmma|/->`->```->``<-/[
+        ((A \times B) \times C) \times D`
+        (A \times (B \times C)) \times D`
+        (A \times B) \times (C \times D)``
+        A \times (B \times (C \times D))`
+        A \times ((B \times C) \times D);
+        \alpha_{A,B,C} \times \id_D`
+        \alpha_{A \times B,C,D}```
+        \alpha_{A,B,C \times D}``
+        \id_A \times \alpha_{B,C,D}]      
+      
+      \morphism(1433,1000)|m|<0,-1000>[
+        (A \times (B \times C)) \times D`
+        A \times ((B \times C) \times D);
+        \alpha_{A,B \times C,D}]
+      \efig
+      \and
+      \bfig
+      \hSquares|aammmaa|/->`->`->``->`->`->/[
+        (A \times B) \times C`
+        A \times (B \times C)`
+        (B \times C) \times A`
+        (B \times A) \times C`
+        B \times (A \times C)`
+        B \times (C \times A);
+        \alpha_{A,B,C}`
+        \beta_{A,B \times C}`
+        \beta_{A,B} \times \id_C``
+        \alpha_{B,C,A}`
+        \alpha_{B,A,C}`
+        \id_B \times \beta_{A,C}]
+      \efig      
+    \end{mathpar}
+    \begin{mathpar}
+      \bfig
+      \Vtriangle[
+        (A \times 1) \times B`
+        A \times (1 \times B)`
+        A \times B;
+        \alpha_{A,1,B}`
+        \rho_{A}`
+        \lambda_{B}]
+      \efig
+      \and
+      \bfig
+      \btriangle[
+        A \times B`
+        B \times A`
+        A \times B;
+        \beta_{A,B}`
+        \id_{A \times B}`
+        \beta_{B,A}]
+      \efig
+      \and
+      \bfig
+      \Vtriangle[
+        1 \times A`
+        A \times 1`
+        A;
+        \beta_{1,A}`
+        \lambda_A`
+        \rho_A]
+      \efig
+    \end{mathpar}    
+  \end{itemize}
+%\end{definition}
+
+
+However, saying that a category $\cat{C}$ has  cartesian products  means that given objects $A$ and $B$ of $\cat{C}$, there is an object $A\times B$ and morphisms  $\pi_1\colon A\times B\to A$, and  $\pi_2\colon A\times B\to B$ such that, for any $C$ in $\cat{C}$, if there are maps $p_1\colon C\to A$, and  $p_2\colon C\to B$ then there is a unique $h\colon C\to A\times B$ such that the following diagram commutes.
+\texttt{need to add other triangle here}
+
+\begin{mathpar}
+\bfig
+      \btriangle[
+        A \times B`
+        C`
+        B;
+        h`
+        \pi_{2}`
+        p_{2}]
+      \efig
+\end{mathpar}      
+      Similarly for the terminal object 1: this is such that for any $A$ in $\cat{C}$ we have a single map $t_A\colon A\to 1$. 
+
 
 \begin{definition}
   \label{def:SMCC}
-  A \textbf{symmetric monoidal closed category (SMCC)} is a symmetric
+  A symmetric monoidal \textbf{closed} category (SMCC) is a symmetric
   monoidal category, $(\cat{M},I,\otimes)$, such that, for any object
   $B$ of $\cat{M}$, the functor $- \otimes B : \cat{M} \mto \cat{M}$
   has a specified right adjoint.  Hence, for any objects $A$ and $C$
@@ -104,7 +213,30 @@
   \]
 \end{definition}
 
-A \textit{cartesian closed category} is a symmetric monoidal closed category whose tensor product is a cartesian product and its unit $I$ is a real terminal object 1.
+Since a \textit{cartesian closed category} is a symmetric monoidal closed category whose tensor product is a  cartesian product (with unit  a  terminal object 1), 
+the following lemma summarizes the symmetric monoidal structure we already have in a cartesian closed category. Its proof is well known.
+
+\begin{lemma}[CCCs are SMCs]
+  \label{lemma:CCC-is-SMC}
+  Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a cartesian closed
+  category.  Then the following defines the structure of a symmetric
+  monoidal category:
+  \[
+  \begin{array}{rll}
+    \lambda_A & = & \pi_2 : 1 \times A \mto A\\
+    \lambda^{-1}_A & = & \langle \t_A , \id_A  \rangle : A \mto 1 \times A\\
+    \\
+    \rho_A & = & \pi_1 : A \times 1 \mto A\\
+    \rho^{-1}_A & = & \langle \id_A , \t_A  \rangle : A \mto A \times 1\\
+    \\
+    \alpha_{A,B,C} & = & \langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle : (A \times B) \times C \mto A \times (B \times C)\\
+    \alpha^{-1}_{A,B,C} & = & \langle \id_A \times \pi_1, \pi_2;\pi_2 \rangle : A \times (B \times C) \mto (A \times B) \times C\\
+    \\
+    \beta_{A,B} & = & \langle \pi_2, \pi_1 \rangle : A \times B \mto B \times A\\
+  \end{array}
+  \]
+  Each of the above morphisms satisfy the appropriate diagrams.
+\end{lemma}
 
 \begin{definition}
   \label{def:SMCFUN}
@@ -172,7 +304,7 @@ A \textit{cartesian closed category} is a symmetric monoidal closed category who
     \efig
   \end{mathpar}
 \end{definition}
-A \textit{product  functor} is a symmetric monoidal closed functor between (symmetric) cartesian closed categories. The map $m_1\colon 1\to F1$ and the natural transformations $m_{A,B} : FA \times FB \mto F(A \times B)$ are subject to the adapted coherence conditions:
+A \textit{cartesian  functor} is a symmetric monoidal closed functor between (symmetric) cartesian closed categories. The map $m_1\colon 1\to F1$ and the natural transformations $m_{A,B} : FA \times FB \mto F(A \times B)$ are subject to the instantiated coherence conditions:
   \begin{mathpar}
     \bfig
     \vSquares|ammmmma|/->`->`->``->`->`->/[
@@ -230,16 +362,80 @@ A \textit{product  functor} is a symmetric monoidal closed functor between (symm
       F{\beta_1}_{A,B}]
     \efig
   \end{mathpar}
-Because every cartesian closed category is a symmetric monoidal category where the tensor is a real product and because   cartesian products are unique up to isomorphism, we know we can rewrite these diagrams somewhat.
+  
+Because every cartesian closed category is a symmetric monoidal category (lemma 3) where the tensor is a real product and because   cartesian products are unique up to isomorphism, we  can rewrite these diagrams somewhat. 
 
-{\tt how to get to your product functors from here?}
+\begin{lemma}[CC-functors are SMC-functors]
+  \label{lemma:CCf-is-SMCf}
+  Given cartesian (closed) categories $(\cat{C}, 1_\cat{C}, \times_\cat{C}, \Rightarrow)$ and $(\cat{D}, 1_\cat{D}, \times_\cat{D}, \Rightarrow)$  and a cartesian (closed) functor  $F\colon \cat{C}\to \cat{D}$ between them,   then we want to  define the structure of a symmetric   monoidal functor, i.e we want to define $m_{A,B}\colon FA \times FB\to F(A\times B)$ and $m_1\colon 1_\cat{D} \to F1_\cat{C}$, satisfying the appropriate commuting diagrams.
+ \end{lemma} 
+ 
+  To obtain the map $m_{A,B}\colon FA\times FB\to F(A\times B)$ we use the basic property  of products. 
+  Take the product diagram for $A\times B$, with $\pi_1,\pi_2$ and any $C$ in $\cat{D}$. Apply the functor $F$ to the whole diagram. 
+  
+  Now looking at the image of the diagram in $\cat{D}$, $FA\times FB$ is not in the picture yet, but since it is the product in $\cat{D}$, so it does have projections to $FA$ and $FB$ and given any object that has projections to $FA$ and $FB$ (say for example the object $F(A\times B)$, which has those projections, as they are $F(\pi_1), F(\pi_2)$), then there is a unique map from $F(A\times B) \to FA\times FB$. Similarly for $m_1$. (?)
+  
+  
+
+{\tt how to get to your product functors from here? how do I merge the first two triangles below so that they look like usual product diagrams?}
+
+
+\begin{definition}
+  \label{def:prod-functor}
+  A \textbf{product functor}, $(F,m) : \cat{C}_1 \to \cat{C}_2$,
+  between two cartesian categories consists of an ordinary functor $F : \cat{C}_1 \to \cat{C}_2$, a natural transformation $m_{A,B} : FA
+  \times FB \mto F(A \times B)$, and a map $m_1 : 1 \to F1$ subject to the
+  following coherence diagrams:
+  \begin{mathpar}
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FA \times FB`
+      F(A \times B)`
+      FA;
+      m_{A.B}`
+      \pi_1`
+      F\pi_1]
+    \efig
+    \and
+    \bfig    
+    \btriangle|mmm|<1000,500>[
+      FA \times FB`
+      F(A \times B)`
+      FB;
+      m_{A.B}`
+      \pi_2`
+      F\pi_2]
+    \efig
+    \and
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FC`
+      FA \times FB`
+      F(A \times B);
+      \langle Ff, Fg \rangle`
+      F(\langle f, g \rangle)`
+      m_{A,B}]
+    \efig
+    \and
+    \bfig
+    \btriangle|mmm|<1000,500>[
+      FA`
+      1`
+      F1;
+      \t_{FA}`
+      F\t_{A}`
+      m_1]
+    \efig
+  \end{mathpar} 
+\end{definition}
+
+As is expected we can show that product functors are indeed symmetric
+monoidal functors. {\texttt{can we?}}
 
 \begin{definition}
   \label{def:SMCNAT}
   Suppose $(\cat{M}_1,I_1,\otimes_1)$ and $(\cat{M}_2,I_2,\otimes_2)$
-  are SMCs, and $(F,m)$ and $(G,n)$ are a symmetric monoidal functors
-  between $\cat{M}_1$ and $\cat{M}_2$.  Then a \textbf{symmetric
-    monoidal natural transformation} is a natural transformation,
+  are SMCs, and $(F,m)\colon \cat{M}_1\to \cat{M}_2$ and $(G,n)\colon \cat{M}_1\to \cat{M}_2$ are  symmetric monoidal functors between monoidal categories.  Then a symmetric  \textbf{monoidal natural transformation} is a natural transformation,
   $f : F \mto G$, subject to the following coherence diagrams:
   \begin{mathpar}
     \bfig
@@ -265,7 +461,10 @@ Because every cartesian closed category is a symmetric monoidal category where t
     \efig
   \end{mathpar}  
 \end{definition}
-A \textit{product natural transformation} does not simplify things much
+\vspace{.3in}
+
+A \textit{cartesian (or product)} natural transformation does not simplify things much. But when we investigate adjunctions many new properties appear.
+
  \begin{mathpar}
     \bfig
     \square<1000,500>[
@@ -296,7 +495,7 @@ A \textit{product natural transformation} does not simplify things much
   are SMCs, and $(F,m)$ is a symmetric monoidal functor between
   $\cat{M}_1$ and $\cat{M}_2$ and $(G,n)$ is a symmetric monoidal
   functor between $\cat{M}_2$ and $\cat{M}_1$.  Then a
-  \textbf{symmetric monoidal adjunction} is an ordinary adjunction
+  symmetric \textbf{monoidal adjunction} is an ordinary adjunction
   $\cat{M}_1 : F \dashv G : \cat{M}_2$ such that the unit,
   $\varepsilon : A \to GFA$, and the counit, $\eta_A : FGA \to A$, are
   symmetric monoidal natural transformations.  Thus, the following
@@ -344,7 +543,9 @@ A \textit{product natural transformation} does not simplify things much
   $(GF,\p{})$ are symmetric monoidal functors.
 \end{definition}
 
-Also a \textit{product preserving adjunction} is not much simpler. The diagrams become:
+
+
+A \textit{product preserving adjunction} is not much simpler. The diagrams become:
 \begin{mathpar}
     \bfig
     \qtriangle|amm|<1000,500>[
@@ -385,6 +586,10 @@ Also a \textit{product preserving adjunction} is not much simpler. The diagrams 
       p_{1}]
     \efig
   \end{mathpar}
+  
+  However, as Benton shows in \cite{benton1995} (page 14 Proposition 1) for any monoidal adjunction the maps $m_{A,B}$ are the components of a natural \textbf{isomorphism}, with inverses $p_{A,B}$ and furthermore the map $m_1\colon 1\to F1$ is an isomorphism with inverse $p$.
+  
+  
 \begin{definition}
   \label{def:symm-monoidal-monad}
   A \textbf{symmetric monoidal monad} on a symmetric monoidal

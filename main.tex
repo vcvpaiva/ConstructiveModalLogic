@@ -76,9 +76,10 @@
 
 \section{Constructive Modal Logic}
 
-We present two versions of  the intuionistic or constructive modal logic S4, to be written as CS4. 
+We present two versions of  the  constructive (or intuionistic) modal logic S4, which we write as CS4. 
+We start by recalling the basic sequent calculus for intuitionistic propositional logic. 
 
-We start by recalling the basic sequent calculus for intuitonistic propositional logic. Each of the logics presented in this section is an extension of the
+Each of the logics presented in this section is an extension of the
 single-conclusion formalization of Gentzen's intuitionistic sequent
 calculus LJ.  The syntax of formulas for LJ is defined by the
 following grammar:
@@ -89,12 +90,12 @@ following grammar:
         \end{array}
     \end{math}
 \end{center}
-The formula $p$ is taken from a set of countably many propositional atoms. The constant $\top$ could be added, but it is the negation of the the falsum constant $\bot$.
-
-We begin with an initial set of inference rules, and then each system
-presented will be given as an extension of this initial system.  The  initial inference rules, which just model
+The formula $p$ is taken from a set of countably many  propositional atoms. The constant $\top$ could be added, but it is the negation of the the falsum constant $\bot$.
+%We begin with an initial set of inference rules, and then each system presented will be given as an extension of this initial system.  
+The  initial inference rules, which just model
 propositional intuitionistic logic, are as follows:
-
+\begin{figure}
+  \begin{mdframed}
 \begin{center}
   \small
   \begin{math}
@@ -156,26 +157,42 @@ propositional intuitionistic logic, are as follows:
     \end{array}
   \end{math}
 \end{center}
+ \end{mdframed}
+  \caption{Intuitionistic Propositional  Calculus}
+  \label{}
+\end{figure}
+
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas,
 (written as either $\Gamma$, $\Delta$, or a numbered version of either), and a formula $C$. The intuitive meaning is that the conjunction of the formulas in $\Gamma$ entails the formula $C$.
 
 \subsection{The constructive system S4} 
 
 We recall the sequent calculus formalization of system
-CS4.  This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially  was called  IS4 (for Intuitionistic system S4).
-This system gives rise to a complete family of systems, which are
-alternative to Simpson's intuitionistic systems. Since Simpson's
-systems form a framework starting from intuitionistic K, that were also called
-IK, IS4, IS5,   it made sense to call the family of systems originating
-with the S4 above, the family of constructive modal systems CS, and
-Bierman and de Paiva's system CS4.  This is for instance how
-\cite{arisaka2015} describe these systems.
+CS4.  This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially  was called  IS4 (for Intuitionistic system S4). This system gives rise to a complete family of systems, which are alternative to Simpson's intuitionistic systems~\cite{simpson1994}.
+
+Simpson proposed in his thesis ~\cite{simpson1994}
+systems  of intuitonsitic modal logics, forming a framework starting from intuitionistic K. These  were also called
+IK, IKT, IS4, IS5, etc, hence it made sense to call the family of systems originating with the S4 above, the family of constructive modal systems CS, and Bierman and de Paiva's system CS4.  This is for instance how new work, such as \cite{arisaka2015}, describes these systems.
 
 The main difference between systems IS4 and CS4 concerns the binary
-distribution of possibility $\Diamond$ over disjunction (in binary and
-nullary forms):
-$$\Diamond (A \lor B) \to \Diamond A \lor \Diamond B$$
-$$\Diamond \bot \to \bot$$ The system CS4 does not satisfy these
+distribution of possibility $\Diamond$ over disjunction (in binary and nullary forms):
+
+\begin{figure}
+  \begin{mdframed}
+  \begin{center}
+      \begin{math}
+        \begin{array}{ccc}
+        \Diamond (A \lor B) &\to &\Diamond A \lor \Diamond B\\
+        \Diamond \bot &\to &\bot
+        \end{array}
+       \end{math}
+\end{center}
+ \end{mdframed}
+  \caption{Distributiviy rules}
+  \label{distrib}
+\end{figure}
+
+The system CS4 does not satisfy these
 traditional distributions that are basic to classical modal
 logic. Some philosophical significance can be attached to this
 distribution, or lack thereof, and we discuss it later. First we
@@ -209,19 +226,20 @@ inference rules, define the sequent calculus for CS4.
   \caption{CS4 modal rules}
   \label{fig:CS4}
 \end{figure}
-Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as well-behaved as the propositional ones. This system is indeed constructive, and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
+
+In Figure 3, we write $\Box \Gamma$ for $\Box G_1, \Box G_2, \ldots, \Box G_k$ where $\Gamma$ is the set $G_1, G_2, \ldots,  G_k$.
+Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as symmetric as the propositional ones. Most importantly, we have a local restriciton on the rule that introduces the $\Box$ operator: We can only introduce $\Box$ in the conclusion, if all the assumptions are already boxed. Also the rules for  the $\Diamond$ operator presuppose that you have already $\Box$ operators.
+
+This system is indeed constructive, and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, and $\Diamond A$ is
 not logically equivalent to $\lnot \Box \lnot A$.
 
-This system has a nice proof theory, as far as modal logics are concerned. Bierman and de
-Paiva \cite{CS4} show that it has a Hilbert-style presentation,  a Natural
-Deduction presentation, as well as a sequent calculus one. The sequent calculus
+This system has a nice proof theory, as far as modal logics are concerned. Bierman and de Paiva \cite{CS4} show that it has a Hilbert-style presentation,  a Natural Deduction presentation, as well as a sequent calculus one. The sequent calculus
 satisfies cut-elimination, an old result from Ohnishi and Matsumoto
 \cite{ohnishi1957}, as well as the subformula property.
-
 The Natural Deduction formulation has a colourful history, described
 in \cite{CS4}. One of its distinct features is that it was described
 in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
-hence it is still sometimes called Prawitz S4 modal logic.
+hence it is  sometimes called Prawitz S4 modal logic.
 
 Most interestingly the system has both Kripke and categorical
 semantics, described respectively in \cite{alechinaetal} and
@@ -232,9 +250,9 @@ language theory \todo{Add references for these applications}.
 
 
 \subsection{The adjunction modal calculus}
-This is not so well-known, but this system can  be given a
+A slightly more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a
 presentation in terms of a categorical adjunction, between two
-cartesian closed categories.
+cartesian closed categories, as we will describe in the next section.
 
 This presentation is described  both in \cite{CS4} and in \cite{icalp1998}. In
 \cite{CS4} this is called the multicontext formulation of CS4 and the
@@ -265,52 +283,57 @@ rules are given (page 17) in Figure~\ref{fig:ADJCS4}.
   \caption{The adjunction modal calculus}
   \label{fig:ADJCS4}
 \end{figure}
-(Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.)
+Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
 
-These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories in the case of Linear Logic.  
+These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories in the case of Linear Logic.  We now describe the simplifications that can be made when, instead of Linear Logic, we deal with construcitve modal logic. 
+
 
 \section{Categorical Models}
 \label{sec:single_adjoint_model_of_cs4}
 The main motivation for considering both systems of constructive modal logic described above is that we can provide  categorical semantics for them.
 
-This will require  some categorical definitions that are not the most traditional ones, hence  these are provided in the appendix A, but discussed briefly here.  We will need the categorical concepts of 
+This will require  some categorical definitions that are not very  traditional ones, hence  these are provided in the appendix A, but discussed briefly here.  We will need the categorical concepts of 
 \begin{enumerate}
     \item {(symmetric) monoidal category},
     \item {(symmetric) monoidal functor},
     \item {(symmetric) monoidal natural transformation},
     \item {(symmetric) monoidal adjunction},
-    \item {monoidal comonad}, 
-    \item {monoidal monad.}
+    \item {(symmetric) monoidal (co)monad.} 
+%    \item {monoidal monad.}
 \end{enumerate}  
 %which we describe in the appendix A.
 
-\subsection{Basic notions}
-A  monoidal category (see definition 6 %\label{def:monoidal-category}
-in the appendix A) is simply a category $\cat{C}$  equipped with a tensor product structure $(\otimes, I, \alpha, \rho, \lambda)$,  a generalization of traditional categorical products, satisfying two coherence conditions: MacLane's pentagon condition relating associativity of tensor to its bifunctorial structure, and the triangle condition relating the unit of the tensor $I$ to the natural transformations $\rho$ and $\lambda$,  plus the unit equation $\rho_I=\lambda_I$.
+%\subsection{Monoidal notions}
+A  \textbf{monoidal} category  is simply a category $\cat{C}$  equipped with a tensor product $\otimes$ structure $(\otimes, I, \alpha, \rho, \lambda)$,  a generalization of traditional categorical products, satisfying two coherence conditions: MacLane's pentagon condition relating the associativity $\alpha$  of tensor to its bifunctorial structure, and the triangle condition relating the unit of the tensor $I$ to its natural transformations $\rho$ and $\lambda$,  plus the unit equation $\rho_I=\lambda_I$.
     
-  A monoidal category can be symmetric, meaning that the tensor product $A\otimes B$ is isomorphic to $B\otimes A$, or not. If the monoidal category is symmetric we call $\beta$ (for  \textit{braid}) the isomorphism going from $ A\otimes B$ to $B\otimes A$. 
-  Commutativity of the tensor product brings along  three new diagrams, see definition ?.
-  
-  While these are traditional diagrams that can be simplified, having them in full generality helps us to see how the strength (the new component we add) has to interact with the established structure.
+  A monoidal category can be \textbf{symmetric}, meaning that the tensor product $A\otimes B$ is isomorphic to $B\otimes A$, or not. If the monoidal category is symmetric we call $\beta$ (for  \textit{braid}) the isomorphism going from $ A\otimes B$ to $B\otimes A$. 
+  Commutativity of the tensor product brings along  three new diagrams (see definition 6 %\label{def:monoidal-category}
+in the appendix A).
+  %While these are traditional diagrams that can be simplified, having them in full generality helps us to see how the strength (the new component we add) has to interact with the established structure.
 
-A (symmetric) monoidal functor between two (symmetric) monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are natural transformations  $F(A)\otimes F(B)\mto F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \mto FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). This means another three commuting diagrams, one for associativity, one for left, one for right isos. Since the tensor product we consider is symmetric, one more commuting diagram is neccessary, preserving $\beta$, see definition 8 %\label{def:SMCFUN} 
-in the appendix.
+A \textbf{(symmetric monoidal) functor} between two (symmetric) monoidal categories $\cat{C}$ and $\cat{D}$ is simply a functor $F\colon \cat{C} \mto \cat{D}$ that relates the monoidal structures, that is, there are (comparison) natural transformations  $F(A)\otimes F(B)\mto F(A \otimes B)$, for each $A,B$ in $\cat{C}$ (as well as a map $m_{I}\colon I \mto FI$) that interact well with the monoidal structures  in $\cat{C}$ and  $\cat{D}$ (older books insist on an isomorphism between the tensor structures, we only require coherent natural transformations). 
+%This means another three commuting diagrams, one for associativity, one for left, one for right isos. Since the tensor product we consider is symmetric, one more commuting diagram is neccessary, preserving $\beta$, see definition 8 %\label{def:SMCFUN}  in the appendix.
 
-Then given monoidal functors $(F,m)$ and $(G,n)$ a monoidal natural transformation from $F$ to $G$ is a natural transformation which is compatible with the comparison maps $m$ and $n$, which means the two extra diagrams in definition 9 in the appendix commute too.
+Given monoidal functors $(F,m)$ and $(G,n)$ a \textbf{symmetric monoidal natural transformation} from $F$ to $G$ is a natural transformation which is compatible with the comparison maps $m$ and $n$, which means the two extra diagrams in definition 9 in the appendix commute too.
 
-A (symmetric) monoidal adjunction $F \dashv G$ is an adjunction  where both functors $F,G$  are (symmetric) monoidal functors and the unit, and the co-unit are (symmetric) monoidal natural transformations too. 
+A \textbf{(symmetric) monoidal adjunction} $F \dashv G$ is an adjunction  where both functors $F,G$  are (symmetric) monoidal functors and the unit, and the co-unit are (symmetric) monoidal natural transformations. 
 
-Lastly, a (symmetric) monoidal comonad is a comonad $(\Box,\varepsilon, \delta, m)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the  diagrams in definition 11 in appendix A.{\todo{add diagrams there}}
+Lastly, a \textbf{(symmetric) monoidal comonad} is a comonad, let us write it directly as $(\Box,\varepsilon, \delta, m)$ on a monoidal category $\cat{C}$, with extra structure preserving the monoidal structure of the category. Thus $\Box\colon \cat{C}\to \cat{C}$ satisfies the  diagrams in definition 11 in appendix A.
+%{\todo{add diagrams there}}
 Similarly for a monoidal monad.
 
-If, instead of being (symmetric) monoidal closed categories, they are cartesian closed categories, what happens? Which simplifications of the structures described do we get? Surely the results corresponding to Benton's  in \cite{benton1995} remains true, after all a cartesian closed category is also a special kind of symmetric monoidal closed category. But do we get anything else? We discuss this in the next section.
+Since any cartesian closed category is a (symmetric) monoidal closed category, which simplifications of the structures described do we get? Surely the results corresponding to Benton's  in \cite{benton1995} should remain true, but do we get anything else? We discuss this in the next section.
+
+
+
+
 
 \subsection{Cartesian Closed Adjunctions}
 \label{subsec:cartesian_closed_adjunctions}
 Cartesian closed categories are particular types of symmetric monoidal
 closed categories where the tensor product is the cartesian product.
-The following lemma summarizes the symmetric monoidal structure in a
-cartesian closed category whose proof is well known.
+
+The following lemma summarizes the symmetric monoidal structure in a cartesian closed category, its proof is well known.
 \begin{lemma}[CCCs are SMCs]
   \label{lemma:CCC-is-SMC}
   Suppose $(\cat{C}, 1, \times, \Rightarrow)$ is a cartesian closed
@@ -333,8 +356,7 @@ cartesian closed category whose proof is well known.
   Each of the above morphisms satisfy the appropriate diagrams.
 \end{lemma}
 
-As we can see from the previous definition cartesian products are less
-strict than arbitrary tensor products.  We can capitalize on this fact
+As we can see from the previous definition cartesian products are much more constrained than arbitrary tensor products.  We can capitalize on this fact
 and obtain a simplified notion of symmetric monoidal functors between
 cartesian closed categories.
 
@@ -2116,7 +2138,7 @@ We know that both the comonad and the monad we have in the definition of a modal
 % subsection single_adjoint_model_of_cs4 (end)
 
 \section{Conclusion}
-%``I always thought something was fundamentally wrong with the universe'' 
+
 
 \bibliographystyle{plain}
 \bibliography{references}

@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Constructive Modal Logic Revisited}
+\author{Valeria de Paiva \and Harley Eades III}
+\date{October 2015}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amssymb, amsthm, amsmath, stmaryrd}
+\usepackage{mathpartir}
+\usepackage{mdframed}           % For the boxes around the systems.
+\usepackage{cmll}
+\usepackage[barr]{xy}
+
+%% This renames Barr's \Diamond command so that it doesn't conflict
+%% with our modality symbols.
+\let\BDiamond\Diamond
+\let\Diamond\relax
+%% This renames Barr's \to to \mto.  This allows us to use \to for imp
+%% and \mto for a inline morphism.
+\let\mto\to
+\let\to\relax
+\newcommand{\to}{\rightarrow}
+
+\usepackage{wasysym}
+\usepackage{proof}
+\usepackage{enumerate}
+\usepackage{todonotes}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\let\b\relax
+\let\d\relax
+\let\t\relax
+
+\renewcommand{\Box}{\oblong}
+
+\newcommand{\F}{\mathop{\textbf{F}}}
+\renewcommand{\P}{\mathop{\textbf{P}}}
+\newcommand{\G}{\mathop{\textbf{G}}}
+\renewcommand{\H}{\mathop{\textbf{H}}}
+
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\pd}[0]{\times}
+\newcommand{\ihom}[0]{\rightarrow}
+\newcommand{\st}[2]{\mathsf{st}_{#1,#2}}
+\newcommand{\id}[0]{\mathsf{id}}
+\newcommand{\b}[1]{\mathsf{b}_{#1}}
+\newcommand{\d}[1]{\mathsf{d}_{#1}}
+\newcommand{\m}[1]{\mathsf{m}_{#1}}
+\newcommand{\n}[1]{\mathsf{n}_{#1}}
+\newcommand{\p}[1]{\mathsf{p}_{#1}}
+\newcommand{\q}[1]{\mathsf{q}_{#1}}
+\newcommand{\t}[0]{\mathsf{t}}
+\newcommand{\limp}[0]{\multimap}
+\newcommand{\Hom}[3]{\mathsf{Hom}_{#1}(#2,#3)}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{notn}[theorem]{Notation}
+\newtheorem{observation}[theorem]{Observation}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+{\tt to be added}
+
+\section{Constructive Modal Logic}
+%\input{cml.tex}
+{\tt to be added}
+
+%\section{Monoidal and Cartesian Categories}
+\input{moncat.tex}
+
+
+
+%\section{Cartesian Closed Adjunctions}
+%\label{sec:cartesian_closed_adjunctions}
+%Cartesian closed categories are particular types of symmetric monoidalclosed categories where the tensor product is the cartesian product.
+
+
+
+%As we can see from the previous definition cartesian products are much more constrained than arbitrary tensor products.  We can capitalize on this factand obtain a simplified notion of symmetric monoidal functors between cartesian closed categories.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+
+\end{document}
