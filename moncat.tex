@@ -814,4 +814,187 @@ Finally the dual concept, of a symmetric monoidal comonad, just for completeness
     \efig
   \end{mathpar}
 \end{definition}
+
+\begin{lemma}[Right-Adjoints are Strong Symmetric Monoidal Functors]
+  \label{lemma:right-adjoints_are_strong_symmetric_monoidal_functors}
+  Suppose $\cat{C}_1 : F \vdash G : \cat{C}_2$ is an adjunction
+  between cartesian closed categories.  Then there is a natural
+  isomorphism $n_{A,B} : GA \otimes GB \mto G(A \otimes B)$ and an
+  isomorphism $n_1 : 1 \mto G1$ making $G$ a symmetric monoidal
+  functor.  
+\end{lemma}
+\begin{proof}
+  Suppose $\cat{C}_1 : F \vdash G : \cat{C}_2$ is an adjunction
+  between cartesian closed categories.  Then it is well known that $G$
+  preserves products, because it is a right adjoint.  In fact, the
+  proof of this fact is quite easy using the Yoneda lemma:
+  \begin{center}
+    \begin{math}
+      \begin{array}{lllllll}
+        \Hom{\cat{C}_1}{X}{G(A \times B)}
+        & \cong & \Hom{\cat{C}_2}{FX}{A \times B} & \text{(Adjunction)}\\
+        & \cong & \Hom{\cat{C}_2}{FX}{A} \times \Hom{\cat{C}_2}{FX}{B} & \\
+        & \cong & \Hom{\cat{C}_1}{X}{GA} \times \Hom{\cat{C}_1}{X}{GB} & \text{(Adjunction)}\\
+        & \cong & \Hom{\cat{C}_1}{X}{GA \times GB} 
+      \end{array}
+    \end{math}
+  \end{center}
+  The previous proof tells us a lot, first, it shows that $G(A \times
+  B) \cong GA \times GB$, but it also tells us how to construct the
+  natural isomorphism exhibiting this fact.  Enter $G(A \times B)$ for
+  $X$ in the above proof, and then trace $\id_{G(A \times B)}$ through
+  it from top to bottom.  This will produce the natural transformation
+  $n^{-1}_{A,B} = \langle G\pi_1, G\pi_2\rangle : G(A \times B) \mto GA
+  \times GB$.  The fact that it is natural is easy to show using the
+  cartesian structure.
+
+  Now enter $GA \times GB$ for $X$ in the above proof, and trace
+  $\id_{GA \times GB}$ through it from the bottom to the top.  This
+  will produce the inverse \\
+  $n_{A,B} = \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle) : GA \times GB \mto G(A \times B)$.
+  It is also straightforward to show that $n_{A,B}$ is natural.
+
+  We explicitly prove that $n_{A,B}$ and $n^{-1}_{A,B}$ are indeed
+  isomorphisms, but it is implied by the above proof.  First, we show
+  that $n_{A,B};n^{-1}_{A,B} = \id_{GA \times GB}$:
+  \begin{center}
+    \begin{math}
+      \begin{array}{lll}
+        n_{A,B};n^{-1}_{A,B}
+        & = & \eta_{GA \times GB};G(\langle F\pi_1;\varepsilon_A, F\pi_2;\varepsilon_B \rangle);\langle G\pi_1, G\pi_2\rangle\\
+        & = & \eta_{GA \times GB};\langle G(F\pi_1;\varepsilon_A), G(F\pi_2;\varepsilon_B)\rangle\\
+        & = & \eta_{GA \times GB};\langle GF\pi_1;G\varepsilon_A, GF\pi_2;G\varepsilon_B\rangle\\
+        & = & \langle \eta_{GA \times GB};GF\pi_1;G\varepsilon_A, \eta_{GA \times GB};GF\pi_2;G\varepsilon_B\rangle\\
+        & = & \langle \pi_1;\eta_{GA};G\varepsilon_A, \pi_2;\eta_{GB};G\varepsilon_B\rangle\\
+        & = & \langle \pi_1;\id_{GA}, \pi_2;\id_{GB}\rangle\\
+        & = & \langle \pi_1, \pi_2\rangle\\
+        & = & \id_{GA \times GB}
+      \end{array}
+    \end{math}
+  \end{center}
+  Next we show that $n^{-1}_{A,B};n_{A,B} = \id_{G(A \times B)}$:
+  \begin{center}
+    \begin{math}
+      \begin{array}{lll}
+        n^{-1}_{A,B};n_{A,B}
+        & = & \langle G\pi_1, G\pi_2\rangle;\eta_{GA \times GB};G(\langle F\pi_1;\varepsilon_A, F\pi_2;\varepsilon_B \rangle)\\
+        & = & \eta_{G(A \times B)};GF(\langle G\pi_1, G\pi_2\rangle);G(\langle F\pi_1;\varepsilon_A, F\pi_2;\varepsilon_B \rangle)\\
+        & = & \eta_{G(A \times B)};G(F(\langle G\pi_1, G\pi_2\rangle);\langle F\pi_1;\varepsilon_A, F\pi_2;\varepsilon_B \rangle)\\
+        & = & \eta_{G(A \times B)};G(F(\langle G\pi_1, G\pi_2\rangle);\langle F\pi_1;\varepsilon_A, F\pi_2;\varepsilon_B \rangle)\\
+        & = & \eta_{G(A \times B)};G(\langle FG\pi_1;\varepsilon_A, FG\pi_2;\varepsilon_B \rangle)\\
+        & = & \eta_{G(A \times B)};G(\langle \varepsilon_{A \times B};\pi_1, \varepsilon_{A \times B};\pi_2 \rangle)\\
+        & = & \eta_{G(A \times B)};G(\varepsilon_{A \times B};\langle \pi_1, \pi_2 \rangle)\\
+        & = & \eta_{G(A \times B)};G(\varepsilon_{A \times B};\id_{A \times B})\\
+        & = & \eta_{G(A \times B)};G(\varepsilon_{A \times B})\\
+        & = & \id_{G(A \times B)}
+      \end{array}
+    \end{math}
+  \end{center}
+
+  The isomorphism $n_1 : 1 \mto G1$ can be constructed using the fact
+  that we have the following natural isomorphism as a result of the
+  adjunction:
+  \[
+  \Hom{\cat{C}_1}{1}{G1} \cong \Hom{\cat{C}_2}{F1}{1}
+  \]
+  Trace $\mathsf{t} : F1 \mto 1$ across the above natural isomorphism
+  from left-to-right, and we obtain the morphism $n_1 =
+  \eta_1;G\mathsf{t}_{F1} : 1 \mto G1$, but its inverse $n^{-1}_1 =
+  \mathsf{t_{G1}} : G1 \mto 1$ is simply the terminal morphism.  It is
+  easy to see that $n_1;n^{-1}_1 = \id_1$ by the uniqueness of the
+  terminal morphism.  We obtain the fact that they are mutual inverse
+  by the following equational reasoning:
+  \begin{center}
+    \begin{math}
+      \begin{array}{lll}
+        n^{-1}_1;n_1
+        & = & \mathsf{t_{G1}};\eta_1;G\mathsf{t}_{F1}\\
+        & = & \eta_{G1};GF(\mathsf{t_{G1}});G\mathsf{t}_{F1}\\
+        & = & \eta_{G1};G(F(\mathsf{t_{G1}};\mathsf{t}_{F1}))\\
+        & = & \eta_{G1};G(\varepsilon_1)\\
+        & = & \id_{G1}\\
+      \end{array}
+    \end{math}
+  \end{center}
+  Thus, $n_1 : 1 \mto G1$ is an isomorphism.
+
+  The rest of this proof shows that $n_{A,B}$ and $n_1$ respect the coherence
+  diagrams from Definition~\ref{def:SMCFUN} making $G$ symmetric monoidal.
+
+  \begin{itemize}
+  \item[] Case 1:
+    \begin{center}
+      \begin{math}
+        \bfig
+        \vSquares|ammmmma|/->`->`->``->`->`->/[
+          (GA \times GB) \times GC`
+          GA \times (GB \times GC)`
+          G(A \times B) \times GC`
+          GA \times G(B \times C)`
+          G((A \times B) \times C)`
+          G(A \times (B \times C));
+          {\alpha}_{GA,GB,GC}`
+          n_{A,B} \times \id_{GC}`
+          \id_{GA} \times n_{B,C}``
+          n_{A \times B,C}`
+          n_{A,B \times C}`
+          G{\alpha}_{A,B,C}]
+        \efig
+      \end{math}
+    \end{center}
+
+  \item[] Case 2:
+    \begin{center}
+      \begin{math}
+        \bfig
+        \square|amma|/->`->`<-`->/<1000,500>[
+          1 \times GA`
+          GA`
+          G1 \times GA`
+          G(1 \times A);
+          {\lambda}_{GA}`
+          n_{1} \times \id_{GA}`
+          G{\lambda}_{A}`
+          n_{1,A}]
+        \efig
+      \end{math}
+    \end{center}
+
+  \item[] Case 3:
+    \begin{center}
+      \begin{math}
+        \begin{array}{lll}
+          \bfig
+          \square|amma|/->`->`<-`->/<1000,500>[
+            GA \times 1`
+            GA`
+            GA \times G1`
+            G(A \times 1);
+            {\rho}_{GA}`
+            \id_{GA} \times n_{1}`
+            G{\rho}_{A}`
+            n_{A,1}]
+          \efig
+        \end{array}
+      \end{math}
+    \end{center}
+
+  \item[] Case 4:
+    \begin{center}
+      \begin{math}
+        \bfig
+        \square|amma|/->`->`->`->/<1000,500>[
+          GA \times GB`
+          GB \times GA`
+          G(A \times B)`
+          G(B \times A);
+          {\beta}_{GA,GB}`
+          n_{A,B}`
+          n_{B,A}`
+          G{\beta}_{A,B}]
+        \efig
+      \end{math}
+    \end{center}
+  \end{itemize}
+\end{proof}
 % section symmetric_monoidal_categories (end)
