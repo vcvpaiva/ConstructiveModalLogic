@@ -942,6 +942,37 @@ Finally the dual concept, of a symmetric monoidal comonad, just for completeness
         \efig
       \end{math}
     \end{center}
+    The previous diagram commutes by the following equational
+    reasoning (due to the size of the morphisms we must break the
+    reasoning up into multiple steps):
+    \begin{center}
+      \footnotesize
+      \begin{math}
+        \begin{array}{lll}
+          \alpha_{GA,GB,GC};(\id_{GA} \times n_{B,C})\\
+          \,\,\,\,\,\,\,\,= (\langle \pi_1;\pi_1, \pi_2 \times \id_{GC} \rangle);(\id_{GA} \times (\eta_{GB \times GC};G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)))\\
+          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  (\pi_2 \times \id_{GC});\eta_{GB \times GC};G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};GF(\pi_2 \times \id_{GC});G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(F(\pi_2 \times \id_{GC});\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_2 \times \id_{GC});F(\pi_1);\varepsilon_{GB}, F(\pi_2 \times \id_{GC});F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+        \end{array}
+      \end{math}
+    \end{center}
+
+    \begin{center}
+      \footnotesize
+      \begin{math}
+        \begin{array}{lll}
+          \alpha_{GA,GB,GC};(\id_{GA} \times n_{B,C});n_{A,B \times C}\\
+          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle;\eta_{GA \times G(B \times C)};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_{B \times C} \rangle)\\
+          \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};GF(\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle);G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_{B \times C} \rangle)\\
+          \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(F(\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle);\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_{B \times C} \rangle)\\
+          \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_1);\varepsilon_A, F(\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC}));\varepsilon_{B \times C} \rangle)
+          
+        \end{array}
+      \end{math}
+    \end{center}
 
   \item[] Case 2:
     \begin{center}
