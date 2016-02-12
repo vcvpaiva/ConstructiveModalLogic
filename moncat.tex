@@ -497,7 +497,7 @@ A \textit{cartesian (or product)} natural transformation does not simplify thing
   functor between $\cat{M}_2$ and $\cat{M}_1$.  Then a
   symmetric \textbf{monoidal adjunction} is an ordinary adjunction
   $\cat{M}_1 : F \dashv G : \cat{M}_2$ such that the unit,
-  $\varepsilon : A \to GFA$, and the counit, $\eta_A : FGA \to A$, are
+  $\eta : A \to GFA$, and the counit, $\varepsilon_A : FGA \to A$, are
   symmetric monoidal natural transformations.  Thus, the following
   diagrams must commute:
   \begin{mathpar}
@@ -507,8 +507,8 @@ A \textit{cartesian (or product)} natural transformation does not simplify thing
       FG(A \otimes_1 B)`
       A \otimes_1 B;
       \q{A,B}`
-      \eta_A \otimes_1 \eta_B`
-      \eta_{A \otimes_1 B}]
+      \varepsilon_A \otimes_1 \varepsilon_B`
+      \varepsilon_{A \otimes_1 B}]
     \efig
     \and
     \bfig
@@ -516,7 +516,7 @@ A \textit{cartesian (or product)} natural transformation does not simplify thing
       FGI_1`
       I_1`
       I_1;
-      \eta_{I_1}`
+      \varepsilon_{I_1}`
       \q{I_1}`]
     \efig
     \and
@@ -525,8 +525,8 @@ A \textit{cartesian (or product)} natural transformation does not simplify thing
       A \otimes_2 B`
       GFA \otimes_2 GFB`
       GF(A \otimes_2 B);
-      \varepsilon_A \otimes_2 \varepsilon_B`
-      \varepsilon_{A \otimes_2 B}`
+      \eta_A \otimes_2 \eta_B`
+      \eta_{A \otimes_2 B}`
       \p{A,B}]
     \efig
     \and
@@ -535,7 +535,7 @@ A \textit{cartesian (or product)} natural transformation does not simplify thing
       I_2`
       GFI_2`
       I_2;
-      \varepsilon_{I_2}``
+      \eta_{I_2}``
       p_{I_2}]
     \efig
   \end{mathpar}
