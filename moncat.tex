@@ -851,7 +851,7 @@ Finally the dual concept, of a symmetric monoidal comonad, just for completeness
   Now enter $GA \times GB$ for $X$ in the above proof, and trace
   $\id_{GA \times GB}$ through it from the bottom to the top.  This
   will produce the inverse \\
-  $n_{A,B} = \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle) : GA \times GB \mto G(A \times B)$.
+  $n_{A,B} = \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_{A}, F(\pi_2);\varepsilon_{B} \rangle) : GA \times GB \mto G(A \times B)$.
   It is also straightforward to show that $n_{A,B}$ is natural.
 
   We explicitly prove that $n_{A,B}$ and $n^{-1}_{A,B}$ are indeed
@@ -918,114 +918,250 @@ Finally the dual concept, of a symmetric monoidal comonad, just for completeness
   \end{center}
   Thus, $n_1 : 1 \mto G1$ is an isomorphism.
 
-  The rest of this proof shows that $n_{A,B}$ and $n_1$ respect the coherence
-  diagrams from Definition~\ref{def:SMCFUN} making $G$ symmetric monoidal.
+  The rest of this proof shows that $n_{A,B}$ and $n_1$ respect the
+  coherence diagrams from Definition~\ref{def:SMCFUN} making $G$
+  symmetric monoidal.  We know that product functors,
+  Definition~\ref{def:prod-functor}, are in bijection with strong
+  symmetric monoidal functors, and it is vastly easier to show that
+  $n_{A,B}$ respects the diagrams of a product functors, than proving
+  it respects the coherence diagrams of a symmetric monoidal functor
+  directly.  Actually, the proof that $n_{A,B}$ respects the coherence
+  diagrams of a product functor are part of the proof that $n_{A,B}$
+  respects the symmetric monoidal diagrams directly.  Thus, we simply
+  show that $G$ is a product functor:
 
-  \begin{itemize}
-  \item[] Case 1:
-    \begin{center}
-      \begin{math}
-        \bfig
-        \vSquares|ammmmma|/->`->`->``->`->`->/[
-          (GA \times GB) \times GC`
-          GA \times (GB \times GC)`
-          G(A \times B) \times GC`
-          GA \times G(B \times C)`
-          G((A \times B) \times C)`
-          G(A \times (B \times C));
-          {\alpha}_{GA,GB,GC}`
-          n_{A,B} \times \id_{GC}`
-          \id_{GA} \times n_{B,C}``
-          n_{A \times B,C}`
-          n_{A,B \times C}`
-          G{\alpha}_{A,B,C}]
-        \efig
-      \end{math}
-    \end{center}
-    The previous diagram commutes by the following equational
-    reasoning (due to the size of the morphisms we must break the
-    reasoning up into multiple steps):
-    \begin{center}
-      \footnotesize
-      \begin{math}
+  \begin{center}
+    \footnotesize
+    \begin{math}
+      \begin{array}{lll}
         \begin{array}{lll}
-          \alpha_{GA,GB,GC};(\id_{GA} \times n_{B,C})\\
-          \,\,\,\,\,\,\,\,= (\langle \pi_1;\pi_1, \pi_2 \times \id_{GC} \rangle);(\id_{GA} \times (\eta_{GB \times GC};G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)))\\
-          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  (\pi_2 \times \id_{GC});\eta_{GB \times GC};G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
-          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};GF(\pi_2 \times \id_{GC});G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
-          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(F(\pi_2 \times \id_{GC});\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
-          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_2 \times \id_{GC});F(\pi_1);\varepsilon_{GB}, F(\pi_2 \times \id_{GC});F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
-          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+          \t_{GA};n_{1}
+          & = & \t_{GA};\eta_1;G\mathsf{t}_{F1}\\
+          & = & \eta_{GA};GF\t_{GA};G\mathsf{t}_{F1}\\
+          & = & \eta_{GA};G(F\t_{GA};\mathsf{t}_{F1})\\
+          & = & \eta_{GA};G(FG\t_{A};\mathsf{t}_{FG1})\\
+          & = & \eta_{GA};G(FG\t_{A};\varepsilon_{1})\\
+          & = & \eta_{GA};G(\varepsilon_{A};\t_{A})\\
+          & = & \eta_{GA};G(\varepsilon_{A});G\t_{A}\\
+          & = & G\t_{A}\\
         \end{array}
-      \end{math}
-    \end{center}
-
-    \begin{center}
-      \footnotesize
-      \begin{math}
+        \\\\
         \begin{array}{lll}
-          \alpha_{GA,GB,GC};(\id_{GA} \times n_{B,C});n_{A,B \times C}\\
-          \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle;\eta_{GA \times G(B \times C)};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_{B \times C} \rangle)\\
-          \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};GF(\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle);G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_{B \times C} \rangle)\\
-          \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(F(\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle);\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_{B \times C} \rangle)\\
-          \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_1);\varepsilon_A, F(\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC}));\varepsilon_{B \times C} \rangle)
-          
+          n_{A,B};G\pi_1
+          & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle);G\pi_1\\
+          & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle;\pi_1)\\
+          & = & \eta_{GA \times GB};G(F(\pi_1);\varepsilon_A)\\
+          & = & \eta_{GA \times GB};GF(\pi_1);G(\varepsilon_A)\\
+          & = & \pi_1;\eta_{GA};G(\varepsilon_A)\\
+          & = & \pi_1
         \end{array}
-      \end{math}
-    \end{center}
-
-  \item[] Case 2:
-    \begin{center}
-      \begin{math}
-        \bfig
-        \square|amma|/->`->`<-`->/<1000,500>[
-          1 \times GA`
-          GA`
-          G1 \times GA`
-          G(1 \times A);
-          {\lambda}_{GA}`
-          n_{1} \times \id_{GA}`
-          G{\lambda}_{A}`
-          n_{1,A}]
-        \efig
-      \end{math}
-    \end{center}
-
-  \item[] Case 3:
-    \begin{center}
-      \begin{math}
+        \\\\
         \begin{array}{lll}
-          \bfig
-          \square|amma|/->`->`<-`->/<1000,500>[
-            GA \times 1`
-            GA`
-            GA \times G1`
-            G(A \times 1);
-            {\rho}_{GA}`
-            \id_{GA} \times n_{1}`
-            G{\rho}_{A}`
-            n_{A,1}]
-          \efig
+          n_{A,B};G\pi_2
+          & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle);G\pi_2\\
+          & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle;\pi_2)\\
+          & = & \eta_{GA \times GB};G(F(\pi_2);\varepsilon_B)\\
+          & = & \eta_{GA \times GB};GF(\pi_2);G(\varepsilon_B)\\
+          & = & \pi_2;\eta_{GB};G(\varepsilon_B)\\
+          & = & \pi_2
         \end{array}
-      \end{math}
-    \end{center}
+        \\\\
+        \begin{array}{lll}
+          \langle Gf, Gg\rangle;n_{A,B}
+          & = & \langle Gf, Gg\rangle;\eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle)\\
+          & = & \eta_{GC};GF(\langle Gf, Gg\rangle);G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle)\\
+          & = & \eta_{GC};G(F(\langle Gf, Gg\rangle);\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle)\\
+          & = & \eta_{GC};G(\langle F(\langle Gf, Gg\rangle;\pi_1);\varepsilon_A, F(\langle Gf, Gg\rangle;\pi_2);\varepsilon_B \rangle)\\
+          & = & \eta_{GC};G(\langle FGf;\varepsilon_A, FGg;\varepsilon_B \rangle)\\
+          & = & \eta_{GC};G(\langle \varepsilon_{C};f, \varepsilon_{C};g \rangle)\\
+          & = & \eta_{GC};G(\varepsilon_{C};\langle f, g \rangle)\\
+          & = & \eta_{GC};G(\varepsilon_{C});G(\langle f, g \rangle)\\
+          & = & G(\langle f, g \rangle)\\
+        \end{array}
+      \end{array}
+    \end{math}
+  \end{center}
 
-  \item[] Case 4:
-    \begin{center}
-      \begin{math}
-        \bfig
-        \square|amma|/->`->`->`->/<1000,500>[
-          GA \times GB`
-          GB \times GA`
-          G(A \times B)`
-          G(B \times A);
-          {\beta}_{GA,GB}`
-          n_{A,B}`
-          n_{B,A}`
-          G{\beta}_{A,B}]
-        \efig
-      \end{math}
-    \end{center}
-  \end{itemize}
+  %% \begin{itemize}
+  %% \item[] Case 1:
+  %%   \begin{center}
+  %%     \begin{math}
+  %%       \bfig
+  %%       \vSquares|ammmmma|/->`->`->``->`->`->/[
+  %%         (GA \times GB) \times GC`
+  %%         GA \times (GB \times GC)`
+  %%         G(A \times B) \times GC`
+  %%         GA \times G(B \times C)`
+  %%         G((A \times B) \times C)`
+  %%         G(A \times (B \times C));
+  %%         {\alpha}_{GA,GB,GC}`
+  %%         n_{A,B} \times \id_{GC}`
+  %%         \id_{GA} \times n_{B,C}``
+  %%         n_{A \times B,C}`
+  %%         n_{A,B \times C}`
+  %%         G{\alpha}_{A,B,C}]
+  %%       \efig
+  %%     \end{math}
+  %%   \end{center}
+  %%   The previous diagram commutes by the following equational
+  %%   reasoning (due to the size of the morphisms we must break the
+  %%   reasoning up into multiple steps):
+  %%   \begin{center}
+  %%     \footnotesize
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         \alpha_{GA,GB,GC};(\id_{GA} \times n_{B,C})\\
+  %%         \,\,\,\,\,\,\,\,= (\langle \pi_1;\pi_1, \pi_2 \times \id_{GC} \rangle);(\id_{GA} \times (\eta_{GB \times GC};G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)))\\
+  %%         \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  (\pi_2 \times \id_{GC});\eta_{GB \times GC};G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+  %%         \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};GF(\pi_2 \times \id_{GC});G(\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+  %%         \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(F(\pi_2 \times \id_{GC});\langle F(\pi_1);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+  %%         \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_2 \times \id_{GC});F(\pi_1);\varepsilon_{GB}, F(\pi_2 \times \id_{GC});F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+  %%         \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle\\
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+
+  %%   \begin{center}
+  %%     \footnotesize
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         \alpha_{GA,GB,GC};(\id_{GA} \times n_{B,C});n_{A,B \times C}\\
+  %%         \,\,\,\,\,\,\,\,=\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle;\eta_{GA \times G(B \times C)};G(\langle F(\pi_1);\varepsilon_{GA}, F(\pi_2);\varepsilon_{G(B \times C)} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};GF(\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle);G(\langle F(\pi_1);\varepsilon_{GA}, F(\pi_2);\varepsilon_{G(B \times C)} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(F(\langle \pi_1;\pi_1,  \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle)\rangle);\langle F(\pi_1);\varepsilon_{GA}, F(\pi_2);\varepsilon_{G(B \times C)} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_1);\varepsilon_{GA}, F(\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle));\varepsilon_{G(B \times C)} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_1);\varepsilon_{GA}, F(\eta_{(GA \times GB) \times GC});\varepsilon_{F((GA \times GB) \times GC)};\langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle) \rangle\\
+  %%         \,\,\,\,\,\,\,\,=\eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;\pi_1);\varepsilon_{GA}, \langle F(\pi_1;\pi_2);\varepsilon_{GB}, F(\pi_2);\varepsilon_{GC} \rangle) \rangle          
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+  %%   Now we simplify the opposite side:
+  %%   \begin{center}
+  %%     \footnotesize
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         (n_{A,B} \times \id_{GC});n_{A \times B,C}\\
+  %%         \,\,\,\,\,\,\,\,= (n_{A,B} \times \id_{GC});\eta_{G(A \times B) \times GC};G(\langle F(\pi_1);\varepsilon_{G(A \times B)}, F(\pi_2);\varepsilon_{GC} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};GF(n_{A,B} \times \id_{GC});G(\langle F(\pi_1);\varepsilon_{G(A \times B)}, F(\pi_2);\varepsilon_{GC} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(F(n_{A,B} \times \id_{GC});\langle F(\pi_1);\varepsilon_{G(A \times B)}, F(\pi_2);\varepsilon_{GC} \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)}, F(\pi_2);\varepsilon_{GC} \rangle)\\
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+
+  %%   \begin{center}
+  %%     \scriptsize
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         (n_{A,B} \times \id_{GC});n_{A \times B,C};G(\alpha_{A,B,C})\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)}, F(\pi_2);\varepsilon_{GC} \rangle);G(\langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)}, F(\pi_2);\varepsilon_{GC} \rangle;\langle \pi_1;\pi_1, \pi_2 \times \id_C \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)};\pi_1, \langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)};\pi_2,  F(\pi_2);\varepsilon_{GC} \rangle \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle F(\pi_1);F(n_{A,B});FG\pi_1;\varepsilon_{GA},  \langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)};\pi_2,  F(\pi_2);\varepsilon_{GC} \rangle \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle
+
+  %%         F(\pi_1);F(n_{A,B};G\pi_1);\varepsilon_{GA}, \langle F(\pi_1;n_{A,B});\varepsilon_{G(A \times B)};\pi_2,  F(\pi_2);\varepsilon_{GC} \rangle \rangle)\\
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle
+
+  %%         F(\pi_1;n_{A,B};G\pi_1);\varepsilon_{GA},
+
+  %%         \langle F(\pi_1;n_{A,B});FG\pi_2;\varepsilon_{GB},
+
+  %%         F(\pi_2);\varepsilon_{GC} \rangle \rangle)\\
+  
+  %%         \,\,\,\,\,\,\,\,= \eta_{(GA \times GB) \times GC};G(\langle
+
+  %%         F(\pi_1;n_{A,B};G\pi_1);\varepsilon_{GA},
+
+  %%         \langle F(\pi_1;n_{A,B};G\pi_2);\varepsilon_{GB},
+
+  %%         F(\pi_2);\varepsilon_{GC} \rangle \rangle)\\          
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+  %%   To finish off the previous bit of reasoning we must show that $n_{A,B};G\pi_1 = \pi_1$ and $n_{A,B};G\pi_2 = \pi_2$:
+  %%   \begin{center}
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         n_{A,B};G\pi_1
+  %%         & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle);G\pi_1\\
+  %%         & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle;\pi_1)\\
+  %%         & = & \eta_{GA \times GB};G(F(\pi_1);\varepsilon_A)\\
+  %%         & = & \eta_{GA \times GB};GF(\pi_1);G(\varepsilon_A)\\
+  %%         & = & \pi_1;\eta_{GA};G(\varepsilon_A)\\
+  %%         & = & \pi_1
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+  
+  %%   \begin{center}
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         n_{A,B};G\pi_2
+  %%         & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle);G\pi_2\\
+  %%         & = & \eta_{GA \times GB};G(\langle F(\pi_1);\varepsilon_A, F(\pi_2);\varepsilon_B \rangle;\pi_2)\\
+  %%         & = & \eta_{GA \times GB};G(F(\pi_2);\varepsilon_B)\\
+  %%         & = & \eta_{GA \times GB};GF(\pi_2);G(\varepsilon_B)\\
+  %%         & = & \pi_2;\eta_{GB};G(\varepsilon_B)\\
+  %%         & = & \pi_2
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+  
+  %%   Thus, we obtain our result, because both sides of the diagram reduce equivalent morphisms.
+  
+  %% \item[] Case 2:
+  %%   \begin{center}
+  %%     \begin{math}
+  %%       \bfig
+  %%       \square|amma|/->`->`<-`->/<1000,500>[
+  %%         1 \times GA`
+  %%         GA`
+  %%         G1 \times GA`
+  %%         G(1 \times A);
+  %%         {\lambda}_{GA}`
+  %%         n_{1} \times \id_{GA}`
+  %%         G{\lambda}_{A}`
+  %%         n_{1,A}]
+  %%       \efig
+  %%     \end{math}
+  %%   \end{center}
+
+  %% \item[] Case 3:
+  %%   \begin{center}
+  %%     \begin{math}
+  %%       \begin{array}{lll}
+  %%         \bfig
+  %%         \square|amma|/->`->`<-`->/<1000,500>[
+  %%           GA \times 1`
+  %%           GA`
+  %%           GA \times G1`
+  %%           G(A \times 1);
+  %%           {\rho}_{GA}`
+  %%           \id_{GA} \times n_{1}`
+  %%           G{\rho}_{A}`
+  %%           n_{A,1}]
+  %%         \efig
+  %%       \end{array}
+  %%     \end{math}
+  %%   \end{center}
+
+  %% \item[] Case 4:
+  %%   \begin{center}
+  %%     \begin{math}
+  %%       \bfig
+  %%       \square|amma|/->`->`->`->/<1000,500>[
+  %%         GA \times GB`
+  %%         GB \times GA`
+  %%         G(A \times B)`
+  %%         G(B \times A);
+  %%         {\beta}_{GA,GB}`
+  %%         n_{A,B}`
+  %%         n_{B,A}`
+  %%         G{\beta}_{A,B}]
+  %%       \efig
+  %%     \end{math}
+  %%   \end{center}
+  %% \end{itemize}
 \end{proof}
 % section symmetric_monoidal_categories (end)
