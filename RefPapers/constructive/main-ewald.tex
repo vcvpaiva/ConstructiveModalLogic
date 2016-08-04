@@ -160,9 +160,10 @@ Sequent calculi  by themselves are not enough to provide us with Curry-Howard co
 We start by recalling the system using axioms, plain sequent calculus and plain natural deduction. In the next section we described a term assignment based on the dual calculus described in \cite{icalp1998} and hint at its syntactic prooperties. The next section  introduces the categorical model (a cartesian closed category with two intertwnied adjunctions) and show the usual soundness and completeness results. Finally we discuss the limitations of our constructive tense logic.
 
 \section{Tense Logic CS4-style}
+We build up to the constructive tense logic we are interested in $\sf{TCS4}$ in progressive steps. We start with the intuitionsitic basis $\sf{LJ}$, add the modalities to get the constructive S4 system, $\sf{CS4}$, do the dual context modification (to help with the reuse of libraries, amongst other things), obtaining $\sf{DCS4}$ and then finally consider the two adjunctions to obtain the tense constructive system $\sf{TCS4}$.
 
 %\subsection{Axioms}
-\subsection{CS4 Sequent Calculus}
+\subsection{Intuitionistic Sequent Calculus}
 We start by recalling the basic sequent calculus for intuitionistic propositional logic, 
 %Each of the logics presented in this section is an extension of the single-conclusion formalization of 
 Gentzen's intuitionistic sequent calculus LJ.  
@@ -245,14 +246,14 @@ Figure~\ref{fig:LJ}.
   \end{math}
 \end{center}
  \end{mdframed}
-  \caption{Intuitionistic Propositional  Calculus}
+  \caption{Intuitionistic Propositional  Calculus ({\sf{LJ}})}
   \label{fig:LJ}
 \end{figure}
 
-Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas, (written as either $\Gamma$, $\Delta$, or a numbered version of either), and a formula $C$. The intuitive meaning is that the conjunction of the formulas in $\Gamma$ entails the formula $C$.
+Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas, (written as either $\Gamma$, $\Delta$, or a numbered version of either), and a formula $C$. The intuitive meaning is that the conjunction of the formulas in $\Gamma$ entails the formula $C$. So far this is our intuitionistic basis.
 
-%\subsection{The constructive system S4} 
-%Next we recall the sequent calculus formalization of system CS4.  
+\subsection{Constructive modal \sf{S4}} 
+Next we recall the sequent calculus formalization of system CS4.  
 %This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially  was called  IS4 (for Intuitionistic system S4). This system gives rise to a complete family of systems, which are alternative to Simpson's intuitionistic systems~\cite{simpson1994}.
 %Simpson proposed in his thesis ~\cite{simpson1994}systems  of intuitonsitic modal logics, forming a framework starting from intuitionistic K. These  were also calledIK, IKT, IS4, IS5, etc, hence it made sense to call the family of systems originating with the S4 above, the family of constructive modal systems CS, and Bierman and de Paiva's system CS4.  This is for instance how new work, such as \cite{arisaka2015}, describes these systems.
 %The system CS4 does not satisfy thesetraditional distributions that are basic to classical modal logic. Some philosophical significance can be attached to thisdistribution, or lack thereof, and we discuss it later. First wedefine the system.
@@ -281,11 +282,11 @@ Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas, (written a
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{CS4 modal rules}
+  \caption{Constructive S4 modal rules ({\sf{CS4}})}
   \label{fig:CS4}
 \end{figure}
 
-So far this is our intuitionistic basis. Then we introduce the modality rules in Figure~\ref{fig:CS4}. These, in addition to the initial set of inference rules, define the sequent calculus for CS4. In Figure 3, we write $\Box \Gamma$ for the sequence of boxed formulas $\Box G_1, \Box G_2, \ldots, \Box G_k$ where $\Gamma$ is the set $G_1, G_2, \ldots,  G_k$.
+  We recap the modality rules in Figure~\ref{fig:CS4}. These, in addition to the initial set of inference rules, define the sequent calculus for CS4. In Figure 3, we write $\Box \Gamma$ for the sequence of boxed formulas $\Box G_1, \Box G_2, \ldots, \Box G_k$ where $\Gamma$ is the set $G_1, G_2, \ldots,  G_k$.
 
 Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as symmetric as the propositional ones. Most importantly, we have a local restriciton on the rule that introduces the $\Box$ operator: We can only introduce $\Box$ in the conclusion, if all the assumptions are already boxed. Also the rules for  the $\Diamond$ operator presuppose that you have already $\Box$ operators.
 This system is indeed constructive, $\Box$ and $\Diamond$ are independent logical operators and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, nor is $\Diamond A$ logically equivalent to $\lnot \Box \lnot A$.
@@ -307,7 +308,7 @@ language theory \todo{Add references for these applications}.
 %Examples include \cite{hmm}.
 \fi
 
-%\subsection{The adjunction modal calculus}
+\subsection{The dual context modal S4 calculus}
 An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will describe in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{dual context} formulation of CS4 and the
 rules are given  in Figure~\ref{fig:ADJCS4}. Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
 
@@ -334,7 +335,7 @@ rules are given  in Figure~\ref{fig:ADJCS4}. Note that the rules are Natural Ded
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{The dual context modal calculus}
+  \caption{The dual context modal calculus ({\sf{DCS4}})}
   \label{fig:ADJCS4}
 \end{figure}
 
@@ -344,6 +345,7 @@ These rules have been shown by Benton \cite{benton1995} and Barber to correspond
 
 We  describe the simplifications that can be made to models when, instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Box\vdash \Diamond$.
 
+\subsection{The tense CS4 calculus}
 Finally to get to the tense logic that is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\blacksquare$ is left-adjoint to $\Diamond$ and $\Box$ is left-adjoint to $\blacklozenge$, where we are writing $\blacksquare$ for the operator we called
 
 \begin{figure}
@@ -386,14 +388,14 @@ Finally to get to the tense logic that is the main aim of this note, we need two
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{The tense CS4 calculus}
+  \caption{The tense CS4 calculus ({\sf{TCS4}})}
   \label{fig:ADJCS4}
 \end{figure}
 
 \section{Term Assignments}
 Given the Natural Deduction system presented, we simply follow the recipes described in \cite{barber1997} to produce a term assignment for these four kinds of modal operators.
 
-We start by giving a calculus for annotating natural deduction proofs in our CS4 tense calculus with typed $\lambda$-calculus terms. The annotations must be such that types correspond to modal propositions, terms correspond to proofs and proof normalisation corresponds to term reduction. The basic typying judgements of our CS4 tense calculus are of the form $\Gamma ; \Delta\vdash t\colon A$ where $\Gamma$ declares modal variables, which may occurr arbitrarily in a term, while $\Delta$ declares intuitionistic variables that may not occurr in a subterm of the form $\Box t$.
+We start by giving a calculus for annotating natural deduction proofs in our CS4 tense calculus with typed $\lambda$-calculus terms. The annotations must be such that types correspond to modal propositions, terms correspond to proofs and proof normalisation corresponds to term reduction. The basic typying judgements of our CS4 tense calculus are of the form $\Gamma ; \Delta\vdash t\colon A$ where $\Gamma$ declares modal variables, which may occurr arbitrarily in a term, while $\Delta$ declares intuitionistic variables that may not occurr in a subterm of the form $\Box t$ or $\blacksquare t$.
 
 
 \section{The Categorical Model}
