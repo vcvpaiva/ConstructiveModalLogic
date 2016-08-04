@@ -18,6 +18,18 @@ grammar
     | \ x : T . t                ::  :: lambdas                  {{ com unary functions }}
     {{tex \lambda [[x]] : [[T]].[[t]] }}
     | t1 t2                      ::  :: application              {{ com function application }}
+    | Box t                      ::  :: PNecessity               {{ com past necessity functor }}
+    | Dia t                      ::  :: PPossibility             {{ com past possibility functor }}
+    | BBox t                     ::  :: Necessity                {{ com necessity functor }}
+    | BDia t                     ::  :: Possibility              {{ com possibility functor }}
+    | letBox t1 = t2 in t3       ::  :: LetPNecessity            {{ com past necessity elim }}
+    {{tex \mathsf{let}\,\Box [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letBBox t1 = t2 in t3      ::  :: LetNecessity            {{ com necessity elim }}
+    {{tex \mathsf{let}\,\blacksquare [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letDia t1 = t2 in t3       ::  :: LetPPossibility           {{ com past possibility elim }}
+    {{tex \mathsf{let}\,\Diamond [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letBDia t1 = t2 in t3      ::  :: LetPossibility           {{ com possibility elim }}
+    {{tex \mathsf{let}\,\blacklozenge [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}            
 
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
     | True             ::   :: True                    {{ com true or the unit type }}
@@ -84,13 +96,13 @@ defn
     G ; D |- A :: :: form :: L_    
 by
 
-  -------------- :: ax
+  ---------- :: ax
   G;D,A |- A
 
-  -------------- :: bax
+  ---------- :: bax
   G,A;. |- A
 
-  -------------- :: true
+  ------------- :: true
   G ; D |- True
 
   ----------------- :: false
@@ -120,6 +132,14 @@ by
   G ; D, B |- C && G ; D |- A + B
   ------------------------------- :: disjE
   G ; D |- C
+
+  G ; D, A |- B
+  --------------- :: impI
+  G ; D |- A -> B
+ 
+  G ; D |- A -> B && G ; D |- A
+  ----------------------------- :: impE
+  G ; D |- B
 
   G ; . |- A
   -------------- :: boxI
