@@ -1,0 +1,135 @@
+metavar termvar, x ::=
+  {{ tex \mathit{[[termvar]]} }} {{ com  term variable  }}
+
+indexvar index, i , j , k ::=
+
+grammar
+  term, t :: 't_' ::=                                     {{ com term }}
+    | x                   ::   :: var                     {{ com variable }}
+
+  form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
+    | True             ::   :: True                    {{ com true or the unit type }}
+    | False            ::   :: False                   {{ com false or the empty type }}
+    | Box A            ::   :: PNecessity               {{ com past necessity }}
+    | BBox A           ::   :: Necessity              {{ com necessity }}
+    | Dia A            ::   :: PPossibility             {{ com past possibility }}
+    | BDia A           ::   :: Possibility            {{ com possibility }}
+    | A x B            ::   :: Conjunction             {{ com conjunction }}
+    {{tex [[A]] \land [[B]] }}
+    | A + B            ::   :: Disjunction             {{ com disjunction }}
+    {{tex [[A]] \lor [[B]] }}
+    | A -> B           ::   :: Arrow                   {{ com implication }}
+
+  G {{ tex \Gamma }}, D {{tex \Delta }} :: G_ ::=      {{ com type context }}
+    | .                   ::   :: em                      {{ com empty context }}
+    | A                   ::   :: elF                     {{ com formula el }}
+    | x : T               ::   :: elT                     {{ com typed el }}
+    | G , G'              ::   :: append                  {{ com append }}
+
+  terminals :: 'terminals_' ::=
+    | .                   ::   :: Empty
+    {{tex \emptyset }}
+    | True                ::   :: True
+    {{tex \top }}
+    | False               ::   :: False
+    {{tex \perp }}
+    | |-                  ::   :: turnstile
+    {{ tex \vdash }}
+    | Box                 ::   :: Box
+    {{tex \Box }}
+    | BBox                ::   :: BBox
+    {{ tex \blacksquare }}
+    | Dia                 ::   :: Dia
+    {{tex \Diamond }}
+    | BDia                ::   :: BDia
+    {{tex \mathbin{\blacklozenge} }}
+    | ->                  ::   :: Arrow
+    {{tex \to }}
+    | &&                  :: M :: Quad
+    {{tex \quad }}
+
+  formula :: 'formula_' ::=
+    | judgement            ::   :: judgement
+    | formula1 && formula2 :: M :: quad
+    | ( formula )          :: S :: parens
+
+defns
+  Jtype :: '' ::=
+
+defn
+    G ; D |- A :: :: form :: L_    
+by
+
+  -------------- :: ax
+  G;D,A |- A
+
+  -------------- :: bax
+  G,A;. |- A
+
+  -------------- :: true
+  G ; D |- True
+
+  ----------------- :: false
+  G ; D, False |- A
+
+  G ; D |- A && G ; D |- B
+  ------------------------- :: conjI
+  G ; D |- A x B
+
+  G ; D |- A x B
+  -------------- :: conjE1
+  G ; D |- A
+
+  G ; D |- A x B
+  -------------- :: conjE2
+  G ; D |- B
+
+  G ; D |- A
+  -------------- :: disjI1
+  G ; D |- A + B
+
+  G ; D |- B
+  -------------- :: disjI2
+  G ; D |- A + B
+
+  G ; D, A |- C
+  G ; D, B |- C && G ; D |- A + B
+  ------------------------------- :: disjE
+  G ; D |- C
+
+  G ; . |- A
+  -------------- :: boxI
+  G ; D |- Box A
+
+  G ; D |- Box A && G, A; D |- B
+  ------------------------------ :: boxE
+  G ; D |- B
+
+  G ; D |- A
+  --------------- :: bdiaI
+  G ; D |- BDia A
+
+  G ; D |- BDia A && G ; A |- BDia B
+  ---------------------------------- :: bdiaE
+  G ; D |- BDia A
+
+  G ; . |- A
+  --------------- :: bboxI
+  G ; D |- BBox A
+
+  G ; D |- BBox A && G, A; D |- B
+  ------------------------------- :: bboxE
+  G ; D |- B
+
+  G ; D |- A
+  -------------- :: diaI
+  G ; D |- Dia A
+
+  G ; D |- Dia A && G ; A |- Dia B
+  -------------------------------- :: diaE
+  G ; D |- Dia A
+
+
+defn
+    G |- t : T :: :: type :: ty_   
+by
