@@ -35,13 +35,23 @@
 \newcommand{\ottafterlastrule}{\\}
 \newcommand{\ottmetavars}{
 \ottmetavartabular{
- $ \mathit{termvar} ,\, \mathit{x} $ & \ottcom{term variable} \\
+ $ \mathit{termvar} ,\, \mathit{x} ,\, \mathit{y} $ & \ottcom{term variable} \\
  $ \ottmv{index} ,\, \ottmv{i} ,\, \ottmv{j} ,\, \ottmv{k} $ &  \\
 }}
 
 \newcommand{\ottterm}{
 \ottrulehead{\ottnt{term}  ,\ \ottnt{t}}{::=}{\ottcom{term}}\ottprodnewline
-\ottfirstprodline{|}{\mathit{x}}{}{}{}{\ottcom{variable}}}
+\ottfirstprodline{|}{\mathit{x}}{}{}{}{\ottcom{variable}}\ottprodnewline
+\ottprodline{|}{\mathsf{unit}}{}{}{}{\ottcom{unit}}\ottprodnewline
+\ottprodline{|}{\mathsf{contra}}{}{}{}{\ottcom{contradiction}}\ottprodnewline
+\ottprodline{|}{\ottsym{(}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{,}  \ottnt{t_{{\mathrm{2}}}}  \ottsym{)}}{}{}{}{\ottcom{pair}}\ottprodnewline
+\ottprodline{|}{\mathsf{fst}\, \, \ottnt{t}}{}{}{}{\ottcom{first projection}}\ottprodnewline
+\ottprodline{|}{\mathsf{snd}\, \, \ottnt{t}}{}{}{}{\ottcom{second projection}}\ottprodnewline
+\ottprodline{|}{\mathsf{inj}_1\,  \ottnt{t}}{}{}{}{\ottcom{first injection}}\ottprodnewline
+\ottprodline{|}{\mathsf{inj}_2\,  \ottnt{t}}{}{}{}{\ottcom{second injection}}\ottprodnewline
+\ottprodline{|}{ \mathsf{case}\, \ottnt{t} \,\mathsf{of}\, \mathit{x} . \ottnt{t_{{\mathrm{1}}}} , \mathit{y} . \ottnt{t_{{\mathrm{2}}}} }{}{}{}{\ottcom{sum case}}\ottprodnewline
+\ottprodline{|}{ \lambda  \mathit{x}  :  \ottnt{T} . \ottnt{t} }{}{}{}{\ottcom{unary functions}}\ottprodnewline
+\ottprodline{|}{\ottnt{t_{{\mathrm{1}}}} \, \ottnt{t_{{\mathrm{2}}}}}{}{}{}{\ottcom{function application}}}
 
 \newcommand{\ottform}{
 \ottrulehead{\ottnt{form}  ,\ \ottnt{type}  ,\ \ottnt{A}  ,\ \ottnt{B}  ,\ \ottnt{C}  ,\ \ottnt{T}}{::=}{\ottcom{formula and type}}\ottprodnewline

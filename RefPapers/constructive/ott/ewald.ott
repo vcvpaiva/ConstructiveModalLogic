@@ -1,11 +1,23 @@
-metavar termvar, x ::=
+metavar termvar, x , y ::=
   {{ tex \mathit{[[termvar]]} }} {{ com  term variable  }}
 
 indexvar index, i , j , k ::=
 
 grammar
-  term, t :: 't_' ::=                                     {{ com term }}
-    | x                   ::   :: var                     {{ com variable }}
+  term, t :: 't_' ::=                                         {{ com term }}
+    | x                          ::   :: var                     {{ com variable }}
+    | unit                       ::   :: unit                    {{ com unit }}
+    | contra                     ::   :: contra                  {{ com contradiction }}
+    | ( t1 , t2 )                ::   :: pair                    {{ com pair }}
+    | fst t                      ::   :: first                   {{ com first projection }}
+    | snd t                      ::   :: second                  {{ com second projection }}
+    | inj1 t                     ::   :: firstInj                {{ com first injection }}
+    | inj2 t                     ::   :: secondInj               {{ com second injection }}
+    | case t of x . t1 , y . t2  ::   :: case                    {{ com sum case }}
+    {{tex \mathsf{case}\,[[t]]\,\mathsf{of}\,[[x]].[[t1]],[[y]].[[t2]] }}
+    | \ x : T . t                ::  :: lambdas                  {{ com unary functions }}
+    {{tex \lambda [[x]] : [[T]].[[t]] }}
+    | t1 t2                      ::  :: application              {{ com function application }}
 
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
     | True             ::   :: True                    {{ com true or the unit type }}
@@ -27,6 +39,14 @@ grammar
     | G , G'              ::   :: append                  {{ com append }}
 
   terminals :: 'terminals_' ::=
+    | fst                 ::   :: First
+    {{tex \mathsf{fst}\, }}
+    | snd                 ::   :: Second
+    {{tex \mathsf{snd}\, }}
+    | inj1                ::   :: FirstInj
+    {{tex \mathsf{inj}_1\, }}
+    | inj2                ::   :: SecondInj
+    {{tex \mathsf{inj}_2\, }}    
     | .                   ::   :: Empty
     {{tex \emptyset }}
     | True                ::   :: True
@@ -47,6 +67,10 @@ grammar
     {{tex \to }}
     | &&                  :: M :: Quad
     {{tex \quad }}
+    | unit                ::   :: unit                   
+    {{tex \mathsf{unit} }}
+    | contra              ::   :: contra
+    {{tex \mathsf{contra} }}
 
   formula :: 'formula_' ::=
     | judgement            ::   :: judgement
