@@ -352,39 +352,41 @@ Finally to get to the tense logic that is the main aim of this note, we need two
   \begin{mdframed}
     \begin{center}
       \begin{math}
-        \begin{array}{ccccc}              
-          \infer[\Box_{\mathcal{I}}]{\Gamma; \Delta \vdash \Box A}{
-            \Gamma;\emptyset \vdash  A
-          }
-          & \quad &
-          \infer[\Box_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \Box A \hspace{.1in}
-            \Gamma, A;\Delta \vdash B
-          }\\\\
-          \infer[\bLozenge_{\mathcal{I}}]{\Gamma;\Delta \vdash \bLozenge A}{
-            \Gamma;\Delta \vdash A
-          }
-          & \quad &
-          \infer[\bLozenge_{\mathcal{E}}]{\Gamma;\Delta \vdash \bLozenge B}{
-            \Gamma ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma; A\vdash \bLozenge B
-          }
-        \end{array} \\
-        \vspace{.2in}
-        \begin{array}{ccccc}              
-          \infer[\blacksquare_{\mathcal{I}}]{\Gamma; \Delta \vdash \blacksquare A}{
-            \Gamma;\emptyset \vdash  A
-          }
-          & \quad &
-          \infer[\blacksquare_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \blacksquare A \hspace{.1in}
-            \Gamma, A;\Delta \vdash B
-          }\\\\
-          \infer[\Diamond_{\mathcal{I}}]{\Gamma;\Delta \vdash \Diamond A}{
-            \Gamma;\Delta \vdash A
-          }
-          & \quad &
-          \infer[\Diamond_{\mathcal{E}}]{\Gamma;\Delta \vdash \Diamond B}{
-            \Gamma ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
-          }
-        \end{array}    
+        \begin{array}{l}
+          \begin{array}{ccccc}              
+            \infer[\Box_{\mathcal{I}}]{\Gamma; \Delta \vdash \Box A}{
+              \Gamma;\emptyset \vdash  A
+            }
+            & \quad &
+            \infer[\Box_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \Box A \hspace{.1in}
+              \Gamma, A;\Delta \vdash B
+            }\\\\
+            \infer[\bLozenge_{\mathcal{I}}]{\Gamma;\Delta \vdash \bLozenge A}{
+              \Gamma;\Delta \vdash A
+            }
+            & \quad &
+            \infer[\bLozenge_{\mathcal{E}}]{\Gamma;\Delta \vdash \bLozenge B}{
+              \Gamma ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma; A\vdash \bLozenge B
+            }
+          \end{array}
+          \\\\
+          \begin{array}{ccccc}              
+            \infer[\blacksquare_{\mathcal{I}}]{\Gamma; \Delta \vdash \blacksquare A}{
+              \Gamma;\emptyset \vdash  A
+            }
+            & \quad &
+            \infer[\blacksquare_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \blacksquare A \hspace{.1in}
+              \Gamma, A;\Delta \vdash B
+            }\\\\
+            \infer[\Diamond_{\mathcal{I}}]{\Gamma;\Delta \vdash \Diamond A}{
+              \Gamma;\Delta \vdash A
+            }
+            & \quad &
+            \infer[\Diamond_{\mathcal{E}}]{\Gamma;\Delta \vdash \Diamond B}{
+              \Gamma ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
+            }
+          \end{array}    
+        \end{array}
       \end{math}
     \end{center}
   \end{mdframed}
