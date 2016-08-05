@@ -241,7 +241,7 @@
 \newcommand{\ottdruleLXXdiaE}[1]{\ottdrule[#1]{%
 \ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \Diamond \, \ottnt{A}  \quad  \Gamma  \ottsym{;}  \ottnt{A}  \vdash  \Diamond \, \ottnt{B}}%
 }{
-\Gamma  \ottsym{;}  \Delta  \vdash  \Diamond \, \ottnt{A}}{%
+\Gamma  \ottsym{;}  \Delta  \vdash  \Diamond \, \ottnt{B}}{%
 {\ottdrulename{L\_diaE}}{}%
 }}
 
@@ -269,8 +269,183 @@
 \end{ottdefnblock}}
 
 %% defn type
+\newcommand{\ottdruletyXXax}[1]{\ottdrule[#1]{%
+}{
+\Gamma  \ottsym{;}  \Delta  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \mathit{x}  \ottsym{:}  \ottnt{A}}{%
+{\ottdrulename{ty\_ax}}{}%
+}}
 
-\newcommand{\ottdefntype}[1]{\begin{ottdefnblock}[#1]{$\Gamma  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{T}$}{}
+
+\newcommand{\ottdruletyXXbax}[1]{\ottdrule[#1]{%
+}{
+\Gamma  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \ottsym{;}  \emptyset  \vdash  \mathit{x}  \ottsym{:}  \ottnt{A}}{%
+{\ottdrulename{ty\_bax}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXtrue}[1]{\ottdrule[#1]{%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \mathsf{unit}  \ottsym{:}  \top}{%
+{\ottdrulename{ty\_true}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXfalse}[1]{\ottdrule[#1]{%
+}{
+\Gamma  \ottsym{;}  \Delta  \ottsym{,}  \mathit{x}  \ottsym{:}  \perp  \vdash  \mathsf{contra}  \ottsym{:}  \ottnt{A}}{%
+{\ottdrulename{ty\_false}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXconjI}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{A}  \quad  \Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \ottsym{(}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{,}  \ottnt{t_{{\mathrm{2}}}}  \ottsym{)}  \ottsym{:}   \ottnt{A}  \land  \ottnt{B} }{%
+{\ottdrulename{ty\_conjI}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXconjEOne}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}   \ottnt{A}  \land  \ottnt{B} }%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \mathsf{fst}\, \, \ottnt{t}  \ottsym{:}  \ottnt{A}}{%
+{\ottdrulename{ty\_conjE1}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXconjETwo}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}   \ottnt{A}  \land  \ottnt{B} }%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \mathsf{snd}\, \, \ottnt{t}  \ottsym{:}  \ottnt{B}}{%
+{\ottdrulename{ty\_conjE2}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXdisjIOne}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \mathsf{inj}_1\,  \ottnt{t}  \ottsym{:}   \ottnt{A}  \lor  \ottnt{B} }{%
+{\ottdrulename{ty\_disjI1}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXdisjITwo}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \mathsf{inj}_2\,  \ottnt{t}  \ottsym{:}   \ottnt{A}  \lor  \ottnt{B} }{%
+{\ottdrulename{ty\_disjI2}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXdisjE}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{C}}%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{B}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{C}  \quad  \Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}   \ottnt{A}  \lor  \ottnt{B} }%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash   \mathsf{case}\, \ottnt{t} \,\mathsf{of}\, \mathit{x} . \ottnt{t_{{\mathrm{1}}}} , \mathit{x} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \ottnt{C}}{%
+{\ottdrulename{ty\_disjE}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXimpI}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash   \lambda  \mathit{x}  :  \ottnt{A} . \ottnt{t}   \ottsym{:}  \ottnt{A}  \to  \ottnt{B}}{%
+{\ottdrulename{ty\_impI}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXimpE}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{A}  \to  \ottnt{B}  \quad  \Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}} \, \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}{%
+{\ottdrulename{ty\_impE}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXboxI}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \emptyset  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \Box \, \ottnt{t}  \ottsym{:}  \Box \, \ottnt{A}}{%
+{\ottdrulename{ty\_boxI}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXboxE}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \Box \, \ottnt{A}  \quad  \Gamma  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\Box  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \ottnt{B}}{%
+{\ottdrulename{ty\_boxE}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXbdiaI}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \mathbin{\blacklozenge} \, \ottnt{t}  \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{A}}{%
+{\ottdrulename{ty\_bdiaI}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXbdiaE}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{A}  \quad  \Gamma  \ottsym{;}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\blacklozenge  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{B}}{%
+{\ottdrulename{ty\_bdiaE}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXbboxI}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \emptyset  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \blacksquare \, \ottnt{t}  \ottsym{:}  \blacksquare \, \ottnt{A}}{%
+{\ottdrulename{ty\_bboxI}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXbboxE}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \blacksquare \, \ottnt{A}  \quad  \Gamma  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\blacksquare  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \ottnt{B}}{%
+{\ottdrulename{ty\_bboxE}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXdiaI}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash  \Diamond \, \ottnt{t}  \ottsym{:}  \Diamond \, \ottnt{A}}{%
+{\ottdrulename{ty\_diaI}}{}%
+}}
+
+
+\newcommand{\ottdruletyXXdiaE}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \Diamond \, \ottnt{A}  \quad  \Gamma  \ottsym{;}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \Diamond \, \ottnt{B}}%
+}{
+\Gamma  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\Diamond  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \Diamond \, \ottnt{B}}{%
+{\ottdrulename{ty\_diaE}}{}%
+}}
+
+\newcommand{\ottdefntype}[1]{\begin{ottdefnblock}[#1]{$\Gamma  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}$}{}
+\ottusedrule{\ottdruletyXXax{}}
+\ottusedrule{\ottdruletyXXbax{}}
+\ottusedrule{\ottdruletyXXtrue{}}
+\ottusedrule{\ottdruletyXXfalse{}}
+\ottusedrule{\ottdruletyXXconjI{}}
+\ottusedrule{\ottdruletyXXconjEOne{}}
+\ottusedrule{\ottdruletyXXconjETwo{}}
+\ottusedrule{\ottdruletyXXdisjIOne{}}
+\ottusedrule{\ottdruletyXXdisjITwo{}}
+\ottusedrule{\ottdruletyXXdisjE{}}
+\ottusedrule{\ottdruletyXXimpI{}}
+\ottusedrule{\ottdruletyXXimpE{}}
+\ottusedrule{\ottdruletyXXboxI{}}
+\ottusedrule{\ottdruletyXXboxE{}}
+\ottusedrule{\ottdruletyXXbdiaI{}}
+\ottusedrule{\ottdruletyXXbdiaE{}}
+\ottusedrule{\ottdruletyXXbboxI{}}
+\ottusedrule{\ottdruletyXXbboxE{}}
+\ottusedrule{\ottdruletyXXdiaI{}}
+\ottusedrule{\ottdruletyXXdiaE{}}
 \end{ottdefnblock}}
 
 
@@ -289,7 +464,7 @@
 \ottall
 
 \begin{verbatim}
-Definition rules:        20 good    0 bad
-Definition rule clauses: 37 good    0 bad
+Definition rules:        40 good    0 bad
+Definition rule clauses: 74 good    0 bad
 \end{verbatim}
 \end{document}

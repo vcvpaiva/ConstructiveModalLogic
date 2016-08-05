@@ -171,9 +171,86 @@ by
 
   G ; D |- Dia A && G ; A |- Dia B
   -------------------------------- :: diaE
-  G ; D |- Dia A
+  G ; D |- Dia B
 
 
 defn
-    G |- t : T :: :: type :: ty_   
+  G ; D |- t : A :: :: type :: ty_   
 by
+
+  ------------------- :: ax
+  G;D, x : A |- x : A
+
+  ------------------ :: bax
+  G,x : A;. |- x : A
+
+  -------------------- :: true
+  G ; D |- unit : True
+
+  ------------------------------ :: false
+  G ; D, x : False |- contra : A
+
+  G ; D |- t1 : A && G ; D |- t2 : B
+  ---------------------------------- :: conjI
+  G ; D |- (t1,t2) : A x B
+
+  G ; D |- t : A x B
+  ------------------ :: conjE1
+  G ; D |- fst t : A
+
+  G ; D |- t : A x B
+  ------------------ :: conjE2
+  G ; D |- snd t : B
+
+  G ; D |- t : A
+  ----------------------- :: disjI1
+  G ; D |- inj1 t : A + B
+
+  G ; D |- t : B
+  ----------------------- :: disjI2
+  G ; D |- inj2 t : A + B
+
+  G ; D, x : A |- t1 : C
+  G ; D, x : B |- t2 : C && G ; D |- t : A + B
+  -------------------------------------------- :: disjE
+  G ; D |- case t of x.t1,x.t2 : C
+
+  G ; D, x : A |- t : B
+  ------------------------ :: impI
+  G ; D |- \x:A.t : A -> B
+ 
+  G ; D |- t1 : A -> B && G ; D |- t2 : A
+  --------------------------------------- :: impE
+  G ; D |- t2 t2 : B
+
+  G ; . |- t : A
+  ---------------------- :: boxI
+  G ; D |- Box t : Box A
+
+  G ; D |- t1 : Box A && G, x : A; D |- t2 : B
+  -------------------------------------------- :: boxE
+  G ; D |- letBox x = t1 in t2 : B
+
+  G ; D |- t : A
+  ------------------------ :: bdiaI
+  G ; D |- BDia t : BDia A
+
+  G ; D |- t1 : BDia A && G ; x : A |- t2 : BDia B
+  ------------------------------------------------ :: bdiaE
+  G ; D |- letBDia x = t1 in t2 : BDia B
+
+  G ; . |- t : A
+  ------------------------ :: bboxI
+  G ; D |- BBox t : BBox A
+
+  G ; D |- t1 : BBox A && G, x : A; D |- t2 : B
+  --------------------------------------------- :: bboxE
+  G ; D |- letBBox x = t1 in t2 : B
+
+  G ; D |- t : A
+  ---------------------- :: diaI
+  G ; D |- Dia t : Dia A
+
+  G ; D |- t1 : Dia A && G ; x : A |- t2 : Dia B
+  ---------------------------------------------- :: diaE
+  G ; D |- letDia x = t1 in t2 : Dia B
