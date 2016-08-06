@@ -121,9 +121,8 @@ weakening results.
   rule using the assumed premise.
 \end{proof}
 
-Type safety is an important property for any type system.  We show
-TCS4 type safe, but showing that both subject reduction and progress
-hold.  Subject reduction requires the following inversion principles.
+Next we show subject reduction, but this first requires the following
+inversion principles.
 \begin{lemma}[Inversion]
   \label{lemma:inversion}
   \begin{enumerate}[i.]
@@ -228,8 +227,6 @@ hold.  Subject reduction requires the following inversion principles.
     The $[[t3]]$ and $[[t4]]$ premises hold by inversion, and the
     $[[t2]]$ premise holds by weakening using our assumption that
     $[[G, x : A;D |- t2 : B]]$ holds.  Thus, we obtain our result.
-  \end{description}
-
-  
+  \end{description}  
   
 \end{proof}

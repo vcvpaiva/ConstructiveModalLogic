@@ -229,5 +229,11 @@ hold.  Subject reduction requires the following inversion principles.
     $\TLLnt{t_{{\mathrm{2}}}}$ premise holds by weakening using our assumption that
     $\Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$ holds.  Thus, we obtain our result.
   \end{description}
+
+  \begin{lemma}[Progress]
+    \label{lemma:progress}
+    If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{A}$ and $\TLLnt{t}  \rightsquigarrow  \TLLnt{t'}$, then $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$.
+  \end{lemma}
+
   
 \end{proof}
