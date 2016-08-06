@@ -29,7 +29,9 @@ grammar
     | letDia t1 = t2 in t3       ::  :: LetPPossibility           {{ com past possibility elim }}
     {{tex \mathsf{let}\,\Diamond [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
     | letBDia t1 = t2 in t3      ::  :: LetPossibility           {{ com possibility elim }}
-    {{tex \mathsf{let}\,\blacklozenge [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}            
+    {{tex \mathsf{let}\,\blacklozenge [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | [ t1 / x ] t2              :: M :: Sub
+    | ( t )                      :: S :: Paren
 
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
     | True             ::   :: True                    {{ com true or the unit type }}
@@ -83,6 +85,8 @@ grammar
     {{tex \mathsf{unit} }}
     | contra              ::   :: contra
     {{tex \mathsf{contra} }}
+    | ~>                  ::   :: red
+    {{tex \rightsquigarrow }}
 
   formula :: 'formula_' ::=
     | judgement            ::   :: judgement
@@ -254,3 +258,46 @@ by
   G ; D |- t1 : Dia A && G ; x : A |- t2 : Dia B
   ---------------------------------------------- :: diaE
   G ; D |- letDia x = t1 in t2 : Dia B
+
+defn
+  t1 ~> t2 :: :: red :: r_   
+by
+
+  ------------------------ :: beta
+  (\x:A.t2) t1 ~> [t1/x]t2
+
+  ------------------- :: first
+  fst (t1 , t2) ~> t1
+
+  ------------------- :: second
+  snd (t1 , t2) ~> t2
+
+  ------------------------------------- :: case1
+  case (inj1 t) of x.t1,x.t2 ~> [t/x]t1
+
+  ------------------------------------- :: case2
+  case (inj2 t) of x.t1,x.t2 ~> [t/x]t2
+
+  ----------------------------------- :: box
+  letBox x = Box t1 in t2 ~> [t1/x]t2
+
+  ------------------------------------- :: bdia
+  letBDia x = BDia t1 in t2 ~> [t1/x]t2
+
+  ------------------------------------- :: bbox
+  letBBox x = BBox t1 in t2 ~> [t1/x]t2
+
+  ------------------------------------- :: dia
+  letDia x = Dia t1 in t2 ~> [t1/x]t2
+
+  ---------------------------------------------------------------------------- :: boxBox
+  letBox x = letBox y = t1 in t2 in t3 ~> letBox y = t1 in letBox x = t2 in t3
+
+  ------------------------------------------------------------------------------- :: bdiaBdia
+  letBDia x = letBDia y = t1 in t2 in t3 ~> letBDia y = t1 in letBDia x = t2 in t3
+
+  -------------------------------------------------------------------------------- :: boxBBox
+  letBBox x = letBBox y = t1 in t2 in t3 ~> letBBox y = t1 in letBBox x = t2 in t3
+
+  ---------------------------------------------------------------------------- :: diadia
+  letDia x = letDia y = t1 in t2 in t3 ~> letDia y = t1 in letDia x = t2 in t3

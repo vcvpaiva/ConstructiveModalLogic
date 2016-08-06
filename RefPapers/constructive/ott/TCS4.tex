@@ -59,7 +59,8 @@
 \ottprodline{|}{ \mathsf{let}\,\Box  \ottnt{t_{{\mathrm{1}}}}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}} }{}{}{}{\ottcom{past necessity elim}}\ottprodnewline
 \ottprodline{|}{ \mathsf{let}\,\blacksquare  \ottnt{t_{{\mathrm{1}}}}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}} }{}{}{}{\ottcom{necessity elim}}\ottprodnewline
 \ottprodline{|}{ \mathsf{let}\,\Diamond  \ottnt{t_{{\mathrm{1}}}}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}} }{}{}{}{\ottcom{past possibility elim}}\ottprodnewline
-\ottprodline{|}{ \mathsf{let}\,\blacklozenge  \ottnt{t_{{\mathrm{1}}}}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}} }{}{}{}{\ottcom{possibility elim}}}
+\ottprodline{|}{ \mathsf{let}\,\blacklozenge  \ottnt{t_{{\mathrm{1}}}}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}} }{}{}{}{\ottcom{possibility elim}}\ottprodnewline
+\ottprodline{|}{\ottsym{(}  \ottnt{t}  \ottsym{)}} {\textsf{S}}{}{}{}}
 
 \newcommand{\ottform}{
 \ottrulehead{\ottnt{form}  ,\ \ottnt{type}  ,\ \ottnt{A}  ,\ \ottnt{B}  ,\ \ottnt{C}  ,\ \ottnt{T}}{::=}{\ottcom{formula and type}}\ottprodnewline
@@ -448,9 +449,124 @@
 \ottusedrule{\ottdruletyXXdiaE{}}
 \end{ottdefnblock}}
 
+%% defn red
+\newcommand{\ottdrulerXXbeta}[1]{\ottdrule[#1]{%
+}{
+\ottsym{(}   \lambda  \mathit{x}  :  \ottnt{A} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{)} \, \ottnt{t_{{\mathrm{1}}}}  \rightsquigarrow  \ottsym{[}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_beta}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXfirst}[1]{\ottdrule[#1]{%
+}{
+\mathsf{fst}\, \, \ottsym{(}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{,}  \ottnt{t_{{\mathrm{2}}}}  \ottsym{)}  \rightsquigarrow  \ottnt{t_{{\mathrm{1}}}}}{%
+{\ottdrulename{r\_first}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXsecond}[1]{\ottdrule[#1]{%
+}{
+\mathsf{snd}\, \, \ottsym{(}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{,}  \ottnt{t_{{\mathrm{2}}}}  \ottsym{)}  \rightsquigarrow  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_second}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXcaseOne}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{case}\, \ottsym{(}  \mathsf{inj}_1\,  \ottnt{t}  \ottsym{)} \,\mathsf{of}\, \mathit{x} . \ottnt{t_{{\mathrm{1}}}} , \mathit{x} . \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{1}}}}}{%
+{\ottdrulename{r\_case1}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXcaseTwo}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{case}\, \ottsym{(}  \mathsf{inj}_2\,  \ottnt{t}  \ottsym{)} \,\mathsf{of}\, \mathit{x} . \ottnt{t_{{\mathrm{1}}}} , \mathit{x} . \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_case2}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXcaseApp}[1]{\ottdrule[#1]{%
+}{
+\ottsym{(}   \mathsf{case}\, \ottnt{t} \,\mathsf{of}\, \mathit{x} . \ottnt{t_{{\mathrm{1}}}} , \mathit{x} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{)} \, \ottnt{t_{{\mathrm{3}}}}  \rightsquigarrow   \mathsf{case}\, \ottnt{t} \,\mathsf{of}\, \mathit{x} . \ottsym{(}  \ottnt{t_{{\mathrm{1}}}} \, \ottnt{t_{{\mathrm{3}}}}  \ottsym{)} , \mathit{x} . \ottsym{(}  \ottnt{t_{{\mathrm{2}}}} \, \ottnt{t_{{\mathrm{3}}}}  \ottsym{)} }{%
+{\ottdrulename{r\_caseApp}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXbox}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\Box  \mathit{x}  =  \Box \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_box}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXbdia}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\blacklozenge  \mathit{x}  =  \mathbin{\blacklozenge} \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_bdia}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXbbox}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\blacksquare  \mathit{x}  =  \blacksquare \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_bbox}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXdia}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\Diamond  \mathit{x}  =  \Diamond \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
+{\ottdrulename{r\_dia}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXboxBox}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\Box  \mathit{x}  =   \mathsf{let}\,\Box  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Box  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Box  \mathit{x}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}  }{%
+{\ottdrulename{r\_boxBox}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXbdiaBdia}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\blacklozenge  \mathit{x}  =   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacklozenge  \mathit{x}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}  }{%
+{\ottdrulename{r\_bdiaBdia}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXboxBBox}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\blacksquare  \mathit{x}  =   \mathsf{let}\,\blacksquare  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacksquare  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacksquare  \mathit{x}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}  }{%
+{\ottdrulename{r\_boxBBox}}{}%
+}}
+
+
+\newcommand{\ottdrulerXXdiadia}[1]{\ottdrule[#1]{%
+}{
+ \mathsf{let}\,\Diamond  \mathit{x}  =   \mathsf{let}\,\Diamond  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Diamond  \mathit{y}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Diamond  \mathit{x}  =  \ottnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{3}}}}  }{%
+{\ottdrulename{r\_diadia}}{}%
+}}
+
+\newcommand{\ottdefnred}[1]{\begin{ottdefnblock}[#1]{$\ottnt{t_{{\mathrm{1}}}}  \rightsquigarrow  \ottnt{t_{{\mathrm{2}}}}$}{}
+\ottusedrule{\ottdrulerXXbeta{}}
+\ottusedrule{\ottdrulerXXfirst{}}
+\ottusedrule{\ottdrulerXXsecond{}}
+\ottusedrule{\ottdrulerXXcaseOne{}}
+\ottusedrule{\ottdrulerXXcaseTwo{}}
+\ottusedrule{\ottdrulerXXcaseApp{}}
+\ottusedrule{\ottdrulerXXbox{}}
+\ottusedrule{\ottdrulerXXbdia{}}
+\ottusedrule{\ottdrulerXXbbox{}}
+\ottusedrule{\ottdrulerXXdia{}}
+\ottusedrule{\ottdrulerXXboxBox{}}
+\ottusedrule{\ottdrulerXXbdiaBdia{}}
+\ottusedrule{\ottdrulerXXboxBBox{}}
+\ottusedrule{\ottdrulerXXdiadia{}}
+\end{ottdefnblock}}
+
 
 \newcommand{\ottdefnsJtype}{
-\ottdefnform{}\ottdefntype{}}
+\ottdefnform{}\ottdefntype{}\ottdefnred{}}
 
 \newcommand{\ottdefnss}{
 \ottdefnsJtype
@@ -464,7 +580,7 @@
 \ottall
 
 \begin{verbatim}
-Definition rules:        40 good    0 bad
-Definition rule clauses: 74 good    0 bad
+Definition rules:        54 good    0 bad
+Definition rule clauses: 88 good    0 bad
 \end{verbatim}
 \end{document}
