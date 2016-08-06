@@ -36,6 +36,8 @@
 \let\t\relax
 
 \renewcommand{\Box}{\oblong}
+\newcommand{\BBox}{\blacksquare}
+\newcommand{\BDia}{\mathbin{\blacklozenge}}
 
 \newcommand{\F}{\mathop{\textbf{F}}}
 \renewcommand{\P}{\mathop{\textbf{P}}}
@@ -56,6 +58,30 @@
 \newcommand{\t}[0]{\mathsf{t}}
 \newcommand{\limp}[0]{\multimap}
 \newcommand{\Hom}[3]{\mathsf{Hom}_{#1}(#2,#3)}
+
+%% Ott
+\input{TCS4-ott}
+\renewcommand{\TLLdrule}[4][]{{\displaystyle\frac{\begin{array}{l}#2\end{array}}{#3}\quad #4}}
+\renewcommand{\TLLdruletyXXaxName}{\hspace{-8px}\text{Id}}
+\renewcommand{\TLLdruletyXXbaxName}{\hspace{-8px}\Box\text{Id}}
+\renewcommand{\TLLdruletyXXtrueName}{\hspace{-8px}\top_{\mathcal{I}}} 
+\renewcommand{\TLLdruletyXXfalseName}{\hspace{-8px}\perp_{\mathcal{E}}}
+\renewcommand{\TLLdruletyXXconjIName}{\hspace{-8px}\land_{\mathcal{I}}}
+\renewcommand{\TLLdruletyXXconjEOneName}{\hspace{-8px}\land_{\mathcal{E}_1}}
+\renewcommand{\TLLdruletyXXconjETwoName}{\hspace{-8px}\land_{\mathcal{E}_2}}
+\renewcommand{\TLLdruletyXXdisjIOneName}{\hspace{-8px}\lor_{\mathcal{I}_1}}
+\renewcommand{\TLLdruletyXXdisjITwoName}{\hspace{-8px}\lor_{\mathcal{I}_2}}
+\renewcommand{\TLLdruletyXXdisjEName}{\hspace{-8px}\lor_{\mathcal{E}}}
+\renewcommand{\TLLdruletyXXimpIName}{\hspace{-8px}\to_{\mathcal{I}}}
+\renewcommand{\TLLdruletyXXimpEName}{\hspace{-8px}\to_{\mathcal{E}}}
+\renewcommand{\TLLdruletyXXboxIName}{\hspace{-8px}\Box_{\mathcal{I}}} 
+\renewcommand{\TLLdruletyXXboxEName}{\hspace{-8px}\Box_{\mathcal{E}}} 
+\renewcommand{\TLLdruletyXXbdiaIName}{\hspace{-8px}\BDia_{\mathcal{I}}} 
+\renewcommand{\TLLdruletyXXbdiaEName}{\hspace{-8px}\BDia_{\mathcal{E}}} 
+\renewcommand{\TLLdruletyXXbboxIName}{\hspace{-8px}\BBox_{\mathcal{I}}} 
+\renewcommand{\TLLdruletyXXbboxEName}{\hspace{-8px}\BBox_{\mathcal{E}}} 
+\renewcommand{\TLLdruletyXXdiaIName}{\hspace{-8px}\Diamond_{\mathcal{I}}} 
+\renewcommand{\TLLdruletyXXdiaEName}{\hspace{-8px}\Diamond_{\mathcal{E}}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
