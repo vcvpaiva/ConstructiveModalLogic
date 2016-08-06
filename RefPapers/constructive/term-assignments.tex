@@ -1,0 +1,13 @@
+Given the Natural Deduction system presented, we simply follow the
+recipes described in \cite{barber1997} to produce a term assignment
+for these four kinds of modal operators.
+
+We start by giving a calculus for annotating natural deduction proofs
+in our CS4 tense calculus with typed $\lambda$-calculus terms. The
+annotations must be such that types correspond to modal propositions,
+terms correspond to proofs and proof normalisation corresponds to term
+reduction. The basic typying judgements of our CS4 tense calculus are
+of the form $\Gamma ; \Delta\vdash t\colon A$ where $\Gamma$ declares
+modal variables, which may occurr arbitrarily in a term, while
+$\Delta$ declares intuitionistic variables that may not occurr in a
+subterm of the form $\Box t$ or $\blacksquare t$.

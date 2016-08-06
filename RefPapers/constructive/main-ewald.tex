@@ -393,10 +393,11 @@ Finally to get to the tense logic that is the main aim of this note, we need two
 \end{figure}
 
 \section{Term Assignments}
-Given the Natural Deduction system presented, we simply follow the recipes described in \cite{barber1997} to produce a term assignment for these four kinds of modal operators.
+\label{sec:term_assignments}
 
-We start by giving a calculus for annotating natural deduction proofs in our CS4 tense calculus with typed $\lambda$-calculus terms. The annotations must be such that types correspond to modal propositions, terms correspond to proofs and proof normalisation corresponds to term reduction. The basic typying judgements of our CS4 tense calculus are of the form $\Gamma ; \Delta\vdash t\colon A$ where $\Gamma$ declares modal variables, which may occurr arbitrarily in a term, while $\Delta$ declares intuitionistic variables that may not occurr in a subterm of the form $\Box t$ or $\blacksquare t$.
+\input{term-assignments-output}
 
+% section term_assignments (end)
 
 \section{The Categorical Model}
 There is not much essentially new in what we discuss here about the tense logic based on CS4. Similar ideas were discussed by  Ghilardi and Meloni \cite{ghilardi1988}, Makkai and Reyes \cite{makkai1995} and more recently in by Dzik et al \cite{dziketal2012} and Menni and Smith \cite{Menni:2014}.
