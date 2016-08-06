@@ -120,3 +120,116 @@ weakening results.
   $\Box_{\mathcal{I}}$ and $\BBox_{\mathcal{I}}$ we simply reapply the
   rule using the assumed premise.
 \end{proof}
+
+Type safety is an important property for any type system.  We show
+TCS4 type safe, but showing that both subject reduction and progress
+hold.  Subject reduction requires the following inversion principles.
+\begin{lemma}[Inversion]
+  \label{lemma:inversion}
+  \begin{enumerate}[i.]
+  \item[]
+  \item If $[[G; D |- (t1, t2) : A x B]]$, then $[[G;D |- t1 : A]]$, and $[[G;D |- t2 : B]]$.
+  \item If $[[G; D |- fst t : B]]$, then there is a type $[[A]]$, such that, $[[G; D |- t : A x B]]$.
+  \item If $[[G; D |- snd t : B]]$, then there is a type $[[A]]$, such that, $[[G; D |- t : A x B]]$.
+  \item If $[[G; D |- inj1 t : A + B]]$, then $[[G; D |- t : A]]$.
+  \item If $[[G; D |- inj2 t : A + B]]$, then $[[G; D |- t : B]]$.
+  \item If $[[G; D |- case t of x.t1,x.t2 : C]]$, then there are types $[[A]]$ and $[[B]]$,
+    such that, $[[G;D, x : A |- t1 : C]]$, $[[G;D, x : B |- t2 : C]]$, and $[[G;D |- t : A + B]]$.
+  \item If $[[G;D |- \x:A.t : B]]$, then $[[G;D,x : A |- t : B]]$.    
+  \item If $[[G;D |- t1 t2 : B]]$, then there exists a type $[[A]]$, such that, $[[G;D |- t1 : A -> B]]$ and $[[G;D |- t2 : A]]$.
+  \item If $[[G;D |- Box t : Box A]]$, then $[[G;. |- t : A]]$.
+  \item If $[[G;D |- letBox x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : Box A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \item If $[[G;D |- BDia t : BDia A]]$, then $[[G;D |- t : A]]$.
+  \item If $[[G;D |- letBDia x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : BDia A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \item If $[[G;D |- BBox t : BBox A]]$, then $[[G;. |- t : A]]$.
+  \item If $[[G;D |- letBBox x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : BBox A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \item If $[[G;D |- Dia t : Dia A]]$, then $[[G;D |- t : A]]$.
+  \item If $[[G;D |- letDia x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : Dia A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Each of these principles hold by a simple induction over the assumed
+  typing derivation.
+\end{proof}
+
+\begin{lemma}[Subject Reduction]
+  \label{lemma:subject_reduction}
+  If $[[G;D |- t : A]]$ and $[[t ~> t']]$, then $[[G;D |- t' : A]]$.
+\end{lemma}
+\begin{proof}
+  This is a proof by induction on the form of $[[G;D |- t : A]]$.  We
+  only show non-trivial cases, the absent cases either hold vacuously,
+  by simply using the induction hypothesis and reapplying the rule, or
+  are similar to the cases we give here.
+
+  \begin{description}        
+  \item[\cW]
+    \[
+    \TLLdruletyXXconjEOne{}
+    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
+    \]
+    The only non-trivial case is when $[[t]] = [[(t1, t2)]]$ and
+    $[[t']] = [[t1]]$ for some terms $[[t1]]$ and $[[t2]]$.  Thus, we
+    know $[[G;D |- (t1, t2) : A x B]]$, and we must show that
+    $[[G;D |- t1 : A]]$, but this holds by inversion.
+        
+  \item[\cW]
+    \[
+    \TLLdruletyXXdisjE{}
+    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
+    \]     
+    The only non-trivial cases arise when either $[[t]] = [[inj1 t3]]$ and $[[t']] = [[ [t3/x]t1]]$, or
+    $[[t]] = [[inj2 t3]]$ and $[[t']] = [[ [t3/x]t2]]$.  We prove the former, because the latter is similar.
+    It suffices to show that $[[G;D |- [t3/x]t1 : C]]$.  We know by assumption that $[[G;D, x : A |- t1 : C]]$,
+    and since we know $[[G;D |- inj2 t3 : A + B]]$ by assumption, then we know $[[G;D |- t3 : A]]$ by inversion.
+    Finally, by substitution for typing we obtain our desired result.
+
+  \item[\cW]
+    \[
+    \TLLdruletyXXimpE{}
+    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
+    \]  
+    The only non-trivial case arises when $[[t1]] = [[\x:A.t3]]$ and $[[t']] = [[ [t2/x]t3]]$.
+    We know by assumption that $[[G;D |- \x:A.t3 : A -> B]]$, and by inversion we know
+    $[[G;D,x : A |- t3 : B]]$.  Finally, we also know by assumption
+    that $[[G;D |- t2 : A]]$, and so by substitution for typing we
+    know $[[G;D |- [t2/x]t3 : B]]$ which is our desired result.
+
+  \item[\cW]
+    \[
+    \TLLdruletyXXboxE{}
+    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
+    \]
+    The only non-trivial cases arise when either $[[t1]] = [[Box t3]]$
+    and $[[t']] = [[ [t3/x]t2]]$, or $[[t1]] = [[letBox y = t3 in t4]]$
+    and $[[t']] = [[ letBox y = t3 in letBox x = t4 in t2]]$.  We show
+    the latter, because the former is similar to the previous case.
+
+    We must show $[[ G;D |- letBox y = t3 in letBox x = t4 in t2 : B]]$.
+    That is, the following must hold:
+    \[
+    \small
+    \mprset{flushleft}
+    \inferrule* [right=$\Box_{\mathcal{E}}$] {
+      [[G;D |- t3 : Box C]]
+      \\
+      $$\mprset{flushleft}
+      \inferrule* [right=$\Box_{\mathcal{E}}$] {
+        [[G, y : C;D |- t4 : Box A]]
+        \\
+        [[G, y : C, x : A;D |- t2 : B]]
+      }{[[G, y : C;D |- letBox x = t4 in t2 : B]]}
+    }{[[ G;D |- letBox y = t3 in letBox x = t4 in t2 : B]]}
+    \]    
+    The $[[t3]]$ and $[[t4]]$ premises hold by inversion, and the
+    $[[t2]]$ premise holds by weakening using our assumption that
+    $[[G, x : A;D |- t2 : B]]$ holds.  Thus, we obtain our result.
+  \end{description}
+
+  
+  
+\end{proof}
