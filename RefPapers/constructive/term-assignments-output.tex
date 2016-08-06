@@ -84,3 +84,39 @@ congruence rules in the interest of space.
   \caption{The commuting conversions for TCS4}
   \label{fig:commuting-conv-TCS4}
 \end{figure}
+In the remainder of this section we prove various properties of this
+system.  TCS4 has two different types of assumptions, and hence, of
+free variables, those that are members of $\Gamma$ and those that are
+members of $\Delta$, where the former are implicitly boxed.  This
+implies that there are two types of substitution for typing and
+weakening results.
+\begin{lemma}[Substitution for Typing]
+  \label{lemma:substitution_for_typing}
+  \begin{enumerate}[i.]
+  \item[] 
+  \item If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$, and $\Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.
+  \item If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$, and $\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Both parts of this proof hold by straightforward induction on the
+  form of the second assumed typing derivation.  Notice that rules
+  $\Box_{\mathcal{I}}$ and $\BBox_{\mathcal{I}}$ do not need to be
+  considered in in the proof of part two, because we assume the
+  propositional context, $\Delta$, is non-empty.
+\end{proof}
+
+\begin{lemma}[Weakening]
+  \label{lemma:weakening}
+  \begin{enumerate}[i.]
+  \item[]
+  \item If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+  \item If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Both parts of this proof hold by straightforward induction on the
+  form of the assumed typing derivation.  In the case of the rules
+  $\Box_{\mathcal{I}}$ and $\BBox_{\mathcal{I}}$ we simply reapply the
+  rule using the assumed premise.
+\end{proof}
