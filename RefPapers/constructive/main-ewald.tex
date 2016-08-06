@@ -160,7 +160,7 @@ Sequent calculi  by themselves are not enough to provide us with Curry-Howard co
 We start by recalling the system using axioms, plain sequent calculus and plain natural deduction. In the next section we described a term assignment based on the dual calculus described in \cite{icalp1998} and hint at its syntactic prooperties. The next section  introduces the categorical model (a cartesian closed category with two intertwnied adjunctions) and show the usual soundness and completeness results. Finally we discuss the limitations of our constructive tense logic.
 
 \section{Tense Logic CS4-style}
-We build up to the constructive tense logic we are interested in $\sf{TCS4}$ in progressive steps. We start with the intuitionsitic basis $\sf{LJ}$, add the modalities to get the constructive S4 system, $\sf{CS4}$, do the dual context modification (to help with the reuse of libraries, amongst other things), obtaining $\sf{DCS4}$ and then finally consider the two adjunctions to obtain the tense constructive system $\sf{TCS4}$.
+We build up to the constructive tense logic we are interested in $\sf{TCS4}$ in progressive steps. We start with the intuitionistic basis $\sf{LJ}$, add the modalities to get the constructive S4 system, $\sf{CS4}$, do the dual context modification (to help with the reuse of libraries, amongst other things), obtaining $\sf{DCS4}$ and then finally consider the two adjunctions to obtain the tense constructive system $\sf{TCS4}$.
 
 %\subsection{Axioms}
 \subsection{Intuitionistic Sequent Calculus}
@@ -291,22 +291,20 @@ Next we recall the sequent calculus formalization of system CS4.
 Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as symmetric as the propositional ones. Most importantly, we have a local restriciton on the rule that introduces the $\Box$ operator: We can only introduce $\Box$ in the conclusion, if all the assumptions are already boxed. Also the rules for  the $\Diamond$ operator presuppose that you have already $\Box$ operators.
 This system is indeed constructive, $\Box$ and $\Diamond$ are independent logical operators and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, nor is $\Diamond A$ logically equivalent to $\lnot \Box \lnot A$.
 
-\iffalse
-This system has a nice proof theory, as far as modal logics are concerned. Bierman and de Paiva \cite{CS4} show that it has a Hilbert-style presentation,  a Natural Deduction presentation, as well as a sequent calculus one. The sequent calculus
-satisfies cut-elimination, an old result from Ohnishi and Matsumoto
-\cite{ohnishi1957}, as well as the subformula property.
-The Natural Deduction formulation has a colourful history, described
-in \cite{CS4}. One of its distinct features is that it was described
-in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
-hence it is  sometimes called Prawitz S4 modal logic.
 
+This system has a nice proof theory.
+%, as far as modal logics are concerned. 
+Bierman and de Paiva \cite{bierman2000} show that it has a Hilbert-style presentation,  a Natural Deduction presentation, as well as a sequent calculus presentation and these are proved equivalent, in the sense of proving the same theorems. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto~\cite{ohnishi1957}, as well as the subformula property.
+The Natural Deduction formulation has a colourful history: one of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
+hence it is  sometimes called Prawitz S4 modal logic.
 Most interestingly the system has both Kripke and categorical
 semantics, described respectively in \cite{alechinaetal} and
-\cite{CS4}. Since we can prove a Curry-Howard correspondence for this
-system, it has been used in several applications within programming
-language theory \todo{Add references for these applications}.
+\cite{bierman2000} as well as an independent mathematical semantics in terms of simplicial sets, described by Goubault-Larrecq\cite{goubault-larrec}. 
+%We can prove a Curry-Howard correspondence for this system.
+%, it has been used in several applications within programming
+%language theory \todo{Add references for these applications}.
 %Examples include \cite{hmm}.
-\fi
+
 
 \subsection{The dual context modal S4 calculus}
 An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will describe in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{dual context} formulation of CS4 and the
@@ -336,12 +334,12 @@ rules are given  in Figure~\ref{fig:ADJCS4}. Note that the rules are Natural Ded
     \end{center}
   \end{mdframed}
   \caption{The dual context modal calculus ({\sf{DCS4}})}
-  \label{fig:ADJCS4}
+  \label{fig:DCS4}
 \end{figure}
 
-The main difference in the dual context formulation of CS4 is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The difficult rule of $\Box$ introduction now insists that to introduce a $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions. This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it has no assumptions whatsoever).
+The main difference in the dual context formulation of CS4 is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The difficult rule of $\Box$ introduction now insists that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions. This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it has no assumptions whatsoever).
 
-These rules have been shown by Benton \cite{benton1995} and Barber to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials $!$ and $?$.  
+These rules have been shown by Benton \cite{benton1995} and Barber \cite{barber1997} to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials $!$.  
 
 We  describe the simplifications that can be made to models when, instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Box\vdash \Diamond$.
 
@@ -405,10 +403,12 @@ There is not much essentially new in what we discuss here about the tense logic 
 
 The upshot of our discussion is that the categorical model we advance is a cartesian closed category endowed with two adjunctions, corresponding to the (limited) universal and existential quantifications relative to the past and to the future that correspond to the necessity and possibility operators, relative to the past and the future.
 
-This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent}. Secondly we see no reason to take our models as part of toposes, as we are only interested in propositional systems. But we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories.
-On the other hand, we are interested in the term assignment systems and its properties, as our aims are to use these as type systems for innovative programming languages. So we need to provide the systematic work that shows basic properties of the type systems we are interested in.
+This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988}. Secondly we see no reason to take our models as part of toposes, as we are not  interested in extra structure provided by toposes. 
+However, we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories, as both \cite{dziketal2012} and  \cite{Menni:2014} do. Different proofs of the same theorem are important to us as they correspond to different morphisms in the categories between the same objects.
 
-\section{Applications}
+On the other hand, we are interested in the term assignment systems and its properties, as our aims are to use these as type systems for innovative programming languages. So we need to provide the systematic work that shows basic properties of the type system $\sf{TCS4}$ we are interested in.
+
+%\section{Applications}
 
 \section{Conclusions}
 
