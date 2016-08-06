@@ -85,7 +85,12 @@ congruence rules in the interest of space.
   \label{fig:commuting-conv-TCS4}
 \end{figure}
 In the remainder of this section we prove various properties of this
-system.  TCS4 has two different types of assumptions, and hence, of
+system.
+
+
+\subsection{Subject Reduction}
+\label{subsec:subject_reduction}
+TCS4 has two different types of assumptions, and hence, of
 free variables, those that are members of $[[G]]$ and those that are
 members of $[[D]]$, where the former are implicitly boxed.  This
 implies that there are two types of substitution for typing and
@@ -122,7 +127,8 @@ weakening results.
 \end{proof}
 
 Next we show subject reduction, but this first requires the following
-inversion principles.
+inversion principles.  Then subject reduction holds by straightforward
+induction.
 \begin{lemma}[Inversion]
   \label{lemma:inversion}
   \begin{enumerate}[i.]
@@ -160,73 +166,8 @@ inversion principles.
   If $[[G;D |- t : A]]$ and $[[t ~> t']]$, then $[[G;D |- t' : A]]$.
 \end{lemma}
 \begin{proof}
-  This is a proof by induction on the form of $[[G;D |- t : A]]$.  We
-  only show non-trivial cases, the absent cases either hold vacuously,
-  by simply using the induction hypothesis and reapplying the rule, or
-  are similar to the cases we give here.
-
-  \begin{description}        
-  \item[\cW]
-    \[
-    \TLLdruletyXXconjEOne{}
-    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
-    \]
-    The only non-trivial case is when $[[t]] = [[(t1, t2)]]$ and
-    $[[t']] = [[t1]]$ for some terms $[[t1]]$ and $[[t2]]$.  Thus, we
-    know $[[G;D |- (t1, t2) : A x B]]$, and we must show that
-    $[[G;D |- t1 : A]]$, but this holds by inversion.
-        
-  \item[\cW]
-    \[
-    \TLLdruletyXXdisjE{}
-    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
-    \]     
-    The only non-trivial cases arise when either $[[t]] = [[inj1 t3]]$ and $[[t']] = [[ [t3/x]t1]]$, or
-    $[[t]] = [[inj2 t3]]$ and $[[t']] = [[ [t3/x]t2]]$.  We prove the former, because the latter is similar.
-    It suffices to show that $[[G;D |- [t3/x]t1 : C]]$.  We know by assumption that $[[G;D, x : A |- t1 : C]]$,
-    and since we know $[[G;D |- inj2 t3 : A + B]]$ by assumption, then we know $[[G;D |- t3 : A]]$ by inversion.
-    Finally, by substitution for typing we obtain our desired result.
-
-  \item[\cW]
-    \[
-    \TLLdruletyXXimpE{}
-    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
-    \]  
-    The only non-trivial case arises when $[[t1]] = [[\x:A.t3]]$ and $[[t']] = [[ [t2/x]t3]]$.
-    We know by assumption that $[[G;D |- \x:A.t3 : A -> B]]$, and by inversion we know
-    $[[G;D,x : A |- t3 : B]]$.  Finally, we also know by assumption
-    that $[[G;D |- t2 : A]]$, and so by substitution for typing we
-    know $[[G;D |- [t2/x]t3 : B]]$ which is our desired result.
-
-  \item[\cW]
-    \[
-    \TLLdruletyXXboxE{}
-    \leqno{\raise 8 pt\hbox{\textbf{Case}}}
-    \]
-    The only non-trivial cases arise when either $[[t1]] = [[Box t3]]$
-    and $[[t']] = [[ [t3/x]t2]]$, or $[[t1]] = [[letBox y = t3 in t4]]$
-    and $[[t']] = [[ letBox y = t3 in letBox x = t4 in t2]]$.  We show
-    the latter, because the former is similar to the previous case.
-
-    We must show $[[ G;D |- letBox y = t3 in letBox x = t4 in t2 : B]]$.
-    That is, the following must hold:
-    \[
-    \small
-    \mprset{flushleft}
-    \inferrule* [right=$\Box_{\mathcal{E}}$] {
-      [[G;D |- t3 : Box C]]
-      \\
-      $$\mprset{flushleft}
-      \inferrule* [right=$\Box_{\mathcal{E}}$] {
-        [[G, y : C;D |- t4 : Box A]]
-        \\
-        [[G, y : C, x : A;D |- t2 : B]]
-      }{[[G, y : C;D |- letBox x = t4 in t2 : B]]}
-    }{[[ G;D |- letBox y = t3 in letBox x = t4 in t2 : B]]}
-    \]    
-    The $[[t3]]$ and $[[t4]]$ premises hold by inversion, and the
-    $[[t2]]$ premise holds by weakening using our assumption that
-    $[[G, x : A;D |- t2 : B]]$ holds.  Thus, we obtain our result.
-  \end{description}  
-  
+  This proof holds by induction on the assumed typing derivation; see
+  the Appendix~\ref{subsec:proof_of_subject_reduction} for the
+  complete proof.
 \end{proof}
+% subsection subject_reduction (end)
