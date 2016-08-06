@@ -485,13 +485,6 @@
 }}
 
 
-\newcommand{\ottdrulerXXcaseApp}[1]{\ottdrule[#1]{%
-}{
-\ottsym{(}   \mathsf{case}\, \ottnt{t} \,\mathsf{of}\, \mathit{x} . \ottnt{t_{{\mathrm{1}}}} , \mathit{x} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{)} \, \ottnt{t_{{\mathrm{3}}}}  \rightsquigarrow   \mathsf{case}\, \ottnt{t} \,\mathsf{of}\, \mathit{x} . \ottsym{(}  \ottnt{t_{{\mathrm{1}}}} \, \ottnt{t_{{\mathrm{3}}}}  \ottsym{)} , \mathit{x} . \ottsym{(}  \ottnt{t_{{\mathrm{2}}}} \, \ottnt{t_{{\mathrm{3}}}}  \ottsym{)} }{%
-{\ottdrulename{r\_caseApp}}{}%
-}}
-
-
 \newcommand{\ottdrulerXXbox}[1]{\ottdrule[#1]{%
 }{
  \mathsf{let}\,\Box  \mathit{x}  =  \Box \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \ottsym{[}  \ottnt{t_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t_{{\mathrm{2}}}}}{%
@@ -553,7 +546,6 @@
 \ottusedrule{\ottdrulerXXsecond{}}
 \ottusedrule{\ottdrulerXXcaseOne{}}
 \ottusedrule{\ottdrulerXXcaseTwo{}}
-\ottusedrule{\ottdrulerXXcaseApp{}}
 \ottusedrule{\ottdrulerXXbox{}}
 \ottusedrule{\ottdrulerXXbdia{}}
 \ottusedrule{\ottdrulerXXbbox{}}
@@ -580,7 +572,7 @@
 \ottall
 
 \begin{verbatim}
-Definition rules:        54 good    0 bad
-Definition rule clauses: 88 good    0 bad
+Definition rules:        53 good    0 bad
+Definition rule clauses: 87 good    0 bad
 \end{verbatim}
 \end{document}
