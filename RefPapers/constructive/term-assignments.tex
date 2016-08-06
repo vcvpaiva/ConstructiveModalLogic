@@ -12,7 +12,13 @@ variables, which may occurr arbitrarily in a term, while $\Delta$
 declares intuitionistic variables that may not occurr in a subterm of
 the form $[[Box t]]$ or $[[BBox t]]$.
 
-The typing rules for basic propositional logic can be found in Figure
+The typing rules for basic propositional logic can be found in
+Figure~\ref{fig:term-assignment-basic}, and the typing rules for the
+TCS4 modalities are in Figure~\ref{fig:term-assignment-TCS4}.
+Finally, the reduction relation consists of the $\beta$-reduction
+rules defined in Figure~\ref{fig:reduction-TCS4}, and the commuting
+conversions defined in Figure~\ref{fig:commuting-conv-TCS4}; we omit
+congruence rules in the interest of space.
 \begin{figure}
   \begin{mdframed}
     \begin{mathpar}
@@ -33,7 +39,6 @@ The typing rules for basic propositional logic can be found in Figure
   \caption{Term assignment for basic propositional logic}
   \label{fig:term-assignment-basic}
 \end{figure}
-
 \begin{figure}
   \begin{mdframed}
     \begin{mathpar}
@@ -50,5 +55,32 @@ The typing rules for basic propositional logic can be found in Figure
   \caption{Term assignment for TCS4}
   \label{fig:term-assignment-TCS4}
 \end{figure}
-
-
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}
+      \TLLdrulerXXbeta{} \and
+      \TLLdrulerXXfirst{} \and
+      \TLLdrulerXXsecond{} \and
+      \TLLdrulerXXcaseOne{} \and
+      \TLLdrulerXXcaseTwo{} \and
+      \TLLdrulerXXbox{} \and
+      \TLLdrulerXXbdia{} \and
+      \TLLdrulerXXbbox{} \and
+      \TLLdrulerXXdia{}      
+    \end{mathpar}
+  \end{mdframed}
+  \caption{The $\beta$-reduction rules for TCS4}
+  \label{fig:reduction-TCS4}
+\end{figure}
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}
+      \TLLdrulerXXboxBox{} \and
+      \TLLdrulerXXbdiaBdia{} \and
+      \TLLdrulerXXboxBBox{} \and
+      \TLLdrulerXXdiadia{}
+    \end{mathpar}
+  \end{mdframed}
+  \caption{The commuting conversions for TCS4}
+  \label{fig:commuting-conv-TCS4}
+\end{figure}
