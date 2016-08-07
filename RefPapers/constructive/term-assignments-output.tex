@@ -3,7 +3,7 @@ we simply follow the recipes described in \cite{barber1997} to produce
 a term assignment for these four kinds of modal operators.
 
 We start by giving a calculus for annotating natural deduction proofs
-in our CS4 tense calculus with typed $\lambda$-calculus terms. The
+in our $\sf{CS4}$ tense calculus with typed $\lambda$-calculus terms. The
 annotations must be such that types correspond to modal propositions,
 terms correspond to proofs and proof normalisation corresponds to term
 reduction. The basic typying judgements of our CS4 tense calculus are
@@ -90,7 +90,7 @@ system.
 
 \subsection{Subject Reduction}
 \label{subsec:subject_reduction}
-TCS4 has two different types of assumptions, and hence, of
+The system TCS4 has two different types of assumptions, and hence, of
 free variables, those that are members of $\Gamma$ and those that are
 members of $\Delta$, where the former are implicitly boxed.  This
 implies that there are two types of substitution for typing and
@@ -171,3 +171,13 @@ induction.
   complete proof.
 \end{proof}
 % subsection subject_reduction (end)
+
+\subsection{Strong Normalization}
+\label{subsec:strong_normalization}
+
+% subsection strong_normalization (end)
+
+\subsection{Confluence}
+\label{subsec:confluence}
+
+% subsection confluence (end)
