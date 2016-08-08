@@ -38,6 +38,7 @@
 \renewcommand{\Box}{\oblong}
 \newcommand{\BBox}{\blacksquare}
 \newcommand{\BDia}{\mathbin{\blacklozenge}}
+\def\sem#1{[\hspace{-0.05cm}[#1]\hspace{-0.05cm}]}
 
 \newcommand{\F}{\mathop{\textbf{F}}}
 \renewcommand{\P}{\mathop{\textbf{P}}}
@@ -387,10 +388,10 @@ The main difference in the dual context formulation of CS4 is the fact that the 
 
 These rules have been shown by Benton \cite{benton1995} and Barber \cite{barber1997} to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials.  
 
-We  describe the simplifications that can be made to models when, instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Box\vdash \Diamond$.
+We  describe the simplifications that can be made to models when, instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Diamond \vdash \Box $.
 
 \subsection{The tense CS4 calculus}
-Finally to get to the tense logic that is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\blacksquare$ is left-adjoint to $\Diamond$ and $\Box$ is left-adjoint to $\blacklozenge$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity $G$.
+Finally to get to the tense logic that is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity $G$.
 
 \begin{figure}
   \begin{mdframed}
@@ -439,7 +440,33 @@ Finally to get to the tense logic that is the main aim of this note, we need two
 \end{figure}
 
 \subsection{Axioms}
-Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for the basic system intuitionistic logic $\sf{LJ}$,  any traditional set would do, plus the axioms for modalities, as well as the rules \textbf{modus ponens} and \textbf{necessitation} for the two necessity operators, that is:
+Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for the basic system intuitionistic logic $\sf{LJ}$,  any traditional set would do, plus the axioms for modalities, as well as the rules \textbf{modus ponens} and \textbf{necessitation} for the two necessity operators:
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \begin{math}
+        \begin{array}{ccccc}              
+          \infer[\Box_{{Nec}}]{\Box A }{
+           A 
+          }
+          & \quad &
+          \infer[\blacksquare_{{Nec}}]{ \blacksquare A}{
+             A
+          }
+        & \infer[\mathcal{MP}]{  B}{
+           A\to B \hspace{.1in} A  
+          }
+        \end{array}        
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{Axiomatic Rules}
+  \label{fig:nec-rules}
+\end{figure}
+
+We have similar  axioms to Ewald's \cite{ewald1986}, except that the duality between necessity and possibility is not strict (Ewald's axioms (7) and (7') in page 171 are not valid) and that the possibility modalities we deal with, do not distribute over disjunction (axioms (4) and (4') are not valid). Also note we do have  introspection and reflexivity valid, which correspond to Ewald's axioms (12) and (12'), as well as (13) and (13').
+
+We are interested in the term assignment systems and its properties, as our aim is to use these as type systems for innovative programming languages. So we needed to provide the systematic work that shows basic properties of the type system $\sf{TCS4}$ we are interested in, this is what we do in the next section.
 
 \begin{figure}
   \begin{mdframed}
@@ -453,7 +480,11 @@ Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for t
         \blacksquare (A \to B) &\to &(\blacksquare A \to \blacksquare B)\\
         \blacksquare (A \to B) &\to &(\Diamond A\to \Diamond B)\\
         (\blacksquare A\to A) &\land &(A\to \Diamond A)\\
-        (\blacksquare A\to \blacksquare\blacksquare A) &\land &(\Diamond \Diamond A \to \Diamond A)
+        (\blacksquare A\to \blacksquare\blacksquare A) &\land &(\Diamond \Diamond A \to \Diamond A)\\
+        \Diamond \blacksquare A\to A\\
+        \bLozenge\Box A\to A\\
+        A\to \Box \bLozenge A\\
+        A\to \blacksquare\Diamond A\\
         \end{array}
        \end{math}
 \end{center}
@@ -468,16 +499,108 @@ Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for t
 \input{term-assignments-output}
 
 % section term_assignments (end)
+%On the other hand, 
 
 \section{The Categorical Model}
-There is not much essentially new in what we discuss here about the tense logic based on CS4. Similar ideas were discussed by  Ghilardi and Meloni \cite{ghilardi1988}, Makkai and Reyes \cite{makkai1995} and more recently in by Dzik et al \cite{dziketal2012} and Menni and Smith \cite{Menni:2014}.
+There is not much essentially new in what we discuss here about the tense logic based on $\sf{CS4}$. Similar ideas were discussed by  Ghilardi and Meloni \cite{ghilardi1988}, Makkai and Reyes \cite{makkai1995} and more recently in by Dzik et al \cite{dziketal2012} and Menni and Smith \cite{Menni:2014}.
 
-The upshot of our discussion is that the categorical model we advance is a cartesian closed category endowed with two adjunctions, corresponding to the (limited) universal and existential quantifications relative to the past and to the future that correspond to the necessity and possibility operators, relative to the past and the future.
+The upshot of our discussion is that the categorical model we advance is a cartesian closed category endowed with two adjunctions, corresponding to the (limited) universal and existential quantifications relative to the past and to the future that correspond to the two sets of  necessity and possibility operators, relative to the past and the future.
 
-This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988}. Secondly we see no reason to take our models as part of toposes, as we are not  interested in extra structure provided by toposes. 
-However, we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories, as both \cite{dziketal2012} and  \cite{Menni:2014} do. Different proofs of the same theorem are important to us as they correspond to different morphisms in the categories between the same objects.
+This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988} or \cite{makkai1995}. Secondly we see no reason to take our models as part of toposes, as we are not  interested in extra structure provided by toposes. 
+However, we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories, as both \cite{dziketal2012} and  \cite{Menni:2014} do. Different proofs of the same theorem are important to us as they correspond to different morphisms in the category between the same objects. Thus we are interested in \textbf{proof relevant} semantics, not simply provability.
 
-On the other hand, we are interested in the term assignment systems and its properties, as our aims are to use these as type systems for innovative programming languages. So we need to provide the systematic work that shows basic properties of the type system $\sf{TCS4}$ we are interested in.
+We build our main definition in stages. A categorical model of propositional intuitionistic  logic is a \textbf{cartesian closed} category with coproducts $\cat{C}$.
+
+\iffalse
+\begin{definition}[modal S4 category]
+  \label{def:CS4-model}
+  Suppose $\cat{C}$ is a cartesian closed category equipped with  a monoidal comonad $(\Box, \varepsilon, \delta)$ and a
+  \emph{$\Box$-strong monad} with a strength natural transformation
+  \[
+  \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
+  \]
+  This is a model of CS4 as defined and showed sound and complete in \cite{bierman2000}. We call this structure a \textit{$\sf{S4}$ modal category}.
+  % as CS4 is the only kind of modality we consider in this note.
+\end{definition}
+\fi 
+
+\begin{definition}[adjoint model]
+  \label{def:CS4-single-adjoint-cat-model}
+  An adjoint categorical model of dual context modal logic $\sf{DCS4}$ consists of the following data:
+  \begin{enumerate}
+  \item A cartesian closed category with coproducts $(\cat{C},1,0,\pd,+,\ihom)$;
+  \item 
+    A monoidal adjunction  $F \dashv G$, where $(F,m)$ and  $(G,n)\colon \cat{C} \mto \cat{C}$ are monoidal functors such that their composition $GF$ is a monoidal comonad, written as $\Box$;
+ \item The  monad $(\Diamond, \eta, \mu, \st{A}{B})$, induced by the adjunction $F \dashv G$,   is $\Box$-strong.
+  \end{enumerate}
+\end{definition}
+
+Define an interpretation $\sem{\_} : \sf{DCS4} \to {\cal M}$ which takes the types and sequents of $\sf{DCS4}$ (over a basic 
+set of types)  to a model $\cal M$ as follows:
+\begin{align*}
+\sem{p} &= I(p) \mbox{  for $p$ a base type}\\
+\sem{\top} &= \top\\
+[A\otimes B] &= [A]\otimes [B]\\
+\sem{  A \to B  } &=  \sem{ A}  \to  \sem{ B }\\
+\sem{\Box A} &= F G(\sem{A})
+\end{align*}
+ We extend this interpretation to 
+ to lists of types by saying that for a list $A_1, ..., A_n$ of types,
+ the interpretation of the list is the list of the interpretations
+ $\sem{A_1,...A_n} = (\sem{A_1}, . . . \sem{A_n})$ 
+ %Secondly, we extend the definition to contexts
+contexts $(A_1,...A_n | \ B_1,...B_n)$ by adding boxes to the modal
+assumptions and defining
+$ \sem{A_1,\ldots, A_n |\  B_1,\ldots,B_n} = 
+\Box \sem{A_1}\times \cdots \times \Box \sem{A_n} \times
+\  \sem{B_1}\times \cdots \times\sem{B_n} $.
+The interpretation will take a sequent $\Gamma|\Delta \vdash t : A$ to an arrow 
+$ \sem {\Gamma|\Delta \vdash t : A} : \sem{ \Gamma|\Delta} \to \sem{A} $
+in the DIML category.
+
+The DIML type theory can be soundly interpreted in a DIML category as defined above.
+\begin{theorem}
+\label{thm:diml-sound}
+The type theory DIML has  \textit{sound} models provided by the structures $\cal M$ defined above.
+In other words, given a DIML category $\cal M$, using the above interpretation, the following hold:
+\begin{itemize}
+\item Assume $\Gamma|\Delta \vdash t : A$ in DIML. Then $\sem{\Gamma |
+    \Delta \vdash t \colon A}$ is a morphism in S with domain
+  $\sem{\Gamma | \Delta}$ and codomain $\sem{A}$;
+\item Assume $\Gamma \vdash t = s \colon A$. Then $\sem{\Gamma
+  \vdash t \colon A} = \sem{\Gamma \vdash s \colon A}$.
+\end{itemize}
+\end{theorem}
+
+We also have completeness of DIML categories:
+\begin{theorem}
+\label{thm:diml-completeness}
+The DIML models are \textit{complete} in the appropriate sense for the type theory DIML. This is to say, if
+we have equality of the interpretations $\sem{\Gamma \vdash t \colon A} = \sem{\Gamma  \vdash s \colon A}$
+ (where \mbox{$\sem{\ } $} is the interpretation defined above)
+ in the
+DIML category $\cal M$
+   for any derived sequents $\Gamma \vdash t \colon A$
+ and $\Gamma \vdash s \colon A$ 
+ then we can derive the  equation in the type theory DIML $\;$
+ $\Gamma \vdash t = s \colon A$. 
+\end{theorem}
+The proof is \textit{mutatis mutandis} the one in Barber's thesis \cite{barber-plotkin:dill}.
+We construct the term model and show that the basic rules of the calculus are mapped to 
+appropriate morphisms using  the categorical constructs. 
+
+
+\begin{definition}[tense calculus model]
+A model of $\sf{TCDS4}$ is a cartesian closed category $\cal{C}$ as above, together with two intertwined adjunctions $(\bLozenge\dashv \Box, \Diamond\dashv \blacksquare)$.  The adjunctions $(\bLozenge\dashv \Box)$ and $(\Diamond\dashv \blacksquare)$ on $\cal{C}$ are connected by Fisher-Servi axioms. 
+\end{definition}
+
+Categorical soundness is proved, as usual, checking the natural deduction rules preserve validity of the constructions used, i.e function spaces, products, coproducts and the two adjunctions. 
+
+\begin{theorem}
+
+\end{theorem}
+
+Categorical completeness requires providing an equivalence relation in the Lindenbaum algebra of the formulae, as usual in algebraic semantics. The basic calculations, for traditional algebraic semantics in Heyting algebras were provided, for instance, in \cite{figallo2014}. \textit{Mutatis mutantis} these calculations apply for our version of the system (no distribution of diamonds over disjunctions, no definibility of diamonds in terms of negated boxes).
 
 %\section{Applications}
 
