@@ -32,10 +32,10 @@
 }}
 
 \newcommand{\TLLterm}{
-\TLLrulehead{\TLLnt{term}  ,\ \TLLnt{t}}{::=}{\TLLcom{term}}\TLLprodnewline
+\TLLrulehead{\TLLnt{term}  ,\ \TLLnt{t}  ,\ \TLLnt{r}  ,\ \TLLnt{s}  ,\ \TLLnt{n}}{::=}{\TLLcom{term}}\TLLprodnewline
 \TLLfirstprodline{|}{\mathit{x}}{}{}{}{\TLLcom{variable}}\TLLprodnewline
-\TLLprodline{|}{\mathsf{unit}}{}{}{}{\TLLcom{unit}}\TLLprodnewline
-\TLLprodline{|}{\mathsf{contra}}{}{}{}{\TLLcom{contradiction}}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{unit} }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{contra} }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)}}{}{}{}{\TLLcom{pair}}\TLLprodnewline
 \TLLprodline{|}{\mathsf{fst}\, \, \TLLnt{t}}{}{}{}{\TLLcom{first projection}}\TLLprodnewline
 \TLLprodline{|}{\mathsf{snd}\, \, \TLLnt{t}}{}{}{}{\TLLcom{second projection}}\TLLprodnewline
@@ -52,8 +52,21 @@
 \TLLprodline{|}{ \mathsf{let}\,\blacksquare  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{necessity elim}}\TLLprodnewline
 \TLLprodline{|}{ \mathsf{let}\,\Diamond  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{past possibility elim}}\TLLprodnewline
 \TLLprodline{|}{ \mathsf{let}\,\blacklozenge  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{possibility elim}}\TLLprodnewline
-\TLLprodline{|}{\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}} {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLsym{(}  \TLLnt{t}  \TLLsym{)}} {\textsf{S}}{}{}{}}
+\TLLprodline{|}{\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \TLLnt{t}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}} {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLsym{(}  \TLLnt{t}  \TLLsym{)}} {\textsf{S}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \TLLnt{t} } {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLnt{r} \, \TLLnt{R}} {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{let}\,\mathbin{M}  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} } {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \overrightarrow{ \TLLnt{t} } } {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathbin{M}  \TLLnt{t} } {\textsf{M}}{}{}{}}
+
+\newcommand{\TLLelim}{
+\TLLrulehead{\TLLnt{elim}  ,\ \TLLnt{R}}{::=}{}\TLLprodnewline
+\TLLfirstprodline{|}{\TLLnt{r}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ ( \mathit{x} . \TLLnt{R_{{\mathrm{1}}}} , \mathit{y} . \TLLnt{R_{{\mathrm{2}}}} ) }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathit{x} . \TLLnt{R} }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \overrightarrow{ \TLLnt{R} } } {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLsym{(}  \TLLnt{R}  \TLLsym{)}} {\textsf{S}}{}{}{}}
 
 \newcommand{\TLLform}{
 \TLLrulehead{\TLLnt{form}  ,\ \TLLnt{type}  ,\ \TLLnt{A}  ,\ \TLLnt{B}  ,\ \TLLnt{C}  ,\ \TLLnt{T}}{::=}{\TLLcom{formula and type}}\TLLprodnewline
@@ -65,7 +78,8 @@
 \TLLprodline{|}{\mathbin{\blacklozenge} \, \TLLnt{A}}{}{}{}{\TLLcom{possibility}}\TLLprodnewline
 \TLLprodline{|}{ \TLLnt{A}  \land  \TLLnt{B} }{}{}{}{\TLLcom{conjunction}}\TLLprodnewline
 \TLLprodline{|}{ \TLLnt{A}  \lor  \TLLnt{B} }{}{}{}{\TLLcom{disjunction}}\TLLprodnewline
-\TLLprodline{|}{\TLLnt{A}  \to  \TLLnt{B}}{}{}{}{\TLLcom{implication}}}
+\TLLprodline{|}{\TLLnt{A}  \to  \TLLnt{B}}{}{}{}{\TLLcom{implication}}\TLLprodnewline
+\TLLprodline{|}{ \mathbin{M}  \TLLnt{A} } {\textsf{M}}{}{}{}}
 
 \newcommand{\TLLG}{
 \TLLrulehead{\Gamma  ,\ \Delta}{::=}{\TLLcom{type context}}\TLLprodnewline
@@ -90,8 +104,6 @@
 \TLLprodline{|}{ \mathbin{\blacklozenge} }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \to }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \quad } {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{unit} }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{contra} }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \rightsquigarrow }{}{}{}{}}
 
 \newcommand{\TLLformula}{
@@ -115,6 +127,7 @@
 \TLLfirstprodline{|}{\mathit{termvar}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLmv{index}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{term}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLnt{elim}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{form}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\Gamma}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{terminals}}{}{}{}{}\TLLprodnewline
@@ -122,6 +135,7 @@
 
 \newcommand{\TLLgrammar}{\TLLgrammartabular{
 \TLLterm\TLLinterrule
+\TLLelim\TLLinterrule
 \TLLform\TLLinterrule
 \TLLG\TLLinterrule
 \TLLterminals\TLLinterrule
@@ -353,7 +367,7 @@
 \newcommand{\TLLdruletyXXtrueName}[0]{\TLLdrulename{ty\_true}}
 \newcommand{\TLLdruletyXXtrue}[1]{\TLLdrule[#1]{%
 }{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathsf{unit}  \TLLsym{:}  \top}{%
+\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{unit}   \TLLsym{:}  \top}{%
 {\TLLdruletyXXtrueName}{}%
 }}
 
@@ -361,7 +375,7 @@
 \newcommand{\TLLdruletyXXfalseName}[0]{\TLLdrulename{ty\_false}}
 \newcommand{\TLLdruletyXXfalse}[1]{\TLLdrule[#1]{%
 }{
-\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \perp  \vdash  \mathsf{contra}  \TLLsym{:}  \TLLnt{A}}{%
+\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \perp  \vdash   \mathsf{contra}   \TLLsym{:}  \TLLnt{A}}{%
 {\TLLdruletyXXfalseName}{}%
 }}
 
@@ -609,7 +623,7 @@
 \newcommand{\TLLdrulerXXboxBoxName}[0]{\TLLdrulename{r\_boxBox}}
 \newcommand{\TLLdrulerXXboxBox}[1]{\TLLdrule[#1]{%
 }{
- \mathsf{let}\,\Box  \mathit{x}  =   \mathsf{let}\,\Box  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Box  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Box  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
+ \mathsf{let}\,\Box  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\Box  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Box  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Box  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
 {\TLLdrulerXXboxBoxName}{}%
 }}
 
@@ -617,7 +631,7 @@
 \newcommand{\TLLdrulerXXbdiaBdiaName}[0]{\TLLdrulename{r\_bdiaBdia}}
 \newcommand{\TLLdrulerXXbdiaBdia}[1]{\TLLdrule[#1]{%
 }{
- \mathsf{let}\,\blacklozenge  \mathit{x}  =   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacklozenge  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
+ \mathsf{let}\,\blacklozenge  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacklozenge  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
 {\TLLdrulerXXbdiaBdiaName}{}%
 }}
 
@@ -625,7 +639,7 @@
 \newcommand{\TLLdrulerXXboxBBoxName}[0]{\TLLdrulename{r\_boxBBox}}
 \newcommand{\TLLdrulerXXboxBBox}[1]{\TLLdrule[#1]{%
 }{
- \mathsf{let}\,\blacksquare  \mathit{x}  =   \mathsf{let}\,\blacksquare  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacksquare  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacksquare  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
+ \mathsf{let}\,\blacksquare  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\blacksquare  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacksquare  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacksquare  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
 {\TLLdrulerXXboxBBoxName}{}%
 }}
 
@@ -633,7 +647,7 @@
 \newcommand{\TLLdrulerXXdiadiaName}[0]{\TLLdrulename{r\_diadia}}
 \newcommand{\TLLdrulerXXdiadia}[1]{\TLLdrule[#1]{%
 }{
- \mathsf{let}\,\Diamond  \mathit{x}  =   \mathsf{let}\,\Diamond  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}  \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Diamond  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Diamond  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
+ \mathsf{let}\,\Diamond  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\Diamond  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Diamond  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Diamond  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
 {\TLLdrulerXXdiadiaName}{}%
 }}
 

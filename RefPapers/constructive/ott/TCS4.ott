@@ -4,10 +4,12 @@ metavar termvar, x , y ::=
 indexvar index, i , j , k ::=
 
 grammar
-  term, t :: 't_' ::=                                         {{ com term }}
+  term, t, r, s, n :: 't_' ::=                                         {{ com term }}
     | x                          ::   :: var                     {{ com variable }}
-    | unit                       ::   :: unit                    {{ com unit }}
-    | contra                     ::   :: contra                  {{ com contradiction }}
+    | unit                ::   :: unit                   
+    {{tex \mathsf{unit} }}
+    | contra              ::   :: contra
+    {{tex \mathsf{contra} }}    
     | ( t1 , t2 )                ::   :: pair                    {{ com pair }}
     | fst t                      ::   :: first                   {{ com first projection }}
     | snd t                      ::   :: second                  {{ com second projection }}
@@ -30,8 +32,27 @@ grammar
     {{tex \mathsf{let}\,\Diamond [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
     | letBDia t1 = t2 in t3      ::  :: LetPossibility           {{ com possibility elim }}
     {{tex \mathsf{let}\,\blacklozenge [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | [ t1 / x ] t2              :: M :: Sub
+    | [ t1 / t ] t2              :: M :: Sub    
     | ( t )                      :: S :: Paren
+    | h( t )                     :: M :: HParen
+    {{tex [[t]] }}
+    | r R                        :: M :: MElim
+    | letM t1 = t2 in t3         :: M :: LetM           
+    {{tex \mathsf{let}\,\mathbin{M} [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | vec t                      :: M :: vector
+    {{tex \overrightarrow{[[t]]} }}
+    | M t                        :: M :: M
+    {{tex \mathbin{M} [[t]] }}
+
+  elim, R :: 'R_' ::=
+    | r                   :: :: term
+    | ( x . R1 , y . R2 ) :: :: Case
+    {{tex ([[x]].[[R1]],[[y]].[[R2]]) }}
+    | x . R               :: :: Let
+    {{tex [[x]].[[R]] }}
+    | vec R                :: M :: vector
+    {{tex \overrightarrow{[[R]]} }}
+    | ( R )                      :: S :: Paren    
 
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
     | True             ::   :: True                    {{ com true or the unit type }}
@@ -45,6 +66,8 @@ grammar
     | A + B            ::   :: Disjunction             {{ com disjunction }}
     {{tex [[A]] \lor [[B]] }}
     | A -> B           ::   :: Arrow                   {{ com implication }}
+    | M A              :: M :: M
+    {{tex \mathbin{M} [[A]] }}
 
   G {{ tex \Gamma }}, D {{tex \Delta }} :: G_ ::=      {{ com type context }}
     | .                   ::   :: em                      {{ com empty context }}
@@ -81,10 +104,6 @@ grammar
     {{tex \to }}
     | &&                  :: M :: Quad
     {{tex \quad }}
-    | unit                ::   :: unit                   
-    {{tex \mathsf{unit} }}
-    | contra              ::   :: contra
-    {{tex \mathsf{contra} }}
     | ~>                  ::   :: red
     {{tex \rightsquigarrow }}
 
@@ -290,14 +309,14 @@ by
   ------------------------------------- :: dia
   letDia x = Dia t1 in t2 ~> [t1/x]t2
 
-  ---------------------------------------------------------------------------- :: boxBox
-  letBox x = letBox y = t1 in t2 in t3 ~> letBox y = t1 in letBox x = t2 in t3
+  ------------------------------------------------------------------------------ :: boxBox
+  letBox x = (letBox y = t1 in t2) in t3 ~> letBox y = t1 in letBox x = t2 in t3
 
-  ------------------------------------------------------------------------------- :: bdiaBdia
-  letBDia x = letBDia y = t1 in t2 in t3 ~> letBDia y = t1 in letBDia x = t2 in t3
+  --------------------------------------------------------------------------------- :: bdiaBdia
+  letBDia x = (letBDia y = t1 in t2) in t3 ~> letBDia y = t1 in letBDia x = t2 in t3
 
-  -------------------------------------------------------------------------------- :: boxBBox
-  letBBox x = letBBox y = t1 in t2 in t3 ~> letBBox y = t1 in letBBox x = t2 in t3
+  ---------------------------------------------------------------------------------- :: boxBBox
+  letBBox x = (letBBox y = t1 in t2) in t3 ~> letBBox y = t1 in letBBox x = t2 in t3
 
-  ---------------------------------------------------------------------------- :: diadia
-  letDia x = letDia y = t1 in t2 in t3 ~> letDia y = t1 in letDia x = t2 in t3
+  ------------------------------------------------------------------------------ :: diadia
+  letDia x = (letDia y = t1 in t2) in t3 ~> letDia y = t1 in letDia x = t2 in t3

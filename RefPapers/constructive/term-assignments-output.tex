@@ -175,6 +175,220 @@ induction.
 \subsection{Strong Normalization}
 \label{subsec:strong_normalization}
 
+We show that by a straightforward extension of Joachimski and Matthes'
+\cite{Joachimski:2003} proof of strong normalization for the simply
+typed $\lambda$-calculus with sum types that TCS4 is strongly
+normalizing.  Thus, by their result we know the system described by
+Figure~\ref{fig:term-assignment-basic} is strongly normalizing.  In
+this proof we do not concern ourselves with the units, because they
+are easy to handle and do not offer any insights.  However, we do show
+how this technique applies to products which was left out by
+Joachimski and Matthes.  Since the proof of strong normalization for
+TCS4 is so close to the one provided by Joachimski and Matthes we only
+give a sketch here.
+
+We begin by extending their syntax for multiple eliminations.  Suppose
+$\TLLnt{r}$ is any term. Then we define the following metasyntax:
+\begin{description}
+\item denote the expression $ \mathsf{case}\, \TLLnt{r} \,\mathsf{of}\, \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}} $ by $\TLLnt{r} \,  ( \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}} ) $, and
+\item denote the expression $ \mathsf{let}\,\mathbin{M}  \mathit{x}  =  \TLLnt{r} \,\mathsf{in}\, \TLLnt{t} $ by $\TLLnt{r} \,  \mathit{x} . \TLLnt{t} $ where $M \in \{ \Box ,  \blacksquare ,  \Diamond ,  \mathbin{\blacklozenge} \}$.
+\end{description}
+We denote an arbitrary elimination by $\TLLnt{r} \, \TLLnt{R}$ where $\TLLnt{R}$ is
+either a term in the case of function application, or $\TLLnt{r} \, \TLLnt{R}$ has
+the form just described above.  As an example, the metasyntax for
+the redex $ \mathsf{let}\,\Box  \mathit{x}  =  \Box \, \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}} $ is $\TLLsym{(}  \Box \, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{)} \,  \mathit{x} . \TLLnt{t_{{\mathrm{2}}}} $
+which both step to $\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}$.  The commuting conversions
+\[  \mathsf{let}\,\mathbin{M}  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\mathbin{M}  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\mathbin{M}  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\mathbin{M}  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \]
+are denoted in the metasyntax by $\TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}} \,  \mathit{y} . \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,  \mathit{x} . \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow  \TLLnt{t_{{\mathrm{1}}}} \,  \mathit{y} . \TLLsym{(}  \TLLnt{t_{{\mathrm{2}}}} \,  \mathit{x} . \TLLnt{t_{{\mathrm{3}}}}   \TLLsym{)} $.
+
+Finally, we will make heavy use of vector notation, $ \overrightarrow{ \TLLnt{r} } $, to
+stand for the sequence $\TLLnt{r_{{\mathrm{1}}}}\,\TLLnt{r_{{\mathrm{2}}}}\,\cdots\,\TLLnt{r_{\TLLmv{i}}}$.  Thus, the
+application $\TLLnt{t} \,  \overrightarrow{ \TLLnt{r} } $ stands for
+$\TLLnt{t}\,\TLLnt{r_{{\mathrm{1}}}}\,\TLLnt{r_{{\mathrm{2}}}}\,\cdots\,\TLLnt{r_{\TLLmv{i}}}$ -- note that the sequence
+could be empty, and hence, would simply be equal to $\TLLnt{t}$.  This
+notation extends to substitution in the usual way and is denoted by
+$\TLLsym{[}   \overrightarrow{ \TLLnt{t} }   \TLLsym{/}   \overrightarrow{ \mathit{x} }   \TLLsym{]}  \TLLnt{t'}$.
+
+Now we recast the syntax for terms using the metasyntax as follows:
+\[
+\begin{array}{rll}
+  M & := &  \Box  \mid  \blacksquare  \mid  \Diamond  \mid  \mathbin{\blacklozenge} \\
+  \TLLnt{r},\TLLnt{s},\TLLnt{t} & := & \mathit{x} \,  \overrightarrow{ \TLLnt{n} }  \mid \mathit{x} \,   \overrightarrow{ \TLLnt{n} }   \, \TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \mid \mathit{x} \,   \overrightarrow{ \TLLnt{n} }   \,  ( \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}} )  \,  \overrightarrow{ \TLLnt{R} } 
+  \mid  \mathit{x} \,   \overrightarrow{ \TLLnt{n} }   \,  \mathit{x} . \TLLnt{t}   \,  \overrightarrow{ \TLLnt{R} }  \mid  \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{r}  \mid \\
+  & & \mathsf{fst}\, \, \TLLnt{r} \mid \mathsf{snd}\, \, \TLLnt{r} \mid \mathsf{inj}_1\,  \TLLnt{r} \mid \mathsf{inj}_2\,  \TLLnt{r} \mid \TLLsym{(}   \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{r}   \TLLsym{)} \, \TLLnt{s} \,  \overrightarrow{ \TLLnt{R} }  \mid  \TLLsym{(}   \mathbin{M}  \TLLnt{r}   \TLLsym{)} \,  \mathit{x} . \TLLnt{s}   \,  \overrightarrow{ \TLLnt{R} } \\
+  & & \TLLsym{(}  \mathsf{inj}_1\,  \TLLnt{r}  \TLLsym{)} \,  ( \mathit{x} . \TLLnt{s_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{s_{{\mathrm{2}}}} )  \,  \overrightarrow{ \TLLnt{R} }  \mid \TLLsym{(}  \mathsf{inj}_2\,  \TLLnt{r}  \TLLsym{)} \,  ( \mathit{x} . \TLLnt{s_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{s_{{\mathrm{2}}}} )  \,  \overrightarrow{ \TLLnt{R} } 
+\end{array}
+\]
+
+We call any term that does not contain a redex as a subterm a normal
+form.  That is, a term is normal if none of the rules in
+Figure~\ref{fig:reduction-TCS4} nor
+Figure~\ref{fig:commuting-conv-TCS4} apply.  These normal terms are
+syntactically captured by the following grammar:
+\[
+\begin{array}{rll}
+  \TLLnt{n} & := & \mathit{x} \,  \overrightarrow{ \TLLnt{n} }  \mid \mathit{x} \,   \overrightarrow{ \TLLnt{n} }   \, \TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)} \mid \mathit{x} \,   \overrightarrow{ \TLLnt{n} }   \,  ( \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}} ) 
+  \mid \mathit{x} \,   \overrightarrow{ \TLLnt{n} }   \,  \mathit{x} . \TLLnt{t}  \mid  \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{r}  \mid \\
+  & & \mathsf{fst}\, \, \TLLnt{r} \mid \mathsf{snd}\, \, \TLLnt{r} \mid \mathsf{inj}_1\,  \TLLnt{r} \mid \mathsf{inj}_2\,  \TLLnt{r}
+\end{array}
+\]
+
+These are straightforward extensions of the definitions given by
+Joachimski and Matthes.  Notice that there are more normal forms then
+then our grammar captures, but all of these are untyped, furthermore,
+there are some untyped normal forms generated by this grammar, but
+that is okay, because all typed normal forms are generated by the
+previous grammar.  Thus, it captures all that we need it to.  The
+syntax given here will only be used within this section.
+
+The set of strongly normalizing terms is defined by the following
+rules:
+\begin{mathpar}
+  \small
+  \mprset{flushleft}
+  \inferrule* [right=] {
+      \overrightarrow{ \TLLnt{r} }   \in \mathsf{SN}
+  }{\mathit{x} \,   \overrightarrow{ \TLLnt{r} }   \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+      \overrightarrow{ \TLLnt{r} }   \, \TLLnt{R} \in \mathsf{SN}
+  }{\mathit{x} \,   \overrightarrow{ \TLLnt{r} }   \, \TLLnt{R} \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLnt{r} \in \mathsf{SN}
+  }{ \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{r}  \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLnt{r} \in \mathsf{SN}
+  }{\mathsf{inj}_1\,  \TLLnt{r} \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLnt{r} \in \mathsf{SN}
+  }{\mathsf{inj}_2\,  \TLLnt{r} \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLnt{r} \in \mathsf{SN}
+  }{\mathsf{fst}\, \, \TLLnt{r} \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLnt{r} \in \mathsf{SN}
+  }{\mathsf{snd}\, \, \TLLnt{r} \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLnt{r_{{\mathrm{1}}}} \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{2}}}} \in \mathsf{SN}
+  }{\TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{r_{{\mathrm{2}}}}  \TLLsym{)} \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLsym{[}  \TLLnt{r_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{r_{{\mathrm{2}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{1}}}} \in \mathsf{SN}
+  }{\TLLsym{(}   \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{r_{{\mathrm{2}}}}   \TLLsym{)} \, \TLLnt{r_{{\mathrm{1}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+  \and
+  \inferrule* [right=] {
+    \TLLnt{r_{{\mathrm{1}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{2}}}} \in \mathsf{SN}
+  }{\TLLsym{(}  \mathsf{fst}\, \, \TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{r_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+  \and
+  \inferrule* [right=] {
+    \TLLnt{r_{{\mathrm{2}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{1}}}} \in \mathsf{SN}
+  }{\TLLsym{(}  \mathsf{snd}\, \, \TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{r_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLsym{[}  \TLLnt{r}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{r_{{\mathrm{1}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{2}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r} \in \mathsf{SN}  
+  }{\TLLsym{(}  \mathsf{inj}_1\,  \TLLnt{r}  \TLLsym{)} \,  ( \mathit{x} . \TLLnt{r_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{r_{{\mathrm{2}}}} )  \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLsym{[}  \TLLnt{r}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{r_{{\mathrm{2}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{1}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r} \in \mathsf{SN}  
+  }{\TLLsym{(}  \mathsf{inj}_2\,  \TLLnt{r}  \TLLsym{)} \,  ( \mathit{x} . \TLLnt{r_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{r_{{\mathrm{2}}}} )  \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \TLLsym{[}  \TLLnt{r_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{r_{{\mathrm{2}}}} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+    \\
+    \TLLnt{r_{{\mathrm{1}}}} \in \mathsf{SN}
+    \\
+    M \in \{  \Box ,  \blacksquare ,  \Diamond ,  \mathbin{\blacklozenge}  \}
+  }{\TLLsym{(}   \mathbin{M}  \TLLnt{r_{{\mathrm{1}}}}   \TLLsym{)} \, \TLLsym{(}   \mathit{x} . \TLLnt{r_{{\mathrm{2}}}}   \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    \mathit{x} \,   \overrightarrow{ \TLLnt{r} }   \, \TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}} \,  \mathit{y} . \TLLsym{(}  \TLLnt{r_{{\mathrm{2}}}} \,  \mathit{x} . \TLLnt{r_{{\mathrm{3}}}}   \TLLsym{)}   \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}
+  }{\mathit{x} \,   \overrightarrow{ \TLLnt{r} }   \, \TLLsym{(}  \TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}} \,  \mathit{y} . \TLLnt{r_{{\mathrm{2}}}}   \TLLsym{)} \,  \mathit{x} . \TLLnt{r_{{\mathrm{3}}}}   \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}}
+\end{mathpar}
+All of the rules from the previous definition are from Joachimski and
+Matthes' proof, but the last two, which are for all the
+$\beta$-redexes and commuting conversions for modalities.
+
+At this point we have everything we need to conclude strong
+normalization which follows from the following results.
+\begin{lemma}[All strongly normalizing terms are in $\mathsf{SN}$]
+  \label{lemma:all_strongly_normalizing_terms_are_in_SN}
+  If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{r}  \TLLsym{:}  \TLLnt{A}$, and $\TLLnt{r}$ is strongly normalizing, then $\TLLnt{r} \in \mathsf{SN}$.
+\end{lemma}
+\begin{proof}
+  The first half of this proof is essentially the same as the proof by
+  Joachimski and Matthes, see page 12 of \cite{Joachimski:2003}, and
+  the new parts are similar to their proofs.
+\end{proof}
+
+\begin{lemma}[Commuting conversions in $\mathsf{SN}$]
+  \label{lemma:commuting_conversions_in_SN}
+  If $\TLLsym{(}  \TLLnt{r} \,  \mathit{y} . \TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}} \,  \mathit{x} . \TLLnt{r_{{\mathrm{2}}}}   \TLLsym{)}   \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}$, then $\TLLsym{(}  \TLLsym{(}  \TLLnt{r} \,  \mathit{y} . \TLLnt{r_{{\mathrm{1}}}}   \TLLsym{)} \,  \mathit{x} . \TLLnt{r_{{\mathrm{2}}}}   \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}$.
+\end{lemma}
+\begin{proof}
+  This proof holds by induction on the assumption $\TLLsym{(}  \TLLnt{r} \,  \mathit{y} . \TLLsym{(}  \TLLnt{r_{{\mathrm{1}}}} \,  \mathit{x} . \TLLnt{r_{{\mathrm{2}}}}   \TLLsym{)}   \TLLsym{)} \,  \overrightarrow{ \TLLnt{R} }  \in \mathsf{SN}$, but this proof is similar to the proof
+  for commuting conversions for the sum types; see page 13 of
+  \cite{Joachimski:2003}.
+\end{proof}
+
+\begin{lemma}[Typable eliminations are in $\mathsf{SN}$]
+  \label{lemma:typable_eliminations_are_in_SN}
+  Suppose $\TLLnt{A}$ is a type, and $\TLLnt{r} \in \mathsf{SN}$.  Then:
+  \begin{enumerate}[i.]
+  \item if $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{s}  \TLLsym{:}  \TLLnt{A}$, then $\TLLnt{r} \, \TLLnt{s} \in \mathsf{SN}$,
+  \item if $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{r}  \TLLsym{:}  \TLLnt{A}$ and $\TLLnt{A} \equiv  \TLLnt{B}  \land  \TLLnt{C} $, then $\TLLsym{(}  \mathsf{fst}\, \, \TLLnt{r}  \TLLsym{)},\TLLsym{(}  \mathsf{snd}\, \, \TLLnt{r}  \TLLsym{)} \in \mathsf{SN}$,
+  \item if $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{r}  \TLLsym{:}  \TLLnt{A}$, $\TLLnt{A} \equiv  \TLLnt{B}  \lor  \TLLnt{C} $ and $\TLLnt{s_{{\mathrm{1}}}},\TLLnt{s_{{\mathrm{2}}}} \in \mathsf{SN}$,
+    then $\TLLnt{r} \,  ( \mathit{x} . \TLLnt{s_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{s_{{\mathrm{2}}}} )  \in \mathsf{SN}$,
+  \item if $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{r}  \TLLsym{:}  \TLLnt{A}$, $\TLLnt{A} \equiv  \mathbin{M}  \TLLnt{B} $, and $\TLLnt{s} \in \mathsf{SN}$, then $\TLLnt{r} \,  \mathit{x} . \TLLnt{s}  \in \mathsf{SN}$,
+    where $M \in \{ \Box ,  \blacksquare ,  \Diamond ,  \mathbin{\blacklozenge}  \}$, and
+  \item if $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{s}  \TLLsym{:}  \TLLnt{A}$, then $\TLLsym{[}  \TLLnt{s}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{r} \in \mathsf{SN}$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  The proofs of the first three and the last parts are essentially the
+  same proofs given by Joachimski and Matthes where they differ is
+  similar to the other cases.  Finally, the forth case is similar to
+  the third. See Lemma~5.7 on page 14 of \cite{Joachimski:2003}.
+\end{proof}
+
+\begin{corollary}[Strong Normalization]
+  \label{corollary:strong_normalization}
+  If $\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{r}  \TLLsym{:}  \TLLnt{A}$, then $\TLLnt{r} \in \mathsf{SN}$.
+\end{corollary}
+
 % subsection strong_normalization (end)
 
 \subsection{Confluence}
