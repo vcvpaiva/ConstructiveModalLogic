@@ -1,4 +1,4 @@
-metavar termvar, x , y ::=
+                      metavar termvar, x , y ::=
   {{ tex \mathit{[[termvar]]} }} {{ com  term variable  }}
 
 indexvar index, i , j , k ::=
@@ -6,17 +6,8 @@ indexvar index, i , j , k ::=
 grammar
   term, t, r, s, n :: 't_' ::=                                         {{ com term }}
     | x                          ::   :: var                     {{ com variable }}
-    | unit                ::   :: unit                   
-    {{tex \mathsf{unit} }}
-    | contra              ::   :: contra
+    | contra                     ::   :: contra
     {{tex \mathsf{contra} }}    
-    | ( t1 , t2 )                ::   :: pair                    {{ com pair }}
-    | fst t                      ::   :: first                   {{ com first projection }}
-    | snd t                      ::   :: second                  {{ com second projection }}
-    | inj1 t                     ::   :: firstInj                {{ com first injection }}
-    | inj2 t                     ::   :: secondInj               {{ com second injection }}
-    | case t of x . t1 , y . t2  ::   :: case                    {{ com sum case }}
-    {{tex \mathsf{case}\,[[t]]\,\mathsf{of}\,[[x]].[[t1]],[[y]].[[t2]] }}
     | \ x : T . t                ::  :: lambdas                  {{ com unary functions }}
     {{tex \lambda [[x]] : [[T]].[[t]] }}
     | t1 t2                      ::  :: application              {{ com function application }}
@@ -44,27 +35,12 @@ grammar
     | M t                        :: M :: M
     {{tex \mathbin{M} [[t]] }}
 
-  elim, R :: 'R_' ::=
-    | r                   :: :: term
-    | ( x . R1 , y . R2 ) :: :: Case
-    {{tex ([[x]].[[R1]],[[y]].[[R2]]) }}
-    | x . R               :: :: Let
-    {{tex [[x]].[[R]] }}
-    | vec R                :: M :: vector
-    {{tex \overrightarrow{[[R]]} }}
-    | ( R )                      :: S :: Paren    
-
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
-    | True             ::   :: True                    {{ com true or the unit type }}
     | False            ::   :: False                   {{ com false or the empty type }}
     | Box A            ::   :: PNecessity               {{ com past necessity }}
     | BBox A           ::   :: Necessity              {{ com necessity }}
     | Dia A            ::   :: PPossibility             {{ com past possibility }}
     | BDia A           ::   :: Possibility            {{ com possibility }}
-    | A x B            ::   :: Conjunction             {{ com conjunction }}
-    {{tex [[A]] \land [[B]] }}
-    | A + B            ::   :: Disjunction             {{ com disjunction }}
-    {{tex [[A]] \lor [[B]] }}
     | A -> B           ::   :: Arrow                   {{ com implication }}
     | M A              :: M :: M
     {{tex \mathbin{M} [[A]] }}
@@ -76,19 +52,9 @@ grammar
     | G , G'              ::   :: append                  {{ com append }}
 
   terminals :: 'terminals_' ::=
-    | fst                 ::   :: First
-    {{tex \mathsf{fst}\, }}
-    | snd                 ::   :: Second
-    {{tex \mathsf{snd}\, }}
-    | inj1                ::   :: FirstInj
-    {{tex \mathsf{inj}_1\, }}
-    | inj2                ::   :: SecondInj
-    {{tex \mathsf{inj}_2\, }}    
     | .                   ::   :: Empty
     {{tex \emptyset }}
-    | True                ::   :: True
-    {{tex \top }}
-    | False               ::   :: False
+     | False               ::   :: False
     {{tex \perp }}
     | |-                  ::   :: turnstile
     {{ tex \vdash }}
@@ -104,9 +70,7 @@ grammar
     {{tex \to }}
     | &&                  :: M :: Quad
     {{tex \quad }}
-    | ~>                  ::   :: red
-    {{tex \rightsquigarrow }}
-
+ 
   formula :: 'formula_' ::=
     | judgement            ::   :: judgement
     | formula1 && formula2 :: M :: quad
@@ -116,207 +80,114 @@ defns
   Jtype :: '' ::=
 
 defn
-    G ; D |- A :: :: form :: L_    
+ G1 ; G2 ; D |- A :: :: form :: L_    
 by
 
-  ---------- :: ax
-  G;D,A |- A
+  -------------- :: ax
+  G1;G2;D,A |- A
 
-  ----------- :: bax
-  G,A; D |- A
+  --------------- :: bax
+  G1;G2,A; D |- A
 
-  ------------- :: true
-  G ; D |- True
+  --------------- :: bbax
+  G1,A;G2; D |- A
 
-  ----------------- :: false
-  G ; D, False |- A
+  ------------------- :: false
+  G1;G2;D, False |- A
 
-  G ; D |- A && G ; D |- B
-  ------------------------- :: conjI
-  G ; D |- A x B
-
-  G ; D |- A x B
-  -------------- :: conjE1
-  G ; D |- A
-
-  G ; D |- A x B
-  -------------- :: conjE2
-  G ; D |- B
-
-  G ; D |- A
-  -------------- :: disjI1
-  G ; D |- A + B
-
-  G ; D |- B
-  -------------- :: disjI2
-  G ; D |- A + B
-
-  G ; D, A |- C
-  G ; D, B |- C && G ; D |- A + B
-  ------------------------------- :: disjE
-  G ; D |- C
-
-  G ; D, A |- B
-  --------------- :: impI
-  G ; D |- A -> B
+  G1;G2;D, A |- B
+  ----------------- :: impI
+  G1;G2;D |- A -> B
  
-  G ; D |- A -> B && G ; D |- A
-  ----------------------------- :: impE
-  G ; D |- B
+  G1;G2;D |- A -> B && G1;G2;D |- A
+  --------------------------------- :: impE
+  G1;G2;D |- B
 
-  G ; . |- A
-  -------------- :: boxI
-  G ; D |- Box A
+  G1;G2;. |- A
+  ---------------- :: boxI
+  G1;G2;D |- Box A
 
-  G ; D |- Box A && G, A; D |- B
-  ------------------------------ :: boxE
-  G ; D |- B
+  G1;G2;D |- Box A && G1;G2,A; D |- B
+  -------------------------------------- :: boxE
+  G1;G2;D |- B
 
-  G ; D |- A
-  --------------- :: bdiaI
-  G ; D |- BDia A
+  G1;G2;D |- A
+  ----------------- :: bdiaI
+  G1;G2;D |- BDia A
 
-  G ; D |- BDia A && G ; A |- BDia B
-  ---------------------------------- :: bdiaE
-  G ; D |- BDia A
+  G1;G2;D |- BDia A && G1;G2; A |- BDia B
+  --------------------------------------- :: bdiaE
+  G1;G2;D |- BDia A
 
-  G ; . |- A
-  --------------- :: bboxI
-  G ; D |- BBox A
+  G1;G2 ; . |- A
+  ------------------- :: bboxI
+  G1;G2 ; D |- BBox A
 
-  G ; D |- BBox A && G, A; D |- B
-  ------------------------------- :: bboxE
-  G ; D |- B
+  G1;G2;D |- BBox A && G1, A;G2; D |- B
+  ------------------------------------- :: bboxE
+  G1;G2;D |- B
 
-  G ; D |- A
-  -------------- :: diaI
-  G ; D |- Dia A
+  G1;G2;D |- A
+  ---------------- :: diaI
+  G1;G2;D |- Dia A
 
-  G ; D |- Dia A && G ; A |- Dia B
-  -------------------------------- :: diaE
-  G ; D |- Dia B
+  G1;G2;D |- Dia A && G1;G2;A |- Dia B
+  ------------------------------------ :: diaE
+  G1;G2;D |- Dia B
 
 
 defn
-  G ; D |- t : A :: :: type :: ty_   
+  G1 ; G2 ; D |- t : A :: :: type :: ty_   
 by
 
-  ------------------- :: ax
-  G;D, x : A |- x : A
+  ----------------------- :: ax
+  G1;G2;D, x : A |- x : A
 
-  ------------------ :: bax
-  G,x : A;D |- x : A
+  ---------------------- :: bax
+  G1;G2,x : A;D |- x : A
 
-  -------------------- :: true
-  G ; D |- unit : True
+  ---------------------- :: bbax
+  G1,x : A;G2;D |- x : A
 
-  ------------------------------ :: false
-  G ; D, x : False |- contra : A
+  -------------------------------- :: false
+  G1;G2;D, x : False |- contra : A
 
-  G ; D |- t1 : A && G ; D |- t2 : B
-  ---------------------------------- :: conjI
-  G ; D |- (t1,t2) : A x B
-
-  G ; D |- t : A x B
-  ------------------ :: conjE1
-  G ; D |- fst t : A
-
-  G ; D |- t : A x B
-  ------------------ :: conjE2
-  G ; D |- snd t : B
-
-  G ; D |- t : A
-  ----------------------- :: disjI1
-  G ; D |- inj1 t : A + B
-
-  G ; D |- t : B
-  ----------------------- :: disjI2
-  G ; D |- inj2 t : A + B
-
-  G ; D, x : A |- t1 : C
-  G ; D, x : B |- t2 : C && G ; D |- t : A + B
-  -------------------------------------------- :: disjE
-  G ; D |- case t of x.t1,x.t2 : C
-
-  G ; D, x : A |- t : B
-  ------------------------ :: impI
-  G ; D |- \x:A.t : A -> B
+  G1;G2;D, x : A |- t : B
+  -------------------------- :: impI
+  G1;G2;D |- \x:A.t : A -> B
  
-  G ; D |- t1 : A -> B && G ; D |- t2 : A
-  --------------------------------------- :: impE
-  G ; D |- t1 t2 : B
+  G1;G2;D |- t1 : A -> B && G1;G2;D |- t2 : A
+  ------------------------------------------- :: impE
+  G1;G2;D |- t1 t2 : B
 
-  G ; . |- t : A
-  ---------------------- :: boxI
-  G ; D |- Box t : Box A
+  G1;G2;. |- t : A
+  ------------------------ :: boxI
+  G1;G2;D |- Box t : Box A
 
-  G ; D |- t1 : Box A && G, x : A; D |- t2 : B
-  -------------------------------------------- :: boxE
-  G ; D |- letBox x = t1 in t2 : B
+  G1;G2;D |- t1 : Box A && G1;G2, x : A;D |- t2 : B
+  ------------------------------------------------- :: boxE
+  G1;G2;D |- letBox x = t1 in t2 : B
 
-  G ; D |- t : A
-  ------------------------ :: bdiaI
-  G ; D |- BDia t : BDia A
+  G1;G2;D |- t : A
+  -------------------------- :: bdiaI
+  G1;G2;D |- BDia t : BDia A
 
-  G ; D |- t1 : BDia A && G ; x : A |- t2 : BDia B
-  ------------------------------------------------ :: bdiaE
-  G ; D |- letBDia x = t1 in t2 : BDia B
+  G1;G2;D |- t1 : BDia A && G1;G2; x : A |- t2 : BDia B
+  -------------------------------------------------------- :: bdiaE
+  G1;G2;D |- letBDia x = t1 in t2 : BDia B
 
-  G ; . |- t : A
-  ------------------------ :: bboxI
-  G ; D |- BBox t : BBox A
+  G1;G2 ; . |- t : A
+  -------------------------- :: bboxI
+  G1;G2;D |- BBox t : BBox A
 
-  G ; D |- t1 : BBox A && G, x : A; D |- t2 : B
-  --------------------------------------------- :: bboxE
-  G ; D |- letBBox x = t1 in t2 : B
+  G1;G2;D |- t1 : BBox A && G1, x : A;G2; D |- t2 : B
+  --------------------------------------------------- :: bboxE
+  G1;G2;D |- letBBox x = t1 in t2 : B
 
-  G ; D |- t : A
-  ---------------------- :: diaI
-  G ; D |- Dia t : Dia A
+  G1;G2;D |- t : A
+  ------------------------ :: diaI
+  G1;G2;D |- Dia t : Dia A
 
-  G ; D |- t1 : Dia A && G ; x : A |- t2 : Dia B
-  ---------------------------------------------- :: diaE
-  G ; D |- letDia x = t1 in t2 : Dia B
-
-defn
-  t1 ~> t2 :: :: red :: r_   
-by
-
-  ------------------------ :: beta
-  (\x:A.t2) t1 ~> [t1/x]t2
-
-  ------------------- :: first
-  fst (t1 , t2) ~> t1
-
-  ------------------- :: second
-  snd (t1 , t2) ~> t2
-
-  ------------------------------------- :: case1
-  case (inj1 t) of x.t1,x.t2 ~> [t/x]t1
-
-  ------------------------------------- :: case2
-  case (inj2 t) of x.t1,x.t2 ~> [t/x]t2
-
-  ----------------------------------- :: box
-  letBox x = Box t1 in t2 ~> [t1/x]t2
-
-  ------------------------------------- :: bdia
-  letBDia x = BDia t1 in t2 ~> [t1/x]t2
-
-  ------------------------------------- :: bbox
-  letBBox x = BBox t1 in t2 ~> [t1/x]t2
-
-  ------------------------------------- :: dia
-  letDia x = Dia t1 in t2 ~> [t1/x]t2
-
-  ------------------------------------------------------------------------------ :: boxBox
-  letBox x = (letBox y = t1 in t2) in t3 ~> letBox y = t1 in letBox x = t2 in t3
-
-  --------------------------------------------------------------------------------- :: bdiaBdia
-  letBDia x = (letBDia y = t1 in t2) in t3 ~> letBDia y = t1 in letBDia x = t2 in t3
-
-  ---------------------------------------------------------------------------------- :: boxBBox
-  letBBox x = (letBBox y = t1 in t2) in t3 ~> letBBox y = t1 in letBBox x = t2 in t3
-
-  ------------------------------------------------------------------------------ :: diadia
-  letDia x = (letDia y = t1 in t2) in t3 ~> letDia y = t1 in letDia x = t2 in t3
+  G1;G2;D |- t1 : Dia A && G1;G2; x : A |- t2 : Dia B
+  --------------------------------------------------- :: diaE
+  G1;G2;D |- letDia x = t1 in t2 : Dia B
