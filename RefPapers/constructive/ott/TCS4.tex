@@ -287,24 +287,6 @@
 }}
 
 
-\newcommand{\ottdruletyXXbdiaIName}[0]{\ottdrulename{ty\_bdiaI}}
-\newcommand{\ottdruletyXXbdiaI}[1]{\ottdrule[#1]{%
-\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
-}{
-\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \mathbin{\blacklozenge} \, \ottnt{t}  \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{A}}{%
-{\ottdruletyXXbdiaIName}{}%
-}}
-
-
-\newcommand{\ottdruletyXXbdiaEName}[0]{\ottdrulename{ty\_bdiaE}}
-\newcommand{\ottdruletyXXbdiaE}[1]{\ottdrule[#1]{%
-\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{A}  \quad  \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{B}}%
-}{
-\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\blacklozenge  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \mathbin{\blacklozenge} \, \ottnt{B}}{%
-{\ottdruletyXXbdiaEName}{}%
-}}
-
-
 \newcommand{\ottdruletyXXbboxIName}[0]{\ottdrulename{ty\_bboxI}}
 \newcommand{\ottdruletyXXbboxI}[1]{\ottdrule[#1]{%
 \ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \emptyset  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
@@ -325,18 +307,18 @@
 
 \newcommand{\ottdruletyXXdiaIName}[0]{\ottdrulename{ty\_diaI}}
 \newcommand{\ottdruletyXXdiaI}[1]{\ottdrule[#1]{%
-\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}}%
+\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t}  \ottsym{:}  \ottnt{A}  \quad   M \in \{\Diamond, \mathbin{\blacklozenge} \} }%
 }{
-\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \Diamond \, \ottnt{t}  \ottsym{:}  \Diamond \, \ottnt{A}}{%
+\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathbin{M}  \ottnt{t}   \ottsym{:}   \mathbin{M}  \ottnt{A} }{%
 {\ottdruletyXXdiaIName}{}%
 }}
 
 
 \newcommand{\ottdruletyXXdiaEName}[0]{\ottdrulename{ty\_diaE}}
 \newcommand{\ottdruletyXXdiaE}[1]{\ottdrule[#1]{%
-\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \Diamond \, \ottnt{A}  \quad  \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \Diamond \, \ottnt{B}}%
+\ottpremise{ \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}   \mathbin{M}  \ottnt{A}   \quad  \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}   \mathbin{M}  \ottnt{B}    \quad   M \in \{\Diamond, \mathbin{\blacklozenge} \} }%
 }{
-\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\Diamond  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}  \Diamond \, \ottnt{B}}{%
+\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\mathbin{M}  \mathit{x}  =  \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{:}   \mathbin{M}  \ottnt{B} }{%
 {\ottdruletyXXdiaEName}{}%
 }}
 
@@ -349,17 +331,58 @@
 \ottusedrule{\ottdruletyXXimpE{}}
 \ottusedrule{\ottdruletyXXboxI{}}
 \ottusedrule{\ottdruletyXXboxE{}}
-\ottusedrule{\ottdruletyXXbdiaI{}}
-\ottusedrule{\ottdruletyXXbdiaE{}}
 \ottusedrule{\ottdruletyXXbboxI{}}
 \ottusedrule{\ottdruletyXXbboxE{}}
 \ottusedrule{\ottdruletyXXdiaI{}}
 \ottusedrule{\ottdruletyXXdiaE{}}
 \end{ottdefnblock}}
 
+%% defn eq
+\newcommand{\ottdruleeqXXbetaName}[0]{\ottdrulename{eq\_beta}}
+\newcommand{\ottdruleeqXXbeta}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{=}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}  \quad  \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{=}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{A}}%
+}{
+\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottsym{(}   \lambda  \mathit{x}  :  \ottnt{A} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{)} \, \ottnt{t_{{\mathrm{1}}}}  \ottsym{=}  \ottsym{[}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}{%
+{\ottdruleeqXXbetaName}{}%
+}}
+
+
+\newcommand{\ottdruleeqXXboxName}[0]{\ottdrulename{eq\_box}}
+\newcommand{\ottdruleeqXXbox}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \emptyset  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{=}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{A}  \quad  \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{=}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\Box  \mathit{x}  =  \Box \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{=}  \ottsym{[}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}{%
+{\ottdruleeqXXboxName}{}%
+}}
+
+
+\newcommand{\ottdruleeqXXbboxName}[0]{\ottdrulename{eq\_bbox}}
+\newcommand{\ottdruleeqXXbbox}[1]{\ottdrule[#1]{%
+\ottpremise{\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \emptyset  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{=}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{A}  \quad  \Gamma_{{\mathrm{1}}}  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{=}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}%
+}{
+\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\blacksquare  \mathit{x}  =  \blacksquare \, \ottnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{=}  \ottsym{[}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{B}}{%
+{\ottdruleeqXXbboxName}{}%
+}}
+
+
+\newcommand{\ottdruleeqXXdiaName}[0]{\ottdrulename{eq\_dia}}
+\newcommand{\ottdruleeqXXdia}[1]{\ottdrule[#1]{%
+\ottpremise{ \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{:}  \ottnt{A}  \quad  \Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}   \mathbin{M}  \ottnt{B}    \quad   M \in \{\Diamond, \mathbin{\blacklozenge} \} }%
+}{
+\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash   \mathsf{let}\,\mathbin{M}  \mathit{x}  =   \mathbin{M}  \ottnt{t_{{\mathrm{1}}}}  \,\mathsf{in}\, \ottnt{t_{{\mathrm{2}}}}   \ottsym{=}  \ottsym{[}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t'_{{\mathrm{2}}}}  \ottsym{:}  \Diamond \, \ottnt{B}}{%
+{\ottdruleeqXXdiaName}{}%
+}}
+
+\newcommand{\ottdefneq}[1]{\begin{ottdefnblock}[#1]{$\Gamma_{{\mathrm{1}}}  \ottsym{;}  \Gamma_{{\mathrm{2}}}  \ottsym{;}  \Delta  \vdash  \ottnt{t_{{\mathrm{1}}}}  \ottsym{=}  \ottnt{t_{{\mathrm{2}}}}  \ottsym{:}  \ottnt{A}$}{}
+\ottusedrule{\ottdruleeqXXbeta{}}
+\ottusedrule{\ottdruleeqXXbox{}}
+\ottusedrule{\ottdruleeqXXbbox{}}
+\ottusedrule{\ottdruleeqXXdia{}}
+\end{ottdefnblock}}
+
 
 \newcommand{\ottdefnsJtype}{
-\ottdefnform{}\ottdefntype{}}
+\ottdefnform{}\ottdefntype{}\ottdefneq{}}
 
 \newcommand{\ottdefnss}{
 \ottdefnsJtype
@@ -373,7 +396,7 @@
 \ottall
 
 \begin{verbatim}
-Definition rules:        28 good    0 bad
-Definition rule clauses: 48 good    0 bad
+Definition rules:        30 good    0 bad
+Definition rule clauses: 52 good    0 bad
 \end{verbatim}
 \end{document}

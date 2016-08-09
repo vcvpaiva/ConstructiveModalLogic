@@ -75,6 +75,9 @@ grammar
     | judgement            ::   :: judgement
     | formula1 && formula2 :: M :: quad
     | ( formula )          :: S :: parens
+    {{tex [[formula]] }}
+    | M is Diamond         :: M :: isDiamond
+    {{tex M \in \{\Diamond, \mathbin{\blacklozenge} \} }}
 
 defns
   Jtype :: '' ::=
@@ -168,14 +171,6 @@ by
   ------------------------------------------------- :: boxE
   G1;G2;D |- letBox x = t1 in t2 : B
 
-  G1;G2;D |- t : A
-  -------------------------- :: bdiaI
-  G1;G2;D |- BDia t : BDia A
-
-  G1;G2;D |- t1 : BDia A && G1;G2; x : A |- t2 : BDia B
-  -------------------------------------------------------- :: bdiaE
-  G1;G2;D |- letBDia x = t1 in t2 : BDia B
-
   G1;G2 ; . |- t : A
   -------------------------- :: bboxI
   G1;G2;D |- BBox t : BBox A
@@ -184,10 +179,30 @@ by
   --------------------------------------------------- :: bboxE
   G1;G2;D |- letBBox x = t1 in t2 : B
 
-  G1;G2;D |- t : A
-  ------------------------ :: diaI
-  G1;G2;D |- Dia t : Dia A
+  G1;G2;D |- t : A && M is Diamond
+  -------------------------------- :: diaI
+  G1;G2;D |- M t : M A
 
-  G1;G2;D |- t1 : Dia A && G1;G2; x : A |- t2 : Dia B
-  --------------------------------------------------- :: diaE
-  G1;G2;D |- letDia x = t1 in t2 : Dia B
+  (G1;G2;D |- t1 : M A && G1;G2; x : A |- t2 : M B) && M is Diamond
+  ----------------------------------------------------------------- :: diaE
+  G1;G2;D |- letM x = t1 in t2 : M B
+
+defn
+  G1 ; G2 ; D |- t1 = t2 : A :: :: eq :: eq_   
+by
+
+ G1;G2;D,x : A |- t2 = t2' : B && G1;G2;D |- t1 = t1' : A
+ -------------------------------------------------------- :: beta
+ G1;G2;D |- (\x:A.t2) t1 = [t1'/x]t2' : B
+
+ G1;G2;. |- t1 = t1' : A && G1;G2,x : A;D |- t2 = t2' : B
+ -------------------------------------------------------- :: box
+ G1;G2;D |- letBox x = Box t1 in t2 = [t1'/x]t2' : B
+
+ G1;G2;. |- t1 = t1' : A && G1,x : A;G2;D |- t2 = t2' : B
+ -------------------------------------------------------- :: bbox
+ G1;G2;D |- letBBox x = BBox t1 in t2 = [t1'/x]t2' : B
+
+ (G1;G2;D |- t1 : A && G1;G2;x : A |- t2 : M B) && M is Diamond
+ ----------------------------------------------------------------- :: dia
+ G1;G2;D |- letM x = M t1 in t2 = [t1'/x]t2' : Dia B
