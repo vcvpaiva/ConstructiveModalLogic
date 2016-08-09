@@ -451,14 +451,15 @@ Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for t
   \label{fig:nec-rules}
 \end{figure}
 
-We have similar  axioms to Ewald's \cite{ewald1986}, except that the duality between necessity and possibility is not strict (Ewald's axioms (7) and (7') in page 171 are not valid) and that the possibility modalities we deal with, do not distribute over disjunction (axioms (4) and (4') are not valid). Also note we do have  introspection and reflexivity valid, which correspond to Ewald's axioms (12) and (12'), as well as (13) and (13').
+We have similar  axioms to Ewald's \cite{ewald1986}, except that the duality between necessity and possibility is not strict (Ewald's original axioms (7) and (7') in page 171 of  \cite{ewald1986} are not valid) and that the possibility modalities we deal with, do not distribute over disjunction (Ewald's axioms (4) and (4') are not valid). Also note we do have  introspection and reflexivity valid, which correspond to Ewald's axioms (12) and (12'), as well as (13) and (13').
 
-We are interested in the term assignment systems and its properties, as our aim is to use these as type systems for innovative programming languages. So we needed to provide the systematic work that shows basic properties of the type system $\sf{TCS4}$ we are interested in, this is what we do in the next section.
+We are interested in the term assignment system and its properties, as our aim is to use these as type systems for innovative programming languages. So we needed to provide the systematic work that shows basic properties of the type system $\sf{TCS4}$ we are interested in, this is what we do in the next section.
 
 \begin{figure}
   \begin{mdframed}
   \begin{center}
       \begin{math}
+%        \mbox{all intuitionistic basic axioms}\\
         \begin{array}{ccc}
         \Box (A \to B) &\to &(\Box A \to \Box B)\\
         \Box (A \to B) &\to &(\bLozenge A\to \bLozenge B)\\
@@ -468,10 +469,8 @@ We are interested in the term assignment systems and its properties, as our aim 
         \blacksquare (A \to B) &\to &(\Diamond A\to \Diamond B)\\
         (\blacksquare A\to A) &\land &(A\to \Diamond A)\\
         (\blacksquare A\to \blacksquare\blacksquare A) &\land &(\Diamond \Diamond A \to \Diamond A)\\
-        \Diamond \blacksquare A\to A\\
-        \bLozenge\Box A\to A\\
-        A\to \Box \bLozenge A\\
-        A\to \blacksquare\Diamond A\\
+        \Diamond \blacksquare A\to A &\land &A\to \blacksquare\Diamond A\\
+        \bLozenge\Box A\to A &\land &A\to \Box \bLozenge A\\
         \end{array}
        \end{math}
 \end{center}
