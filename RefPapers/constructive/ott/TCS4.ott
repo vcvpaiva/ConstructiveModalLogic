@@ -15,21 +15,21 @@ grammar
     | Dia t                      ::  :: PPossibility             {{ com past possibility functor }}
     | BBox t                     ::  :: Necessity                {{ com necessity functor }}
     | BDia t                     ::  :: Possibility              {{ com possibility functor }}
-    | letBox t1 = t2 in t3       ::  :: LetPNecessity            {{ com past necessity elim }}
-    {{tex \mathsf{let}\,\Box [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | letBBox t1 = t2 in t3      ::  :: LetNecessity            {{ com necessity elim }}
-    {{tex \mathsf{let}\,\blacksquare [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | letDia t1 = t2 in t3       ::  :: LetPPossibility           {{ com past possibility elim }}
-    {{tex \mathsf{let}\,\Diamond [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | letBDia t1 = t2 in t3      ::  :: LetPossibility           {{ com possibility elim }}
-    {{tex \mathsf{let}\,\blacklozenge [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letBox t1 : T = t2 in t3       ::  :: LetPNecessity            {{ com past necessity elim }}
+    {{tex \mathsf{let}\,\Box [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letBBox t1 : T = t2 in t3      ::  :: LetNecessity            {{ com necessity elim }}
+    {{tex \mathsf{let}\,\blacksquare [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letDia t1 : T = t2 in t3       ::  :: LetPPossibility           {{ com past possibility elim }}
+    {{tex \mathsf{let}\,\Diamond [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letBDia t1 : T = t2 in t3      ::  :: LetPossibility           {{ com possibility elim }}
+    {{tex \mathsf{let}\,\blacklozenge [[t1]] :[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
     | [ t1 / t ] t2              :: M :: Sub    
     | ( t )                      :: S :: Paren
     | h( t )                     :: M :: HParen
     {{tex [[t]] }}
     | r R                        :: M :: MElim
-    | letM t1 = t2 in t3         :: M :: LetM           
-    {{tex \mathsf{let}\,\mathbin{M} [[t1]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | letM t1 : T = t2 in t3         :: M :: LetM           
+    {{tex \mathsf{let}\,\mathbin{M} [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
     | vec t                      :: M :: vector
     {{tex \overrightarrow{[[t]]} }}
     | M t                        :: M :: M
@@ -169,7 +169,7 @@ by
 
   G1;G2;D |- t1 : Box A && G1;G2, x : A;D |- t2 : B
   ------------------------------------------------- :: boxE
-  G1;G2;D |- letBox x = t1 in t2 : B
+  G1;G2;D |- letBox x : Box A = t1 in t2 : B
 
   G1;G2 ; . |- t : A
   -------------------------- :: bboxI
@@ -177,7 +177,7 @@ by
 
   G1;G2;D |- t1 : BBox A && G1, x : A;G2; D |- t2 : B
   --------------------------------------------------- :: bboxE
-  G1;G2;D |- letBBox x = t1 in t2 : B
+  G1;G2;D |- letBBox x : BBox A = t1 in t2 : B
 
   G1;G2;D |- t : A && M is Diamond
   -------------------------------- :: diaI
@@ -185,10 +185,11 @@ by
 
   (G1;G2;D |- t1 : M A && G1;G2; x : A |- t2 : M B) && M is Diamond
   ----------------------------------------------------------------- :: diaE
-  G1;G2;D |- letM x = t1 in t2 : M B
+  G1;G2;D |- letM x : M A = t1 in t2 : M B
 
 defn
-  G1 ; G2 ; D |- t1 = t2 : A :: :: eq :: eq_   
+  G1 ; G2 ; D |- t1 = t2 : A :: :: eq :: eq_
+  {{tex [[G1]];[[G2]];[[D]] \vdash [[t1]] \approx [[t2]] : [[A]] }}
 by
 
  G1;G2;D,x : A |- t2 = t2' : B && G1;G2;D |- t1 = t1' : A
@@ -196,13 +197,41 @@ by
  G1;G2;D |- (\x:A.t2) t1 = [t1'/x]t2' : B
 
  G1;G2;. |- t1 = t1' : A && G1;G2,x : A;D |- t2 = t2' : B
- -------------------------------------------------------- :: box
- G1;G2;D |- letBox x = Box t1 in t2 = [t1'/x]t2' : B
+ ----------------------------------------------------------- :: box
+ G1;G2;D |- letBox x : Box A = Box t1 in t2 = [t1'/x]t2' : B
 
  G1;G2;. |- t1 = t1' : A && G1,x : A;G2;D |- t2 = t2' : B
- -------------------------------------------------------- :: bbox
- G1;G2;D |- letBBox x = BBox t1 in t2 = [t1'/x]t2' : B
+ -------------------------------------------------------------- :: bbox
+ G1;G2;D |- letBBox x : BBox A = BBox t1 in t2 = [t1'/x]t2' : B
 
- (G1;G2;D |- t1 : A && G1;G2;x : A |- t2 : M B) && M is Diamond
- ----------------------------------------------------------------- :: dia
- G1;G2;D |- letM x = M t1 in t2 = [t1'/x]t2' : Dia B
+ (G1;G2;D |- t1 = t1' : A && G1;G2;x : A |- t2 = t2' : M B) && M is Diamond
+ -------------------------------------------------------------------------- :: dia
+ G1;G2;D |- letM x : M A = M t1 in t2 = [t1'/x]t2' : M B
+
+ G1;G2;D |- t1 = t1' : Box C
+ G1;G2,y : C;D |- t2 = t2' : Box A && G1;G2, x : A;D |- t3 = t3' : A
+ ----------------------------------------------------------------------------------------------------------------------------- :: cbox
+ G1;G2;D |- letBox x : Box A = letBox y : Box C = t1 in t2 in t3 = letBox y : Box C = t1' in letBox x : Box A = t2' in t3' : B
+
+ G1;G2;D |- t1 = t1' : BBox C
+ G1,y : C;G2;D |- t2 = t2' : BBox A && G1, x : A;G2;D |- t3 = t3' : A
+ ------------------------------------------------------------------------------------------------------------------------------------ :: cbbox
+ G1;G2;D |- letBBox x : BBox A = letBBox y : BBox C = t1 in t2 in t3 = letBBox y : BBox C = t1' in letBBox x : BBox A = t2' in t3' : B
+
+
+ G1;G2;D |- t1 = t1' : M C
+ (G1;G2;y : C |- t2 = t2' : M A && G1;G2;x : A |- t3 = t3' : M B) && M is Diamond
+ ------------------------------------------------------------------------------------------------------------ :: cdia
+ G1;G2;D |- letM x : M A = letM y : M C = t1 in t2 in t3 = letM y : M C = t1 in letM x : M A = t2 in t3 : M B
+
+ G1;G2;D |- t : A
+ -------------------- :: refl
+ G1;G2;D |- t = t : A
+
+ G1;G2;D |- t2 = t1 : A
+ ---------------------- :: sym
+ G1;G2;D |- t1 = t2 : A
+
+ G1;G2;D |- t1 = t2 : A && G1;G2;D |- t2 = t3 : A
+ ------------------------------------------------ :: trans
+ G1;G2;D |- t1 = t3 : A
