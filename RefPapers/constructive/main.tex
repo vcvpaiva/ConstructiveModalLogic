@@ -360,7 +360,11 @@ Instead of Linear Logic, we deal with constructive modal logic and the adjunctio
 \subsection{The tense CS4 calculus}
 Finally to get to the tense logic which is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity operator $G$. The past existential $P$ is $\Diamond$ and the future existential is $\bLozenge$  or $F$.
 
-A version of a  sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}, which can be easily transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{}. A natural deduction version of the calculus in dual context style is given in Figure \ref{fig:TCS4}.
+A version of a  sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}, which can be  transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{fig:NDCS4}. The problem is that the last two adjunction rules in Figure \ref{fig:biCS4} (that relate the two sets of modalities) are extremely badly-behaved proof-theoretically (no cut-elimination and no subformula property even for cut-free proofs), as discussed in page 35 of the full report by Benton \cite{benton1995}. In fact they are the reason for moving to a dual context calculus, as explained in that paper and also  in Barber's work \cite{barber1997}. 
+
+The  dual context systems, as described in Barber and Benton's work, are proved equivalent to the system with a single modality operator, either `$!$' or `$\Box$'. This is because in Intuitionistic Linear Logic one is not usually interested in either \textit{why not?} `$?$' or `$\Diamond$'. (In Classical Linear Logic the possibility modality is defined by negation of the necessity modality, so this extension is easier to make \cite{paykin2014}.) Given that our main goal is to discuss categorical semantics, which we can do easily for the necessity modalities, in this note we  consider only two necessity-like modalities $\Box$ and $\blacksquare$, to begin with.
+
+We would like to have a natural deduction version of the tense calculus in dual context style. A dual context-style presentation of a single necessity modality has been presented in Figure~\ref{fig:DCS4}. Now we need to add another necessity-like modality and discuss their interaction.  A preliminary attempt at such calculus is given in Figure \ref{fig:TCS4}.
 
 \begin{figure}
   \begin{mdframed}
@@ -406,7 +410,7 @@ A version of a  sequent calculus  system for this constructive tense logic is gi
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{Constructive tense S4 sequent rules  ({\sf{biCS4}})}
+  \caption{Tense S4 sequent rules  ({\sf{biCS4}})}
   \label{fig:biCS4}
 \end{figure}
 
@@ -440,25 +444,25 @@ A version of a  sequent calculus  system for this constructive tense logic is gi
           \infer[\Diamond_{\mathcal{I}}]{\Gamma \vdash \Diamond A}{
             \Gamma \vdash A
          } \\\\
-         \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
-            A \vdash \Box B
-          }
-          & \quad &
-          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
-            \bLozenge A\vdash B
-         } \\\\
         \end{array} \\\\
         \infer[\bLozenge_{\mathcal{E}}]{\Gamma \vdash   \bLozenge C}{
             \Gamma\vdash \Box A_1\ldots \Gamma\vdash \Box A_k \hspace{.05in}\Gamma\vdash \bLozenge B \hspace{.1in}  \Box A_1\ldots\Box A_k, B\vdash \bLozenge C
           }\\\\
           \infer[\Diamond_{\mathcal{E}}]{\Gamma \vdash   \Diamond C}{
             \Gamma\vdash \blacksquare A_1\ldots \Gamma\vdash \blacksquare A_k \hspace{.05in}\Gamma\vdash \Diamond B \hspace{.1in}  \blacksquare A_1\ldots\blacksquare A_k, B\vdash \Diamond C
+          }\\\\
+          \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
+            A \vdash \Box B
           }
+          & \quad &
+          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
+            \bLozenge A\vdash B
+         } 
         \end{array}
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{Constructive  S4 rules ND version ({\sf{biCS4}})}
+  \caption{Tense  S4 rules first version ({\sf{NDCS4}})}
   \label{fig:NDCS4}
 \end{figure}
 
