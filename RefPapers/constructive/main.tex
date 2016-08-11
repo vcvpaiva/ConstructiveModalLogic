@@ -73,12 +73,6 @@
 \renewcommand{\TLLdruletyXXboxIName}{\Box_\mathcal{I}}
 \renewcommand{\TLLdruletyXXbboxEName}{\BBox_\mathcal{E}}
 \renewcommand{\TLLdruletyXXbboxIName}{\BBox_\mathcal{I}}
-\renewcommand{\TLLdruletyXXdiaIName}{\Diamond_\mathcal{I}}
-\renewcommand{\TLLdruletyXXdiaEName}{\Diamond_\mathcal{E}}
-\renewcommand{\TLLdruletyXXbdiaIName}{\blacklozenge_\mathcal{I}}
-\renewcommand{\TLLdruletyXXbdiaEName}{\blacklozenge_\mathcal{E}}
-\renewcommand{\TLLdruletyXXadjLName}{adj_\mathcal{L}}
-\renewcommand{\TLLdruletyXXadjRName}{adj_\mathcal{R}}
 %% End Ott
 
 \newtheorem{theorem}{Theorem}
@@ -370,7 +364,7 @@ We would like to have a natural deduction version of the tense calculus in dual 
   \begin{mdframed}
     \begin{center}
       \begin{math}
-        \begin{array}{ccccc}              
+        \begin{array}{cccccccc}              
           \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A\vdash B}{
             \Gamma,  A \vdash B
           }
@@ -418,7 +412,7 @@ We would like to have a natural deduction version of the tense calculus in dual 
   \begin{mdframed}
     \begin{center}
       \begin{math}
-        \begin{array}{c}
+        \begin{array}{ccc}
           \begin{array}{ccccc}              
           \infer[\Box_{\mathcal{E}}]{\Gamma \vdash B}{
             \Gamma\vdash \Box B
@@ -451,13 +445,15 @@ We would like to have a natural deduction version of the tense calculus in dual 
           \infer[\Diamond_{\mathcal{E}}]{\Gamma \vdash   \Diamond C}{
             \Gamma\vdash \blacksquare A_1\ldots \Gamma\vdash \blacksquare A_k \hspace{.05in}\Gamma\vdash \Diamond B \hspace{.1in}  \blacksquare A_1\ldots\blacksquare A_k, B\vdash \Diamond C
           }\\\\
-          \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
+          \begin{array}{ccc}
+            \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
             A \vdash \Box B
           }
           & \quad &
           \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
             \bLozenge A\vdash B
-         } 
+         }
+          \end{array} 
         \end{array}
       \end{math}
     \end{center}
@@ -479,14 +475,14 @@ We would like to have a natural deduction version of the tense calculus in dual 
             & \quad &
             \infer[\Box_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \Box A \hspace{.1in}
               \Gamma_1; \Gamma_2, A;\Delta \vdash B
-            }\\\\
-            \infer[\bLozenge_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge A}{
-              \Gamma_1; \Gamma_2;\Delta \vdash A
-            }
-            & \quad &
-            \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
-              \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
-            }
+            }%% \\\\
+            %% \infer[\bLozenge_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge A}{
+            %%   \Gamma_1; \Gamma_2;\Delta \vdash A
+            %% }
+            %% & \quad &
+            %% \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
+            %%   \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
+            %% }
           \end{array}
           \\\\
           \begin{array}{ccccc}              
@@ -496,14 +492,14 @@ We would like to have a natural deduction version of the tense calculus in dual 
             & \quad &
             \infer[\blacksquare_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \blacksquare A \hspace{.1in}
               \Gamma_1; \Gamma_2, A;\Delta \vdash B
-            }\\\\
-            \infer[\Diamond_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond A}{
-              \Gamma_1; \Gamma_2;\Delta \vdash A
-            }
-            & \quad &
-            \infer[\Diamond_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond B}{
-              \Gamma_1; \Gamma_2 ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
-            }
+            }%% \\\\
+            %% \infer[\Diamond_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond A}{
+            %%   \Gamma_1; \Gamma_2;\Delta \vdash A
+            %% }
+            %% & \quad &
+            %% \infer[\Diamond_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond B}{
+            %%   \Gamma_1; \Gamma_2 ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
+            %% }
           \end{array}    
         \end{array}
       \end{math}

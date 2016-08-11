@@ -200,62 +200,6 @@
 {\TLLdruletyXXbboxIName}{}%
 }}
 
-
-\newcommand{\TLLdruletyXXdiaIName}[0]{\TLLdrulename{ty\_diaI}}
-\newcommand{\TLLdruletyXXdiaI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \vdash  \Diamond \, \TLLnt{t}  \TLLsym{:}  \Diamond \, \TLLnt{A}}{%
-{\TLLdruletyXXdiaIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXdiaEName}[0]{\TLLdrulename{ty\_diaE}}
-\newcommand{\TLLdruletyXXdiaE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}}%
-\TLLpremise{ \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}  \TLLsym{,}  \TLLnt{B}  \vdash  \TLLnt{t}  \TLLsym{:}  \Diamond \, \TLLnt{C}   \quad  \Gamma  \vdash  \TLLnt{s}  \TLLsym{:}  \Diamond \, \TLLnt{B}}%
-}{
-\Gamma  \vdash   \mathsf{let}\,\Diamond  \mathit{x} : \Diamond \, \TLLnt{B} = \TLLnt{s}  \mid  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{B} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \Diamond \, \TLLnt{C}}{%
-{\TLLdruletyXXdiaEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbdiaIName}[0]{\TLLdrulename{ty\_bdiaI}}
-\newcommand{\TLLdruletyXXbdiaI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \vdash  \mathbin{\blacklozenge} \, \TLLnt{t}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{A}}{%
-{\TLLdruletyXXbdiaIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbdiaEName}[0]{\TLLdrulename{ty\_bdiaE}}
-\newcommand{\TLLdruletyXXbdiaE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}}}%
-\TLLpremise{ \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}}  \TLLsym{,}  \TLLnt{B}  \vdash  \TLLnt{t}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{C}   \quad  \Gamma  \vdash  \TLLnt{s}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{B}}%
-}{
-\Gamma  \vdash   \mathsf{let}\,\blacklozenge  \mathit{x} : \mathbin{\blacklozenge} \, \TLLnt{B} = \TLLnt{s}  \mid  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{B} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{C}}{%
-{\TLLdruletyXXbdiaEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXadjLName}[0]{\TLLdrulename{ty\_adjL}}
-\newcommand{\TLLdruletyXXadjL}[1]{\TLLdrule[#1]{%
-\TLLpremise{\mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t}  \TLLsym{:}  \Box \, \TLLnt{B}}%
-}{
-\mathit{y}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{A}  \vdash   \mathsf{adj_L}\,\blacklozenge  \mathit{x}  =  \mathit{y} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \TLLnt{B}}{%
-{\TLLdruletyXXadjLName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXadjRName}[0]{\TLLdrulename{ty\_adjR}}
-\newcommand{\TLLdruletyXXadjR}[1]{\TLLdrule[#1]{%
-\TLLpremise{\mathit{x}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{A}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}}%
-}{
-\mathit{y}  \TLLsym{:}  \TLLnt{A}  \vdash   \mathsf{adj_R}\,\blacklozenge  \mathit{y}  =  \mathit{x} \,\mathsf{in}\,\Box  \TLLnt{t}   \TLLsym{:}  \Box \, \TLLnt{B}}{%
-{\TLLdruletyXXadjRName}{}%
-}}
-
 \newcommand{\TLLdefntype}[1]{\begin{TLLdefnblock}[#1]{$\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$}{}
 \TLLusedrule{\TLLdruletyXXax{}}
 \TLLusedrule{\TLLdruletyXXfalse{}}
@@ -265,12 +209,6 @@
 \TLLusedrule{\TLLdruletyXXboxI{}}
 \TLLusedrule{\TLLdruletyXXbboxE{}}
 \TLLusedrule{\TLLdruletyXXbboxI{}}
-\TLLusedrule{\TLLdruletyXXdiaI{}}
-\TLLusedrule{\TLLdruletyXXdiaE{}}
-\TLLusedrule{\TLLdruletyXXbdiaI{}}
-\TLLusedrule{\TLLdruletyXXbdiaE{}}
-\TLLusedrule{\TLLdruletyXXadjL{}}
-\TLLusedrule{\TLLdruletyXXadjR{}}
 \end{TLLdefnblock}}
 
 %% defn eq
