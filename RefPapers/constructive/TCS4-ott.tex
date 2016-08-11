@@ -34,50 +34,32 @@
 \newcommand{\TLLterm}{
 \TLLrulehead{\TLLnt{term}  ,\ \TLLnt{t}  ,\ \TLLnt{r}  ,\ \TLLnt{s}  ,\ \TLLnt{n}}{::=}{\TLLcom{term}}\TLLprodnewline
 \TLLfirstprodline{|}{\mathit{x}}{}{}{}{\TLLcom{variable}}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{unit} }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \mathsf{contra} }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)}}{}{}{}{\TLLcom{pair}}\TLLprodnewline
-\TLLprodline{|}{\mathsf{fst}\, \, \TLLnt{t}}{}{}{}{\TLLcom{first projection}}\TLLprodnewline
-\TLLprodline{|}{\mathsf{snd}\, \, \TLLnt{t}}{}{}{}{\TLLcom{second projection}}\TLLprodnewline
-\TLLprodline{|}{\mathsf{inj}_1\,  \TLLnt{t}}{}{}{}{\TLLcom{first injection}}\TLLprodnewline
-\TLLprodline{|}{\mathsf{inj}_2\,  \TLLnt{t}}{}{}{}{\TLLcom{second injection}}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{case}\, \TLLnt{t} \,\mathsf{of}\, \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{y} . \TLLnt{t_{{\mathrm{2}}}} }{}{}{}{\TLLcom{sum case}}\TLLprodnewline
 \TLLprodline{|}{ \lambda  \mathit{x}  :  \TLLnt{T} . \TLLnt{t} }{}{}{}{\TLLcom{unary functions}}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{t_{{\mathrm{1}}}} \, \TLLnt{t_{{\mathrm{2}}}}}{}{}{}{\TLLcom{function application}}\TLLprodnewline
 \TLLprodline{|}{\Box \, \TLLnt{t}}{}{}{}{\TLLcom{past necessity functor}}\TLLprodnewline
 \TLLprodline{|}{\Diamond \, \TLLnt{t}}{}{}{}{\TLLcom{past possibility functor}}\TLLprodnewline
 \TLLprodline{|}{\blacksquare \, \TLLnt{t}}{}{}{}{\TLLcom{necessity functor}}\TLLprodnewline
 \TLLprodline{|}{\mathbin{\blacklozenge} \, \TLLnt{t}}{}{}{}{\TLLcom{possibility functor}}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{let}\,\Box  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{past necessity elim}}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{let}\,\blacksquare  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{necessity elim}}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{let}\,\Diamond  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{past possibility elim}}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{let}\,\blacklozenge  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{possibility elim}}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{let}\,\Box  \TLLnt{t_{{\mathrm{1}}}} : \TLLnt{T}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{past necessity elim}}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{let}\,\blacksquare  \TLLnt{t_{{\mathrm{1}}}} : \TLLnt{T}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{necessity elim}}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{let}\,\Diamond  \TLLnt{t_{{\mathrm{1}}}} : \TLLnt{T}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{past possibility elim}}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{let}\,\blacklozenge  \TLLnt{t_{{\mathrm{1}}}}  : \TLLnt{T}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} }{}{}{}{\TLLcom{possibility elim}}\TLLprodnewline
 \TLLprodline{|}{\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \TLLnt{t}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}} {\textsf{M}}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLsym{(}  \TLLnt{t}  \TLLsym{)}} {\textsf{S}}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \TLLnt{t} } {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLnt{r} \, \TLLnt{R}} {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{let}\,\mathbin{M}  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} } {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLnt{r} \, \TLLkw{R}} {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{let}\,\mathbin{M}  \TLLnt{t_{{\mathrm{1}}}} : \TLLnt{T}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}} } {\textsf{M}}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \overrightarrow{ \TLLnt{t} } } {\textsf{M}}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \mathbin{M}  \TLLnt{t} } {\textsf{M}}{}{}{}}
 
-\newcommand{\TLLelim}{
-\TLLrulehead{\TLLnt{elim}  ,\ \TLLnt{R}}{::=}{}\TLLprodnewline
-\TLLfirstprodline{|}{\TLLnt{r}}{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ ( \mathit{x} . \TLLnt{R_{{\mathrm{1}}}} , \mathit{y} . \TLLnt{R_{{\mathrm{2}}}} ) }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathit{x} . \TLLnt{R} }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \overrightarrow{ \TLLnt{R} } } {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLsym{(}  \TLLnt{R}  \TLLsym{)}} {\textsf{S}}{}{}{}}
-
 \newcommand{\TLLform}{
 \TLLrulehead{\TLLnt{form}  ,\ \TLLnt{type}  ,\ \TLLnt{A}  ,\ \TLLnt{B}  ,\ \TLLnt{C}  ,\ \TLLnt{T}}{::=}{\TLLcom{formula and type}}\TLLprodnewline
-\TLLfirstprodline{|}{\top}{}{}{}{\TLLcom{true or the unit type}}\TLLprodnewline
-\TLLprodline{|}{\perp}{}{}{}{\TLLcom{false or the empty type}}\TLLprodnewline
+\TLLfirstprodline{|}{\perp}{}{}{}{\TLLcom{false or the empty type}}\TLLprodnewline
 \TLLprodline{|}{\Box \, \TLLnt{A}}{}{}{}{\TLLcom{past necessity}}\TLLprodnewline
 \TLLprodline{|}{\blacksquare \, \TLLnt{A}}{}{}{}{\TLLcom{necessity}}\TLLprodnewline
 \TLLprodline{|}{\Diamond \, \TLLnt{A}}{}{}{}{\TLLcom{past possibility}}\TLLprodnewline
 \TLLprodline{|}{\mathbin{\blacklozenge} \, \TLLnt{A}}{}{}{}{\TLLcom{possibility}}\TLLprodnewline
-\TLLprodline{|}{ \TLLnt{A}  \land  \TLLnt{B} }{}{}{}{\TLLcom{conjunction}}\TLLprodnewline
-\TLLprodline{|}{ \TLLnt{A}  \lor  \TLLnt{B} }{}{}{}{\TLLcom{disjunction}}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{A}  \to  \TLLnt{B}}{}{}{}{\TLLcom{implication}}\TLLprodnewline
 \TLLprodline{|}{ \mathbin{M}  \TLLnt{A} } {\textsf{M}}{}{}{}}
 
@@ -90,12 +72,7 @@
 
 \newcommand{\TLLterminals}{
 \TLLrulehead{\TLLnt{terminals}}{::=}{}\TLLprodnewline
-\TLLfirstprodline{|}{ \mathsf{fst}\, }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{snd}\, }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{inj}_1\, }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \mathsf{inj}_2\, }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \emptyset }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \top }{}{}{}{}\TLLprodnewline
+\TLLfirstprodline{|}{ \emptyset }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \perp }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \vdash }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \Box }{}{}{}{}\TLLprodnewline
@@ -103,20 +80,18 @@
 \TLLprodline{|}{ \Diamond }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \mathbin{\blacklozenge} }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \to }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \quad } {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \rightsquigarrow }{}{}{}{}}
+\TLLprodline{|}{ \quad } {\textsf{M}}{}{}{}}
 
 \newcommand{\TLLformula}{
 \TLLrulehead{\TLLnt{formula}}{::=}{}\TLLprodnewline
 \TLLfirstprodline{|}{\TLLnt{judgement}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{formula_{{\mathrm{1}}}}  \quad  \TLLnt{formula_{{\mathrm{2}}}}} {\textsf{M}}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLsym{(}  \TLLnt{formula}  \TLLsym{)}} {\textsf{S}}{}{}{}}
+\TLLprodline{|}{ \TLLnt{formula} } {\textsf{S}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ M \in \{\Diamond, \mathbin{\blacklozenge} \} } {\textsf{M}}{}{}{}}
 
 \newcommand{\TLLJtype}{
 \TLLrulehead{\TLLnt{Jtype}}{::=}{}\TLLprodnewline
-\TLLfirstprodline{|}{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLnt{t_{{\mathrm{1}}}}  \rightsquigarrow  \TLLnt{t_{{\mathrm{2}}}}}{}{}{}{}}
+\TLLfirstprodline{|}{\Gamma  \vdash  \TLLnt{A}}{}{}{}{}}
 
 \newcommand{\TLLjudgement}{
 \TLLrulehead{\TLLnt{judgement}}{::=}{}\TLLprodnewline
@@ -127,7 +102,6 @@
 \TLLfirstprodline{|}{\mathit{termvar}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLmv{index}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{term}}{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{\TLLnt{elim}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{form}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\Gamma}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{terminals}}{}{}{}{}\TLLprodnewline
@@ -135,7 +109,6 @@
 
 \newcommand{\TLLgrammar}{\TLLgrammartabular{
 \TLLterm\TLLinterrule
-\TLLelim\TLLinterrule
 \TLLform\TLLinterrule
 \TLLG\TLLinterrule
 \TLLterminals\TLLinterrule
@@ -148,528 +121,13 @@
 % defnss
 % defns Jtype
 %% defn form
-\newcommand{\TLLdruleLXXaxName}[0]{\TLLdrulename{L\_ax}}
-\newcommand{\TLLdruleLXXax}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \TLLnt{A}  \vdash  \TLLnt{A}}{%
-{\TLLdruleLXXaxName}{}%
-}}
 
-
-\newcommand{\TLLdruleLXXbaxName}[0]{\TLLdrulename{L\_bax}}
-\newcommand{\TLLdruleLXXbax}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{,}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}{%
-{\TLLdruleLXXbaxName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXtrueName}[0]{\TLLdrulename{L\_true}}
-\newcommand{\TLLdruleLXXtrue}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \top}{%
-{\TLLdruleLXXtrueName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXfalseName}[0]{\TLLdrulename{L\_false}}
-\newcommand{\TLLdruleLXXfalse}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \perp  \vdash  \TLLnt{A}}{%
-{\TLLdruleLXXfalseName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXconjIName}[0]{\TLLdrulename{L\_conjI}}
-\newcommand{\TLLdruleLXXconjI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}  \quad  \Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \TLLnt{A}  \land  \TLLnt{B} }{%
-{\TLLdruleLXXconjIName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXconjEOneName}[0]{\TLLdrulename{L\_conjE1}}
-\newcommand{\TLLdruleLXXconjEOne}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash   \TLLnt{A}  \land  \TLLnt{B} }%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}{%
-{\TLLdruleLXXconjEOneName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXconjETwoName}[0]{\TLLdrulename{L\_conjE2}}
-\newcommand{\TLLdruleLXXconjETwo}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash   \TLLnt{A}  \land  \TLLnt{B} }%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}{%
-{\TLLdruleLXXconjETwoName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXdisjIOneName}[0]{\TLLdrulename{L\_disjI1}}
-\newcommand{\TLLdruleLXXdisjIOne}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \TLLnt{A}  \lor  \TLLnt{B} }{%
-{\TLLdruleLXXdisjIOneName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXdisjITwoName}[0]{\TLLdrulename{L\_disjI2}}
-\newcommand{\TLLdruleLXXdisjITwo}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \TLLnt{A}  \lor  \TLLnt{B} }{%
-{\TLLdruleLXXdisjITwoName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXdisjEName}[0]{\TLLdrulename{L\_disjE}}
-\newcommand{\TLLdruleLXXdisjE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \TLLnt{A}  \vdash  \TLLnt{C}}%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \TLLnt{B}  \vdash  \TLLnt{C}  \quad  \Gamma  \TLLsym{;}  \Delta  \vdash   \TLLnt{A}  \lor  \TLLnt{B} }%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{C}}{%
-{\TLLdruleLXXdisjEName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXimpIName}[0]{\TLLdrulename{L\_impI}}
-\newcommand{\TLLdruleLXXimpI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \TLLnt{A}  \vdash  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}  \to  \TLLnt{B}}{%
-{\TLLdruleLXXimpIName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXimpEName}[0]{\TLLdrulename{L\_impE}}
-\newcommand{\TLLdruleLXXimpE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}  \to  \TLLnt{B}  \quad  \Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}{%
-{\TLLdruleLXXimpEName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXboxIName}[0]{\TLLdrulename{L\_boxI}}
-\newcommand{\TLLdruleLXXboxI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \emptyset  \vdash  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \Box \, \TLLnt{A}}{%
-{\TLLdruleLXXboxIName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXboxEName}[0]{\TLLdrulename{L\_boxE}}
-\newcommand{\TLLdruleLXXboxE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \Box \, \TLLnt{A}  \quad  \Gamma  \TLLsym{,}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}{%
-{\TLLdruleLXXboxEName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXbdiaIName}[0]{\TLLdrulename{L\_bdiaI}}
-\newcommand{\TLLdruleLXXbdiaI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathbin{\blacklozenge} \, \TLLnt{A}}{%
-{\TLLdruleLXXbdiaIName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXbdiaEName}[0]{\TLLdrulename{L\_bdiaE}}
-\newcommand{\TLLdruleLXXbdiaE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \mathbin{\blacklozenge} \, \TLLnt{A}  \quad  \Gamma  \TLLsym{;}  \TLLnt{A}  \vdash  \mathbin{\blacklozenge} \, \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathbin{\blacklozenge} \, \TLLnt{A}}{%
-{\TLLdruleLXXbdiaEName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXbboxIName}[0]{\TLLdrulename{L\_bboxI}}
-\newcommand{\TLLdruleLXXbboxI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \emptyset  \vdash  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \blacksquare \, \TLLnt{A}}{%
-{\TLLdruleLXXbboxIName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXbboxEName}[0]{\TLLdrulename{L\_bboxE}}
-\newcommand{\TLLdruleLXXbboxE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \blacksquare \, \TLLnt{A}  \quad  \Gamma  \TLLsym{,}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{B}}{%
-{\TLLdruleLXXbboxEName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXdiaIName}[0]{\TLLdrulename{L\_diaI}}
-\newcommand{\TLLdruleLXXdiaI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \Diamond \, \TLLnt{A}}{%
-{\TLLdruleLXXdiaIName}{}%
-}}
-
-
-\newcommand{\TLLdruleLXXdiaEName}[0]{\TLLdrulename{L\_diaE}}
-\newcommand{\TLLdruleLXXdiaE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \Diamond \, \TLLnt{A}  \quad  \Gamma  \TLLsym{;}  \TLLnt{A}  \vdash  \Diamond \, \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \Diamond \, \TLLnt{B}}{%
-{\TLLdruleLXXdiaEName}{}%
-}}
-
-\newcommand{\TLLdefnform}[1]{\begin{TLLdefnblock}[#1]{$\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{A}$}{}
-\TLLusedrule{\TLLdruleLXXax{}}
-\TLLusedrule{\TLLdruleLXXbax{}}
-\TLLusedrule{\TLLdruleLXXtrue{}}
-\TLLusedrule{\TLLdruleLXXfalse{}}
-\TLLusedrule{\TLLdruleLXXconjI{}}
-\TLLusedrule{\TLLdruleLXXconjEOne{}}
-\TLLusedrule{\TLLdruleLXXconjETwo{}}
-\TLLusedrule{\TLLdruleLXXdisjIOne{}}
-\TLLusedrule{\TLLdruleLXXdisjITwo{}}
-\TLLusedrule{\TLLdruleLXXdisjE{}}
-\TLLusedrule{\TLLdruleLXXimpI{}}
-\TLLusedrule{\TLLdruleLXXimpE{}}
-\TLLusedrule{\TLLdruleLXXboxI{}}
-\TLLusedrule{\TLLdruleLXXboxE{}}
-\TLLusedrule{\TLLdruleLXXbdiaI{}}
-\TLLusedrule{\TLLdruleLXXbdiaE{}}
-\TLLusedrule{\TLLdruleLXXbboxI{}}
-\TLLusedrule{\TLLdruleLXXbboxE{}}
-\TLLusedrule{\TLLdruleLXXdiaI{}}
-\TLLusedrule{\TLLdruleLXXdiaE{}}
-\end{TLLdefnblock}}
-
-%% defn type
-\newcommand{\TLLdruletyXXaxName}[0]{\TLLdrulename{ty\_ax}}
-\newcommand{\TLLdruletyXXax}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \mathit{x}  \TLLsym{:}  \TLLnt{A}}{%
-{\TLLdruletyXXaxName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbaxName}[0]{\TLLdrulename{ty\_bax}}
-\newcommand{\TLLdruletyXXbax}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \mathit{x}  \TLLsym{:}  \TLLnt{A}}{%
-{\TLLdruletyXXbaxName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXtrueName}[0]{\TLLdrulename{ty\_true}}
-\newcommand{\TLLdruletyXXtrue}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{unit}   \TLLsym{:}  \top}{%
-{\TLLdruletyXXtrueName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXfalseName}[0]{\TLLdrulename{ty\_false}}
-\newcommand{\TLLdruletyXXfalse}[1]{\TLLdrule[#1]{%
-}{
-\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \perp  \vdash   \mathsf{contra}   \TLLsym{:}  \TLLnt{A}}{%
-{\TLLdruletyXXfalseName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXconjIName}[0]{\TLLdrulename{ty\_conjI}}
-\newcommand{\TLLdruletyXXconjI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}  \quad  \Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{:}   \TLLnt{A}  \land  \TLLnt{B} }{%
-{\TLLdruletyXXconjIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXconjEOneName}[0]{\TLLdrulename{ty\_conjE1}}
-\newcommand{\TLLdruletyXXconjEOne}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}   \TLLnt{A}  \land  \TLLnt{B} }%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathsf{fst}\, \, \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}{%
-{\TLLdruletyXXconjEOneName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXconjETwoName}[0]{\TLLdrulename{ty\_conjE2}}
-\newcommand{\TLLdruletyXXconjETwo}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}   \TLLnt{A}  \land  \TLLnt{B} }%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathsf{snd}\, \, \TLLnt{t}  \TLLsym{:}  \TLLnt{B}}{%
-{\TLLdruletyXXconjETwoName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXdisjIOneName}[0]{\TLLdrulename{ty\_disjI1}}
-\newcommand{\TLLdruletyXXdisjIOne}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathsf{inj}_1\,  \TLLnt{t}  \TLLsym{:}   \TLLnt{A}  \lor  \TLLnt{B} }{%
-{\TLLdruletyXXdisjIOneName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXdisjITwoName}[0]{\TLLdrulename{ty\_disjI2}}
-\newcommand{\TLLdruletyXXdisjITwo}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathsf{inj}_2\,  \TLLnt{t}  \TLLsym{:}   \TLLnt{A}  \lor  \TLLnt{B} }{%
-{\TLLdruletyXXdisjITwoName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXdisjEName}[0]{\TLLdrulename{ty\_disjE}}
-\newcommand{\TLLdruletyXXdisjE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C}}%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{B}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C}  \quad  \Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}   \TLLnt{A}  \lor  \TLLnt{B} }%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{case}\, \TLLnt{t} \,\mathsf{of}\, \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{:}  \TLLnt{C}}{%
-{\TLLdruletyXXdisjEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXimpIName}[0]{\TLLdrulename{ty\_impI}}
-\newcommand{\TLLdruletyXXimpI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{t}   \TLLsym{:}  \TLLnt{A}  \to  \TLLnt{B}}{%
-{\TLLdruletyXXimpIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXimpEName}[0]{\TLLdrulename{ty\_impE}}
-\newcommand{\TLLdruletyXXimpE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}  \to  \TLLnt{B}  \quad  \Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}} \, \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}}{%
-{\TLLdruletyXXimpEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXboxIName}[0]{\TLLdrulename{ty\_boxI}}
-\newcommand{\TLLdruletyXXboxI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \emptyset  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \Box \, \TLLnt{t}  \TLLsym{:}  \Box \, \TLLnt{A}}{%
-{\TLLdruletyXXboxIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXboxEName}[0]{\TLLdrulename{ty\_boxE}}
-\newcommand{\TLLdruletyXXboxE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A}  \quad  \Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{let}\,\Box  \mathit{x}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{:}  \TLLnt{B}}{%
-{\TLLdruletyXXboxEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbdiaIName}[0]{\TLLdrulename{ty\_bdiaI}}
-\newcommand{\TLLdruletyXXbdiaI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \mathbin{\blacklozenge} \, \TLLnt{t}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{A}}{%
-{\TLLdruletyXXbdiaIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbdiaEName}[0]{\TLLdrulename{ty\_bdiaE}}
-\newcommand{\TLLdruletyXXbdiaE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{A}  \quad  \Gamma  \TLLsym{;}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{let}\,\blacklozenge  \mathit{x}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{:}  \mathbin{\blacklozenge} \, \TLLnt{B}}{%
-{\TLLdruletyXXbdiaEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbboxIName}[0]{\TLLdrulename{ty\_bboxI}}
-\newcommand{\TLLdruletyXXbboxI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \emptyset  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \blacksquare \, \TLLnt{t}  \TLLsym{:}  \blacksquare \, \TLLnt{A}}{%
-{\TLLdruletyXXbboxIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXbboxEName}[0]{\TLLdrulename{ty\_bboxE}}
-\newcommand{\TLLdruletyXXbboxE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A}  \quad  \Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{let}\,\blacksquare  \mathit{x}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{:}  \TLLnt{B}}{%
-{\TLLdruletyXXbboxEName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXdiaIName}[0]{\TLLdrulename{ty\_diaI}}
-\newcommand{\TLLdruletyXXdiaI}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash  \Diamond \, \TLLnt{t}  \TLLsym{:}  \Diamond \, \TLLnt{A}}{%
-{\TLLdruletyXXdiaIName}{}%
-}}
-
-
-\newcommand{\TLLdruletyXXdiaEName}[0]{\TLLdrulename{ty\_diaE}}
-\newcommand{\TLLdruletyXXdiaE}[1]{\TLLdrule[#1]{%
-\TLLpremise{\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \Diamond \, \TLLnt{A}  \quad  \Gamma  \TLLsym{;}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \Diamond \, \TLLnt{B}}%
-}{
-\Gamma  \TLLsym{;}  \Delta  \vdash   \mathsf{let}\,\Diamond  \mathit{x}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{:}  \Diamond \, \TLLnt{B}}{%
-{\TLLdruletyXXdiaEName}{}%
-}}
-
-\newcommand{\TLLdefntype}[1]{\begin{TLLdefnblock}[#1]{$\Gamma  \TLLsym{;}  \Delta  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$}{}
-\TLLusedrule{\TLLdruletyXXax{}}
-\TLLusedrule{\TLLdruletyXXbax{}}
-\TLLusedrule{\TLLdruletyXXtrue{}}
-\TLLusedrule{\TLLdruletyXXfalse{}}
-\TLLusedrule{\TLLdruletyXXconjI{}}
-\TLLusedrule{\TLLdruletyXXconjEOne{}}
-\TLLusedrule{\TLLdruletyXXconjETwo{}}
-\TLLusedrule{\TLLdruletyXXdisjIOne{}}
-\TLLusedrule{\TLLdruletyXXdisjITwo{}}
-\TLLusedrule{\TLLdruletyXXdisjE{}}
-\TLLusedrule{\TLLdruletyXXimpI{}}
-\TLLusedrule{\TLLdruletyXXimpE{}}
-\TLLusedrule{\TLLdruletyXXboxI{}}
-\TLLusedrule{\TLLdruletyXXboxE{}}
-\TLLusedrule{\TLLdruletyXXbdiaI{}}
-\TLLusedrule{\TLLdruletyXXbdiaE{}}
-\TLLusedrule{\TLLdruletyXXbboxI{}}
-\TLLusedrule{\TLLdruletyXXbboxE{}}
-\TLLusedrule{\TLLdruletyXXdiaI{}}
-\TLLusedrule{\TLLdruletyXXdiaE{}}
-\end{TLLdefnblock}}
-
-%% defn red
-\newcommand{\TLLdrulerXXbetaName}[0]{\TLLdrulename{r\_beta}}
-\newcommand{\TLLdrulerXXbeta}[1]{\TLLdrule[#1]{%
-}{
-\TLLsym{(}   \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \, \TLLnt{t_{{\mathrm{1}}}}  \rightsquigarrow  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXbetaName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXfirstName}[0]{\TLLdrulename{r\_first}}
-\newcommand{\TLLdrulerXXfirst}[1]{\TLLdrule[#1]{%
-}{
-\mathsf{fst}\, \, \TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)}  \rightsquigarrow  \TLLnt{t_{{\mathrm{1}}}}}{%
-{\TLLdrulerXXfirstName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXsecondName}[0]{\TLLdrulename{r\_second}}
-\newcommand{\TLLdrulerXXsecond}[1]{\TLLdrule[#1]{%
-}{
-\mathsf{snd}\, \, \TLLsym{(}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{)}  \rightsquigarrow  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXsecondName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXcaseOneName}[0]{\TLLdrulename{r\_case1}}
-\newcommand{\TLLdrulerXXcaseOne}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{case}\, \TLLsym{(}  \mathsf{inj}_1\,  \TLLnt{t}  \TLLsym{)} \,\mathsf{of}\, \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \TLLsym{[}  \TLLnt{t}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{1}}}}}{%
-{\TLLdrulerXXcaseOneName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXcaseTwoName}[0]{\TLLdrulename{r\_case2}}
-\newcommand{\TLLdrulerXXcaseTwo}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{case}\, \TLLsym{(}  \mathsf{inj}_2\,  \TLLnt{t}  \TLLsym{)} \,\mathsf{of}\, \mathit{x} . \TLLnt{t_{{\mathrm{1}}}} , \mathit{x} . \TLLnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \TLLsym{[}  \TLLnt{t}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXcaseTwoName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXboxName}[0]{\TLLdrulename{r\_box}}
-\newcommand{\TLLdrulerXXbox}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\Box  \mathit{x}  =  \Box \, \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXboxName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXbdiaName}[0]{\TLLdrulename{r\_bdia}}
-\newcommand{\TLLdrulerXXbdia}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\blacklozenge  \mathit{x}  =  \mathbin{\blacklozenge} \, \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXbdiaName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXbboxName}[0]{\TLLdrulename{r\_bbox}}
-\newcommand{\TLLdrulerXXbbox}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\blacksquare  \mathit{x}  =  \blacksquare \, \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXbboxName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXdiaName}[0]{\TLLdrulename{r\_dia}}
-\newcommand{\TLLdrulerXXdia}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\Diamond  \mathit{x}  =  \Diamond \, \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \rightsquigarrow  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}}{%
-{\TLLdrulerXXdiaName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXboxBoxName}[0]{\TLLdrulename{r\_boxBox}}
-\newcommand{\TLLdrulerXXboxBox}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\Box  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\Box  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Box  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Box  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
-{\TLLdrulerXXboxBoxName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXbdiaBdiaName}[0]{\TLLdrulename{r\_bdiaBdia}}
-\newcommand{\TLLdrulerXXbdiaBdia}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\blacklozenge  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacklozenge  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacklozenge  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
-{\TLLdrulerXXbdiaBdiaName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXboxBBoxName}[0]{\TLLdrulename{r\_boxBBox}}
-\newcommand{\TLLdrulerXXboxBBox}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\blacksquare  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\blacksquare  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\blacksquare  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\blacksquare  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
-{\TLLdrulerXXboxBBoxName}{}%
-}}
-
-
-\newcommand{\TLLdrulerXXdiadiaName}[0]{\TLLdrulename{r\_diadia}}
-\newcommand{\TLLdrulerXXdiadia}[1]{\TLLdrule[#1]{%
-}{
- \mathsf{let}\,\Diamond  \mathit{x}  =  \TLLsym{(}   \mathsf{let}\,\Diamond  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}   \rightsquigarrow   \mathsf{let}\,\Diamond  \mathit{y}  =  \TLLnt{t_{{\mathrm{1}}}} \,\mathsf{in}\,  \mathsf{let}\,\Diamond  \mathit{x}  =  \TLLnt{t_{{\mathrm{2}}}} \,\mathsf{in}\, \TLLnt{t_{{\mathrm{3}}}}  }{%
-{\TLLdrulerXXdiadiaName}{}%
-}}
-
-\newcommand{\TLLdefnred}[1]{\begin{TLLdefnblock}[#1]{$\TLLnt{t_{{\mathrm{1}}}}  \rightsquigarrow  \TLLnt{t_{{\mathrm{2}}}}$}{}
-\TLLusedrule{\TLLdrulerXXbeta{}}
-\TLLusedrule{\TLLdrulerXXfirst{}}
-\TLLusedrule{\TLLdrulerXXsecond{}}
-\TLLusedrule{\TLLdrulerXXcaseOne{}}
-\TLLusedrule{\TLLdrulerXXcaseTwo{}}
-\TLLusedrule{\TLLdrulerXXbox{}}
-\TLLusedrule{\TLLdrulerXXbdia{}}
-\TLLusedrule{\TLLdrulerXXbbox{}}
-\TLLusedrule{\TLLdrulerXXdia{}}
-\TLLusedrule{\TLLdrulerXXboxBox{}}
-\TLLusedrule{\TLLdrulerXXbdiaBdia{}}
-\TLLusedrule{\TLLdrulerXXboxBBox{}}
-\TLLusedrule{\TLLdrulerXXdiadia{}}
+\newcommand{\TLLdefnform}[1]{\begin{TLLdefnblock}[#1]{$\Gamma  \vdash  \TLLnt{A}$}{}
 \end{TLLdefnblock}}
 
 
 \newcommand{\TLLdefnsJtype}{
-\TLLdefnform{}\TLLdefntype{}\TLLdefnred{}}
+\TLLdefnform{}}
 
 \newcommand{\TLLdefnss}{
 \TLLdefnsJtype
