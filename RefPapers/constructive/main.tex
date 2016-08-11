@@ -342,7 +342,7 @@ hence it is  sometimes called Prawitz S4 modal logic. Most interestingly the sys
 
 \subsection{The dual context modal S4 calculus}
 An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will describe in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{dual context} formulation of CS4 and the
-rules are given  in Figure~\ref{fig:ADJCS4}. Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
+rules are given  in Figure~\ref{fig:DCS4}. Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
 
 \begin{figure}
   \begin{mdframed}
@@ -374,11 +374,111 @@ rules are given  in Figure~\ref{fig:ADJCS4}. Note that the rules are Natural Ded
 The main difference in the dual context formulation of CS4 is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The difficult rule of $\Box$ introduction now insists that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions. This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it has no assumptions whatsoever).
 
 These rules have been shown by Benton \cite{benton1995} and Barber \cite{barber1997} to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials.  
-
-We  describe the simplifications that can be made to models when, instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Diamond \vdash \Box $.
+Instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Diamond \vdash \Box $.
 
 \subsection{The tense CS4 calculus}
-Finally to get to the tense logic that is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity $G$.
+Finally to get to the tense logic which is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity operator $G$. The past existential $P$ is $\Diamond$ and the future existential is $\bLozenge$  or $F$.
+
+A version of a  sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}, which can be easily transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{}. A natural deduction version of the calculus in dual context style is given in Figure \ref{fig:TCS4}.
+
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \begin{math}
+        \begin{array}{ccccc}              
+          \infer[\Box_{\mathcal{L}}]{\Gamma, \Box A\vdash B}{
+            \Gamma,  A \vdash B
+          }
+          & \quad &
+          \infer[\Box_{\mathcal{R}}]{\Box\Gamma,\Delta \vdash \Box A}{
+            \Box \Gamma \vdash A
+          }\\\\
+          \infer[\bLozenge_{\mathcal{L}}]{\Delta,\Box\Gamma,\bLozenge A \vdash \bLozenge B}{
+            \Box\Gamma,A \vdash \bLozenge B
+          }
+          & \quad &
+          \infer[\bLozenge_{\mathcal{R}}]{\Gamma \vdash \bLozenge A}{
+            \Gamma \vdash A
+         } \\\\
+         \infer[\blacksquare_{\mathcal{L}}]{\Gamma, \blacksquare A \vdash B}{
+            \Gamma,A \vdash B
+          }
+          & \quad &
+          \infer[\blacksquare_{\mathcal{R}}]{\blacksquare\Gamma,\Delta \vdash \blacksquare A}{
+            \blacksquare \Gamma \vdash A
+          }\\\\
+          \infer[\Diamond_{\mathcal{L}}]{\Delta,\blacksquare \Gamma,\Diamond A \vdash \Diamond B}{
+            \blacksquare\Gamma,A \vdash \Diamond B
+          }
+          & \quad &
+          \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
+            \Gamma \vdash A
+         } \\\\
+         \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
+            A \vdash \Box B
+          }
+          & \quad &
+          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
+            \bLozenge A\vdash B
+         } 
+        \end{array}        
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{Constructive tense S4 sequent rules  ({\sf{biCS4}})}
+  \label{fig:biCS4}
+\end{figure}
+
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \begin{math}
+        \begin{array}{ccccc}              
+          \infer[\Box_{\mathcal{E}}]{\Gamma \vdash B}{
+            \Gamma\vdash \Box B
+          }
+          & \quad &
+          \infer[\Box_{\mathcal{I}}]{\Gamma\vdash \Box B}{
+        \Gamma\vdash \Box A_1, \ldots ,  \Gamma\vdash  \Box A_k  \hspace{.1in} \Box A_1, \ldots \Box A_k \vdash B
+          }\\\\
+          
+          & \quad &
+          \infer[\bLozenge_{\mathcal{I}}]{\Gamma \vdash \bLozenge A}{
+            \Gamma \vdash A
+         } \\\\
+         \infer[\blacksquare_{\mathcal{E}}]{\Gamma \vdash A}{
+            \Gamma \vdash \blacksquare A
+          }
+          & \quad &
+          \infer[\blacksquare_{\mathcal{I}}]{\Gamma\vdash \blacksquare B}{
+        \Gamma\vdash \blacksquare A_1, \ldots ,  \Gamma\vdash  \blacksquare A_k  \hspace{.1in} \blacksquare A_1, \ldots \blacksquare A_k \vdash B
+          }\\\\
+          
+          & \quad &
+          \infer[\Diamond_{\mathcal{I}}]{\Gamma \vdash \Diamond A}{
+            \Gamma \vdash A
+         } \\\\
+         \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
+            A \vdash \Box B
+          }
+          & \quad &
+          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
+            \bLozenge A\vdash B
+         } \\\\
+        \end{array} \\\\
+        \infer[\bLozenge_{\mathcal{E}}]{\Gamma \vdash   \bLozenge C}{
+            \Gamma\vdash \Box A_1\ldots \Gamma\vdash \Box A_k \hspace{.05in}\Gamma\vdash \bLozenge B \hspace{.1in}  \Box A_1\ldots\Box A_k, B\vdash \bLozenge C
+          }\\\\
+          \infer[\Diamond_{\mathcal{E}}]{\Gamma \vdash   \Diamond C}{
+            \Gamma\vdash \blacksquare A_1\ldots \Gamma\vdash \blacksquare A_k \hspace{.05in}\Gamma\vdash \Diamond B \hspace{.1in}  \blacksquare A_1\ldots\blacksquare A_k, B\vdash \Diamond C
+          }
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{Constructive  S4 rules ND version ({\sf{biCS4}})}
+  \label{fig:NDCS4}
+\end{figure}
+
 
 \begin{figure}
   \begin{mdframed}
@@ -386,36 +486,36 @@ Finally to get to the tense logic that is the main aim of this note, we need two
       \begin{math}
         \begin{array}{l}
           \begin{array}{ccccc}              
-            \infer[\Box_{\mathcal{I}}]{\Gamma; \Delta \vdash \Box A}{
-              \Gamma;\emptyset \vdash  A
+            \infer[\Box_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Box A}{
+              \Gamma_1; \Gamma_2;\emptyset \vdash  A
             }
             & \quad &
-            \infer[\Box_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \Box A \hspace{.1in}
-              \Gamma, A;\Delta \vdash B
+            \infer[\Box_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \Box A \hspace{.1in}
+              \Gamma_1; \Gamma_2, A;\Delta \vdash B
             }\\\\
-            \infer[\bLozenge_{\mathcal{I}}]{\Gamma;\Delta \vdash \bLozenge A}{
-              \Gamma;\Delta \vdash A
+            \infer[\bLozenge_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge A}{
+              \Gamma_1; \Gamma_2;\Delta \vdash A
             }
             & \quad &
-            \infer[\bLozenge_{\mathcal{E}}]{\Gamma;\Delta \vdash \bLozenge B}{
-              \Gamma ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma; A\vdash \bLozenge B
+            \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
+              \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
             }
           \end{array}
           \\\\
           \begin{array}{ccccc}              
-            \infer[\blacksquare_{\mathcal{I}}]{\Gamma; \Delta \vdash \blacksquare A}{
-              \Gamma;\emptyset \vdash  A
+            \infer[\blacksquare_{\mathcal{I}}]{\Gamma_1; \Gamma_2; \Delta \vdash \blacksquare A}{
+              \Gamma_1; \Gamma_2;\emptyset \vdash  A
             }
             & \quad &
-            \infer[\blacksquare_{\mathcal{E}}]{\Gamma;\Delta \vdash B}{\Gamma; \Delta \vdash \blacksquare A \hspace{.1in}
-              \Gamma, A;\Delta \vdash B
+            \infer[\blacksquare_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \blacksquare A \hspace{.1in}
+              \Gamma_1; \Gamma_2, A;\Delta \vdash B
             }\\\\
-            \infer[\Diamond_{\mathcal{I}}]{\Gamma;\Delta \vdash \Diamond A}{
-              \Gamma;\Delta \vdash A
+            \infer[\Diamond_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond A}{
+              \Gamma_1; \Gamma_2;\Delta \vdash A
             }
             & \quad &
-            \infer[\Diamond_{\mathcal{E}}]{\Gamma;\Delta \vdash \Diamond B}{
-              \Gamma ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
+            \infer[\Diamond_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond B}{
+              \Gamma_1; \Gamma_2 ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
             }
           \end{array}    
         \end{array}
@@ -423,7 +523,7 @@ Finally to get to the tense logic that is the main aim of this note, we need two
     \end{center}
   \end{mdframed}
   \caption{The tense CS4 calculus ({\sf{TCS4}})}
-  \label{fig:ADJCS4}
+  \label{fig:TCS4}
 \end{figure}
 
 \subsection{Axioms}
@@ -459,7 +559,7 @@ We are interested in the term assignment system and its properties, as our aim i
   \begin{mdframed}
   \begin{center}
       \begin{math}
-%        \mbox{all intuitionistic basic axioms}\\
+       \mbox{propositional basic intuitionistic  axioms}\\\\
         \begin{array}{ccc}
         \Box (A \to B) &\to &(\Box A \to \Box B)\\
         \Box (A \to B) &\to &(\bLozenge A\to \bLozenge B)\\
@@ -475,7 +575,7 @@ We are interested in the term assignment system and its properties, as our aim i
        \end{math}
 \end{center}
  \end{mdframed}
-  \caption{Modal Axioms for $\sf{TCS4}$}
+  \caption{Axioms for $\sf{TCS4}$}
   \label{axiomCS4}
 \end{figure}
 
