@@ -1,4 +1,4 @@
-                      metavar termvar, x , y ::=
+metavar termvar, x , y ::=
   {{ tex \mathit{[[termvar]]} }} {{ com  term variable  }}
 
 indexvar index, i , j , k ::=
@@ -11,18 +11,24 @@ grammar
     | \ x : T . t                ::  :: lambdas                  {{ com unary functions }}
     {{tex \lambda [[x]] : [[T]].[[t]] }}
     | t1 t2                      ::  :: application              {{ com function application }}
+    | unbox t                    ::  :: unbox
+    | unbbox t                    ::  :: unbbox    
     | Box t                      ::  :: PNecessity               {{ com past necessity functor }}
     | Dia t                      ::  :: PPossibility             {{ com past possibility functor }}
     | BBox t                     ::  :: Necessity                {{ com necessity functor }}
     | BDia t                     ::  :: Possibility              {{ com possibility functor }}
-    | letBox t1 : T = t2 in t3       ::  :: LetPNecessity            {{ com past necessity elim }}
-    {{tex \mathsf{let}\,\Box [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | letBBox t1 : T = t2 in t3      ::  :: LetNecessity            {{ com necessity elim }}
-    {{tex \mathsf{let}\,\blacksquare [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | letDia t1 : T = t2 in t3       ::  :: LetPPossibility           {{ com past possibility elim }}
-    {{tex \mathsf{let}\,\Diamond [[t1]]:[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
-    | letBDia t1 : T = t2 in t3      ::  :: LetPossibility           {{ com possibility elim }}
-    {{tex \mathsf{let}\,\blacklozenge [[t1]] :[[T]] = [[t2]]\,\mathsf{in}\,[[t3]] }}
+    | adjR y = x in t            ::  :: adjR
+    {{tex \mathsf{adj_R}\,\blacklozenge [[y]] = [[x]]\,\mathsf{in}\,\Box [[t]] }}
+    | adjL y = x in t            ::  :: adjL
+    {{tex \mathsf{adj_L}\,\blacklozenge [[y]] = [[x]]\,\mathsf{in}\,[[t]] }}    
+    | letBox G be t1 in t2          ::  :: LetPNecessity            {{ com past necessity elim }}
+    {{tex \mathsf{let}_\Box\,[[G]]\,\mathsf{be}\,[[t1]]\,\mathsf{in}\,[[t2]] }}
+    | letBBox G be t1 in t2          ::  :: LetNecessity            {{ com past necessity elim }}
+    {{tex \mathsf{let}_\blacksquare\,[[G]]\,\mathsf{be}\,[[t1]]\,\mathsf{in}\,[[t2]] }}    
+    | letDia x : A = s | G be t1 in t2          ::  :: LetDia
+    {{tex \mathsf{let}\,\Diamond [[x]]:[[A]]=[[s]] \mid [[G]]\,\mathsf{be}\,[[t1]]\,\mathsf{in}\,[[t2]] }}
+    | letBDia x : A = s | G be t1 in t2          ::  :: LetBDia
+    {{tex \mathsf{let}\,\blacklozenge [[x]]:[[A]]=[[s]] \mid [[G]]\,\mathsf{be}\,[[t1]]\,\mathsf{in}\,[[t2]] }}    
     | [ t1 / t ] t2              :: M :: Sub    
     | ( t )                      :: S :: Paren
     | h( t )                     :: M :: HParen
@@ -34,6 +40,7 @@ grammar
     {{tex \overrightarrow{[[t]]} }}
     | M t                        :: M :: M
     {{tex \mathbin{M} [[t]] }}
+    | t1 , ... , tk :: M :: vec
 
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
     | False            ::   :: False                   {{ com false or the empty type }}
@@ -50,8 +57,13 @@ grammar
     | A                   ::   :: elF                     {{ com formula el }}
     | x : T               ::   :: elT                     {{ com typed el }}
     | G , G'              ::   :: append                  {{ com append }}
+    | G1 , ... , Gk       :: M :: vec
 
   terminals :: 'terminals_' ::=
+    | unbox :: :: unbox
+    {{tex \mathsf{unbox}_\Box\, }}
+    | unbbox :: :: unbbox
+    {{tex \mathsf{unbox}_\blacksquare\, }}    
     | .                   ::   :: Empty
     {{tex \emptyset }}
      | False               ::   :: False
@@ -78,10 +90,89 @@ grammar
     {{tex [[formula]] }}
     | M is Diamond         :: M :: isDiamond
     {{tex M \in \{\Diamond, \mathbin{\blacklozenge} \} }}
+    | formula1 , ... , formulak :: :: vec
 
 defns
   Jtype :: '' ::=
 
 defn
- G |- A :: :: form :: L_    
+  G |- t : A :: :: type :: ty_   
 by
+
+  ----------------- :: ax
+  G, x : A |- x : A
+
+  -------------------------- :: false
+  G, x : False |- contra : A
+
+  G, x : A |- t : B
+  -------------------- :: impI
+  G |- \x:A.t : A -> B
+ 
+  G |- t1 : A -> B && G |- t2 : A
+  ------------------------------------------- :: impE
+  G |- t1 t2 : B
+
+  G |- t : Box B
+  ---------------- :: boxE
+  G |- unbox t : B
+
+  (G |- t1 : Box A1 , ... , G |- tk : Box Ak) && x1 : Box A1,...,xk : Box Ak |- t : B
+  ----------------------------------------------------------------------------------- :: boxI
+  G |- letBox x1 : Box A1,...,xk : Box Ak be t1,...,tk in t : Box B
+
+  G |- t : BBox B
+  ----------------- :: bboxE
+  G |- unbbox t : B
+
+  (G |- t1 : BBox A1 , ... , G |- tk : BBox Ak) && x1 : BBox A1,...,xk : BBox Ak |- t : B
+  ----------------------------------------------------------------------------------- :: bboxI
+  G |- letBBox x1 : BBox A1,...,xk : BBox Ak be t1,...,tk in t : BBox B
+
+  G |- t : A
+  ------------------ :: diaI
+  G |- Dia t : Dia A
+
+
+  G |- t1 : BBox A1 , ... , G |- tk : BBox Ak
+  (x1 : BBox A1,...,xk : BBox Ak,B |- t : Dia C) && G |- s : Dia B
+  ----------------------------------------------------------------------------------------------------------------- :: diaE
+  G |- letDia x : Dia B = s | x1 : BBox A1,...,xk : BBox Ak , x : B be t1,...,tk in t : Dia C
+
+  G |- t : A
+  -------------------- :: bdiaI
+  G |- BDia t : BDia A
+
+  G |- t1 : Box A1 , ... , G |- tk : Box Ak
+  (x1 : Box A1,...,xk : Box Ak,B |- t : BDia C) && G |- s : BDia B
+  ---------------------------------------------------------------------------------------------------------------- :: bdiaE
+  G |- letBDia x : BDia B = s | x1 : Box A1,...,xk : Box Ak , x : B be t1,...,tk in t : BDia C
+
+  x : A |- t : Box B
+  ----------------------------- :: adjL
+  y : BDia A |- adjL x = y in t : B
+
+  x : BDia A |- t : B
+  -------------------------------- :: adjR
+  y : A |- adjR y = x in t : Box B
+
+defn
+  G |- t1 = t2 : A :: :: eq :: eq_
+  {{tex [[G]] \vdash [[t1]] \approx [[t2]] : [[A]] }}
+by
+
+ G,x : A |- t2 = t2' : B && G |- t1 = t1' : A
+ -------------------------------------------- :: beta
+ G |- (\x:A.t2) t1 = [t1'/x]t2' : B
+
+ G |- t : A
+ -------------- :: refl
+ G |- t = t : A
+
+ G |- t2 = t1 : A
+ ---------------- :: sym
+ G |- t1 = t2 : A
+
+ G |- t1 = t2 : A && G |- t2 = t3 : A
+ ------------------------------------ :: trans
+ G |- t1 = t3 : A
