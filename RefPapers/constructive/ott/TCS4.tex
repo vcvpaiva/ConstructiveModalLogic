@@ -167,10 +167,28 @@
 %% defn eq
 \newcommand{\ottdruleeqXXbetaName}[0]{\ottdrulename{eq\_beta}}
 \newcommand{\ottdruleeqXXbeta}[1]{\ottdrule[#1]{%
-\ottpremise{ \Gamma  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \approx  \ottnt{t'_{{\mathrm{2}}}}  :  \ottnt{B}   \quad   \Gamma  \vdash  \ottnt{t_{{\mathrm{1}}}}  \approx  \ottnt{t'_{{\mathrm{1}}}}  :  \ottnt{A} }%
+\ottpremise{ \Gamma  \ottsym{,}  \mathit{x}  \ottsym{:}  \ottnt{A}  \vdash  \ottnt{t_{{\mathrm{2}}}}  \approx  \ottnt{s_{{\mathrm{2}}}}  :  \ottnt{B}   \quad   \Gamma  \vdash  \ottnt{t_{{\mathrm{1}}}}  \approx  \ottnt{s_{{\mathrm{1}}}}  :  \ottnt{A} }%
 }{
- \Gamma  \vdash  \ottsym{(}   \lambda  \mathit{x}  :  \ottnt{A} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{)} \, \ottnt{t_{{\mathrm{1}}}}  \approx  \ottsym{[}  \ottnt{t'_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{t'_{{\mathrm{2}}}}  :  \ottnt{B} }{%
+ \Gamma  \vdash  \ottsym{(}   \lambda  \mathit{x}  :  \ottnt{A} . \ottnt{t_{{\mathrm{2}}}}   \ottsym{)} \, \ottnt{t_{{\mathrm{1}}}}  \approx  \ottsym{[}  \ottnt{s_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x}  \ottsym{]}  \ottnt{s_{{\mathrm{2}}}}  :  \ottnt{B} }{%
 {\ottdruleeqXXbetaName}{}%
+}}
+
+
+\newcommand{\ottdruleeqXXunboxName}[0]{\ottdrulename{eq\_unbox}}
+\newcommand{\ottdruleeqXXunbox}[1]{\ottdrule[#1]{%
+\ottpremise{  \Gamma  \vdash  \ottnt{t_{{\mathrm{1}}}}  \approx  \ottnt{s_{{\mathrm{1}}}}  :  \Box \, \ottnt{A_{{\mathrm{1}}}}   \ottsym{,} \, ... \, \ottsym{,}   \Gamma  \vdash  \ottnt{t_{\ottmv{k}}}  \approx  \ottnt{s_{\ottmv{k}}}  :  \Box \, \ottnt{A_{\ottmv{k}}}    \quad   \mathit{x_{{\mathrm{1}}}}  \ottsym{:}  \Box \, \ottnt{A_{{\mathrm{1}}}}  \ottsym{,} \, ... \, \ottsym{,}  \mathit{x_{\ottmv{k}}}  \ottsym{:}  \Box \, \ottnt{A_{\ottmv{k}}}  \vdash  \ottnt{t}  \approx  \ottnt{s}  :  \ottnt{B} }%
+}{
+ \Gamma  \vdash  \mathsf{unbox}_\Box\, \, \ottsym{(}   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \ottsym{:}  \Box \, \ottnt{A_{{\mathrm{1}}}}  \ottsym{,} \, ... \, \ottsym{,}  \mathit{x_{\ottmv{k}}}  \ottsym{:}  \Box \, \ottnt{A_{\ottmv{k}}} \,\mathsf{be}\, \ottnt{t_{{\mathrm{1}}}}  \ottsym{,} \, ... \, \ottsym{,}  \ottnt{t_{\ottmv{k}}} \,\mathsf{in}\, \ottnt{t}   \ottsym{)}  \approx  \ottsym{[}  \ottnt{s_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x_{{\mathrm{1}}}}  \ottsym{]} \, ... \, \ottsym{[}  \ottnt{s_{\ottmv{k}}}  \ottsym{/}  \mathit{x_{\ottmv{k}}}  \ottsym{]}  \ottnt{s}  :  \ottnt{B} }{%
+{\ottdruleeqXXunboxName}{}%
+}}
+
+
+\newcommand{\ottdruleeqXXunbboxName}[0]{\ottdrulename{eq\_unbbox}}
+\newcommand{\ottdruleeqXXunbbox}[1]{\ottdrule[#1]{%
+\ottpremise{  \Gamma  \vdash  \ottnt{t_{{\mathrm{1}}}}  \approx  \ottnt{s_{{\mathrm{1}}}}  :  \blacksquare \, \ottnt{A_{{\mathrm{1}}}}   \ottsym{,} \, ... \, \ottsym{,}   \Gamma  \vdash  \ottnt{t_{\ottmv{k}}}  \approx  \ottnt{s_{\ottmv{k}}}  :  \blacksquare \, \ottnt{A_{\ottmv{k}}}    \quad   \mathit{x_{{\mathrm{1}}}}  \ottsym{:}  \blacksquare \, \ottnt{A_{{\mathrm{1}}}}  \ottsym{,} \, ... \, \ottsym{,}  \mathit{x_{\ottmv{k}}}  \ottsym{:}  \blacksquare \, \ottnt{A_{\ottmv{k}}}  \vdash  \ottnt{t}  \approx  \ottnt{s}  :  \ottnt{B} }%
+}{
+ \Gamma  \vdash  \mathsf{unbox}_\blacksquare\, \, \ottsym{(}   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \ottsym{:}  \blacksquare \, \ottnt{A_{{\mathrm{1}}}}  \ottsym{,} \, ... \, \ottsym{,}  \mathit{x_{\ottmv{k}}}  \ottsym{:}  \blacksquare \, \ottnt{A_{\ottmv{k}}} \,\mathsf{be}\, \ottnt{t_{{\mathrm{1}}}}  \ottsym{,} \, ... \, \ottsym{,}  \ottnt{t_{\ottmv{k}}} \,\mathsf{in}\, \ottnt{t}   \ottsym{)}  \approx  \ottsym{[}  \ottnt{s_{{\mathrm{1}}}}  \ottsym{/}  \mathit{x_{{\mathrm{1}}}}  \ottsym{]} \, ... \, \ottsym{[}  \ottnt{s_{\ottmv{k}}}  \ottsym{/}  \mathit{x_{\ottmv{k}}}  \ottsym{]}  \ottnt{s}  :  \ottnt{B} }{%
+{\ottdruleeqXXunbboxName}{}%
 }}
 
 
@@ -202,6 +220,8 @@
 
 \newcommand{\ottdefneq}[1]{\begin{ottdefnblock}[#1]{$ \Gamma  \vdash  \ottnt{t_{{\mathrm{1}}}}  \approx  \ottnt{t_{{\mathrm{2}}}}  :  \ottnt{A} $}{}
 \ottusedrule{\ottdruleeqXXbeta{}}
+\ottusedrule{\ottdruleeqXXunbox{}}
+\ottusedrule{\ottdruleeqXXunbbox{}}
 \ottusedrule{\ottdruleeqXXrefl{}}
 \ottusedrule{\ottdruleeqXXsym{}}
 \ottusedrule{\ottdruleeqXXtrans{}}
@@ -223,7 +243,7 @@
 \ottall
 
 \begin{verbatim}
-Definition rules:        12 good    0 bad
-Definition rule clauses: 22 good    0 bad
+Definition rules:        14 good    0 bad
+Definition rule clauses: 26 good    0 bad
 \end{verbatim}
 \end{document}

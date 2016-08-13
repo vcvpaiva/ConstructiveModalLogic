@@ -41,6 +41,7 @@ grammar
     | M t                        :: M :: M
     {{tex \mathbin{M} [[t]] }}
     | t1 , ... , tk :: M :: vec
+    | [ t1 / x1 ] ... [ tk / xk ] t :: M :: MSubsts
 
   form, type, A, B, C, T :: 'T_' ::=                   {{ com formula and type }}
     | False            ::   :: False                   {{ com false or the empty type }}
@@ -129,41 +130,22 @@ by
   ----------------------------------------------------------------------------------- :: bboxI
   G |- letBBox x1 : BBox A1,...,xk : BBox Ak be t1,...,tk in t : BBox B
 
-  % G |- t : A
-  % ------------------ :: diaI
-  % G |- Dia t : Dia A
-
-
-  % G |- t1 : BBox A1 , ... , G |- tk : BBox Ak
-  % (x1 : BBox A1,...,xk : BBox Ak,B |- t : Dia C) && G |- s : Dia B
-  % ------------------------------------------------------------------------------------------- :: diaE
-  % G |- letDia x : Dia B = s | x1 : BBox A1,...,xk : BBox Ak , x : B be t1,...,tk in t : Dia C
-
-  % G |- t : A
-  % -------------------- :: bdiaI
-  % G |- BDia t : BDia A
-
-  % G |- t1 : Box A1 , ... , G |- tk : Box Ak
-  % (x1 : Box A1,...,xk : Box Ak,B |- t : BDia C) && G |- s : BDia B
-  % -------------------------------------------------------------------------------------------- :: bdiaE
-  % G |- letBDia x : BDia B = s | x1 : Box A1,...,xk : Box Ak , x : B be t1,...,tk in t : BDia C
-
-  % x : A |- t : Box B
-  % ----------------------------- :: adjL
-  % y : BDia A |- adjL x = y in t : B
-
-  % x : BDia A |- t : B
-  % -------------------------------- :: adjR
-  % y : A |- adjR y = x in t : Box B
-
 defn
   G |- t1 = t2 : A :: :: eq :: eq_
   {{tex [[G]] \vdash [[t1]] \approx [[t2]] : [[A]] }}
 by
 
- G,x : A |- t2 = t2' : B && G |- t1 = t1' : A
- -------------------------------------------- :: beta
- G |- (\x:A.t2) t1 = [t1'/x]t2' : B
+ G,x : A |- t2 = s2 : B && G |- t1 = s1 : A
+ ------------------------------------------ :: beta
+ G |- (\x:A.t2) t1 = [s1/x]s2 : B
+
+ (G |- t1 = s1 : Box A1,...,G |- tk = sk : Box Ak) && x1 : Box A1,...,xk : Box Ak |- t = s : B
+ ----------------------------------------------------------------------------------------- :: unbox
+ G |- unbox (letBox x1 : Box A1,...,xk : Box Ak be t1,...,tk in t) = [s1/x1]...[sk/xk]s : B
+
+ (G |- t1 = s1 : BBox A1,...,G |- tk = sk : BBox Ak) && x1 : BBox A1,...,xk : BBox Ak |- t = s : B
+ ------------------------------------------------------------------------------------------ :: unbbox
+ G |- unbbox (letBBox x1 : BBox A1,...,xk : BBox Ak be t1,...,tk in t) = [s1/x1]...[sk/xk]s : B
 
  G |- t : A
  -------------- :: refl
