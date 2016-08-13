@@ -121,13 +121,13 @@ Ewald \cite{ewald1986}  produced a first version of an intuitionistically based 
 \item $H$ “It has always been the case that” 
 \item $G$  “It will always be the case that” 
 \end{itemize}
-Ewald and most of the researchers that followed his path of constructivization of tense logic, did so assuming a symmetry between
-past and future. This symmetry, as well as the symmetry between
-universal and existential quantifiers, both in the past and in the future, are somewhat at odds with intuitionistic reasoning.
+Ewald and most of the researchers that followed his path of constructivization of tense logic, did so assuming a symmetry between past and future. This symmetry, as well as the symmetry between universal and existential quantifiers, both in the past and in the future, are somewhat at odds with intuitionistic reasoning.
+In particular while an axiom like $A\to GPA$  ``What is, will always have been” makes sense in a constructive way of thinking, the dual one $A\to HFA$ paraphrased in the SEP as 
+“What is, has always been going to be” feels very classical.
 
 Constructivizing a classical system is alwys prone to proliferation of the system, as is evident when considering the several versions on intuitionistic set theory, for example. In particular the basic constructive modal logic S4 (in Lewis original naming convention) has two main variants.
 
-The first version of an intuitionsitic S4, originally presented by Dag Prawitz in his Natural Deduction book \cite{prawitz1965} does not satisfy the distributivity of the possibility operator $\Diamond$ over the logical disjunction. Prawitz's system satifies neither the binary distribution nor   its nullary form, as given in Figure 1. We call this system $\sf CS4$. This system was investigated from a proof theoretical and categorical perspective in \cite{bierman2000}.
+The first version of an intuitionsitic S4, originally presented by Dag Prawitz in his Natural Deduction book \cite{prawitz1965} does not satisfy the distributivity of the possibility operator $\Diamond$ over the logical disjunction. Prawitz's system satisfies neither the binary distribution nor   its nullary form, as given in Figure 1. We call this system $\sf CS4$. This system was investigated from a proof theoretical and categorical perspective in \cite{bierman2000}.
 
 \begin{figure}
   \begin{mdframed}
@@ -148,7 +148,7 @@ The first version of an intuitionsitic S4, originally presented by Dag Prawitz i
 The second main version of an intuitionistic modal S4 does enforce these distributivities and it was thoroughly investigated by A. Simpson in \cite{simpson1994}. This system is part of a framework for constructive modal logics, based on incorporating, as part of the syntax, the intended semantics of modal logics, as possible worlds. We call this system $\sf IS4$. 
 
 Ewald's tense logic system consists of a pair of Simpson-style S4 operators \cite{simpson1994},
-representing past and future over intuituionistic propositional logic. This is historically inaccurate, as Simpson based his systems in Ewald's, but it will serve to make some of our main points clearer below. The system we describe in this note is the tense logic system obtained by joining together two pairs of Prawitz-style S4 operators. 
+representing past and future over intuituionistic propositional logic. This is historically inaccurate, as Simpson based his systems in Ewald's, but it will serve to make some of our main points clearer below. The system we describe in this note is the tense logic system obtained by joining together two pairs of Prawitz-style S4 operators. So it satisfies some of the rules of Ewald's, but not all.
 
 Simpson remarks that intuitionistic or constructive modal logic is full of interesting questions. As he says:
 \begin{quote}
@@ -458,10 +458,57 @@ We would like to have a natural deduction version of the tense calculus in dual 
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{Tense  S4 rules first version ({\sf{NDCS4}})}
+  \caption{Tense  S4 rules ND first version ({\sf{NDCS4}})}
   \label{fig:NDCS4}
 \end{figure}
 
+\begin{figure}
+  \begin{mdframed}
+    \begin{center}
+      \begin{math}
+        \begin{array}{ccc}
+ %         \begin{array}{ccccc}              
+          \infer[\Box_{\mathcal{I}}]{\Gamma_1; \Delta \vdash \Box A}{
+              \Gamma_1; \emptyset \vdash  A
+            }
+            & 
+            \infer[\Box_{\mathcal{E}}]{\Gamma_1; \Delta \vdash B}{\Gamma_1;  \Delta \vdash \Box A \hspace{.1in}
+              \Gamma_1;  A;\Delta \vdash B
+            } \\\\
+              \infer[\bLozenge_{\mathcal{I}}]{\Gamma \vdash \bLozenge A}{
+            \Gamma \vdash A
+         } &  \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Delta \vdash \bLozenge B}{
+             \Gamma_1; \Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1;  A\vdash \bLozenge B
+            }
+           \\\\
+         \infer[\blacksquare_{\mathcal{I}}]{\Gamma; \emptyset  \vdash \blacksquare A}{
+            \Gamma; \emptyset  \vdash  A
+          } & 
+         \infer[\blacksquare_{\mathcal{E}}]{\Gamma_1; \Delta \vdash B}{\Gamma_1;  \Delta \vdash \blacksquare A \hspace{.1in}
+              \Gamma_1;  A;\Delta \vdash B
+          }\\\\
+          \infer[\Diamond_{\mathcal{I}}]{\Gamma \vdash \Diamond A}{
+            \Gamma \vdash A
+        } &
+          \infer[\Diamond_{\mathcal{E}}]{\Gamma_1; \Delta \vdash \Diamond B}{
+               \Gamma_1; \Delta \vdash \Diamond A \hspace{.1in}\Gamma_1; A\vdash \Diamond B
+          }
+%          \begin{array}{ccc}
+%            \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
+%            A \vdash \Box B
+%          }
+%          & \quad &
+%          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
+%            \bLozenge A\vdash B
+%         }
+%         \end{array} 
+        \end{array}
+      \end{math}
+    \end{center}
+  \end{mdframed}
+  \caption{Two S4 rules  SECOND version ({\sf{ND2CS4}})}
+  \label{fig:ND2CS4}
+\end{figure}
 
 \begin{figure}
   \begin{mdframed}
@@ -475,14 +522,14 @@ We would like to have a natural deduction version of the tense calculus in dual 
             & \quad &
             \infer[\Box_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \Box A \hspace{.1in}
               \Gamma_1; \Gamma_2, A;\Delta \vdash B
-            }%% \\\\
-            %% \infer[\bLozenge_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge A}{
-            %%   \Gamma_1; \Gamma_2;\Delta \vdash A
-            %% }
-            %% & \quad &
-            %% \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
-            %%   \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
-            %% }
+            } \\\\
+             \infer[\bLozenge_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge A}{
+               \Gamma_1; \Gamma_2;\Delta \vdash A
+             }
+             & \quad &
+             \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
+               \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
+             }
           \end{array}
           \\\\
           \begin{array}{ccccc}              
@@ -492,20 +539,20 @@ We would like to have a natural deduction version of the tense calculus in dual 
             & \quad &
             \infer[\blacksquare_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \blacksquare A \hspace{.1in}
               \Gamma_1; \Gamma_2, A;\Delta \vdash B
-            }%% \\\\
-            %% \infer[\Diamond_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond A}{
-            %%   \Gamma_1; \Gamma_2;\Delta \vdash A
-            %% }
-            %% & \quad &
-            %% \infer[\Diamond_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond B}{
-            %%   \Gamma_1; \Gamma_2 ;\Delta \vdash \Diamond A \hspace{.1in}\Gamma; A\vdash \Diamond B
-            %% }
+            } \\\\
+             \infer[\Diamond_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond A}{
+               \Gamma_1; \Gamma_2;\Delta \vdash A
+             }
+             & \quad &
+             \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
+               \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
+             }
           \end{array}    
         \end{array}
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{The tense CS4 calculus ({\sf{TCS4}})}
+  \caption{Dual context 2CS4 calculus ({\sf{TCS4}})}
   \label{fig:TCS4}
 \end{figure}
 
