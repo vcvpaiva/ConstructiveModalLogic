@@ -515,31 +515,36 @@ We would like to have a natural deduction version of the tense calculus in dual 
     \begin{center}
       \begin{math}
         \begin{array}{l}
-          \begin{array}{ccccc}              
+          \begin{array}{ccccc}            
+            \infer[\Box{\text{Id}}]{\Gamma_1; \Gamma_2, A;\Delta \vdash A}{}
+            & \quad &
+            \infer[\BBox{\text{Id}}]{\Gamma_1, A;\Gamma_2;\Delta \vdash A}{}
+            \\\\
             \infer[\Box_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Box A}{
               \Gamma_1; \Gamma_2;\emptyset \vdash  A
-            }
+            }            
             & \quad &
             \infer[\Box_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \Box A \hspace{.1in}
               \Gamma_1; \Gamma_2, A;\Delta \vdash B
-            } \\\\
+            }\\\\            
              \infer[\bLozenge_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge A}{
                \Gamma_1; \Gamma_2;\Delta \vdash A
              }
-             & \quad &
+             & \quad &          
              \infer[\bLozenge_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash \bLozenge B}{
                \Gamma_1; \Gamma_2 ;\Delta \vdash \bLozenge A \hspace{.1in}\Gamma_1; \Gamma_2; A\vdash \bLozenge B
-             }
+             }                          
           \end{array}
           \\\\
-          \begin{array}{ccccc}              
+          \begin{array}{ccccc}
             \infer[\blacksquare_{\mathcal{I}}]{\Gamma_1; \Gamma_2; \Delta \vdash \blacksquare A}{
               \Gamma_1; \Gamma_2;\emptyset \vdash  A
             }
             & \quad &
             \infer[\blacksquare_{\mathcal{E}}]{\Gamma_1; \Gamma_2;\Delta \vdash B}{\Gamma_1; \Gamma_2; \Delta \vdash \blacksquare A \hspace{.1in}
-              \Gamma_1; \Gamma_2, A;\Delta \vdash B
-            } \\\\
+              \Gamma_1, A; \Gamma_2;\Delta \vdash B
+            }
+            \\\\
              \infer[\Diamond_{\mathcal{I}}]{\Gamma_1; \Gamma_2;\Delta \vdash \Diamond A}{
                \Gamma_1; \Gamma_2;\Delta \vdash A
              }
