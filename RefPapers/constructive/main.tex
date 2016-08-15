@@ -331,9 +331,9 @@ This system is indeed constructive, $\Box$ and $\Diamond$ are independent logica
 
 
 This system has a nice proof theory.
-Bierman and de Paiva \cite{bierman2000} show that it has a Hilbert-style presentation,  a Natural Deduction presentation, as well as a sequent calculus presentation and these are proved equivalent, that is they prove the same theorems. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto~\cite{ohnishi1957}, as well as the subformula property.
+Bierman and de Paiva \cite{bierman2000} show that it has a Hilbert-style presentation,  a Natural Deduction presentation, as well as a sequent calculus presentation and these presentations are proved equivalent, that is, they prove the same theorems. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto~\cite{ohnishi1957}, as well as the subformula property.
 The Natural Deduction formulation has a colourful history: one of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
-hence it is  sometimes called Prawitz S4 modal logic. Most interestingly the system has both Kripke and categorical semantics, described respectively in \cite{alechinaetal} and
+hence it is  sometimes called Prawitz S4 intuitionistic  modal logic. Most interestingly the system has both Kripke and categorical semantics, described respectively in \cite{alechinaetal} and
 \cite{bierman2000} as well as an independent mathematical semantics in terms of simplicial sets, described by Goubault-Larrecq~\cite{goubault-larrecq}. 
 %, it has been used in several applications within programming
 %language theory \todo{Add references for these applications}.
@@ -341,8 +341,8 @@ hence it is  sometimes called Prawitz S4 modal logic. Most interestingly the sys
 
 
 \subsection{The dual context modal S4 calculus}
-An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will describe in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{dual context} formulation of CS4 and the
-rules are given  in Figure~\ref{fig:DCS4}. Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
+An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will describe in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{multi-context} formulation of CS4 and the
+rules are given  in Figure~\ref{fig:DCS4}. (We prefer to call it the dual context sequent calculus.) Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
 
 \begin{figure}
   \begin{mdframed}
@@ -374,16 +374,20 @@ rules are given  in Figure~\ref{fig:DCS4}. Note that the rules are Natural Deduc
 The main difference in the dual context formulation of CS4 is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The difficult rule of $\Box$ introduction now insists that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions. This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it has no assumptions whatsoever).
 
 These rules have been shown by Benton \cite{benton1995} and Barber \cite{barber1997} to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials.  
-Instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors $\Diamond \vdash \Box $.
+Instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors corresponding to operators  $\Diamond \vdash \Box $.
 
 \subsection{The tense CS4 calculus}
-Finally to get to the tense logic which is the main aim of this note, we need two such adjunctions, but intertwined. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity operator $G$. The past existential $P$ is $\Diamond$ and the future existential is $\bLozenge$  or $F$.
+Finally to get to the tense logic which is the main aim of this note, we need two such adjunctions, but intertwined. This follows the pattern explained by Ewald~\cite{ewald1986}. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity operator $G$. The past existential $P$ is $\Diamond$ and the future existential is $\bLozenge$  or $F$.
 
-A version of a  sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}, which can be  transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{fig:NDCS4}. The problem is that the last two adjunction rules in Figure \ref{fig:biCS4} (that relate the two sets of modalities) are extremely badly-behaved proof-theoretically (no cut-elimination and no subformula property even for cut-free proofs), as discussed in page 35 of the full report by Benton \cite{benton1995}. In fact they are the reason for moving to a dual context calculus, as explained in that paper and also  in Barber's work \cite{barber1997}. 
+A version of a  sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}.
+This can be  transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{fig:NDCS4}. The problem is that the last two adjunction rules in Figure \ref{fig:biCS4} (that relate the two sets of modalities) are extremely badly-behaved proof-theoretically (no cut-elimination and no subformula property even for cut-free proofs), as discussed in page 35 of the full report by Benton \cite{benton1995}. In fact they are the reason for moving to a dual context calculus, as explained in that paper and also  in Barber's work \cite{barber1997}. 
 
 The  dual context systems, as described in Barber and Benton's work, are proved equivalent to the system with a single modality operator, either `$!$' or `$\Box$'. This is because in Intuitionistic Linear Logic one is not usually interested in either \textit{why not?} `$?$' or `$\Diamond$'. (In Classical Linear Logic the possibility modality is defined by negation of the necessity modality, so this extension is easier to make \cite{paykin2014}.) Given that our main goal is to discuss categorical semantics, which we can do easily for the necessity modalities, in this note we  consider only two necessity-like modalities $\Box$ and $\blacksquare$, to begin with.
 
-We would like to have a natural deduction version of the tense calculus in dual context style. A dual context-style presentation of a single necessity modality has been presented in Figure~\ref{fig:DCS4}. Now we need to add another necessity-like modality and discuss their interaction.  A preliminary attempt at such calculus is given in Figure \ref{fig:TCS4}.
+We would like to have a natural deduction version of the tense calculus in dual context style. A dual context-style presentation of a single necessity modality has been presented in Figure~\ref{fig:DCS4}. Now we need to add another necessity-like modality and discuss their interaction.  A preliminary attempt at such calculus is given in Figure \ref{fig:ND2CS4}.
+
+This corresponds to an intuitionistic tense logic obtained by extending IPL with two pairs of adjoint modalities $(\bLozenge, \Box)$ and $(\Diamond, \blacksquare)$, with no explicit relationship between
+the modalities of the same colour, namely, $(\bLozenge, \blacksquare)$ and $(\Diamond,\Box)$. 
 
 \begin{figure}
   \begin{mdframed}
@@ -418,13 +422,20 @@ We would like to have a natural deduction version of the tense calculus in dual 
           \infer[\Diamond_{\mathcal{R}}]{\Gamma \vdash \Diamond A}{
             \Gamma \vdash A
          } \\\\
-         \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
-            A \vdash \Box B
+         \infer[adj1_{\mathcal{L}}]{\bLozenge A \vdash  B}{   A \vdash \Box B
           }
           & \quad &
-          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
+          \infer[adj1_{\mathcal{R}}]{A \vdash \Box B}{
             \bLozenge A\vdash B
-         } 
+            }
+         \\\\
+         \infer[adj2_{\mathcal{L}}]{\Diamond A \vdash  B}{
+            A \vdash \blacksquare B
+          }
+          & \quad &
+         \infer[adj2_{\mathcal{R}}]{A \vdash \blacksquare B}{
+            \Diamond A\vdash B
+         }  
         \end{array}        
       \end{math}
     \end{center}
@@ -469,16 +480,17 @@ We would like to have a natural deduction version of the tense calculus in dual 
           }\\\\
           \infer[\Diamond_{\mathcal{E}}]{\Gamma \vdash   \Diamond C}{
             \Gamma\vdash \blacksquare A_1\ldots \Gamma\vdash \blacksquare A_k \hspace{.05in}\Gamma\vdash \Diamond B \hspace{.1in}  \blacksquare A_1\ldots\blacksquare A_k, B\vdash \Diamond C
-          }\\\\
-          \begin{array}{ccc}
-            \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
-            A \vdash \Box B
           }
-          & \quad &
-          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
-            \bLozenge A\vdash B
-         }
-          \end{array} 
+%          \\\\
+%         \begin{array}{ccc}
+%            \infer[adj_{\mathcal{L}}]{\bLozenge A \vdash  B}{
+%            A \vdash \Box B
+%          }
+%          & \quad &
+%          \infer[adj_{\mathcal{R}}]{A \vdash \Box B}{
+%            \bLozenge A\vdash B
+%         }
+%          \end{array} 
         \end{array}
       \end{math}
     \end{center}
@@ -531,7 +543,7 @@ We would like to have a natural deduction version of the tense calculus in dual 
       \end{math}
     \end{center}
   \end{mdframed}
-  \caption{Two S4 rules  SECOND version ({\sf{ND2CS4}})}
+  \caption{biS4 rules, dual context   version ({\sf{ND2CS4}})}
   \label{fig:ND2CS4}
 \end{figure}
 
