@@ -67,7 +67,14 @@
 \TLLprodline{|}{\Diamond \, \TLLnt{A}}{}{}{}{\TLLcom{past possibility}}\TLLprodnewline
 \TLLprodline{|}{\mathbin{\blacklozenge} \, \TLLnt{A}}{}{}{}{\TLLcom{possibility}}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{A}  \to  \TLLnt{B}}{}{}{}{\TLLcom{implication}}\TLLprodnewline
+\TLLprodline{|}{ \TLLnt{A}  \limp  \TLLnt{B} }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\mathsf{F} \, \TLLnt{X}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \mathbin{M}  \TLLnt{A} } {\textsf{M}}{}{}{}}
+
+\newcommand{\TLLiform}{
+\TLLrulehead{\TLLnt{iform}  ,\ \TLLnt{X}  ,\ \TLLnt{Y}  ,\ \TLLnt{Z}}{::=}{}\TLLprodnewline
+\TLLfirstprodline{|}{\TLLnt{X}  \to  \TLLnt{Y}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\mathsf{G} \, \TLLnt{A}}{}{}{}{}}
 
 \newcommand{\TLLG}{
 \TLLrulehead{\Gamma  ,\ \Delta}{::=}{\TLLcom{type context}}\TLLprodnewline
@@ -77,9 +84,17 @@
 \TLLprodline{|}{\Gamma  \TLLsym{,}  \Gamma'}{}{}{}{\TLLcom{append}}\TLLprodnewline
 \TLLprodline{|}{\Gamma_{{\mathrm{1}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{\TLLmv{k}}} {\textsf{M}}{}{}{}}
 
+\newcommand{\TLLTh}{
+\TLLrulehead{\Theta  ,\ \Phi}{::=}{}\TLLprodnewline
+\TLLfirstprodline{|}{\emptyset}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLnt{X}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\Theta_{{\mathrm{1}}}  \TLLsym{,}  \Theta_{{\mathrm{2}}}}{}{}{}{}}
+
 \newcommand{\TLLterminals}{
 \TLLrulehead{\TLLnt{terminals}}{::=}{}\TLLprodnewline
-\TLLfirstprodline{|}{ \mathsf{unbox}_\Box\, }{}{}{}{}\TLLprodnewline
+\TLLfirstprodline{|}{ \mathsf{F} }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{G} }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \mathsf{unbox}_\Box\, }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \mathsf{unbox}_\blacksquare\, }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \emptyset }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \perp }{}{}{}{}\TLLprodnewline
@@ -89,7 +104,9 @@
 \TLLprodline{|}{ \Diamond }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \mathbin{\blacklozenge} }{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \to }{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \quad } {\textsf{M}}{}{}{}}
+\TLLprodline{|}{ \quad } {\textsf{M}}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \vdash_{\mathcal{C} } }{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{ \vdash_{\mathcal{L} } }{}{}{}{}}
 
 \newcommand{\TLLformula}{
 \TLLrulehead{\TLLnt{formula}}{::=}{}\TLLprodnewline
@@ -101,7 +118,9 @@
 
 \newcommand{\TLLJtype}{
 \TLLrulehead{\TLLnt{Jtype}}{::=}{}\TLLprodnewline
-\TLLfirstprodline{|}{\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}{}{}{}{}\TLLprodnewline
+\TLLfirstprodline{|}{\Theta  \vdash_{\mathcal{C} }  \TLLnt{Z}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\Theta  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} }{}{}{}{}}
 
 \newcommand{\TLLjudgement}{
@@ -114,14 +133,18 @@
 \TLLprodline{|}{\TLLmv{index}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{term}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{form}}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\TLLnt{iform}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\Gamma}{}{}{}{}\TLLprodnewline
+\TLLprodline{|}{\Theta}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{terminals}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\TLLnt{formula}}{}{}{}{}}
 
 \newcommand{\TLLgrammar}{\TLLgrammartabular{
 \TLLterm\TLLinterrule
 \TLLform\TLLinterrule
+\TLLiform\TLLinterrule
 \TLLG\TLLinterrule
+\TLLTh\TLLinterrule
 \TLLterminals\TLLinterrule
 \TLLformula\TLLinterrule
 \TLLJtype\TLLinterrule
@@ -131,6 +154,102 @@
 
 % defnss
 % defns Jtype
+%% defn iseq
+\newcommand{\TLLdruleiXXCArleftName}[0]{\TLLdrulename{i\_CArleft}}
+\newcommand{\TLLdruleiXXCArleft}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \vdash_{\mathcal{C} }  \TLLnt{X}  \quad  \TLLnt{Y}  \TLLsym{,}  \Phi  \vdash_{\mathcal{C} }  \TLLnt{Z}}%
+}{
+\Theta  \TLLsym{,}  \TLLnt{X}  \to  \TLLnt{Y}  \TLLsym{,}  \Phi  \vdash_{\mathcal{C} }  \TLLnt{Z}}{%
+{\TLLdruleiXXCArleftName}{}%
+}}
+
+
+\newcommand{\TLLdruleiXXCArRightName}[0]{\TLLdrulename{i\_CArRight}}
+\newcommand{\TLLdruleiXXCArRight}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \TLLsym{,}  \TLLnt{X}  \vdash_{\mathcal{C} }  \TLLnt{Y}}%
+}{
+\Theta  \vdash_{\mathcal{C} }  \TLLnt{X}  \to  \TLLnt{Y}}{%
+{\TLLdruleiXXCArRightName}{}%
+}}
+
+
+\newcommand{\TLLdruleiXXGRightName}[0]{\TLLdrulename{i\_GRight}}
+\newcommand{\TLLdruleiXXGRight}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \TLLsym{;}  \emptyset  \vdash_{\mathcal{L} }  \TLLnt{A}}%
+}{
+\Theta  \vdash_{\mathcal{C} }  \mathsf{G} \, \TLLnt{A}}{%
+{\TLLdruleiXXGRightName}{}%
+}}
+
+\newcommand{\TLLdefniseq}[1]{\begin{TLLdefnblock}[#1]{$\Theta  \vdash_{\mathcal{C} }  \TLLnt{Z}$}{}
+\TLLusedrule{\TLLdruleiXXCArleft{}}
+\TLLusedrule{\TLLdruleiXXCArRight{}}
+\TLLusedrule{\TLLdruleiXXGRight{}}
+\end{TLLdefnblock}}
+
+%% defn lseq
+\newcommand{\TLLdrulelXXIArLeftName}[0]{\TLLdrulename{l\_IArLeft}}
+\newcommand{\TLLdrulelXXIArLeft}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \vdash_{\mathcal{C} }  \TLLnt{X}  \quad  \TLLnt{Y}  \TLLsym{,}  \Phi  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}%
+}{
+\Theta  \TLLsym{,}  \TLLnt{X}  \to  \TLLnt{Y}  \TLLsym{,}  \Phi  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}{%
+{\TLLdrulelXXIArLeftName}{}%
+}}
+
+
+\newcommand{\TLLdrulelXXLArRightName}[0]{\TLLdrulename{l\_LArRight}}
+\newcommand{\TLLdrulelXXLArRight}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \TLLsym{;}  \Gamma  \TLLsym{,}  \TLLnt{A}  \vdash_{\mathcal{L} }  \TLLnt{B}}%
+}{
+\Theta  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }   \TLLnt{A}  \limp  \TLLnt{B} }{%
+{\TLLdrulelXXLArRightName}{}%
+}}
+
+
+\newcommand{\TLLdrulelXXLArLeftName}[0]{\TLLdrulename{l\_LArLeft}}
+\newcommand{\TLLdrulelXXLArLeft}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}  \quad  \Phi  \TLLsym{;}  \Delta  \TLLsym{,}  \TLLnt{B}  \vdash_{\mathcal{L} }  \TLLnt{C}}%
+}{
+\Theta  \TLLsym{;}  \Gamma  \TLLsym{,}   \TLLnt{A}  \limp  \TLLnt{B}   \TLLsym{,}  \Delta  \vdash_{\mathcal{L} }  \TLLnt{C}}{%
+{\TLLdrulelXXLArLeftName}{}%
+}}
+
+
+\newcommand{\TLLdrulelXXFRightName}[0]{\TLLdrulename{l\_FRight}}
+\newcommand{\TLLdrulelXXFRight}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \vdash_{\mathcal{C} }  \TLLnt{X}}%
+}{
+\Theta  \TLLsym{;}  \emptyset  \vdash_{\mathcal{L} }  \mathsf{F} \, \TLLnt{X}}{%
+{\TLLdrulelXXFRightName}{}%
+}}
+
+
+\newcommand{\TLLdrulelXXFLeftName}[0]{\TLLdrulename{l\_FLeft}}
+\newcommand{\TLLdrulelXXFLeft}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \TLLsym{,}  \TLLnt{X}  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}%
+}{
+\Theta  \TLLsym{;}  \mathsf{F} \, \TLLnt{X}  \TLLsym{,}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}{%
+{\TLLdrulelXXFLeftName}{}%
+}}
+
+
+\newcommand{\TLLdrulelXXGLeftName}[0]{\TLLdrulename{l\_GLeft}}
+\newcommand{\TLLdrulelXXGLeft}[1]{\TLLdrule[#1]{%
+\TLLpremise{\Theta  \TLLsym{;}  \TLLnt{B}  \TLLsym{,}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}%
+}{
+\Theta  \TLLsym{,}  \mathsf{G} \, \TLLnt{B}  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}{%
+{\TLLdrulelXXGLeftName}{}%
+}}
+
+\newcommand{\TLLdefnlseq}[1]{\begin{TLLdefnblock}[#1]{$\Theta  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}$}{}
+\TLLusedrule{\TLLdrulelXXIArLeft{}}
+\TLLusedrule{\TLLdrulelXXLArRight{}}
+\TLLusedrule{\TLLdrulelXXLArLeft{}}
+\TLLusedrule{\TLLdrulelXXFRight{}}
+\TLLusedrule{\TLLdrulelXXFLeft{}}
+\TLLusedrule{\TLLdrulelXXGLeft{}}
+\end{TLLdefnblock}}
+
 %% defn type
 \newcommand{\TLLdruletyXXaxName}[0]{\TLLdrulename{ty\_ax}}
 \newcommand{\TLLdruletyXXax}[1]{\TLLdrule[#1]{%
@@ -277,7 +396,7 @@
 
 
 \newcommand{\TLLdefnsJtype}{
-\TLLdefntype{}\TLLdefneq{}}
+\TLLdefniseq{}\TLLdefnlseq{}\TLLdefntype{}\TLLdefneq{}}
 
 \newcommand{\TLLdefnss}{
 \TLLdefnsJtype

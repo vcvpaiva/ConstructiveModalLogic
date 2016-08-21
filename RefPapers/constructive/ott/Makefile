@@ -16,6 +16,9 @@ all: pdf
 
 pdf : TCS4.pdf
 
+main : TCS4.ott
+	cd .. && Make
+
 TCS4.tex : TCS4.ott
 	$(OTT) $(OTT_FLAGS) -i TCS4.ott -o TCS4.tex
 

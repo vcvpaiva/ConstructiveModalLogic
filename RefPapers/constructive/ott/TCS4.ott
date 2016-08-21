@@ -50,8 +50,15 @@ grammar
     | Dia A            ::   :: PPossibility             {{ com past possibility }}
     | BDia A           ::   :: Possibility            {{ com possibility }}
     | A -> B           ::   :: Arrow                   {{ com implication }}
+    | A -o B           ::   :: LArrow
+    {{tex [[A]] \limp [[B]] }}
+    | F X              ::   :: F
     | M A              :: M :: M
     {{tex \mathbin{M} [[A]] }}
+
+  iform, X, Y, Z :: 'X_' ::=
+    | X -> Y  :: :: Arrow
+    | Gf A    :: :: G
 
   G {{ tex \Gamma }}, D {{tex \Delta }} :: G_ ::=      {{ com type context }}
     | .                   ::   :: em                      {{ com empty context }}
@@ -60,7 +67,16 @@ grammar
     | G , G'              ::   :: append                  {{ com append }}
     | G1 , ... , Gk       :: M :: vec
 
+  Th {{tex \Theta }}, Ph {{tex \Phi }} :: Th_ ::=
+    | .         :: :: em
+    | X         :: :: el
+    | Th1 , Th2 :: :: append
+
   terminals :: 'terminals_' ::=
+    | F     :: :: F
+    {{tex \mathsf{F} }}
+    | Gf    :: :: Gf
+    {{tex \mathsf{G} }}
     | unbox :: :: unbox
     {{tex \mathsf{unbox}_\Box\, }}
     | unbbox :: :: unbbox
@@ -83,7 +99,11 @@ grammar
     {{tex \to }}
     | &&                  :: M :: Quad
     {{tex \quad }}
- 
+    | |-C                 ::   :: CSeq
+    {{tex \vdash_{\mathcal{C} } }}
+    | |-L                 ::   :: LSeq
+    {{tex \vdash_{\mathcal{L} } }}
+    
   formula :: 'formula_' ::=
     | judgement            ::   :: judgement
     | formula1 && formula2 :: M :: quad
@@ -95,6 +115,50 @@ grammar
 
 defns
   Jtype :: '' ::=
+
+defn
+  Th |-C Z :: :: iseq :: i_
+by
+
+  Th |-C X && Y,Ph |-C Z
+  ---------------------- :: CArleft
+  Th,X -> Y,Ph |-C Z
+
+  Th, X |-C Y
+  ------------- :: CArRight
+  Th |-C X -> Y
+
+  Th;. |-L A
+  ----------- :: GRight
+  Th |-C Gf A  
+
+defn
+  Th ; G |-L A :: :: lseq :: l_
+by
+
+  Th |-C X && Y,Ph;G |-L A
+  ------------------------ :: IArLeft
+  Th,X -> Y,Ph;G |-L A
+
+  Th;G,A |-L B
+  --------------- :: LArRight
+  Th;G |-L A -o B
+
+  Th;G |-L A && Ph;D,B |-L C
+  -------------------------- :: LArLeft
+  Th;G,A -o B,D |-L C
+
+  Th |-C X
+  ------------ :: FRight
+  Th;. |-L F X
+
+  Th,X;G |-L A
+  -------------- :: FLeft
+  Th;F X,G |-L A
+
+  Th;B,G |-L A
+  --------------- :: GLeft
+  Th,Gf B;G |-L A
 
 defn
   G |- t : A :: :: type :: ty_   

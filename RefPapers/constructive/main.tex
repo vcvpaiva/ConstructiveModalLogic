@@ -80,6 +80,16 @@
 \renewcommand{\TLLdruleeqXXreflName}{\text{refl}}
 \renewcommand{\TLLdruleeqXXsymName}{\text{sym}}
 \renewcommand{\TLLdruleeqXXtransName}{\text{trans}}
+
+\renewcommand{\TLLdruleiXXCArleftName}{\to^{\mathcal{C}}_l}
+\renewcommand{\TLLdruleiXXCArRightName}{\to^{\mathcal{C}}_r} 
+\renewcommand{\TLLdruleiXXGRightName}{\mathsf{G}_r}   
+\renewcommand{\TLLdrulelXXIArLeftName}{\to^{\mathcal{L}}_l}  
+\renewcommand{\TLLdrulelXXLArRightName}{\limp^{\mathcal{L}}_r} 
+\renewcommand{\TLLdrulelXXLArLeftName}{\limp^{\mathcal{L}}_l}  
+\renewcommand{\TLLdrulelXXFRightName}{\mathsf{F}_r}   
+\renewcommand{\TLLdrulelXXFLeftName}{\mathsf{F}_l}    
+\renewcommand{\TLLdrulelXXGLeftName}{\mathsf{G}_l}    
 %% End Ott
 
 \newtheorem{theorem}{Theorem}
@@ -442,6 +452,24 @@ the modalities of the same colour, namely, $(\bLozenge, \blacksquare)$ and $(\Di
   \end{mdframed}
   \caption{Tense S4 sequent rules  ({\sf{biCS4}})}
   \label{fig:biCS4}
+\end{figure}
+
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}      
+      \TLLdruleiXXCArleft{}  \and
+      \TLLdruleiXXCArRight{} \and
+      \TLLdruleiXXGRight{}   \and
+      \TLLdrulelXXIArLeft{}  \and
+      \TLLdrulelXXLArRight{} \and
+      \TLLdrulelXXLArLeft{}  \and
+      \TLLdrulelXXFRight{}   \and
+      \TLLdrulelXXFLeft{}    \and
+      \TLLdrulelXXGLeft{}    
+    \end{mathpar}
+  \end{mdframed}
+  \caption{LNL sequent rules}
+  \label{fig:LNL-seq-rules}
 \end{figure}
 
 \begin{figure}

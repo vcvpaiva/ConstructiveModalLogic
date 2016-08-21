@@ -66,7 +66,14 @@
 \ottprodline{|}{\blacksquare \, \ottnt{A}}{}{}{}{\ottcom{necessity}}\ottprodnewline
 \ottprodline{|}{\Diamond \, \ottnt{A}}{}{}{}{\ottcom{past possibility}}\ottprodnewline
 \ottprodline{|}{\mathbin{\blacklozenge} \, \ottnt{A}}{}{}{}{\ottcom{possibility}}\ottprodnewline
-\ottprodline{|}{\ottnt{A}  \to  \ottnt{B}}{}{}{}{\ottcom{implication}}}
+\ottprodline{|}{\ottnt{A}  \to  \ottnt{B}}{}{}{}{\ottcom{implication}}\ottprodnewline
+\ottprodline{|}{ \ottnt{A}  \limp  \ottnt{B} }{}{}{}{}\ottprodnewline
+\ottprodline{|}{\ottkw{F} \, \ottnt{X}}{}{}{}{}}
+
+\newcommand{\ottiform}{
+\ottrulehead{\ottnt{iform}  ,\ \ottnt{X}  ,\ \ottnt{Y}  ,\ \ottnt{Z}}{::=}{}\ottprodnewline
+\ottfirstprodline{|}{\ottnt{X}  \to  \ottnt{Y}}{}{}{}{}\ottprodnewline
+\ottprodline{|}{\ottkw{Gf} \, \ottnt{A}}{}{}{}{}}
 
 \newcommand{\ottG}{
 \ottrulehead{\Gamma  ,\ \Delta}{::=}{\ottcom{type context}}\ottprodnewline
@@ -75,14 +82,118 @@
 \ottprodline{|}{\mathit{x}  \ottsym{:}  \ottnt{T}}{}{}{}{\ottcom{typed el}}\ottprodnewline
 \ottprodline{|}{\Gamma  \ottsym{,}  \Gamma'}{}{}{}{\ottcom{append}}}
 
+\newcommand{\ottTh}{
+\ottrulehead{\Theta  ,\ \Phi}{::=}{}\ottprodnewline
+\ottfirstprodline{|}{\emptyset}{}{}{}{}\ottprodnewline
+\ottprodline{|}{\ottnt{X}}{}{}{}{}\ottprodnewline
+\ottprodline{|}{\Theta_{{\mathrm{1}}}  \ottsym{,}  \Theta_{{\mathrm{2}}}}{}{}{}{}}
+
 \newcommand{\ottgrammar}{\ottgrammartabular{
 \ottterm\ottinterrule
 \ottform\ottinterrule
-\ottG\ottafterlastrule
+\ottiform\ottinterrule
+\ottG\ottinterrule
+\ottTh\ottafterlastrule
 }}
 
 % defnss
 % defns Jtype
+%% defn iseq
+\newcommand{\ottdruleiXXCArleftName}[0]{\ottdrulename{i\_CArleft}}
+\newcommand{\ottdruleiXXCArleft}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \vdash_{\mathcal{C} }  \ottnt{X}  \quad  \ottnt{Y}  \ottsym{,}  \Phi  \vdash_{\mathcal{C} }  \ottnt{Z}}%
+}{
+\Theta  \ottsym{,}  \ottnt{X}  \to  \ottnt{Y}  \ottsym{,}  \Phi  \vdash_{\mathcal{C} }  \ottnt{Z}}{%
+{\ottdruleiXXCArleftName}{}%
+}}
+
+
+\newcommand{\ottdruleiXXCArRightName}[0]{\ottdrulename{i\_CArRight}}
+\newcommand{\ottdruleiXXCArRight}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \ottsym{,}  \ottnt{X}  \vdash_{\mathcal{C} }  \ottnt{Y}}%
+}{
+\Theta  \vdash_{\mathcal{C} }  \ottnt{X}  \to  \ottnt{Y}}{%
+{\ottdruleiXXCArRightName}{}%
+}}
+
+
+\newcommand{\ottdruleiXXGRightName}[0]{\ottdrulename{i\_GRight}}
+\newcommand{\ottdruleiXXGRight}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \ottsym{;}  \emptyset  \vdash_{\mathcal{L} }  \ottnt{A}}%
+}{
+\Theta  \vdash_{\mathcal{C} }  \ottkw{Gf} \, \ottnt{A}}{%
+{\ottdruleiXXGRightName}{}%
+}}
+
+\newcommand{\ottdefniseq}[1]{\begin{ottdefnblock}[#1]{$\Theta  \vdash_{\mathcal{C} }  \ottnt{Z}$}{}
+\ottusedrule{\ottdruleiXXCArleft{}}
+\ottusedrule{\ottdruleiXXCArRight{}}
+\ottusedrule{\ottdruleiXXGRight{}}
+\end{ottdefnblock}}
+
+%% defn lseq
+\newcommand{\ottdrulelXXIArLeftName}[0]{\ottdrulename{l\_IArLeft}}
+\newcommand{\ottdrulelXXIArLeft}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \vdash_{\mathcal{C} }  \ottnt{X}  \quad  \ottnt{Y}  \ottsym{,}  \Phi  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}}%
+}{
+\Theta  \ottsym{,}  \ottnt{X}  \to  \ottnt{Y}  \ottsym{,}  \Phi  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}}{%
+{\ottdrulelXXIArLeftName}{}%
+}}
+
+
+\newcommand{\ottdrulelXXLArRightName}[0]{\ottdrulename{l\_LArRight}}
+\newcommand{\ottdrulelXXLArRight}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \ottsym{;}  \Gamma  \ottsym{,}  \ottnt{A}  \vdash_{\mathcal{L} }  \ottnt{B}}%
+}{
+\Theta  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }   \ottnt{A}  \limp  \ottnt{B} }{%
+{\ottdrulelXXLArRightName}{}%
+}}
+
+
+\newcommand{\ottdrulelXXLArLeftName}[0]{\ottdrulename{l\_LArLeft}}
+\newcommand{\ottdrulelXXLArLeft}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}  \quad  \Phi  \ottsym{;}  \Delta  \ottsym{,}  \ottnt{B}  \vdash_{\mathcal{L} }  \ottnt{C}}%
+}{
+\Theta  \ottsym{;}  \Gamma  \ottsym{,}   \ottnt{A}  \limp  \ottnt{B}   \ottsym{,}  \Delta  \vdash_{\mathcal{L} }  \ottnt{C}}{%
+{\ottdrulelXXLArLeftName}{}%
+}}
+
+
+\newcommand{\ottdrulelXXFRightName}[0]{\ottdrulename{l\_FRight}}
+\newcommand{\ottdrulelXXFRight}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \vdash_{\mathcal{C} }  \ottnt{X}}%
+}{
+\Theta  \ottsym{;}  \emptyset  \vdash_{\mathcal{L} }  \ottkw{F} \, \ottnt{X}}{%
+{\ottdrulelXXFRightName}{}%
+}}
+
+
+\newcommand{\ottdrulelXXFLeftName}[0]{\ottdrulename{l\_FLeft}}
+\newcommand{\ottdrulelXXFLeft}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \ottsym{,}  \ottnt{X}  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}}%
+}{
+\Theta  \ottsym{;}  \ottkw{F} \, \ottnt{X}  \ottsym{,}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}}{%
+{\ottdrulelXXFLeftName}{}%
+}}
+
+
+\newcommand{\ottdrulelXXGLeftName}[0]{\ottdrulename{l\_GLeft}}
+\newcommand{\ottdrulelXXGLeft}[1]{\ottdrule[#1]{%
+\ottpremise{\Theta  \ottsym{;}  \ottnt{B}  \ottsym{,}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}}%
+}{
+\Theta  \ottsym{,}  \ottkw{Gf} \, \ottnt{B}  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}}{%
+{\ottdrulelXXGLeftName}{}%
+}}
+
+\newcommand{\ottdefnlseq}[1]{\begin{ottdefnblock}[#1]{$\Theta  \ottsym{;}  \Gamma  \vdash_{\mathcal{L} }  \ottnt{A}$}{}
+\ottusedrule{\ottdrulelXXIArLeft{}}
+\ottusedrule{\ottdrulelXXLArRight{}}
+\ottusedrule{\ottdrulelXXLArLeft{}}
+\ottusedrule{\ottdrulelXXFRight{}}
+\ottusedrule{\ottdrulelXXFLeft{}}
+\ottusedrule{\ottdrulelXXGLeft{}}
+\end{ottdefnblock}}
+
 %% defn type
 \newcommand{\ottdruletyXXaxName}[0]{\ottdrulename{ty\_ax}}
 \newcommand{\ottdruletyXXax}[1]{\ottdrule[#1]{%
@@ -229,7 +340,7 @@
 
 
 \newcommand{\ottdefnsJtype}{
-\ottdefntype{}\ottdefneq{}}
+\ottdefniseq{}\ottdefnlseq{}\ottdefntype{}\ottdefneq{}}
 
 \newcommand{\ottdefnss}{
 \ottdefnsJtype
@@ -243,7 +354,7 @@
 \ottall
 
 \begin{verbatim}
-Definition rules:        14 good    0 bad
-Definition rule clauses: 26 good    0 bad
+Definition rules:        23 good    0 bad
+Definition rule clauses: 44 good    0 bad
 \end{verbatim}
 \end{document}
