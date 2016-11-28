@@ -1,0 +1,30 @@
+From: Jane Spurr <jane.spurr@kcl.ac.uk>
+Date: Mon, Nov 28, 2016 at 1:01 AM
+Subject: IfCoLog Submission 16-21
+To: jane.spurr@kcl.ac.uk, Valeria de Paiva <valeria.depaiva@gmail.com>
+
+
+Dear Valeria
+
+Here are two favourable reports on your  submission to the Mints memorial issue of the  IfCoLog Journal of Logics and their Applications.
+
+Following the recommendation of both referees, the editors would like to accept your paper for publication, subject to the revisions being made that are suggested in the reports.
+
+Please will you return the paper to me (I will need source files and pdf, please) and let me know in a covering note that you've dealt with all the issues raised by both referees.
+
+Thank you,
+Jane
+
+
+
+======== referee 1 ==========
+The contribution in this paper is sound and original. The study of tense
+intuitionistic logic, tense logic in general, and the categorical model have
+been proven of importance. The authors convinced me that they did what
+was promised in the first section. Technical comments on the paper can be
+found in the added pdf file.
+I recommend the publication of the paper.
+
+======== referee 2 ==========
+attached as "Review of dePaiva ...pdf"
+-- 
