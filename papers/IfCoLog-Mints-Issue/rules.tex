@@ -1,0 +1,82 @@
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{ax}] {
+\ 
+}{[[G;D, x : A |- x : A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{bax}] {
+\ 
+}{[[G,x : A;. |- x : A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{true}] {
+\ 
+}{[[G ; D |- unit : True]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{false}] {
+\ 
+}{[[G ; D, x : False |- contra : A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{conjI}] {
+[[G ; D |- t1 : A && G ; D |- t2 : B]]
+}{[[G ; D |- (t1,t2) : A x B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{conjE1}] {
+[[G ; D |- t : A x B]]
+}{[[G ; D |- fst t : A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{conjE2}] {
+[[G ; D |- t : A x B]]
+}{[[G ; D |- snd t : B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{disjI1}] {
+[[G ; D |- t : A]]
+}{[[G ; D |- inj1 t : A + B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{disjI2}] {
+[[G ; D |- t : B]]
+}{[[G ; D |- inj2 t : A + B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{disjE}] {
+[[G ; D, x : A |- t1 : C]]
+\\\\
+[[G ; D, x : B |- t2 : C && G ; D |- t : A + B]]
+}{[[G ; D |- case t of x.t1,x.t2 : C]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{impI}] {
+[[G ; D, x : A |- t : B]]
+}{[[G ; D |- \x:A.t : A -> B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{impE}] {
+[[G ; D |- t1 : A -> B && G ; D |- t2 : A]]
+}{[[G ; D |- t1 t2 : B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{boxI}] {
+[[G ; . |- t : A]]
+}{[[G ; D |- Box t : Box A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{boxE}] {
+[[G ; D |- t1 : Box A && G, x : A; D |- t2 : B]]
+}{[[G ; D |- letBox x = t1 in t2 : B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{bdiaI}] {
+[[G ; D |- t : A]]
+}{[[G ; D |- BDia t : BDia A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{bdiaE}] {
+[[G ; D |- t1 : BDia A && G ; x : A |- t2 : BDia B]]
+}{[[G ; D |- letBDia x = t1 in t2 : BDia B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{bboxI}] {
+[[G ; . |- t : A]]
+}{[[G ; D |- BBox t : BBox A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{bboxE}] {
+[[G ; D |- t1 : BBox A && G, x : A; D |- t2 : B]]
+}{[[G ; D |- letBBox x = t1 in t2 : B]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{diaI}] {
+[[G ; D |- t : A]]
+}{[[G ; D |- Dia t : Dia A]]}
+$$\mprset{flushleft}
+\inferrule* [right=\ifrName{diaE}] {
+[[G ; D |- t1 : Dia A && G ; x : A |- t2 : Dia B]]
+}{[[G ; D |- letDia x = t1 in t2 : Dia B]]}

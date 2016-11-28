@@ -1,0 +1,397 @@
+Given the Natural Deduction system presented in the previous section,
+we simply follow the recipes described in \cite{barber1997} to produce
+a term assignment for these four kinds of modal operators.
+
+We start by giving a calculus for annotating natural deduction proofs
+in our $\sf{CS4}$ tense calculus with typed $\lambda$-calculus terms. The
+annotations must be such that types correspond to modal propositions,
+terms correspond to proofs and proof normalisation corresponds to term
+reduction. The basic typying judgements of our CS4 tense calculus are
+of the form $[[G ; D |- t : A]]$ where $[[G]]$ declares modal
+variables, which may occurr arbitrarily in a term, while $\Delta$
+declares intuitionistic variables that may not occurr in a subterm of
+the form $[[Box t]]$ or $[[BBox t]]$.
+
+The typing rules for basic propositional logic can be found in
+Figure~\ref{fig:term-assignment-basic}, and the typing rules for the
+TCS4 modalities are in Figure~\ref{fig:term-assignment-TCS4}.
+Finally, the reduction relation consists of the $\beta$-reduction
+rules defined in Figure~\ref{fig:reduction-TCS4}, and the commuting
+conversions defined in Figure~\ref{fig:commuting-conv-TCS4}; we omit
+congruence rules in the interest of space.
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}
+      \TLLdruletyXXax{} \and
+      \TLLdruletyXXbax{} \and
+      \TLLdruletyXXtrue{} \and
+      \TLLdruletyXXfalse{} \and
+      \TLLdruletyXXconjI{} \and
+      \TLLdruletyXXconjEOne{} \and
+      \TLLdruletyXXconjETwo{} \and
+      \TLLdruletyXXdisjIOne{} \and
+      \TLLdruletyXXdisjITwo{} \and
+      \TLLdruletyXXdisjE{} \and
+      \TLLdruletyXXimpI{} \and
+      \TLLdruletyXXimpE{}      
+    \end{mathpar}
+  \end{mdframed}
+  \caption{Term assignment for basic propositional logic}
+  \label{fig:term-assignment-basic}
+\end{figure}
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}
+      \TLLdruletyXXboxI{} \and
+      \TLLdruletyXXboxE{} \and
+      \TLLdruletyXXbdiaI{} \and
+      \TLLdruletyXXbdiaE{} \and
+      \TLLdruletyXXbboxI{} \and
+      \TLLdruletyXXbboxE{} \and
+      \TLLdruletyXXdiaI{} \and
+      \TLLdruletyXXdiaE{}
+    \end{mathpar}
+  \end{mdframed}
+  \caption{Term assignment for TCS4}
+  \label{fig:term-assignment-TCS4}
+\end{figure}
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}
+      \TLLdrulerXXbeta{} \and
+      \TLLdrulerXXfirst{} \and
+      \TLLdrulerXXsecond{} \and
+      \TLLdrulerXXcaseOne{} \and
+      \TLLdrulerXXcaseTwo{} \and
+      \TLLdrulerXXbox{} \and
+      \TLLdrulerXXbdia{} \and
+      \TLLdrulerXXbbox{} \and
+      \TLLdrulerXXdia{}      
+    \end{mathpar}
+  \end{mdframed}
+  \caption{The $\beta$-reduction rules for TCS4}
+  \label{fig:reduction-TCS4}
+\end{figure}
+\begin{figure}
+  \begin{mdframed}
+    \begin{mathpar}
+      \TLLdrulerXXboxBox{} \and
+      \TLLdrulerXXbdiaBdia{} \and
+      \TLLdrulerXXboxBBox{} \and
+      \TLLdrulerXXdiadia{}
+    \end{mathpar}
+  \end{mdframed}
+  \caption{The commuting conversions for TCS4}
+  \label{fig:commuting-conv-TCS4}
+\end{figure}
+In the remainder of this section we prove various properties of this
+system.
+
+
+\subsection{Subject Reduction}
+\label{subsec:subject_reduction}
+The system TCS4 has two different types of assumptions, and hence, of
+free variables, those that are members of $[[G]]$ and those that are
+members of $[[D]]$, where the former are implicitly boxed.  This
+implies that there are two types of substitution for typing and
+weakening results.
+\begin{lemma}[Substitution for Typing]
+  \label{lemma:substitution_for_typing}
+  \begin{enumerate}[i.]
+  \item[] 
+  \item If $[[G;D |- t1 : A]]$, and $[[G, x : A; D |- t2 : B]]$, then $[[G;D |- [t1/x]t2 : B]]$.
+  \item If $[[G;D |- t1 : A]]$, and $[[G; D, x : A |- t2 : B]]$, then $[[G;D |- [t1/x]t2 : B]]$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Both parts of this proof hold by straightforward induction on the
+  form of the second assumed typing derivation.  Notice that rules
+  $\Box_{\mathcal{I}}$ and $\BBox_{\mathcal{I}}$ do not need to be
+  considered in in the proof of part two, because we assume the
+  propositional context, $[[D]]$, is non-empty.
+\end{proof}
+
+\begin{lemma}[Weakening]
+  \label{lemma:weakening}
+  \begin{enumerate}[i.]
+  \item[]
+  \item If $[[G;D |- t : B]]$, then $[[G,x : A; D |- t : B]]$.
+  \item If $[[G;D |- t : B]]$, then $[[G; D,x : A |- t : B]]$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Both parts of this proof hold by straightforward induction on the
+  form of the assumed typing derivation.  In the case of the rules
+  $\Box_{\mathcal{I}}$ and $\BBox_{\mathcal{I}}$ we simply reapply the
+  rule using the assumed premise.
+\end{proof}
+
+Next we show subject reduction, but this first requires the following
+inversion principles.  Then subject reduction holds by straightforward
+induction.
+\begin{lemma}[Inversion]
+  \label{lemma:inversion}
+  \begin{enumerate}[i.]
+  \item[]
+  \item If $[[G; D |- (t1, t2) : A x B]]$, then $[[G;D |- t1 : A]]$, and $[[G;D |- t2 : B]]$.
+  \item If $[[G; D |- fst t : B]]$, then there is a type $[[A]]$, such that, $[[G; D |- t : A x B]]$.
+  \item If $[[G; D |- snd t : B]]$, then there is a type $[[A]]$, such that, $[[G; D |- t : A x B]]$.
+  \item If $[[G; D |- inj1 t : A + B]]$, then $[[G; D |- t : A]]$.
+  \item If $[[G; D |- inj2 t : A + B]]$, then $[[G; D |- t : B]]$.
+  \item If $[[G; D |- case t of x.t1,x.t2 : C]]$, then there are types $[[A]]$ and $[[B]]$,
+    such that, $[[G;D, x : A |- t1 : C]]$, $[[G;D, x : B |- t2 : C]]$, and $[[G;D |- t : A + B]]$.
+  \item If $[[G;D |- \x:A.t : B]]$, then $[[G;D,x : A |- t : B]]$.    
+  \item If $[[G;D |- t1 t2 : B]]$, then there exists a type $[[A]]$, such that, $[[G;D |- t1 : A -> B]]$ and $[[G;D |- t2 : A]]$.
+  \item If $[[G;D |- Box t : Box A]]$, then $[[G;. |- t : A]]$.
+  \item If $[[G;D |- letBox x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : Box A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \item If $[[G;D |- BDia t : BDia A]]$, then $[[G;D |- t : A]]$.
+  \item If $[[G;D |- letBDia x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : BDia A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \item If $[[G;D |- BBox t : BBox A]]$, then $[[G;. |- t : A]]$.
+  \item If $[[G;D |- letBBox x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : BBox A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \item If $[[G;D |- Dia t : Dia A]]$, then $[[G;D |- t : A]]$.
+  \item If $[[G;D |- letDia x = t1 in t2 : B]]$, then there is a type $[[A]]$, such that,
+    $[[G;D |- t1 : Dia A]]$ and $[[G,x : A;D |- t2 : B]]$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Each of these principles hold by a simple induction over the assumed
+  typing derivation.
+\end{proof}
+
+\begin{lemma}[Subject Reduction]
+  \label{lemma:subject_reduction}
+  If $[[G;D |- t : A]]$ and $[[t ~> t']]$, then $[[G;D |- t' : A]]$.
+\end{lemma}
+\begin{proof}
+  This proof holds by induction on the assumed typing derivation; see
+  the Appendix~\ref{subsec:proof_of_subject_reduction} for the
+  complete proof.
+\end{proof}
+% subsection subject_reduction (end)
+
+\subsection{Strong Normalization}
+\label{subsec:strong_normalization}
+
+We show that by a straightforward extension of Joachimski and Matthes'
+\cite{Joachimski:2003} proof of strong normalization for the simply
+typed $\lambda$-calculus with sum types that TCS4 is strongly
+normalizing.  Thus, by their result we know the system described by
+Figure~\ref{fig:term-assignment-basic} is strongly normalizing.  In
+this proof we do not concern ourselves with the units, because they
+are easy to handle and do not offer any insights.  However, we do show
+how this technique applies to products which was left out by
+Joachimski and Matthes.  Since the proof of strong normalization for
+TCS4 is so close to the one provided by Joachimski and Matthes we only
+give a sketch here.
+
+We begin by extending their syntax for multiple eliminations.  Suppose
+$[[r]]$ is any term. Then we define the following metasyntax:
+\begin{description}
+\item denote the expression $[[case r of x.t1,x.t2]]$ by $[[r (x.t1, x.t2)]]$, and
+\item denote the expression $[[letM x = r in t]]$ by $[[r x.t]]$ where $M \in \{[[Box]], [[BBox]], [[Dia]], [[BDia]]\}$.
+\end{description}
+We denote an arbitrary elimination by $[[r R]]$ where $[[R]]$ is
+either a term in the case of function application, or $[[r R]]$ has
+the form just described above.  As an example, the metasyntax for
+the redex $[[letBox x = Box t1 in t2]]$ is $[[(Box t1) x.t2]]$
+which both step to $[[ [t1/x]t2]]$.  The commuting conversions
+\[ [[letM x = (letM y = t1 in t2) in t3 ~> letM y = t1 in letM x = t2 in t3]] \]
+are denoted in the metasyntax by $[[(t1 y.t2) x.t3 ~> t1 y.(t2 x.t3)]]$.
+
+Finally, we will make heavy use of vector notation, $[[vec r]]$, to
+stand for the sequence $[[r1]]\,[[r2]]\,\cdots\,[[ri]]$.  Thus, the
+application $[[t vec r]]$ stands for
+$[[t]]\,[[r1]]\,[[r2]]\,\cdots\,[[ri]]$ -- note that the sequence
+could be empty, and hence, would simply be equal to $[[t]]$.  This
+notation extends to substitution in the usual way and is denoted by
+$[[ [vec t / vec x]t']]$.
+
+Now we recast the syntax for terms using the metasyntax as follows:
+\[
+\begin{array}{rll}
+  M & := & [[Box]] \mid [[BBox]] \mid [[Dia]] \mid [[BDia]]\\
+  [[r]],[[s]],[[t]] & := & [[x vec n]] \mid [[x h(vec n) (t1 , t2) vec R]] \mid [[x h(vec n) (x.t1 , x.t2) vec R]]
+  \mid [[h(x h(vec n) x.t) vec R]] \mid [[\x:A.r]] \mid \\
+  & & [[fst r]] \mid [[snd r]] \mid [[inj1 r]] \mid [[inj2 r]] \mid [[(\x:A.r) s vec R]] \mid [[h((M r) x.s) vec R]]\\
+  & & [[(inj1 r) (x.s1,x.s2) vec R]] \mid [[(inj2 r) (x.s1,x.s2) vec R]]
+\end{array}
+\]
+
+We call any term that does not contain a redex as a subterm a normal
+form.  That is, a term is normal if none of the rules in
+Figure~\ref{fig:reduction-TCS4} nor
+Figure~\ref{fig:commuting-conv-TCS4} apply.  These normal terms are
+syntactically captured by the following grammar:
+\[
+\begin{array}{rll}
+  [[n]] & := & [[x vec n]] \mid [[x h(vec n) (t1 , t2)]] \mid [[x h(vec n) (x.t1 , x.t2)]]
+  \mid [[x h(vec n) x.t]] \mid [[\x:A.r]] \mid \\
+  & & [[fst r]] \mid [[snd r]] \mid [[inj1 r]] \mid [[inj2 r]]
+\end{array}
+\]
+
+These are straightforward extensions of the definitions given by
+Joachimski and Matthes.  Notice that there are more normal forms then
+then our grammar captures, but all of these are untyped, furthermore,
+there are some untyped normal forms generated by this grammar, but
+that is okay, because all typed normal forms are generated by the
+previous grammar.  Thus, it captures all that we need it to.  The
+syntax given here will only be used within this section.
+
+The set of strongly normalizing terms is defined by the following
+rules:
+\begin{mathpar}
+  \small
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[h(vec r)]] \in \mathsf{SN}
+  }{[[x h(vec r)]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[h(vec r) R]] \in \mathsf{SN}
+  }{[[x h(vec r) R]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[r]] \in \mathsf{SN}
+  }{[[\x:A.r]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[r]] \in \mathsf{SN}
+  }{[[inj1 r]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[r]] \in \mathsf{SN}
+  }{[[inj2 r]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[r]] \in \mathsf{SN}
+  }{[[fst r]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[r]] \in \mathsf{SN}
+  }{[[snd r]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[r1]] \in \mathsf{SN}
+    \\
+    [[r2]] \in \mathsf{SN}
+  }{[[(r1 , r2)]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[ [r1/x]r2 vec R]] \in \mathsf{SN}
+    \\
+    [[r1]] \in \mathsf{SN}
+  }{[[(\x:A.r2) r1 vec R]] \in \mathsf{SN}}
+  \and
+  \inferrule* [right=] {
+    [[r1 vec R]] \in \mathsf{SN}
+    \\
+    [[r2]] \in \mathsf{SN}
+  }{[[(fst (r1,r2)) vec R]] \in \mathsf{SN}}
+  \and
+  \inferrule* [right=] {
+    [[r2 vec R]] \in \mathsf{SN}
+    \\
+    [[r1]] \in \mathsf{SN}
+  }{[[(snd (r1,r2)) vec R]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[ [r/x]r1 vec R]] \in \mathsf{SN}
+    \\
+    [[r2 vec R]] \in \mathsf{SN}
+    \\
+    [[r]] \in \mathsf{SN}  
+  }{[[(inj1 r) (x.r1,x.r2) vec R]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[ [r/x]r2 vec R]] \in \mathsf{SN}
+    \\
+    [[r1 vec R]] \in \mathsf{SN}
+    \\
+    [[r]] \in \mathsf{SN}  
+  }{[[(inj2 r) (x.r1,x.r2) vec R]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[ [r1/x]r2 vec R]] \in \mathsf{SN}
+    \\
+    [[r1]] \in \mathsf{SN}
+    \\
+    M \in \{ [[Box]], [[BBox]], [[Dia]], [[BDia]] \}
+  }{[[(M r1) (x.r2) vec R]] \in \mathsf{SN}}
+  \and
+  \mprset{flushleft}
+  \inferrule* [right=] {
+    [[x h(vec r) (r1 y.(r2 x.r3)) vec R]] \in \mathsf{SN}
+  }{[[x h(vec r) ((r1 y.r2) x.r3) vec R]] \in \mathsf{SN}}
+\end{mathpar}
+All of the rules from the previous definition are from Joachimski and
+Matthes' proof, but the last two, which are for all the
+$\beta$-redexes and commuting conversions for modalities.
+
+At this point we have everything we need to conclude strong
+normalization which follows from the following results.
+\begin{lemma}[All strongly normalizing terms are in $\mathsf{SN}$]
+  \label{lemma:all_strongly_normalizing_terms_are_in_SN}
+  If $[[G;D |- r : A]]$, and $[[r]]$ is strongly normalizing, then $[[r]] \in \mathsf{SN}$.
+\end{lemma}
+\begin{proof}
+  The first half of this proof is essentially the same as the proof by
+  Joachimski and Matthes, see page 12 of \cite{Joachimski:2003}, and
+  the new parts are similar to their proofs.
+\end{proof}
+
+\begin{lemma}[Commuting conversions in $\mathsf{SN}$]
+  \label{lemma:commuting_conversions_in_SN}
+  If $[[(r y.(r1 x.r2)) vec R]] \in \mathsf{SN}$, then $[[((r y.r1) x.r2) vec R]] \in \mathsf{SN}$.
+\end{lemma}
+\begin{proof}
+  This proof holds by induction on the assumption $[[(r y.(r1 x.r2))
+      vec R]] \in \mathsf{SN}$, but this proof is similar to the proof
+  for commuting conversions for the sum types; see page 13 of
+  \cite{Joachimski:2003}.
+\end{proof}
+
+\begin{lemma}[Typable eliminations are in $\mathsf{SN}$]
+  \label{lemma:typable_eliminations_are_in_SN}
+  Suppose $[[A]]$ is a type, and $[[r]] \in \mathsf{SN}$.  Then:
+  \begin{enumerate}[i.]
+  \item if $[[G;D |- s : A]]$, then $[[r s]] \in \mathsf{SN}$,
+  \item if $[[G;D |- r : A]]$ and $[[A]] \equiv [[B x C]]$, then $[[(fst r)]],[[(snd r)]] \in \mathsf{SN}$,
+  \item if $[[G;D |- r : A]]$, $[[A]] \equiv [[B + C]]$ and $[[s1]],[[s2]] \in \mathsf{SN}$,
+    then $[[r (x.s1,x.s2)]] \in \mathsf{SN}$,
+  \item if $[[G;D |- r : A]]$, $[[A]] \equiv [[M B]]$, and $[[s]] \in \mathsf{SN}$, then $[[r x.s]] \in \mathsf{SN}$,
+    where $M \in \{[[Box]], [[BBox]], [[Dia]], [[BDia]] \}$, and
+  \item if $[[G;D |- s : A]]$, then $[[ [s/x]r]] \in \mathsf{SN}$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  The proofs of the first three and the last parts are essentially the
+  same proofs given by Joachimski and Matthes where they differ is
+  similar to the other cases.  Finally, the forth case is similar to
+  the third. See Lemma~5.7 on page 14 of \cite{Joachimski:2003}.
+\end{proof}
+
+\begin{corollary}[Strong Normalization]
+  \label{corollary:strong_normalization}
+  If $[[G;D |- r : A]]$, then $[[r]]$ is strongly normalizing.
+\end{corollary}
+% subsection strong_normalization (end)
+
+\subsection{Confluence}
+\label{subsec:confluence}
+
+% subsection confluence (end)
