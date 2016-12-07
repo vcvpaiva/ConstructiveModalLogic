@@ -121,7 +121,7 @@
 \TLLfirstprodline{|}{\Theta  \vdash_{\mathcal{C} }  \TLLnt{Z}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\Theta  \TLLsym{;}  \Gamma  \vdash_{\mathcal{L} }  \TLLnt{A}}{}{}{}{}\TLLprodnewline
 \TLLprodline{|}{\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}{}{}{}{}\TLLprodnewline
-\TLLprodline{|}{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} }{}{}{}{}}
+\TLLprodline{|}{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} }{}{}{}{}}
 
 \newcommand{\TLLjudgement}{
 \TLLrulehead{\TLLnt{judgement}}{::=}{}\TLLprodnewline
@@ -334,27 +334,27 @@
 %% defn eq
 \newcommand{\TLLdruleeqXXbetaName}[0]{\TLLdrulename{eq\_beta}}
 \newcommand{\TLLdruleeqXXbeta}[1]{\TLLdrule[#1]{%
-\TLLpremise{ \Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \approx  \TLLnt{s_{{\mathrm{2}}}}  :  \TLLnt{B}   \quad   \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{s_{{\mathrm{1}}}}  :  \TLLnt{A} }%
+\TLLpremise{ \Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  =  \TLLnt{s_{{\mathrm{2}}}}  :  \TLLnt{B}   \quad   \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{s_{{\mathrm{1}}}}  :  \TLLnt{A} }%
 }{
- \Gamma  \vdash  \TLLsym{(}   \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \, \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLsym{[}  \TLLnt{s_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{s_{{\mathrm{2}}}}  :  \TLLnt{B} }{%
+ \Gamma  \vdash  \TLLsym{(}   \lambda  \mathit{x}  :  \TLLnt{A} . \TLLnt{t_{{\mathrm{2}}}}   \TLLsym{)} \, \TLLnt{t_{{\mathrm{1}}}}  =  \TLLsym{[}  \TLLnt{s_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{s_{{\mathrm{2}}}}  :  \TLLnt{B} }{%
 {\TLLdruleeqXXbetaName}{}%
 }}
 
 
 \newcommand{\TLLdruleeqXXunboxName}[0]{\TLLdrulename{eq\_unbox}}
 \newcommand{\TLLdruleeqXXunbox}[1]{\TLLdrule[#1]{%
-\TLLpremise{  \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{s_{{\mathrm{1}}}}  :  \Box \, \TLLnt{A_{{\mathrm{1}}}}   \TLLsym{,} \, ... \, \TLLsym{,}   \Gamma  \vdash  \TLLnt{t_{\TLLmv{k}}}  \approx  \TLLnt{s_{\TLLmv{k}}}  :  \Box \, \TLLnt{A_{\TLLmv{k}}}    \quad   \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}}  \vdash  \TLLnt{t}  \approx  \TLLnt{s}  :  \TLLnt{B} }%
+\TLLpremise{  \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{s_{{\mathrm{1}}}}  :  \Box \, \TLLnt{A_{{\mathrm{1}}}}   \TLLsym{,} \, ... \, \TLLsym{,}   \Gamma  \vdash  \TLLnt{t_{\TLLmv{k}}}  =  \TLLnt{s_{\TLLmv{k}}}  :  \Box \, \TLLnt{A_{\TLLmv{k}}}    \quad   \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}}  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{B} }%
 }{
- \Gamma  \vdash  \mathsf{unbox}_\Box\, \, \TLLsym{(}   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{)}  \approx  \TLLsym{[}  \TLLnt{s_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x_{{\mathrm{1}}}}  \TLLsym{]} \, ... \, \TLLsym{[}  \TLLnt{s_{\TLLmv{k}}}  \TLLsym{/}  \mathit{x_{\TLLmv{k}}}  \TLLsym{]}  \TLLnt{s}  :  \TLLnt{B} }{%
+ \Gamma  \vdash  \mathsf{unbox}_\Box\, \, \TLLsym{(}   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{A_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{)}  =  \TLLsym{[}  \TLLnt{s_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x_{{\mathrm{1}}}}  \TLLsym{]} \, ... \, \TLLsym{[}  \TLLnt{s_{\TLLmv{k}}}  \TLLsym{/}  \mathit{x_{\TLLmv{k}}}  \TLLsym{]}  \TLLnt{s}  :  \TLLnt{B} }{%
 {\TLLdruleeqXXunboxName}{}%
 }}
 
 
 \newcommand{\TLLdruleeqXXunbboxName}[0]{\TLLdrulename{eq\_unbbox}}
 \newcommand{\TLLdruleeqXXunbbox}[1]{\TLLdrule[#1]{%
-\TLLpremise{  \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{s_{{\mathrm{1}}}}  :  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}   \TLLsym{,} \, ... \, \TLLsym{,}   \Gamma  \vdash  \TLLnt{t_{\TLLmv{k}}}  \approx  \TLLnt{s_{\TLLmv{k}}}  :  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}    \quad   \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}  \vdash  \TLLnt{t}  \approx  \TLLnt{s}  :  \TLLnt{B} }%
+\TLLpremise{  \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{s_{{\mathrm{1}}}}  :  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}   \TLLsym{,} \, ... \, \TLLsym{,}   \Gamma  \vdash  \TLLnt{t_{\TLLmv{k}}}  =  \TLLnt{s_{\TLLmv{k}}}  :  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}    \quad   \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}}  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{B} }%
 }{
- \Gamma  \vdash  \mathsf{unbox}_\blacksquare\, \, \TLLsym{(}   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{)}  \approx  \TLLsym{[}  \TLLnt{s_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x_{{\mathrm{1}}}}  \TLLsym{]} \, ... \, \TLLsym{[}  \TLLnt{s_{\TLLmv{k}}}  \TLLsym{/}  \mathit{x_{\TLLmv{k}}}  \TLLsym{]}  \TLLnt{s}  :  \TLLnt{B} }{%
+ \Gamma  \vdash  \mathsf{unbox}_\blacksquare\, \, \TLLsym{(}   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{A_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{)}  =  \TLLsym{[}  \TLLnt{s_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x_{{\mathrm{1}}}}  \TLLsym{]} \, ... \, \TLLsym{[}  \TLLnt{s_{\TLLmv{k}}}  \TLLsym{/}  \mathit{x_{\TLLmv{k}}}  \TLLsym{]}  \TLLnt{s}  :  \TLLnt{B} }{%
 {\TLLdruleeqXXunbboxName}{}%
 }}
 
@@ -363,29 +363,29 @@
 \newcommand{\TLLdruleeqXXrefl}[1]{\TLLdrule[#1]{%
 \TLLpremise{\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}}%
 }{
- \Gamma  \vdash  \TLLnt{t}  \approx  \TLLnt{t}  :  \TLLnt{A} }{%
+ \Gamma  \vdash  \TLLnt{t}  =  \TLLnt{t}  :  \TLLnt{A} }{%
 {\TLLdruleeqXXreflName}{}%
 }}
 
 
 \newcommand{\TLLdruleeqXXsymName}[0]{\TLLdrulename{eq\_sym}}
 \newcommand{\TLLdruleeqXXsym}[1]{\TLLdrule[#1]{%
-\TLLpremise{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \approx  \TLLnt{t_{{\mathrm{1}}}}  :  \TLLnt{A} }%
+\TLLpremise{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{2}}}}  =  \TLLnt{t_{{\mathrm{1}}}}  :  \TLLnt{A} }%
 }{
- \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} }{%
+ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} }{%
 {\TLLdruleeqXXsymName}{}%
 }}
 
 
 \newcommand{\TLLdruleeqXXtransName}[0]{\TLLdrulename{eq\_trans}}
 \newcommand{\TLLdruleeqXXtrans}[1]{\TLLdrule[#1]{%
-\TLLpremise{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A}   \quad   \Gamma  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \approx  \TLLnt{t_{{\mathrm{3}}}}  :  \TLLnt{A} }%
+\TLLpremise{ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A}   \quad   \Gamma  \vdash  \TLLnt{t_{{\mathrm{2}}}}  =  \TLLnt{t_{{\mathrm{3}}}}  :  \TLLnt{A} }%
 }{
- \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{t_{{\mathrm{3}}}}  :  \TLLnt{A} }{%
+ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{3}}}}  :  \TLLnt{A} }{%
 {\TLLdruleeqXXtransName}{}%
 }}
 
-\newcommand{\TLLdefneq}[1]{\begin{TLLdefnblock}[#1]{$ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \approx  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} $}{}
+\newcommand{\TLLdefneq}[1]{\begin{TLLdefnblock}[#1]{$ \Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  =  \TLLnt{t_{{\mathrm{2}}}}  :  \TLLnt{A} $}{}
 \TLLusedrule{\TLLdruleeqXXbeta{}}
 \TLLusedrule{\TLLdruleeqXXunbox{}}
 \TLLusedrule{\TLLdruleeqXXunbbox{}}

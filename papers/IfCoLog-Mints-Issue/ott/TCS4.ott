@@ -196,7 +196,7 @@ by
 
 defn
   G |- t1 = t2 : A :: :: eq :: eq_
-  {{tex [[G]] \vdash [[t1]] \approx [[t2]] : [[A]] }}
+  {{tex [[G]] \vdash [[t1]] = [[t2]] : [[A]] }}
 by
 
  G,x : A |- t2 = s2 : B && G |- t1 = s1 : A
