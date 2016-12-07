@@ -52,18 +52,22 @@ triggered when they are applied to an unbox-expression.
 We have the following basic properties of this term assignment.
 \begin{lemma}[Substitution for Typing]
   \label{lemma:substitution_for_typing}
-  If $\Gamma  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$, and $\Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.
+  If $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$, and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.
 \end{lemma}
 \begin{proof}
-  This proof hold by straightforward induction on the
-  form of the assumed typing derivation.  
+  This proof holds by straightforward induction on the form of the
+  assumed typing derivation.  Please see
+  Appendix~\ref{sec:proof_of_lemma:substitution_for_typing} for the
+  complete proof.
 \end{proof}
 
 \begin{lemma}[Weakening]
   \label{lemma:weakening}
-  If $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+  If $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
 \end{lemma}
 \begin{proof}
-  This proof hold by straightforward induction on the
-  form of the assumed typing derivation. 
+  This proof holds by straightforward induction on the form of the
+  assumed typing derivation.  Please see
+  Appendix~\ref{subsubsec:proof_of_lemma:weakening} for the complete
+  proof.
 \end{proof}

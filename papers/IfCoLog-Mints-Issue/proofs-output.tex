@@ -1,1 +1,230 @@
-Proofs.
+\subsubsection{Proof of Lemma~\ref{lemma:substitution_for_typing}}
+\label{sec:proof_of_lemma:substitution_for_typing}
+Suppose $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$ and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.  We case
+split on the structure of the latter.
+\begin{itemize}
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\text{Id}$] {
+        \ 
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathit{y}  \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  In this case $\TLLnt{t_{{\mathrm{2}}}} = \mathit{y}$ and $\TLLnt{B} = \TLLnt{C}$.  We are not
+  sure if $\mathit{x} = \mathit{y}$, thus, we must consider the case when they
+  are and are not equal.
+
+  Suppose $\mathit{x} \neq \mathit{y}$.  Then $\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}} = \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \mathit{y} =
+  \mathit{y}$ by the definition of substitution.  In addition, it must be
+  the case that either $\mathit{y}  \TLLsym{:}  \TLLnt{C} \in \Gamma_{{\mathrm{1}}}$ or $\mathit{y}  \TLLsym{:}  \TLLnt{C} \in
+  \Gamma_{{\mathrm{2}}}$.  This implies that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathit{y}  \TLLsym{:}  \TLLnt{C}$ or $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$ hold.
+
+  Now suppose $\mathit{x} = \mathit{y}$.  Then $\TLLnt{A} = \TLLnt{B}$, and $\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}} = \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \mathit{x} = \TLLnt{t_{{\mathrm{1}}}}$ by the definition of
+  substitution.  Thus, $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$ holds, because we
+  know $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\perp_\mathcal{E}$] {
+        \ 
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \perp  \vdash   \mathsf{contra}   \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  We must show that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \perp  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}   \mathsf{contra}   \TLLsym{:}  \TLLnt{C}$ holds,
+  because $\TLLnt{B} = \TLLnt{C}$ and $\TLLnt{t_{{\mathrm{2}}}} =  \mathsf{contra} $, but this holds
+  by reapplying the rule.
+
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpIName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t}   \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}}
+    \end{math}
+  \end{center}
+  In this case $\TLLnt{B} = \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}$ and $\TLLnt{t_{{\mathrm{2}}}} =  \lambda  \mathit{y}  :  \TLLnt{C} . \TLLnt{t} $.  By the induction hypothesis
+  we know $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$, and then by reapplying the rule we know
+  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t}   \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.  However, by the definition of substitution
+  we know $ \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t}  = \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t}   \TLLsym{)}$, and thus, we obtain our result.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpEName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}  \quad  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'_{{\mathrm{1}}}} \, \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}}
+    \end{math}
+  \end{center}
+  We now have that $\TLLnt{B} = \TLLnt{C_{{\mathrm{2}}}}$ and $\TLLnt{t_{{\mathrm{2}}}} = \TLLnt{t'_{{\mathrm{1}}}} \, \TLLnt{t'_{{\mathrm{2}}}}$.  By the induction hypothesis
+  we know that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}$ and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}$ both hold.
+  Then by reapplying the rule we obtain that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{(}  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{)} \, \TLLsym{(}  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$, and thus,
+  by the definition of substitution $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}  \TLLnt{t'_{{\mathrm{1}}}} \, \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.
+  
+  
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxIName$] {
+         \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}}   \quad  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t'_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \Box \, \TLLnt{C}}
+    \end{math}
+  \end{center}
+  In this case $\TLLnt{B} = \Box \, \TLLnt{C}$ and
+  $\TLLnt{t_{{\mathrm{2}}}} =  \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t'_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t} $.  By the induction hypothesis
+  we know that 
+  \[ \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}} , \ldots , \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \] all hold. Then by reapplying
+  the rule we know that
+  \[ \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \Box \, \TLLnt{C}, \] but by the definition
+  of substitution and the fact that $\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t} = \TLLnt{t}$ because $\TLLnt{t}$ does not depend on $\mathit{x}$ we know that
+  \[ \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t'_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{)}  \TLLsym{:}  \Box \, \TLLnt{C} \] holds.
+  
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxEName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \Box \, \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\Box\, \, \TLLnt{t}  \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  This case easily follows by first applying the induction hypothesis and reapplying the rule.
+
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxIName$] {
+         \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}   \quad  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \blacksquare \, \TLLnt{C}}
+    \end{math}
+  \end{center}
+  This case is similar to the case for $\TLLdruletyXXboxIName$.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxEName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \blacksquare \, \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\blacksquare\, \, \TLLnt{t}  \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  This case is similar to the case for $\TLLdruletyXXboxEName$.
+\end{itemize}
+% subsubsection proof_of_lemma_substitution_for_typing (end)
+
+\subsubsection{Proof of Lemma~\ref{lemma:weakening}}
+\label{subsubsec:proof_of_lemma:weakening}
+This proof is by induction on the form of $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+\begin{itemize}
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXaxName$] {
+        \ 
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C}  \vdash  \mathit{y}  \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  In this case we have that $\TLLnt{B} = \TLLnt{C}$ and $\TLLnt{t} = \mathit{y}$.  We
+  must show that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C}  \vdash  \mathit{y}  \TLLsym{:}  \TLLnt{C}$ holds, but this
+  clearly holds by reapplying the rule.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXfalseName$] {
+        \ 
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \perp  \vdash   \mathsf{contra}   \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  Similar to the previous case.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpIName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t'}   \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}}
+    \end{math}
+  \end{center}
+  In this case $\TLLnt{B} = \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}$ and $\TLLnt{t} =  \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t'} $.  By the induction hypothesis
+  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds, and then by reapplying the rule
+  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t'}   \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpEName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}  \quad  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}} \, \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}}
+    \end{math}
+  \end{center}
+  By the induction hypothesis $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}$ and
+  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}$, and thus by reapplying the rule
+  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}} \, \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$.
+
+
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxIName$] {
+         \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}}   \quad  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t'}   \TLLsym{:}  \Box \, \TLLnt{C}}
+    \end{math}
+  \end{center}
+  This case is similar to the previous case.  First, apply the
+  induction hypothesis to the left-most premise, and then reapply
+  the rule.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxEName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \Box \, \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\Box\, \, \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}      
+  Similar to the previous cases.
+  
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxIName$] {
+         \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}   \quad  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t'}   \TLLsym{:}  \blacksquare \, \TLLnt{C}}
+    \end{math}
+  \end{center}
+  Similar to the case for $\TLLdruletyXXboxIName$.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxEName$] {
+        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \blacksquare \, \TLLnt{C}
+      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\blacksquare\, \, \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}}
+    \end{math}
+  \end{center}
+  Similar to the case for $\TLLdruletyXXboxEName$.
+
+\end{itemize}
+% subsubsection proof_of_lemma:weakening (end)

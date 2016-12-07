@@ -52,18 +52,22 @@ triggered when they are applied to an unbox-expression.
 We have the following basic properties of this term assignment.
 \begin{lemma}[Substitution for Typing]
   \label{lemma:substitution_for_typing}
-  If $[[G |- t1 : A]]$, and $[[G, x : A |- t2 : B]]$, then $[[G |- [t1/x]t2 : B]]$.
+  If $[[G1 |- t1 : A]]$, and $[[G1, x : A,G2 |- t2 : B]]$, then $[[G1,G2 |- [t1/x]t2 : B]]$.
 \end{lemma}
 \begin{proof}
-  This proof hold by straightforward induction on the
-  form of the assumed typing derivation.  
+  This proof holds by straightforward induction on the form of the
+  assumed typing derivation.  Please see
+  Appendix~\ref{sec:proof_of_lemma:substitution_for_typing} for the
+  complete proof.
 \end{proof}
 
 \begin{lemma}[Weakening]
   \label{lemma:weakening}
-  If $[[G |- t : B]]$, then $[[G,x : A |- t : B]]$.
+  If $[[G1,G2 |- t : B]]$, then $[[G1,x : A,G2 |- t : B]]$.
 \end{lemma}
 \begin{proof}
-  This proof hold by straightforward induction on the
-  form of the assumed typing derivation. 
+  This proof holds by straightforward induction on the form of the
+  assumed typing derivation.  Please see
+  Appendix~\ref{subsubsec:proof_of_lemma:weakening} for the complete
+  proof.
 \end{proof}

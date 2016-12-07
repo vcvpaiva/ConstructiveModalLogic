@@ -1,1 +1,232 @@
-Proofs.
+\subsubsection{Proof of Lemma~\ref{lemma:substitution_for_typing}}
+\label{sec:proof_of_lemma:substitution_for_typing}
+Suppose $[[G1 |- t1 : A]]$ and $[[G1, x : A,G2 |- t2 : B]]$.  We case
+split on the structure of the latter.
+\begin{itemize}
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\text{Id}$] {
+        \ 
+      }{[[G1, x : A,G2 |- y : C]]}
+    \end{math}
+  \end{center}
+  In this case $[[t2]] = [[y]]$ and $[[B]] = [[C]]$.  We are not
+  sure if $[[x]] = [[y]]$, thus, we must consider the case when they
+  are and are not equal.
+
+  Suppose $[[x]] \neq [[y]]$.  Then $[[ [t1/x]t2]] = [[ [t1/x]y]] =
+  [[y]]$ by the definition of substitution.  In addition, it must be
+  the case that either $[[y : C]] \in [[G1]]$ or $[[y : C]] \in
+  [[G2]]$.  This implies that $[[G1,G2 |- y : C]]$ or $[[G1,G2 |-
+      [t1/x]t2 : B]]$ hold.
+
+  Now suppose $[[x]] = [[y]]$.  Then $[[A]] = [[B]]$, and $[[
+      [t1/x]t2]] = [[ [t1/x]x]] = [[t1]]$ by the definition of
+  substitution.  Thus, $[[G1,G2 |- [t1/x]t2 : B]]$ holds, because we
+  know $[[G1,G2 |- t1 : A]]$.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\perp_\mathcal{E}$] {
+        \ 
+      }{[[G1, x : A,G2, y : False |- contra : C]]}
+    \end{math}
+  \end{center}
+  We must show that $[[G1,G2,y : False |- [t1/x]contra : C]]$ holds,
+  because $[[B]] = [[C]]$ and $[[t2]] = [[contra]]$, but this holds
+  by reapplying the rule.
+
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpIName$] {
+        [[G1, x : A,G2,y : C1 |- t : C2]]
+      }{[[G1, x : A,G2 |- \y:C1.t : C1 -> C2]]}
+    \end{math}
+  \end{center}
+  In this case $[[B]] = [[C1 -> C2]]$ and $[[t2]] = [[\y:C.t]]$.  By the induction hypothesis
+  we know $[[G1, G2,y : C1 |- [t1/x]t : C2]]$, and then by reapplying the rule we know
+  $[[G1, G2 |- \y:C1.[t1/x]t : C2]]$ holds.  However, by the definition of substitution
+  we know $[[\y:C1.[t1/x]t]] = [[ [t1/x](\y:C1.t)]]$, and thus, we obtain our result.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpEName$] {
+        [[G1, x : A,G2 |- t'1 : C1 -> C2 && G1, x : A,G2 |- t'2 : C1]]
+      }{[[G1, x : A,G2 |- t'1 t'2 : C2]]}
+    \end{math}
+  \end{center}
+  We now have that $[[B]] = [[C2]]$ and $[[t2]] = [[t'1 t'2]]$.  By the induction hypothesis
+  we know that $[[G1,G2 |- [t1/x]t'1 : C1 -> C2]]$ and $[[G1,G2 |- [t1/x]t'2 : C1]]$ both hold.
+  Then by reapplying the rule we obtain that $[[G1,G2 |- ([t1/x]t'1) ([t1/x]t'2) : C2]]$, and thus,
+  by the definition of substitution $[[G1,G2 |- [t1/x](t'1 t'2) : C2]]$ holds.
+  
+  
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxIName$] {
+        [[(G1, x : A,G2 |- t'1 : Box C1 , ... , G1, x : A,G2 |- t'k : Box Ck) && x1 : Box C1,...,xk : Box Ck |- t : C]]
+      }{[[G1, x : A,G2 |- letBox x1 : Box C1,...,xk : Box Ck be t'1,...,t'k in t : Box C]]}
+    \end{math}
+  \end{center}
+  In this case $[[B]] = [[Box C]]$ and
+  $[[t2]] = [[letBox x1 : Box C1,...,xk : Box Ck be t'1,...,t'k in t]]$.  By the induction hypothesis
+  we know that 
+  \[ [[G1,G2 |- [t1/x]t'1 : Box C1]] , \ldots , [[G1, x : A,G2 |- [t1/x]t'k : Box Ck]] \] all hold. Then by reapplying
+  the rule we know that
+  \[ [[G1, G2 |- letBox x1 : Box C1,...,xk : Box Ck be [t1/x]t'1,...,[t1/x]t'k in t : Box C]], \] but by the definition
+  of substitution and the fact that $[[ [t1/x]t ]] = [[t]]$ because $[[t]]$ does not depend on $[[x]]$ we know that
+  \[ [[G1, G2 |- [t1/x](letBox x1 : Box C1,...,xk : Box Ck be t'1,...,t'k in t) : Box C]] \] holds.
+  
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxEName$] {
+        [[G1, x : A,G2 |- t : Box C]]
+      }{[[G1, x : A,G2 |- unbox t : C]]}
+    \end{math}
+  \end{center}
+  This case easily follows by first applying the induction hypothesis and reapplying the rule.
+
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxIName$] {
+        [[(G1, x : A,G2 |- t1 : BBox C1 , ... , G1, x : A,G2 |- tk : BBox Ck) && x1 : BBox C1,...,xk : BBox Ck |- t : C]]
+      }{[[G1, x : A,G2 |- letBBox x1 : BBox C1,...,xk : BBox Ck be t1,...,tk in t : BBox C]]}
+    \end{math}
+  \end{center}
+  This case is similar to the case for $\TLLdruletyXXboxIName$.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxEName$] {
+        [[G1, x : A,G2 |- t : BBox C]]
+      }{[[G1, x : A,G2 |- unbbox t : C]]}
+    \end{math}
+  \end{center}
+  This case is similar to the case for $\TLLdruletyXXboxEName$.
+\end{itemize}
+% subsubsection proof_of_lemma_substitution_for_typing (end)
+
+\subsubsection{Proof of Lemma~\ref{lemma:weakening}}
+\label{subsubsec:proof_of_lemma:weakening}
+This proof is by induction on the form of $[[G1,G2 |- t : B]]$.
+\begin{itemize}
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXaxName$] {
+        \ 
+      }{[[G1,G2,y : C |- y : C]]}
+    \end{math}
+  \end{center}
+  In this case we have that $[[B]] = [[C]]$ and $[[t]] = [[y]]$.  We
+  must show that $[[G1,x : A,G2,y : C |- y : C]]$ holds, but this
+  clearly holds by reapplying the rule.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXfalseName$] {
+        \ 
+      }{[[G1,G2, y : False |- contra : C]]}
+    \end{math}
+  \end{center}
+  Similar to the previous case.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpIName$] {
+        [[G1,G2, y : C1 |- t' : C2]]
+      }{[[G1,G2 |- \y:C1.t' : C1 -> C2]]}
+    \end{math}
+  \end{center}
+  In this case $[[B]] = [[C1 -> C2]]$ and $[[t]] = [[\y:C1.t']]$.  By the induction hypothesis
+  $[[G1,x : A,G2, y : C1 |- t' : C2]]$ holds, and then by reapplying the rule
+  $[[G1,x : A,G2 |- \y : C1.t' : C2]]$ holds.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXimpEName$] {
+        [[G1,G2 |- t1 : C1 -> C2 && G1,G2 |- t2 : C1]]
+      }{[[G1,G2 |- t1 t2 : C2]]}
+    \end{math}
+  \end{center}
+  By the induction hypothesis $[[G1,x : A,G2 |- t1 : C1 -> C2]]$ and
+  $[[G1,x : A,G2 |- t2 : C1]]$, and thus by reapplying the rule
+  $[[G1,x : A,G2 |- t1 t2 : C2]]$.
+
+
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxIName$] {
+        [[(G1,G2 |- t1 : Box C1 , ... , G1,G2 |- tk : Box Ck) && x1 : Box C1,...,xk : Box Ck |- t' : C]]
+      }{[[G1,G2 |- letBox x1 : Box C1,...,xk : Box Ck be t1,...,tk in t' : Box C]]}
+    \end{math}
+  \end{center}
+  This case is similar to the previous case.  First, apply the
+  induction hypothesis to the left-most premise, and then reapply
+  the rule.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXboxEName$] {
+        [[G1,G2 |- t' : Box C]]
+      }{[[G1,G2 |- unbox t' : C]]}
+    \end{math}
+  \end{center}      
+  Similar to the previous cases.
+  
+\item[] Case.\\ 
+  \begin{center}
+    \scriptsize
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxIName$] {
+        [[(G1,G2 |- t1 : BBox C1 , ... , G1,G2 |- tk : BBox Ck) && x1 : BBox C1,...,xk : BBox Ck |- t' : C]]
+      }{[[G1,G2 |- letBBox x1 : BBox C1,...,xk : BBox Ck be t1,...,tk in t' : BBox C]]}
+    \end{math}
+  \end{center}
+  Similar to the case for $\TLLdruletyXXboxIName$.
+
+\item[] Case.\\ 
+  \begin{center}
+    \begin{math}
+      $$\mprset{flushleft}
+      \inferrule* [right=$\TLLdruletyXXbboxEName$] {
+        [[G1,G2 |- t' : BBox C]]
+      }{[[G1,G2 |- unbbox t' : C]]}
+    \end{math}
+  \end{center}
+  Similar to the case for $\TLLdruletyXXboxEName$.
+
+\end{itemize}
+% subsubsection proof_of_lemma:weakening (end)
