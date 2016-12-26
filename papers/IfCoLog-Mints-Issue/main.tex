@@ -689,28 +689,54 @@ We are interested in the term assignment system and its properties, as our aim i
 
 
 \section{The Categorical Model}
-There is not much essentially new in what we discuss here about the tense logic based on $\sf{CS4}$. Similar ideas were discussed by  Ghilardi and Meloni \cite{ghilardi1988}, Makkai and Reyes \cite{makkai1995} and more recently in by Dzik et al \cite{dziketal2012} and Menni and Smith \cite{Menni:2014}.
+There is not much essentially new in what we discuss here about the
+tense logic based on $\sf{CS4}$. Similar ideas were discussed by
+Ghilardi and Meloni \cite{ghilardi1988}, Makkai and Reyes
+\cite{makkai1995} and more recently in by Dzik et al
+\cite{dziketal2012} and Menni and Smith \cite{Menni:2014}.
 
-The upshot of our discussion is that the categorical model we advance is a cartesian closed category endowed with two adjunctions, corresponding to the (limited) universal and existential quantifications relative to the past and to the future that correspond to the two sets of  necessity and possibility operators.
+The upshot of our discussion is that the categorical model we advance
+is a cartesian closed category endowed with two adjunctions,
+corresponding to the (limited) universal and existential
+quantifications relative to the past and to the future that correspond
+to the two sets of necessity and possibility operators.
 %, relative to the past and the future.
 
-This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988} or \cite{makkai1995} (the idempotency simplification does not seen warranted by the proof theory). Secondly we see no reason to take our models as part of toposes, as we are not  interested in the extra structure provided by toposes. 
-However, we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories, as both \cite{dziketal2012} and  \cite{Menni:2014} do. Different proofs of the same theorem are important to us as they correspond to different morphisms in the category between the same objects. Thus we are interested in \textbf{proof relevant} semantics, not simply provability.
+This setting is though different enough from the precursors we know
+about, to justify this note. First, as discussed elsewhere
+\cite{bierman2000}, we see no reason for the monads/comonads emerging
+from this setting to be \textbf{idempotent} operators, as they are in
+\cite{ghilardi1988} or \cite{makkai1995} (the idempotency
+simplification does not seen warranted by the proof theory). Secondly
+we see no reason to take our models as part of toposes, as we are not
+interested in the extra structure provided by toposes.  However, we
+also see no reason to confine ourselves to algebraic models such as
+Heyting algebras with operators, as degenerate posetal categories, as
+both \cite{dziketal2012} and \cite{Menni:2014} do. Different proofs of
+the same theorem are important to us as they correspond to different
+morphisms in the category between the same objects. Thus we are
+interested in \textbf{proof relevant} semantics, not simply
+provability.
 
-We build our main definition in stages. A categorical model of propositional intuitionistic  logic is a \textbf{cartesian closed} category with coproducts $\cat{C}$.
+We build our main definition in stages. A categorical model of
+propositional intuitionistic logic is a \textbf{cartesian closed}
+category with coproducts $\cat{C}$.
 
-\iffalse
-\begin{definition}[modal S4 category]
-  \label{def:CS4-model}
-  Suppose $\cat{C}$ is a cartesian closed category equipped with  a monoidal comonad $(\Box, \varepsilon, \delta)$ and a
-  \emph{$\Box$-strong monad} with a strength natural transformation
-  \[
-  \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
-  \]
-  This is a model of CS4 as defined and showed sound and complete in \cite{bierman2000}. We call this structure a \textit{$\sf{S4}$ modal category}.
-  % as CS4 is the only kind of modality we consider in this note.
-\end{definition}
-\fi 
+%% \iffalse
+%% \begin{definition}[modal S4 category]
+%%   \label{def:CS4-model}
+%%   Suppose $\cat{C}$ is a cartesian closed category equipped with a
+%%   monoidal comonad $(\Box, \varepsilon, \delta)$ and a
+%%   \emph{$\Box$-strong monad} with a strength natural transformation
+%%   \[
+%%   \st{A}{B} : \Box A \pd \Diamond B \mto \Diamond(\Box A \pd B)
+%%   \]
+%%   This is a model of CS4 as defined and showed sound and complete in
+%%   \cite{bierman2000}. We call this structure a \textit{$\sf{S4}$ modal
+%%     category}.
+%%   % as CS4 is the only kind of modality we consider in this note.
+%% \end{definition}
+%% \fi 
 
 \begin{definition}[adjoint model]
   \label{def:CS4-single-adjoint-cat-model}
@@ -723,69 +749,80 @@ We build our main definition in stages. A categorical model of propositional int
   \end{enumerate}
 \end{definition}
 
-\iffalse
-Define an interpretation $\sem{\_} : \sf{DCS4} \to {\cal C}$ which takes the types and sequents of $\sf{DCS4}$ (over a basic 
-set of types)  to a model $\cal C$ as follows:
-\begin{align*}
-\sem{p} &= I(p) \mbox{  for $p$ a base type}\\
-\sem{\top} &= \top\\
-[A\times B] &= [A]\times [B]\\
-\sem{  A \to B  } &=  \sem{ A}  \to  \sem{ B }\\
-\sem{\Box A} &= F G(\sem{A})
-\end{align*}
- Throughout this section we will denote the separation of contexts
- into two disjoint contexts as $[[G]] = [[G' | D]]$ where $[[G']]$
- contains modal assumptions We extend this interpretation to to lists of types by saying
- that for a list $A_1, ..., A_n$ of types, the interpretation of the
- list is the list of the interpretations $\sem{A_1,...A_n} =
- (\sem{A_1}, . . . \sem{A_n})$ contexts $(A_1,...A_n | \ B_1,...B_n)$
- by adding boxes to the modal assumptions and defining $
- \sem{A_1,\ldots, A_n |\ B_1,\ldots,B_n} = \Box \sem{A_1}\times \cdots
- \times \Box \sem{A_n} \times \ \sem{B_1}\times \cdots \times\sem{B_n}
- $.  The interpretation will take a sequent $\Gamma|\Delta \vdash t :
- A$ to an arrow $ \sem {\Gamma|\Delta \vdash t : A} : \sem{
-   \Gamma|\Delta} \to \sem{A} $ in the adjoint modal category.
+%% \iffalse
+%% Define an interpretation $\sem{\_} : \sf{DCS4} \to {\cal C}$ which takes the types and sequents of $\sf{DCS4}$ (over a basic 
+%% set of types)  to a model $\cal C$ as follows:
+%% \begin{align*}
+%% \sem{p} &= I(p) \mbox{  for $p$ a base type}\\
+%% \sem{\top} &= \top\\
+%% [A\times B] &= [A]\times [B]\\
+%% \sem{  A \to B  } &=  \sem{ A}  \to  \sem{ B }\\
+%% \sem{\Box A} &= F G(\sem{A})
+%% \end{align*}
+%%  Throughout this section we will denote the separation of contexts
+%%  into two disjoint contexts as $[[G]] = [[G' | D]]$ where $[[G']]$
+%%  contains modal assumptions We extend this interpretation to to lists of types by saying
+%%  that for a list $A_1, ..., A_n$ of types, the interpretation of the
+%%  list is the list of the interpretations $\sem{A_1,...A_n} =
+%%  (\sem{A_1}, . . . \sem{A_n})$ contexts $(A_1,...A_n | \ B_1,...B_n)$
+%%  by adding boxes to the modal assumptions and defining $
+%%  \sem{A_1,\ldots, A_n |\ B_1,\ldots,B_n} = \Box \sem{A_1}\times \cdots
+%%  \times \Box \sem{A_n} \times \ \sem{B_1}\times \cdots \times\sem{B_n}
+%%  $.  The interpretation will take a sequent $\Gamma|\Delta \vdash t :
+%%  A$ to an arrow $ \sem {\Gamma|\Delta \vdash t : A} : \sem{
+%%    \Gamma|\Delta} \to \sem{A} $ in the adjoint modal category.
 
-The $\sf{DCS4}$ type theory can be soundly interpreted in an adjoint modal category as defined above.
-\begin{theorem}
-\label{thm:dcs4-sound}
-The type theory $\sf{DCS4}$  has  \textit{sound} models provided by the structures $\cal C$ defined above.
-In other words, given an adjoint modal category $\cal C$, using the above interpretation, the following hold:
-\begin{itemize}
-\item Assume $\Gamma|\Delta \vdash t : A$ in $\sf{DCS4}$. Then $\sem{\Gamma |
-    \Delta \vdash t \colon A}$ is a morphism  with domain
-  $\sem{\Gamma | \Delta}$ and codomain $\sem{A}$;
-\item Assume $\Gamma \vdash t = s \colon A$. Then $\sem{\Gamma
-  \vdash t \colon A} = \sem{\Gamma \vdash s \colon A}$.
-\end{itemize}
-\end{theorem}
+%% The $\sf{DCS4}$ type theory can be soundly interpreted in an adjoint modal category as defined above.
+%% \begin{theorem}
+%% \label{thm:dcs4-sound}
+%% The type theory $\sf{DCS4}$  has  \textit{sound} models provided by the structures $\cal C$ defined above.
+%% In other words, given an adjoint modal category $\cal C$, using the above interpretation, the following hold:
+%% \begin{itemize}
+%% \item Assume $\Gamma|\Delta \vdash t : A$ in $\sf{DCS4}$. Then $\sem{\Gamma |
+%%     \Delta \vdash t \colon A}$ is a morphism  with domain
+%%   $\sem{\Gamma | \Delta}$ and codomain $\sem{A}$;
+%% \item Assume $\Gamma \vdash t = s \colon A$. Then $\sem{\Gamma
+%%   \vdash t \colon A} = \sem{\Gamma \vdash s \colon A}$.
+%% \end{itemize}
+%% \end{theorem}
 
-We also have completeness of adjoint modal categories:
-\begin{theorem}
-\label{thm:diml-completeness}
-The adjoint modal models are \textit{complete} in the appropriate sense for the type theory $\sf{DCS4}$. This is to say, if
-we have equality of the interpretations $\sem{\Gamma \vdash t \colon A} = \sem{\Gamma  \vdash s \colon A}$
- (where \mbox{$\sem{\ } $} is the interpretation defined above)
- in the
-adjoint modal category $\cal C$
-   for any derived sequents $\Gamma \vdash t \colon A$
- and $\Gamma \vdash s \colon A$ 
- then we can derive the  equation in the type theory $\sf{DCS4}$ $\;$
- $\Gamma \vdash t = s \colon A$. 
-\end{theorem}
+%% We also have completeness of adjoint modal categories:
+%% \begin{theorem}
+%% \label{thm:diml-completeness}
+%% The adjoint modal models are \textit{complete} in the appropriate sense for the type theory $\sf{DCS4}$. This is to say, if
+%% we have equality of the interpretations $\sem{\Gamma \vdash t \colon A} = \sem{\Gamma  \vdash s \colon A}$
+%%  (where \mbox{$\sem{\ } $} is the interpretation defined above)
+%%  in the
+%% adjoint modal category $\cal C$
+%%    for any derived sequents $\Gamma \vdash t \colon A$
+%%  and $\Gamma \vdash s \colon A$ 
+%%  then we can derive the  equation in the type theory $\sf{DCS4}$ $\;$
+%%  $\Gamma \vdash t = s \colon A$. 
+%% \end{theorem}
 
-The proof is usual: we construct the term model and show that the basic rules of the calculus are mapped to 
-appropriate morphisms using  the categorical constructs. 
-\fi 
+%% The proof is usual: we construct the term model and show that the basic rules of the calculus are mapped to 
+%% appropriate morphisms using  the categorical constructs. 
+%% \fi
 
 \begin{definition}[tense calculus model]
-A model of $\sf{TCDS4}$ is a cartesian closed category $\cal{C}$ as above, together with two intertwined adjunctions $(\bLozenge\dashv \Box, \Diamond\dashv \blacksquare)$.  The adjunctions $(\bLozenge\dashv \Box)$ and $(\Diamond\dashv \blacksquare)$ on $\cal{C}$ are connected by Fisher-Servi axioms. 
+A categorical model of tense calculus dual context modal logic
+$\sf{TCDS4}$ is a cartesian closed category $\cal{C}$ as above,
+together with two intertwined adjunctions $(\bLozenge\dashv \Box,
+\Diamond\dashv \blacksquare)$.  The adjunctions $(\bLozenge\dashv
+\Box)$ and $(\Diamond\dashv \blacksquare)$ on $\cal{C}$ are connected
+by Fisher-Servi axioms.
 \end{definition}
 
-Categorical soundness is proved, as usual, checking the natural deduction rules preserve validity of the constructions used, i.e function spaces, products, coproducts and the two adjunctions. 
+This model is more general than the system, $\sf{TCS4}$, given above,
+and should be seen as an over approximation.  We give the more general
+model here to set the stage for future work. Categorical soundness is
+proved, as usual, checking the natural deduction rules preserve
+validity of the constructions used, i.e function spaces, products,
+coproducts and the two adjunctions.
 
-Define an interpretation $\sem{\_} : \sf{TCS4} \to {\cal C}$ which takes the types and sequents of $\sf{TCS4}$ (over a basic 
-set of types)  to a model $\cal C$ as follows:
+Define an interpretation $\sem{\_} : \sf{TCS4} \to {\cal C}$ which
+takes the types and sequents of $\sf{TCS4}$ (over a basic set of
+types) to a model $\cal C$ as follows:
 \begin{align*}
 \sem{p} &= I(p) \mbox{  for $p$ a base type}\\
 \sem{\top} &= \top\\
@@ -799,13 +836,13 @@ set of types)  to a model $\cal C$ as follows:
  the interpretation of the list is the list of the interpretations
  $\sem{A_1,...A_n} = (\sem{A_1}, . . . \sem{A_n})$ 
  %Secondly, we extend the definition to contexts
-contexts $(A_1,...A_n | \ B_1,...B_n)$ by adding (two kinds of) boxes to the modal
-assumptions and defining
-$ \sem{A_1,\ldots, A_n |\  B_1,\ldots,B_n} = 
-\Box \sem{A_1}\times \cdots \times \Box \sem{A_n} \times
-\  \sem{B_1}\times \cdots \times\sem{B_n} $.
-The interpretation will take a sequent $\Gamma|\Delta \vdash t : A$ to an arrow 
-$ \sem {\Gamma|\Delta \vdash t : A} : \sem{ \Gamma|\Delta} \to \sem{A} $
+%% contexts $(A_1,...A_n | \ B_1,...B_n)$ by adding (two kinds of) boxes to the modal
+%% assumptions and defining
+%% $ \sem{A_1,\ldots, A_n |\  B_1,\ldots,B_n} = 
+%% \Box \sem{A_1}\times \cdots \times \Box \sem{A_n} \times
+%% \  \sem{B_1}\times \cdots \times\sem{B_n} $.
+The interpretation will take a sequent $\Gamma \vdash t : A$ to an arrow 
+$ \sem {\Gamma \vdash t : A} : \sem{ \Gamma} \to \sem{A} $
 in the tense modal category.
 
 
@@ -822,29 +859,46 @@ In other words, given an tense adjoint modal category $\cal C$, using the above 
 \end{itemize}
 \end{theorem}
 
-
-
-We also have completeness of the tense modal categories.
+We also have completeness of the tense modal categories when the model
+is restricted to box modalities only.
 
 \begin{theorem}
 \label{thm:tcs4-completeness}
-The adjoint modal models are \textit{complete} in the appropriate sense for the type theory $\sf{TCS4}$. This is to say, if
-we have equality of the interpretations $\sem{\Gamma \vdash t \colon A} = \sem{\Gamma  \vdash s \colon A}$
- (where \mbox{$\sem{\ } $} is the interpretation defined above)
- in the
-tense modal category $\cal C$
-   for any derived sequents $\Gamma \vdash t \colon A$
- and $\Gamma \vdash s \colon A$ 
- then we can derive the  equation in the type theory $\sf{TCS4}$ $\;$
- $\Gamma \vdash t = s \colon A$. 
+The adjoint modal models are \textit{complete} in the appropriate
+sense for the type theory $\sf{TCS4}$. This is to say, if we have
+equality of the interpretations $\sem{\Gamma \vdash t \colon A} =
+\sem{\Gamma \vdash s \colon A}$ (where \mbox{$\sem{\ } $} is the
+interpretation defined above) in the tense modal category $\cal C$ for
+any derived sequents $\Gamma \vdash t \colon A$ and $\Gamma \vdash s
+\colon A$ then we can derive the equation in the type theory
+$\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
 \end{theorem}
-Categorical completeness requires providing an equivalence relation in the Lindenbaum algebra of the formulae, as usual in algebraic semantics. The basic calculations, for traditional algebraic semantics in Heyting algebras were provided, for instance, by Figallo et al in \cite{figallo2014}. \textit{Mutatis mutantis} these calculations will apply for our version of the system (no distribution of diamonds over disjunctions, no definibility of diamonds in terms of negated boxes).
+Categorical completeness requires providing an equivalence relation in
+the Lindenbaum algebra of the formulae, as usual in algebraic
+semantics. The basic calculations, for traditional algebraic semantics
+in Heyting algebras were provided, for instance, by Figallo et al in
+\cite{figallo2014}. \textit{Mutatis mutantis} these calculations will
+apply for our version of the system (no distribution of diamonds over
+disjunctions, no definibility of diamonds in terms of negated boxes).
 %\section{Applications}
 
 \section{Conclusions}
-We have described a tense version of constructive temporal logic, conceived as a basic category of propositions, together with two adjunctions, corresponding to two kinds of  necessity 
+We have described a tense version of constructive temporal logic,
+conceived as a basic category of propositions, together with two
+adjunctions, corresponding to two kinds of necessity
 %and possibility 
-modalities, in the future and in the past. This system is based on traditional work of Ewald in \cite{ewald1986}, where we simply do the modifications required to account for the  categorical model desired. This work is somewhat inspired by recent work on Functional Reactive Programming (FRP) by Jeltsch \cite{jeltsch2012} and Jeffrey \cite{jeffrey2012}, independently. Both of these works consider Curry-Howard correspondents to temporal logic, but they tend to concentrate on the \textit{next} temporal operator, originally considered in LTL (Linear Temporal Logic) as suggested by Davies. The temporal operators we consider are more abstract and one can hope that they may shed some light on the issues of FRP. But this is future work.
+modalities, in the future and in the past. This system is based on
+traditional work of Ewald in \cite{ewald1986}, where we simply do the
+modifications required to account for the categorical model
+desired. This work is somewhat inspired by recent work on Functional
+Reactive Programming (FRP) by Jeltsch \cite{jeltsch2012} and Jeffrey
+\cite{jeffrey2012}, independently. Both of these works consider
+Curry-Howard correspondents to temporal logic, but they tend to
+concentrate on the \textit{next} temporal operator, originally
+considered in LTL (Linear Temporal Logic) as suggested by Davies. The
+temporal operators we consider are more abstract and one can hope that
+they may shed some light on the issues of FRP. But this is future
+work.
 
 \bibliographystyle{plain}
 \bibliography{references}
