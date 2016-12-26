@@ -121,7 +121,7 @@ Dynamic Topological Logic with Kremer and others \cite{kremer2005},
 which might be related to what we describe here. However, this is the
 best that we can do in the time we have, so it will have to do.
 
-The second author does owe Grigori an intellectual dept.  While I
+The second author does owe Grigori an intellectual debt.  While I
 never got to meet him in person I do remember fondly reading his ``A
 Short Introduction to Intuitionistic Logic'' \cite{Mints:2000}.  His
 book gave me several realizations about intuitionistic logic that I
@@ -131,9 +131,9 @@ I thank him for that.
 \section{Motivation}
 Generally speaking, Temporal Logic is any system of rules and
 symbolism for representing, and reasoning about propositions qualified
-in terms of time.  Temporal logic is also one of the most traditional
+in terms of time.  Temporal logic is  one of the most traditional
 kinds of modal logic, introduced by Arthur Prior in the late 1950s,
-%, and for which important results were obtained by Hans Kamp. 
+%, and for which important results were obtained by Hans Kamp.
 but it is also one of the most controversial kinds of modal logic, as
 people have different intuitions about time, how to represent it, and how to reason about it.
 
@@ -149,7 +149,7 @@ with two temporal connectives (modal operators), $F$ and $P$,
 corresponding to ``sometime in the {F}uture" and ``sometime in the {P}ast". This has been called \textbf{tense logic} to distinguish it from other temporal systems.
 %Kamp's thesis introduced the binary temporal operators ``since" and ``until" and proved what came to be known as Kamp's theorem. Kamp's theorem shows that all temporal operators are definable in terms of ``since" and ``until" -- provided that theunderlying temporal structure is a continuous linear ordering and provided that the logical basis is classical.
 
-Ewald \cite{ewald1986}  produced a first version of an intuitionistically based temporal logic system.  The intuitive reading of the operators is very reasonable:
+Ewald \cite{ewald1986}  produced a first version of an intuitionistically based temporal logic system with not only operators for ``sometime in the {F}uture" and ``sometime in the {P}ast", but also for all future times and for all past times.  The intuitive reading of these operators is very reasonable:
 \begin{itemize}
 \item $P$ “It has at some time been the case that” 
 \item $F$ “It will at some time be the case that” 
@@ -157,12 +157,12 @@ Ewald \cite{ewald1986}  produced a first version of an intuitionistically based 
 \item $G$  “It will always be the case that” 
 \end{itemize}
 Ewald and most of the researchers that followed his path of constructivization of tense logic, did so assuming a symmetry between past and future. This symmetry, as well as the symmetry between universal and existential quantifiers, both in the past and in the future, are somewhat at odds with intuitionistic reasoning.
-In particular while an axiom like $A\to GPA$  ``What is, will always have been” makes sense in a constructive way of thinking, the dual one $A\to HFA$ paraphrased in the SEP as 
+In particular while an axiom like $A\to GPA$  ``What is, will always have been” makes sense in a constructive way of thinking, the dual one $A\to HFA$ paraphrased in the Stanford Encyclopedia of Philosophy  as 
 “What is, has always been going to be” feels very classical.
 
-Constructivizing a classical system is alwys prone to proliferation of the system, as is evident when considering the several versions on intuitionistic set theory, for example. In particular the basic constructive modal logic S4 (in Lewis original naming convention) has two main variants.
+Constructivizing a classical system is alwys prone to proliferation of the system, as is evident when considering the several versions on intuitionistic set theory, for example. In particular the basic constructive modal logic S4 (using Lewis' original naming convention) has two main variants.
 
-The first version of an intuitionsitic S4, originally presented by Dag Prawitz in his Natural Deduction book \cite{prawitz1965} does not satisfy the distributivity of the possibility operator $\Diamond$ over the logical disjunction. Prawitz's system satisfies neither the binary distribution nor   its nullary form, as given in Figure 1. We call this system $\sf CS4$. This system was investigated from a proof theoretical and categorical perspective in \cite{bierman2000}.
+The first version of an intuitionistic S4, originally presented by Dag Prawitz in his Natural Deduction book \cite{prawitz1965} does not satisfy the distributivity of the possibility operator $\Diamond$ over the logical disjunction. Prawitz's system satisfies neither the binary distribution nor   its nullary form, as given in Figure 1. We call this system $\sf CS4$. This system was investigated from a proof theoretical and categorical perspective in \cite{bierman2000}.
 
 \begin{figure}
   \begin{mdframed}
@@ -180,17 +180,16 @@ The first version of an intuitionsitic S4, originally presented by Dag Prawitz i
 \end{figure}
 
 
-The second main version of an intuitionistic modal S4 does enforce these distributivities and it was thoroughly investigated by A. Simpson in \cite{simpson1994}. This system is part of a framework for constructive modal logics, based on incorporating, as part of the syntax, the intended semantics of modal logics, as possible worlds. We call this system $\sf IS4$. 
+The second main version of an intuitionistic modal S4 does enforce these distributivities and it was thoroughly investigated in A. Simpson's thesis \cite{simpson1994}. This system is part of a framework for constructive modal logics, based on incorporating, as part of the syntax, the intended semantics of modal logics, as possible worlds. We call this system $\sf IS4$. 
 
 Ewald's tense logic system consists of a pair of Simpson-style S4 operators \cite{simpson1994},
-representing past and future over intuituionistic propositional logic. This is historically inaccurate, as Simpson based his systems in Ewald's, but it will serve to make some of our main points clearer below. The system we describe in this note is the tense logic system obtained by joining together two pairs of Prawitz-style S4 operators. So it satisfies some of the rules of Ewald's, but not all.
+representing past and future over intuituionistic propositional logic. This is historically inaccurate, as Simpson based his systems in Ewald's, but it will serve to make some of our main points clearer below. The system we describe in this note is the tense logic system obtained by joining together two pairs of Prawitz-style S4 operators. So it satisfies some of  Ewald's rules, but not all.
 
 Simpson remarks that intuitionistic or constructive modal logic is full of interesting questions. As he says:
 \begin{quote}
 Although much work has been done in the field, there is as yet no consensus on the correct viewpoint for considering intuitionistic modal logic.  In particular, there is no single semantic framework rivalling that of possible world semantics for classical modal logic. Indeed, there is not even any general agreement on what the \textbf{intuitionistic analogue} of the basic modal logic, K, is.
 \end{quote}
-In an intuitionistic logic we do not expect perfect duality between quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg
-P(x)$) or even between conjunction and disjunction (De Morgan laws do not hold for intuitionistic propositional logic). So one should not expect a perfect duality between possibility and necessity either. But just considerations from first principles do not seem to clearly indicate whether distributivity rules as the ones in Figure \ref{distrib} should hold or not. Hence it seems sensible to develop different kinds of systems in parallel, proving equivalences, whenever possible. In this paper we develop the idea of tense logic in the Prawitz style. We recall some deductive systems for this tense logic and provide categorical semantics for it.
+In an intuitionistic logic we do not expect perfect duality between quantifiers, ($\forall x.P(x)$ is not the same as $\neg \exists x.\neg P(x)$) or even between conjunction and disjunction (full De Morgan laws do not hold for intuitionistic propositional logic). So one should not expect a perfect duality between intuitionistic possibility and necessity either. But  considerations from first principles do not seem to  indicate clearly whether distributivity rules as the ones in Figure \ref{distrib} should hold or not. Hence it seems sensible to develop different kinds of systems in parallel, proving equivalences, whenever possible. In this paper we develop the idea of tense logic in  Prawitz' style. We recall some deductive systems for this tense logic and provide categorical semantics for it.
 
 
 Much has been done recently in the proof theory of constructive modal logics using more informative sequent systems (e.g. hypersequents, labelled sequents, nested sequents, tree-style sequents, etc..) In particular nested sequents have been used to produce `modal cubes' for the two variants of constructive modal logics described above. See the pictures below from \cite{arisaka2015,strasburger2013}.
@@ -205,10 +204,10 @@ Much has been done recently in the proof theory of constructive modal logics usi
 
 Sequent calculi  by themselves are not enough to provide us with Curry-Howard correspondences and/or term assignments for these systems. However, using the Prawitz S4 version of these modal systems we can easily produce a Curry-Howard correspondence and a categorical model for the Prawitz-style intuitionistic tense logic, our goal in this paper. 
 
-We start by recalling the system using axioms, plain sequent calculus and plain natural deduction. In the next section we described a term assignment based on the dual calculus described in \cite{icalp1998} and show some of its syntactic prooperties. The next section  introduces the categorical model (a cartesian closed category with two intertwinned adjunctions) and show the usual soundness and completeness results. Finally we discuss potential applications and  limitations of our constructive tense logic.
+We start by recalling the system using axioms, plain sequent calculus and plain natural deduction. In the next section we describe a term assignment based on the dual calculus described in \cite{icalp1998} and show some of its syntactic prooperties. The next section  introduces the categorical model (a cartesian closed category with two intertwinned adjunctions) and show the usual soundness and completeness results. Finally we discuss potential applications and  limitations of our constructive tense logic.
 
 \section{Tense Logic CS4-style}
-We build up to the constructive tense logic we are interested in $\sf{TCS4}$ in progressive steps. We start with the intuitionistic basis $\sf{LJ}$, add the modalities to get the constructive S4 system, $\sf{CS4}$, provide the dual context modification (to help with the reuse of libraries, amongst other things), obtaining dual $\sf{CS4}$, $\sf{DCS4}$ and then finally consider the two adjunctions to obtain the tense constructive system $\sf{TCS4}$.
+We build up to the constructive tense logic we are interested in $\sf{TCS4}$ in progressive steps. We start with the intuitionistic basis $\sf{LJ}$, add the modalities to get the constructive modal S4 system, $\sf{CS4}$, provide the dual context modification (to help with the reuse of libraries, amongst other things), obtaining dual $\sf{CS4}$, $\sf{DCS4}$ and then finally consider the two adjunctions to obtain the tense constructive system $\sf{TCS4}$.
 
 
 \subsection{Intuitionistic Sequent Calculus}
@@ -301,7 +300,7 @@ Figure~\ref{fig:LJ}.
 Sequents denoted $\Gamma \vdash C$ consist of a multiset of formulas, (written as either $\Gamma$, $\Delta$, or a numbered version of either), and a formula $C$. The intuitive meaning is that the conjunction of the formulas in $\Gamma$ entails the formula $C$. So far this is our intuitionistic basis.
 
 \subsection{Constructive modal \sf{S4}} 
-Next we recall the sequent calculus formalization of system CS4.  
+Next we recall the sequent calculus formalization of system CS4 as described in \cite{bierman2000}.  
 %This formalization  was proposed by Bierman and de Paiva \cite{CS4} and initially  was called  IS4 (for Intuitionistic system S4). This system gives rise to a complete family of systems, which are alternative to Simpson's intuitionistic systems~\cite{simpson1994}.
 %Simpson proposed in his thesis ~\cite{simpson1994}systems  of intuitonsitic modal logics, forming a framework starting from intuitionistic K. These  were also calledIK, IKT, IS4, IS5, etc, hence it made sense to call the family of systems originating with the S4 above, the family of constructive modal systems CS, and Bierman and de Paiva's system CS4.  This is for instance how new work, such as \cite{arisaka2015}, describes these systems.
 %The system CS4 does not satisfy thesetraditional distributions that are basic to classical modal logic. Some philosophical significance can be attached to thisdistribution, or lack thereof, and we discuss it later. First wedefine the system.
@@ -337,13 +336,13 @@ Next we recall the sequent calculus formalization of system CS4.
   We recap the modality rules in Figure~\ref{fig:CS4}. These, in addition to the initial set of inference rules, define the sequent calculus for CS4. In Figure 3, we write $\Box \Gamma$ for the sequence of boxed formulas $\Box G_1, \Box G_2, \ldots, \Box G_k$ where $\Gamma$ is the set $G_1, G_2, \ldots,  G_k$.
 
 Note that we do have right rules and left  rules for introducing the new modal operators $\Box$ (necessity) and $\Diamond$ (posssibility), but these rules are not as symmetric as the propositional ones. Most importantly, we have a local restriciton on the rule that introduces the $\Box$ operator: We can only introduce $\Box$ in the conclusion, if all the assumptions are already boxed. Also the rules for  the $\Diamond$ operator presuppose that you have already $\Box$ operators.
-This system is indeed constructive, $\Box$ and $\Diamond$ are independent logical operators and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, nor is $\Diamond A$ logically equivalent to $\lnot \Box \lnot A$.
+This system is indeed constructive, $\Box$ and $\Diamond$ are independent logical operators and  $\Box A$ is not logically equivalent to $\lnot \Diamond \lnot A$, nor is $\Diamond A$ logically equivalent to $\lnot \Box \lnot A$. Note that the necessity only fragment is well-behaved and closed, while to define the possibility operator you need a necessity operator in place.
 
 
-This system has a nice proof theory.
+This system has a reasonably nice proof theory.
 Bierman and de Paiva \cite{bierman2000} show that it has a Hilbert-style presentation,  a Natural Deduction presentation, as well as a sequent calculus presentation and these presentations are proved equivalent, that is, they prove the same theorems. The sequent calculus satisfies cut-elimination, an old result from Ohnishi and Matsumoto~\cite{ohnishi1957}, as well as the subformula property.
 The Natural Deduction formulation has a colourful history: one of its distinct features is that it was described in Prawitz' seminal book in Natural Deduction \cite{prawitz1965},
-hence it is  sometimes called Prawitz S4 intuitionistic  modal logic. Most interestingly the system has both Kripke and categorical semantics, described respectively in \cite{alechinaetal} and
+hence it is  sometimes called Prawitz' S4 intuitionistic  modal logic. Most interestingly the system has both Kripke and categorical semantics, described respectively in \cite{alechinaetal} and
 \cite{bierman2000} as well as an independent mathematical semantics in terms of simplicial sets, described by Goubault-Larrecq~\cite{goubault-larrecq}. 
 %, it has been used in several applications within programming
 %language theory \todo{Add references for these applications}.
@@ -351,7 +350,7 @@ hence it is  sometimes called Prawitz S4 intuitionistic  modal logic. Most inter
 
 
 \subsection{The dual context modal S4 calculus}
-An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will describe in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{multi-context} formulation of CS4 and the
+An equivalent (in terms of provability) but more type-theoretic system can be produced for the modal logic CS4. This is not so well-known, but this system can  be given a presentation in terms of a categorical adjunction, between two cartesian closed categories, as we will show in the next section. This categorical presentation has been described  both in \cite{bierman2000} and in \cite{icalp1998}, in the former, this is called the \textbf{multi-context} formulation of CS4 and the
 rules are given  in Figure~\ref{fig:DCS4}. (We prefer to call it the dual context sequent calculus.) Note that the rules are Natural Deduction rules, as it should be clear from the fact that they are introduction and elimination rules.
 
 \begin{figure}
@@ -381,7 +380,7 @@ rules are given  in Figure~\ref{fig:DCS4}. (We prefer to call it the dual contex
   \label{fig:DCS4}
 \end{figure}
 
-The main difference in the dual context formulation of CS4 is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The difficult rule of $\Box$ introduction now insists that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions. This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it has no assumptions whatsoever).
+The main difference between the system {\sf{CS4}} and  the dual context formulation of {\sf{CS4}}  is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The previously difficult rule of $\Box$ introduction now insists that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions (that is, all the assumptions of this conclusion must be modal). This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it must have no assumptions whatsoever).
 
 These rules have been shown by Benton \cite{benton1995} and Barber \cite{barber1997} to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials.  
 Instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors corresponding to operators  $\Diamond \vdash \Box $.
@@ -389,7 +388,7 @@ Instead of Linear Logic, we deal with constructive modal logic and the adjunctio
 \subsection{The tense CS4 calculus}
 Finally to get to the tense logic which is the main aim of this note, we need two such adjunctions, but intertwined. This follows the pattern explained by Ewald~\cite{ewald1986}. Thus $\Diamond$ is left-adjoint to $\blacksquare$ and $\blacklozenge$ is left-adjoint to $\Box$, where we are writing $\blacksquare$ for the operator we called past universal $H$ before and $\Box$ for the future necessity operator $G$. The past existential $P$ is $\Diamond$ and the future existential is $\bLozenge$  or $F$.
 
-A version of a  sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}.
+A   sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}.
 This can be  transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{fig:NDCS4}. The problem is that the last two adjunction rules in Figure \ref{fig:biCS4} (that relate the two sets of modalities) are extremely badly-behaved proof-theoretically (no cut-elimination and no subformula property even for cut-free proofs), as discussed in page 35 of the full report by Benton \cite{benton1995}. In fact they are the reason for moving to a dual context calculus, as explained in that paper and also  in Barber's work \cite{barber1997}. 
 
 The  dual context systems, as described in Barber and Benton's work, are proved equivalent to the system with a single modality operator, either `$!$' or `$\Box$'. This is because in Intuitionistic Linear Logic one is not usually interested in either \textit{why not?} `$?$' or `$\Diamond$'. (In Classical Linear Logic the possibility modality is defined by negation of the necessity modality, so this extension is easier to make \cite{paykin2014}.) Given that our main goal is to discuss categorical semantics, which we can do easily for the necessity modalities, in this note we  consider only two necessity-like modalities $\Box$ and $\blacksquare$, to begin with.
@@ -695,7 +694,7 @@ There is not much essentially new in what we discuss here about the tense logic 
 The upshot of our discussion is that the categorical model we advance is a cartesian closed category endowed with two adjunctions, corresponding to the (limited) universal and existential quantifications relative to the past and to the future that correspond to the two sets of  necessity and possibility operators.
 %, relative to the past and the future.
 
-This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988} or \cite{makkai1995}. Secondly we see no reason to take our models as part of toposes, as we are not  interested in extra structure provided by toposes. 
+This setting is though  different enough from the precursors we know about, to justify this note. First, as discussed elsewhere \cite{bierman2000}, we see no reason for the monads/comonads emerging from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988} or \cite{makkai1995} (the idempotency simplification does not seen warranted by the proof theory). Secondly we see no reason to take our models as part of toposes, as we are not  interested in the extra structure provided by toposes. 
 However, we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories, as both \cite{dziketal2012} and  \cite{Menni:2014} do. Different proofs of the same theorem are important to us as they correspond to different morphisms in the category between the same objects. Thus we are interested in \textbf{proof relevant} semantics, not simply provability.
 
 We build our main definition in stages. A categorical model of propositional intuitionistic  logic is a \textbf{cartesian closed} category with coproducts $\cat{C}$.
