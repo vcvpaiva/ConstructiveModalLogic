@@ -734,19 +734,18 @@ set of types)  to a model $\cal C$ as follows:
 \sem{  A \to B  } &=  \sem{ A}  \to  \sem{ B }\\
 \sem{\Box A} &= F G(\sem{A})
 \end{align*}
- We extend this interpretation to 
- to lists of types by saying that for a list $A_1, ..., A_n$ of types,
- the interpretation of the list is the list of the interpretations
- $\sem{A_1,...A_n} = (\sem{A_1}, . . . \sem{A_n})$ 
- %Secondly, we extend the definition to contexts
-contexts $(A_1,...A_n | \ B_1,...B_n)$ by adding boxes to the modal
-assumptions and defining
-$ \sem{A_1,\ldots, A_n |\  B_1,\ldots,B_n} = 
-\Box \sem{A_1}\times \cdots \times \Box \sem{A_n} \times
-\  \sem{B_1}\times \cdots \times\sem{B_n} $.
-The interpretation will take a sequent $\Gamma|\Delta \vdash t : A$ to an arrow 
-$ \sem {\Gamma|\Delta \vdash t : A} : \sem{ \Gamma|\Delta} \to \sem{A} $
-in the adjoint modal category.
+ Throughout this section we will denote the separation of contexts
+ into two disjoint contexts as $[[G]] = [[G' | D]]$ where $[[G']]$
+ contains modal assumptions We extend this interpretation to to lists of types by saying
+ that for a list $A_1, ..., A_n$ of types, the interpretation of the
+ list is the list of the interpretations $\sem{A_1,...A_n} =
+ (\sem{A_1}, . . . \sem{A_n})$ contexts $(A_1,...A_n | \ B_1,...B_n)$
+ by adding boxes to the modal assumptions and defining $
+ \sem{A_1,\ldots, A_n |\ B_1,\ldots,B_n} = \Box \sem{A_1}\times \cdots
+ \times \Box \sem{A_n} \times \ \sem{B_1}\times \cdots \times\sem{B_n}
+ $.  The interpretation will take a sequent $\Gamma|\Delta \vdash t :
+ A$ to an arrow $ \sem {\Gamma|\Delta \vdash t : A} : \sem{
+   \Gamma|\Delta} \to \sem{A} $ in the adjoint modal category.
 
 The $\sf{DCS4}$ type theory can be soundly interpreted in an adjoint modal category as defined above.
 \begin{theorem}
