@@ -1,6 +1,12 @@
-\subsubsection{Proof of Lemma~\ref{lemma:substitution_for_typing}}
+\subsubsection{Proof of Substitution for Typing}
 \label{sec:proof_of_lemma:substitution_for_typing}
-Suppose $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$ and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.  We case
+
+\begin{lemma*}[Substitution for Typing]
+  If $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$, and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.
+\end{lemma*}
+
+\begin{proof}
+  Suppose $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$ and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.  We case
 split on the structure of the latter.
 \begin{itemize}
 \item[] Case.\\ 
@@ -121,11 +127,18 @@ split on the structure of the latter.
   \end{center}
   This case is similar to the case for $\TLLdruletyXXboxEName$.
 \end{itemize}
+\end{proof}
 % subsubsection proof_of_lemma_substitution_for_typing (end)
 
-\subsubsection{Proof of Lemma~\ref{lemma:weakening}}
+\subsubsection{Proof of Weakening}
 \label{subsubsec:proof_of_lemma:weakening}
-This proof is by induction on the form of $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+
+\begin{lemma*}[Weakening]
+  If $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$, then $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+\end{lemma*}
+
+\begin{proof}
+  This proof is by induction on the form of $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
 \begin{itemize}
 \item[] Case.\\ 
   \begin{center}
@@ -227,4 +240,5 @@ This proof is by induction on the form of $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \G
   Similar to the case for $\TLLdruletyXXboxEName$.
 
 \end{itemize}
+\end{proof}
 % subsubsection proof_of_lemma:weakening (end)

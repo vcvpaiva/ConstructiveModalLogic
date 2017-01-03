@@ -1,6 +1,12 @@
-\subsubsection{Proof of Lemma~\ref{lemma:substitution_for_typing}}
+\subsubsection{Proof of Substitution for Typing}
 \label{sec:proof_of_lemma:substitution_for_typing}
-Suppose $[[G1 |- t1 : A]]$ and $[[G1, x : A,G2 |- t2 : B]]$.  We case
+
+\begin{lemma*}[Substitution for Typing]
+  If $[[G1 |- t1 : A]]$, and $[[G1, x : A,G2 |- t2 : B]]$, then $[[G1,G2 |- [t1/x]t2 : B]]$.
+\end{lemma*}
+
+\begin{proof}
+  Suppose $[[G1 |- t1 : A]]$ and $[[G1, x : A,G2 |- t2 : B]]$.  We case
 split on the structure of the latter.
 \begin{itemize}
 \item[] Case.\\ 
@@ -123,11 +129,18 @@ split on the structure of the latter.
   \end{center}
   This case is similar to the case for $\TLLdruletyXXboxEName$.
 \end{itemize}
+\end{proof}
 % subsubsection proof_of_lemma_substitution_for_typing (end)
 
-\subsubsection{Proof of Lemma~\ref{lemma:weakening}}
+\subsubsection{Proof of Weakening}
 \label{subsubsec:proof_of_lemma:weakening}
-This proof is by induction on the form of $[[G1,G2 |- t : B]]$.
+
+\begin{lemma*}[Weakening]
+  If $[[G1,G2 |- t : B]]$, then $[[G1,x : A,G2 |- t : B]]$.
+\end{lemma*}
+
+\begin{proof}
+  This proof is by induction on the form of $[[G1,G2 |- t : B]]$.
 \begin{itemize}
 \item[] Case.\\ 
   \begin{center}
@@ -229,4 +242,5 @@ This proof is by induction on the form of $[[G1,G2 |- t : B]]$.
   Similar to the case for $\TLLdruletyXXboxEName$.
 
 \end{itemize}
+\end{proof}
 % subsubsection proof_of_lemma:weakening (end)
