@@ -101,7 +101,6 @@ types) to a model $\cal C$ as follows:
 \begin{align*}
 \sem{p} &= I(p) \mbox{  for $p$ a base type}\\
 \sem{\top} &= \top\\
-[A\times B] &= [A]\times [B]\\
 \sem{  A \to B  } &=  \sem{ A}  \to  \sem{ B }\\
 \sem{\Box A} &= F G(\sem{A})\\
 \sem{\blacksquare A} &= F' G'(\sem{A})
@@ -130,9 +129,46 @@ following hold:
 \begin{proof}
   The first part holds by induction on $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$, and the
   second by induction on $ \Gamma  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{A} $.  We give a few cases of
-  each part here, but the others are similar.
+  each part here, but the others are similar.  Throughout the proof we
+  drop semantic brackets on objects, and we assume without loss of
+  generality that the interpretation of contexts are left associated.
+  We begin with the first part.
 
-  
+  \begin{itemize}
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXax{}
+    \]
+    It suffices to find a morphism $\Gamma \times \TLLnt{A} \mto^{f}
+    \TLLnt{A}$.  Choose $f = \pi_2$ (the $2$nd projection).
+
+    \item[] Case.\\
+    \[
+    \TLLdruletyXXimpI{}
+    \]
+    By the induction hypothesis we know that there is a morphism
+    $\Gamma \times \TLLnt{A} \mto^f \TLLnt{B}$.  Then it suffices to find a
+    morphism $\Gamma \mto^{g} (\TLLnt{A}  \to  \TLLnt{B})$.  Choose $g =
+    \mathsf{curry}(f)$ where $\mathsf{curry} :
+    \mathsf{Hom}_{\cat{C}}( \TLLnt{A}  \times  \TLLnt{B} ,\TLLnt{C}) \mto
+    \mathsf{Hom}_{\cat{C}}(\TLLnt{A},\TLLnt{B}  \to  \TLLnt{C})$ is a natural isomorphism
+    that exists because $\cat{C}$ is closed.
+
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXboxI{}
+    \]
+
+    By the induction hypothesis we have the family of morphisms $\Gamma
+    \mto^{f_1} \Box \, \TLLnt{A_{{\mathrm{1}}}}, \ldots, \Gamma \mto^{f_k} \Box \, \TLLnt{A_{\TLLmv{k}}}$, and
+    $\Box \, \TLLnt{A_{{\mathrm{1}}}} \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}} \mto^f \TLLnt{B}$.  It
+    suffices to find a morphism $\Gamma \mto^{g} \TLLnt{B}$.  Choose $g =
+    \langle f_1,\ldots,f_k \rangle$, where $\langle -,-\rangle :
+    \mathsf{Hom}_{\cat{C}}(C,A_1) \times \cdots \times
+    \mathsf{Hom}_{\cat{C}}(C,A_k) \mto \mathsf{Hom}_{\cat{C}}(C,A_1
+    \times \cdots \times A_k)$ exists because $\cat{C}$ is cartesian.
+  \end{itemize}
+
 \end{proof}
 
 We  have completeness of the tense modal categories when the model is restricted to box modalities only.

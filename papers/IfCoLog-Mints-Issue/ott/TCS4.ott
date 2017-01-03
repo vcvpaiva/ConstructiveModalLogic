@@ -49,6 +49,8 @@ grammar
     | BBox A           ::   :: Necessity              {{ com necessity }}
     | Dia A            ::   :: PPossibility             {{ com past possibility }}
     | BDia A           ::   :: Possibility            {{ com possibility }}
+    | A x B            ::   :: Conjunction
+    {{tex [[A]] \times [[B]] }}
     | A -> B           ::   :: Arrow                   {{ com implication }}
     | A -o B           ::   :: LArrow
     {{tex [[A]] \limp [[B]] }}
