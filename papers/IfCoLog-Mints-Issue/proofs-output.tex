@@ -242,3 +242,97 @@ split on the structure of the latter.
 \end{itemize}
 \end{proof}
 % subsubsection proof_of_lemma:weakening (end)
+
+\subsubsection{Proof of Soundness of $\sf{TCS4}$}
+\label{subsec:proof_of_soundness_of_tcs4}
+
+\begin{theorem*}
+The type theory $\sf{TCS4}$ has \textit{sound} models provided by the
+structures $\cal C$ defined above.  In other words, given a tense
+adjoint modal category $\cal C$, using the above interpretation, the
+following hold:
+\begin{itemize}
+\item Assume $\Gamma \vdash t : A$ in $\sf{TCS4}$. Then $\sem{\Gamma
+  \vdash t \colon A}$ is a morphism with domain $\sem{\Gamma}$ and
+  codomain $\sem{A}$;
+\item Assume $\Gamma \vdash t = s \colon A$. Then $\sem{\Gamma
+  \vdash t \colon A} = \sem{\Gamma \vdash s \colon A}$.
+\end{itemize}
+\end{theorem*}
+\begin{proof}
+  The first part holds by induction on $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$, and the
+  second by induction on $ \Gamma  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{A} $.  We give a few cases of
+  each part here, but the others are similar.  Throughout the proof we
+  drop semantic brackets on objects, and we assume without loss of
+  generality that the interpretation of contexts are left associated.
+  We begin with the first part.
+
+  \begin{itemize}
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXax{}
+    \]
+    It suffices to find a morphism $\Gamma \times \TLLnt{A} \mto^{f}
+    \TLLnt{A}$.  Choose $f = \pi_2$ (the $2$nd projection).
+
+    \item[] Case.\\
+    \[
+    \TLLdruletyXXimpI{}
+    \]
+    By the induction hypothesis we know that there is a morphism
+    $\Gamma \times \TLLnt{A} \mto^f \TLLnt{B}$.  Then it suffices to find a
+    morphism $\Gamma \mto^{g} (\TLLnt{A}  \to  \TLLnt{B})$.  Choose $g =
+    \mathsf{curry}(f)$ where $\mathsf{curry} :
+    \mathsf{Hom}_{\cat{C}}( \TLLnt{A}  \times  \TLLnt{B} ,\TLLnt{C}) \mto
+    \mathsf{Hom}_{\cat{C}}(\TLLnt{A},\TLLnt{B}  \to  \TLLnt{C})$ is a natural isomorphism
+    that exists because $\cat{C}$ is closed.
+
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXboxI{}
+    \]
+
+    By the induction hypothesis we have the family of morphisms $\Gamma
+    \mto^{f_1} \Box \, \TLLnt{A_{{\mathrm{1}}}}, \ldots, \Gamma \mto^{f_k} \Box \, \TLLnt{A_{\TLLmv{k}}}$, and
+    $\Box \, \TLLnt{A_{{\mathrm{1}}}} \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}} \mto^f \TLLnt{B}$.  It
+    suffices to find a morphism $\Gamma \mto^{g} \TLLnt{B}$.  Choose $g =
+    \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f$, where $\langle -,-\rangle :
+    \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}) \times \cdots \times
+    \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{\TLLmv{k}}}) \mto \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}
+    \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}})$ exists because $\cat{C}$ is cartesian.
+
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXboxE{}
+    \]
+    By the induction hypothesis there is a morphism $\Gamma \mto^f
+    \Box \, \TLLnt{B}$.  It suffices to find a morphism $\Gamma \mto^{g}
+    \TLLnt{B}$.  Choose $g = f;\eta_B$ where $\eta_B : \Box \, \TLLnt{B} \mto \TLLnt{B}$
+    is the unit of the adjunction.
+  \end{itemize}
+
+  We now turn to the second part:
+  \begin{itemize}
+  \item[] Case.\\
+    {\scriptsize
+      \begin{mathpar}
+        \TLLdruleeqXXunbox{}
+      \end{mathpar}
+    }
+    Using the interpretations given above we must show that:
+    \[
+    \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f;\eta_B = \langle f_1,\ldots,f_k \rangle;f : \Gamma \mto \TLLnt{B}.
+    \]
+    This holds by the following equational reasoning:
+    \[\small
+    \begin{array}{lll}
+      \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f;\eta_B
+      & = & \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\eta;f\\
+      & = & \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;(\eta_{\TLLnt{A_{{\mathrm{1}}}}} \times \cdots \times \eta_{\TLLnt{A_{\TLLmv{k}}}});f\\
+      & = & \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}};\eta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}};\eta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;f\\
+      & = & \langle f_1,\ldots,f_k \rangle;f\\
+    \end{array}
+    \]
+  \end{itemize}
+\end{proof}
+% subsubsection proof_of_soundness_of_tcs4 (end)
