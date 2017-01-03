@@ -163,12 +163,45 @@ following hold:
     \mto^{f_1} \Box \, \TLLnt{A_{{\mathrm{1}}}}, \ldots, \Gamma \mto^{f_k} \Box \, \TLLnt{A_{\TLLmv{k}}}$, and
     $\Box \, \TLLnt{A_{{\mathrm{1}}}} \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}} \mto^f \TLLnt{B}$.  It
     suffices to find a morphism $\Gamma \mto^{g} \TLLnt{B}$.  Choose $g =
-    \langle f_1,\ldots,f_k \rangle$, where $\langle -,-\rangle :
-    \mathsf{Hom}_{\cat{C}}(C,A_1) \times \cdots \times
-    \mathsf{Hom}_{\cat{C}}(C,A_k) \mto \mathsf{Hom}_{\cat{C}}(C,A_1
-    \times \cdots \times A_k)$ exists because $\cat{C}$ is cartesian.
+    \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f$, where $\langle -,-\rangle :
+    \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}) \times \cdots \times
+    \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{\TLLmv{k}}}) \mto \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}
+    \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}})$ exists because $\cat{C}$ is cartesian.
+
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXboxE{}
+    \]
+    By the induction hypothesis there is a morphism $\Gamma \mto^f
+    \Box \, \TLLnt{B}$.  It suffices to find a morphism $\Gamma \mto^{g}
+    \TLLnt{B}$.  Choose $g = f;\eta_B$ where $\eta_B : \Box \, \TLLnt{B} \mto \TLLnt{B}$
+    is the unit of the adjunction.
   \end{itemize}
 
+  We now turn to the second part:
+  \begin{itemize}
+  \item[] Case.\\
+    {\scriptsize
+      \begin{mathpar}
+        \TLLdruleeqXXunbox{}
+      \end{mathpar}
+    }
+    Using the interpretations given above we must show that:
+    \[
+    \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f;\eta_B = \langle f_1,\ldots,f_k \rangle;f : \Gamma \mto \TLLnt{B}.
+    \]
+    This holds by the following equational reasoning:
+    \[\small
+    \begin{array}{lll}
+      \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f;\eta_B
+      & = & \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\eta;f\\
+      & = & \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;(\eta_{\TLLnt{A_{{\mathrm{1}}}}} \times \cdots \times \eta_{\TLLnt{A_{\TLLmv{k}}}});f\\
+      & = & \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}};\eta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}};\eta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;f\\
+      & = & \langle f_1,\ldots,f_k \rangle;f\\
+    \end{array}
+    \]
+  \end{itemize}
+  
 \end{proof}
 
 We  have completeness of the tense modal categories when the model is restricted to box modalities only.

@@ -163,12 +163,45 @@ following hold:
     \mto^{f_1} [[Box A1]], \ldots, [[G]] \mto^{f_k} [[Box Ak]]$, and
     $[[Box A1]] \times \cdots \times [[Box Ak]] \mto^f [[B]]$.  It
     suffices to find a morphism $[[G]] \mto^{g} [[B]]$.  Choose $g =
-    \langle f_1,\ldots,f_k \rangle$, where $\langle -,-\rangle :
-    \mathsf{Hom}_{\cat{C}}(C,A_1) \times \cdots \times
-    \mathsf{Hom}_{\cat{C}}(C,A_k) \mto \mathsf{Hom}_{\cat{C}}(C,A_1
-    \times \cdots \times A_k)$ exists because $\cat{C}$ is cartesian.
+    \langle f_1;\delta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]} \rangle;\mathsf{m};\Box f$, where $\langle -,-\rangle :
+    \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_1]]) \times \cdots \times
+    \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_k]]) \mto \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_1]]
+    \times \cdots \times [[Box A_k]])$ exists because $\cat{C}$ is cartesian.
+
+  \item[] Case.\\
+    \[
+    \TLLdruletyXXboxE{}
+    \]
+    By the induction hypothesis there is a morphism $[[G]] \mto^f
+    [[Box B]]$.  It suffices to find a morphism $[[G]] \mto^{g}
+    [[B]]$.  Choose $g = f;\eta_B$ where $\eta_B : [[Box B]] \mto [[B]]$
+    is the unit of the adjunction.
   \end{itemize}
 
+  We now turn to the second part:
+  \begin{itemize}
+  \item[] Case.\\
+    {\scriptsize
+      \begin{mathpar}
+        \TLLdruleeqXXunbox{}
+      \end{mathpar}
+    }
+    Using the interpretations given above we must show that:
+    \[
+    \langle f_1;\delta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]} \rangle;\mathsf{m};\Box f;\eta_B = \langle f_1,\ldots,f_k \rangle;f : [[G]] \mto [[B]].
+    \]
+    This holds by the following equational reasoning:
+    \[\small
+    \begin{array}{lll}
+      \langle f_1;\delta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]} \rangle;\mathsf{m};\Box f;\eta_B
+      & = & \langle f_1;\delta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]} \rangle;\mathsf{m};\eta;f\\
+      & = & \langle f_1;\delta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]} \rangle;(\eta_{[[A1]]} \times \cdots \times \eta_{[[Ak]]});f\\
+      & = & \langle f_1;\delta_{[[A1]]};\eta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]};\eta_{[[Ak]]} \rangle;f\\
+      & = & \langle f_1,\ldots,f_k \rangle;f\\
+    \end{array}
+    \]
+  \end{itemize}
+  
 \end{proof}
 
 We  have completeness of the tense modal categories when the model is restricted to box modalities only.
