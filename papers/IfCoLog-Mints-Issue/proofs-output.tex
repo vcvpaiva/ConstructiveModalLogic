@@ -336,3 +336,77 @@ following hold:
   \end{itemize}
 \end{proof}
 % subsubsection proof_of_soundness_of_tcs4 (end)
+
+\subsubsection{Proof of Completeness for $\sf{TCS4}$}
+\label{subsec:proof_of_completeness_for_tcs4}
+
+\begin{theorem*}
+\label{thm:tcs4-completeness}
+The adjoint modal models are \textit{complete} in the appropriate
+sense for the type theory $\sf{TCS4}$. This is to say, if we have
+equality of the interpretations $\sem{\Gamma \vdash t \colon A} =
+\sem{\Gamma \vdash s \colon A}$ (where \mbox{$\sem{\ } $} is the
+interpretation defined above) in the tense modal category $\cal C$ for
+any derived sequents $\Gamma \vdash t \colon A$ and $\Gamma \vdash s
+\colon A$ then we can derive the equation in the type theory
+$\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
+\end{theorem*}
+
+\begin{proof}
+  This result can be shown by constructing a cartesian closed category
+  with two comonads, one for $\Box$ and one for $\BBox$, internal to
+  $\sf{TCS4}$ where the objects are types and the morphisms are
+  $\alpha$-equivalence classes of terms in context $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$.
+  This category is called the syntactic category.
+
+  Showing that this syntactic category is cartesian closed is well
+  know, but we illustrate the proof by giving the case for the $\Box$
+  comonad.
+
+  We denote a morphism $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$ by the $\alpha$-equivalence
+  class:
+  \[
+  [\vec{x},\TLLnt{t} ]^{\vec{\TLLnt{A}},\vec{\TLLnt{B}}} = \vec{x}:\vec{\TLLnt{A}} \vdash \TLLnt{t} : \wedge\vec{\TLLnt{B}}
+  \]
+  where $\wedge\vec{\TLLnt{B}} = \TLLnt{B_{{\mathrm{1}}}} \wedge \cdots \wedge \TLLnt{B_{\TLLmv{i}}}$.  We
+  then have the following definitions:
+  \begin{itemize}
+  \item (Identity) $\id = [\vec{x},\wedge\vec{x}]^{\vec{\TLLnt{A}},\vec{\TLLnt{A}}}$
+  \item (Composition) Given morphisms $[\vec{x},\TLLnt{t} ]^{\vec{A},\vec{B}}$ and
+    $[\vec{y},\TLLnt{t'} ]^{\vec{B},\vec{C}}$, their composition
+    $[\vec{x},\TLLnt{t} ]^{\vec{A},\vec{B}};[\vec{y},\TLLnt{t'} ]^{\vec{B},\vec{C}} =
+    [\vec{y},[ \TLLnt{t_{\TLLmv{i}}} / x_i ] \TLLnt{t'} ]^{\vec{A},\vec{C}}$, where
+    $\TLLnt{t} = \wedge\vec{\TLLnt{t_{\TLLmv{i}}}}$.
+  \item (Equality) Two parallel morphisms $[\vec{x},\TLLnt{t}
+  ]^{\vec{A},\vec{B}}$ and $[\vec{x},\TLLnt{t'} ]^{\vec{A},\vec{B}}$ are
+    equal if and only if
+    $\vec{x} : \vec{A} \vdash \TLLnt{t} = \TLLnt{t'} : \wedge\vec{B}$.
+  \end{itemize}
+  Using basic facts about substitution one can show that composition
+  preserves identity and is associative.
+
+  We first much show that $\Box$ is an endofunctor on the syntactic
+  category.  Suppose we have the morphism
+  $[\vec{x},t]^{\vec{A},\vec{B}}$.  Then we must construct a morphism
+  $[\vec{y},t']^{\overrightarrow{\Box \, \TLLnt{A}},\overrightarrow{\Box \, \TLLnt{B}}}$.  The latter morphism can be defined in two steps.
+  The first is to change the $\vec{A}$ to $\overrightarrow{\Box \, \TLLnt{A}}$:
+  \[
+    [ \vec{y},\wedge \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}} ]^{\overrightarrow{\Box \, \TLLnt{A}},\vec{A}};[\vec{x},t]^{\vec{A},\vec{B}}
+    = [\vec{y}, [ \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}}/\mathit{x_{\TLLmv{i}}} ] \TLLnt{t} ]^{\overrightarrow{\Box \, \TLLnt{A}},\vec{B}}
+    \]
+    The second step is to change $\vec{B}$ into $\overrightarrow{\Box \, \TLLnt{B}}$:
+    \[
+      [\vec{y},\wedge (\mathsf{let}_\Box\,\vec{y}:\overrightarrow{\Box \, \TLLnt{A}}\,\mathsf{be}\,\vec{y}\,\mathsf{in}\,[ \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}}/\mathit{x_{\TLLmv{i}}} ]\TLLnt{t_{\TLLmv{i}}})]^{\overrightarrow{\Box \, \TLLnt{A}},\overrightarrow{\Box \, \TLLnt{B}}}
+      \]
+  Through straightforward calculations it is possible to show that
+  this construction preserves identities and composition.
+
+  The unit of the comonad is defined as $[ y,\mathsf{unbox}_\Box\, \, \mathit{y} ]^{\Box \, \TLLnt{A},A}$.  Next we need to define a morphism between $\Box \, \TLLnt{A}$ and $\Box \, \Box \, \TLLnt{A}$:
+  \[
+  [y, \mathsf{let}_\Box\, \mathit{y}  \TLLsym{:}  \Box \, \TLLnt{A} \,\mathsf{be}\, \mathit{y} \,\mathsf{in}\, \mathit{y}  ]^{\Box \, \TLLnt{A},\Box \, \Box \, \TLLnt{A}}
+  \]
+  Finally, using these constructions it is possible to show the usual
+  diagrams defining the comonad $\Box$ hold.  The definition for
+  $\BBox$ is similar.
+\end{proof}
+% subsubsection proof_of_completeness_for_tcs4 (end)

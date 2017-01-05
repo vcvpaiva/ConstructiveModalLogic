@@ -101,6 +101,8 @@ types) to a model $\cal C$ as follows:
 \begin{align*}
 \sem{p} &= I(p) \mbox{  for $p$ a base type}\\
 \sem{\top} &= \top\\
+\sem{  A \wedge B  } &=  \sem{ A}  \times  \sem{ B }\\
+\sem{  A \lor B  } &=  \sem{ A}  +  \sem{ B }\\
 \sem{  A \to B  } &=  \sem{ A}  \to  \sem{ B }\\
 \sem{\Box A} &= F G(\sem{A})\\
 \sem{\blacksquare A} &= F' G'(\sem{A})
@@ -130,7 +132,7 @@ following hold:
   The first part holds by induction on $[[G |- t : A]]$, and the
   second by induction on $[[G |- t = s : A]]$, but uses the first
   part.  Please see Appendix~\ref{subsec:proof_of_soundness_of_tcs4}
-  for the complete proof.
+  for the complete proof.  
 \end{proof}
 
 We  have completeness of the tense modal categories when the model is restricted to box modalities only.
@@ -146,6 +148,16 @@ any derived sequents $\Gamma \vdash t \colon A$ and $\Gamma \vdash s
 \colon A$ then we can derive the equation in the type theory
 $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
 \end{theorem}
+\begin{proof}
+  This result can be shown by constructing a cartesian closed category
+  with coproducts and two comonads, one for $\Box$ and one for
+  $\BBox$, internal to $\sf{TCS4}$ where the objects are types and the
+  morphisms are $\alpha$-equivalence classes of terms in context $[[G
+      |- t : A]]$.  This category is called the syntactic
+  category. Please see
+  Appendix~\ref{subsec:proof_of_completeness_for_tcs4} for the
+  remainder of the proof.
+\end{proof}
 Categorical completeness requires providing an equivalence relation in
 the Lindenbaum algebra of the formulae, as usual in algebraic
 semantics. The basic calculations, for traditional algebraic semantics
