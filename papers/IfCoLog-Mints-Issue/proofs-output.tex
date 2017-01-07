@@ -6,10 +6,11 @@
 \end{lemma*}
 
 \begin{proof}
-  Suppose $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$ and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.  We case
-split on the structure of the latter.
+  Suppose $\Gamma_{{\mathrm{1}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$ and $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$.  We
+  case split on the structure of the latter, but only show the
+  non-trivial cases.  All other cases are similar.
 \begin{itemize}
-\item[] Case.\\ 
+\item[] Case Identity.\\ 
   \begin{center}
     \begin{math}
       $$\mprset{flushleft}
@@ -31,21 +32,7 @@ split on the structure of the latter.
   substitution.  Thus, $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{B}$ holds, because we
   know $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{A}$.
 
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\perp_\mathcal{E}$] {
-        \ 
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \perp  \vdash   \mathsf{contra}   \TLLsym{:}  \TLLnt{C}}
-    \end{math}
-  \end{center}
-  We must show that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \perp  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}   \mathsf{contra}   \TLLsym{:}  \TLLnt{C}$ holds,
-  because $\TLLnt{B} = \TLLnt{C}$ and $\TLLnt{t_{{\mathrm{2}}}} =  \mathsf{contra} $, but this holds
-  by reapplying the rule.
-
-
-\item[] Case.\\ 
+\item[] Case Implication Introduction.\\ 
   \begin{center}
     \begin{math}
       $$\mprset{flushleft}
@@ -59,7 +46,7 @@ split on the structure of the latter.
   $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t}   \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.  However, by the definition of substitution
   we know $ \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t}  = \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t}   \TLLsym{)}$, and thus, we obtain our result.
 
-\item[] Case.\\ 
+\item[] Case Implication Elimination.\\ 
   \begin{center}
     \begin{math}
       $$\mprset{flushleft}
@@ -74,7 +61,7 @@ split on the structure of the latter.
   by the definition of substitution $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}  \TLLnt{t'_{{\mathrm{1}}}} \, \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.
   
   
-\item[] Case.\\ 
+\item[] Case. $\Box$ Introduction.\\ 
   \begin{center}
     \scriptsize
     \begin{math}
@@ -92,40 +79,6 @@ split on the structure of the latter.
   \[ \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t'_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \Box \, \TLLnt{C}, \] but by the definition
   of substitution and the fact that $\TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLnt{t} = \TLLnt{t}$ because $\TLLnt{t}$ does not depend on $\mathit{x}$ we know that
   \[ \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}   \mathsf{let}_\Box\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \Box \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \Box \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t'_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t'_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{)}  \TLLsym{:}  \Box \, \TLLnt{C} \] holds.
-  
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXboxEName$] {
-        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \Box \, \TLLnt{C}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\Box\, \, \TLLnt{t}  \TLLsym{:}  \TLLnt{C}}
-    \end{math}
-  \end{center}
-  This case easily follows by first applying the induction hypothesis and reapplying the rule.
-
-\item[] Case.\\ 
-  \begin{center}
-    \scriptsize
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXbboxIName$] {
-         \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}   \quad  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{C}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t}   \TLLsym{:}  \blacksquare \, \TLLnt{C}}
-    \end{math}
-  \end{center}
-  This case is similar to the case for $\TLLdruletyXXboxIName$.
-
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXbboxEName$] {
-        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \blacksquare \, \TLLnt{C}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\blacksquare\, \, \TLLnt{t}  \TLLsym{:}  \TLLnt{C}}
-    \end{math}
-  \end{center}
-  This case is similar to the case for $\TLLdruletyXXboxEName$.
 \end{itemize}
 \end{proof}
 % subsubsection proof_of_lemma_substitution_for_typing (end)
@@ -138,9 +91,10 @@ split on the structure of the latter.
 \end{lemma*}
 
 \begin{proof}
-  This proof is by induction on the form of $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.
+  This proof is by induction on the form of $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{B}$.  We
+  only show a few cases, because the others are similar.
 \begin{itemize}
-\item[] Case.\\ 
+\item[] Case Identity.\\ 
   \begin{center}
     \begin{math}
       $$\mprset{flushleft}
@@ -153,45 +107,7 @@ split on the structure of the latter.
   must show that $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C}  \vdash  \mathit{y}  \TLLsym{:}  \TLLnt{C}$ holds, but this
   clearly holds by reapplying the rule.
 
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXfalseName$] {
-        \ 
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \perp  \vdash   \mathsf{contra}   \TLLsym{:}  \TLLnt{C}}
-    \end{math}
-  \end{center}
-  Similar to the previous case.
-
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXimpIName$] {
-        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t'}   \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}}
-    \end{math}
-  \end{center}
-  In this case $\TLLnt{B} = \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}$ and $\TLLnt{t} =  \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t'} $.  By the induction hypothesis
-  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \TLLsym{,}  \mathit{y}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds, and then by reapplying the rule
-  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \lambda  \mathit{y}  :  \TLLnt{C_{{\mathrm{1}}}} . \TLLnt{t'}   \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.
-
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXimpEName$] {
-        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}  \quad  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}} \, \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}}
-    \end{math}
-  \end{center}
-  By the induction hypothesis $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}  \to  \TLLnt{C_{{\mathrm{2}}}}$ and
-  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{1}}}}$, and thus by reapplying the rule
-  $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \mathit{x}  \TLLsym{:}  \TLLnt{A}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}} \, \TLLnt{t_{{\mathrm{2}}}}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$.
-
-
-\item[] Case.\\ 
+\item[] Case $\Box$ Introduction.\\ 
   \begin{center}
     \scriptsize
     \begin{math}
@@ -204,41 +120,6 @@ split on the structure of the latter.
   This case is similar to the previous case.  First, apply the
   induction hypothesis to the left-most premise, and then reapply
   the rule.
-
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXboxEName$] {
-        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \Box \, \TLLnt{C}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\Box\, \, \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}}
-    \end{math}
-  \end{center}      
-  Similar to the previous cases.
-  
-\item[] Case.\\ 
-  \begin{center}
-    \scriptsize
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXbboxIName$] {
-         \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}   \quad  \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash   \mathsf{let}_\blacksquare\, \mathit{x_{{\mathrm{1}}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \mathit{x_{\TLLmv{k}}}  \TLLsym{:}  \blacksquare \, \TLLnt{C_{\TLLmv{k}}} \,\mathsf{be}\, \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{,} \, ... \, \TLLsym{,}  \TLLnt{t_{\TLLmv{k}}} \,\mathsf{in}\, \TLLnt{t'}   \TLLsym{:}  \blacksquare \, \TLLnt{C}}
-    \end{math}
-  \end{center}
-  Similar to the case for $\TLLdruletyXXboxIName$.
-
-\item[] Case.\\ 
-  \begin{center}
-    \begin{math}
-      $$\mprset{flushleft}
-      \inferrule* [right=$\TLLdruletyXXbboxEName$] {
-        \Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLnt{t'}  \TLLsym{:}  \blacksquare \, \TLLnt{C}
-      }{\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \mathsf{unbox}_\blacksquare\, \, \TLLnt{t'}  \TLLsym{:}  \TLLnt{C}}
-    \end{math}
-  \end{center}
-  Similar to the case for $\TLLdruletyXXboxEName$.
-
 \end{itemize}
 \end{proof}
 % subsubsection proof_of_lemma:weakening (end)
@@ -262,7 +143,7 @@ following hold:
 \begin{proof}
   The first part holds by induction on $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$, and the
   second by induction on $ \Gamma  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{A} $.  We give a few cases of
-  each part here, but the others are similar.  Throughout the proof we
+  each part, as the others are similar.  Throughout the proof we
   drop semantic brackets on objects, and we assume without loss of
   generality that the interpretation of contexts are left associated.
   We begin with the first part.
@@ -272,15 +153,15 @@ following hold:
     \[
     \TLLdruletyXXax{}
     \]
-    It suffices to find a morphism $\Gamma \times \TLLnt{A} \mto^{f}
-    \TLLnt{A}$.  Choose $f = \pi_2$ (the $2$nd projection).
+    We need to provide a morphism $\Gamma \times \TLLnt{A} \mto^{f}
+    \TLLnt{A}$ and we choose $f = \pi_2$ (the $2$nd projection), as usual.
 
     \item[] Case.\\
     \[
     \TLLdruletyXXimpI{}
     \]
     By the induction hypothesis we know that there is a morphism
-    $\Gamma \times \TLLnt{A} \mto^f \TLLnt{B}$.  Then it suffices to find a
+    $\Gamma \times \TLLnt{A} \mto^f \TLLnt{B}$.  Then we need  to find a
     morphism $\Gamma \mto^{g} (\TLLnt{A}  \to  \TLLnt{B})$.  Choose $g =
     \mathsf{curry}(f)$ where $\mathsf{curry} :
     \mathsf{Hom}_{\cat{C}}( \TLLnt{A}  \times  \TLLnt{B} ,\TLLnt{C}) \mto
@@ -293,13 +174,13 @@ following hold:
     \]
 
     By the induction hypothesis we have the family of morphisms $\Gamma
-    \mto^{f_1} \Box \, \TLLnt{A_{{\mathrm{1}}}}, \ldots, \Gamma \mto^{f_k} \Box \, \TLLnt{A_{\TLLmv{k}}}$, and
-    $\Box \, \TLLnt{A_{{\mathrm{1}}}} \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}} \mto^f \TLLnt{B}$.  It
-    suffices to find a morphism $\Gamma \mto^{g} \TLLnt{B}$.  Choose $g =
+    \mto^{f_1} \Box \, \TLLnt{A_{{\mathrm{1}}}}, \ldots, \Gamma \mto^{f_k} \Box \, \TLLnt{A_{\TLLmv{k}}}$, and a given morphism
+    $\Box \, \TLLnt{A_{{\mathrm{1}}}} \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}} \mto^f \TLLnt{B}$.  We need 
+     to find a morphism $\Gamma \mto^{g} \TLLnt{B}$.  As in previous work, we choose $g =
     \langle f_1;\delta_{\TLLnt{A_{{\mathrm{1}}}}},\ldots,f_k;\delta_{\TLLnt{A_{\TLLmv{k}}}} \rangle;\mathsf{m};\Box f$, where $\langle -,-\rangle :
     \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}) \times \cdots \times
     \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{\TLLmv{k}}}) \mto \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}
-    \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}})$ exists because $\cat{C}$ is cartesian.
+    \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}})$ exists because $\cat{C}$ is cartesian and we make the simplifying assumption that $\Box$ is an endofunctor.
 
   \item[] Case.\\
     \[
@@ -357,46 +238,43 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
   with two comonads, one for $\Box$ and one for $\BBox$, internal to
   $\sf{TCS4}$ where the objects are types and the morphisms are
   $\alpha$-equivalence classes of terms in context $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$.
-  This category is called the syntactic category.
+  This category is called the syntactic category for this specific
+  type theory.
 
   Showing that this syntactic category is cartesian closed is well
-  know, but we illustrate the proof by giving the case for the $\Box$
-  comonad.
+  known, but we illustrate the proof by describing the case of the
+  $\Box$ comonad.
 
-  We denote a morphism $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$ by the $\alpha$-equivalence
-  class:
+  We denote a morphism by the $\alpha$-equivalence class:
   \[
-  [\vec{x},\TLLnt{t} ]^{\vec{\TLLnt{A}},\vec{\TLLnt{B}}} = \vec{x}:\vec{\TLLnt{A}} \vdash \TLLnt{t} : \wedge\vec{\TLLnt{B}}
+  [\vec{x},\TLLnt{t} ]^{\vec{\TLLnt{A}},\TLLnt{B}} = [ \vec{x}:\vec{\TLLnt{A}} \vdash \TLLnt{t} : \TLLnt{B} ]
   \]
-  where $\wedge\vec{\TLLnt{B}} = \TLLnt{B_{{\mathrm{1}}}} \wedge \cdots \wedge \TLLnt{B_{\TLLmv{i}}}$.  We
-  then have the following definitions:
+  We then have the following definitions:
   \begin{itemize}
-  \item (Identity) $\id = [\vec{x},\wedge\vec{x}]^{\vec{\TLLnt{A}},\vec{\TLLnt{A}}}$
-  \item (Composition) Given morphisms $[\vec{x},\TLLnt{t} ]^{\vec{A},\vec{B}}$ and
-    $[\vec{y},\TLLnt{t'} ]^{\vec{B},\vec{C}}$, their composition
-    $[\vec{x},\TLLnt{t} ]^{\vec{A},\vec{B}};[\vec{y},\TLLnt{t'} ]^{\vec{B},\vec{C}} =
-    [\vec{y},[ \TLLnt{t_{\TLLmv{i}}} / x_i ] \TLLnt{t'} ]^{\vec{A},\vec{C}}$, where
-    $\TLLnt{t} = \wedge\vec{\TLLnt{t_{\TLLmv{i}}}}$.
-  \item (Equality) Two parallel morphisms $[\vec{x},\TLLnt{t}
-  ]^{\vec{A},\vec{B}}$ and $[\vec{x},\TLLnt{t'} ]^{\vec{A},\vec{B}}$ are
+  \item (Identity) $\id = [x,x]^{\TLLnt{A},\TLLnt{A}}$
+  \item (Composition) Given morphisms $[\vec{x},\TLLnt{t} ]^{\vec{A},\TLLnt{B_{\TLLmv{i}}}}$ and
+    $[\vec{y},\TLLnt{t'} ]^{\vec{B},C}$, their composition
+    $[\vec{x},\TLLnt{t} ]^{\vec{A},\TLLnt{B_{\TLLmv{i}}}};[\vec{y},\TLLnt{t'} ]^{\vec{B},C} =
+    [\vec{x_{i-1}},\vec{y},\vec{x_{i+1}},[ \TLLnt{t} / x_i ] \TLLnt{t'} ]^{\vec{A},C}$.
+  \item (Equality) Two parallel morphisms $[\vec{x},\TLLnt{t} ]^{\vec{A},B}$ and $[\vec{x},\TLLnt{t'} ]^{\vec{A},B}$ are
     equal if and only if
-    $\vec{x} : \vec{A} \vdash \TLLnt{t} = \TLLnt{t'} : \wedge\vec{B}$.
+    $\vec{x} : \vec{A} \vdash \TLLnt{t} = \TLLnt{t'} : B$.
   \end{itemize}
   Using basic facts about substitution one can show that composition
   preserves identity and is associative.
 
-  We first much show that $\Box$ is an endofunctor on the syntactic
+  We first must show that $\Box$ is an endofunctor on the syntactic
   category.  Suppose we have the morphism
-  $[\vec{x},t]^{\vec{A},\vec{B}}$.  Then we must construct a morphism
-  $[\vec{y},t']^{\overrightarrow{\Box \, \TLLnt{A}},\overrightarrow{\Box \, \TLLnt{B}}}$.  The latter morphism can be defined in two steps.
+  $[\vec{x},t]^{\vec{A},B}$.  Then we must construct a morphism
+  $[\vec{y},t']^{\overrightarrow{\Box \, \TLLnt{A}},\Box \, \TLLnt{B}}$.  The latter morphism can be defined in two steps.
   The first is to change the $\vec{A}$ to $\overrightarrow{\Box \, \TLLnt{A}}$:
   \[
     [ \vec{y},\wedge \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}} ]^{\overrightarrow{\Box \, \TLLnt{A}},\vec{A}};[\vec{x},t]^{\vec{A},\vec{B}}
     = [\vec{y}, [ \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}}/\mathit{x_{\TLLmv{i}}} ] \TLLnt{t} ]^{\overrightarrow{\Box \, \TLLnt{A}},\vec{B}}
     \]
-    The second step is to change $\vec{B}$ into $\overrightarrow{\Box \, \TLLnt{B}}$:
+    The second step is to change $B$ into $\Box \, \TLLnt{B}$:
     \[
-      [\vec{y},\wedge (\mathsf{let}_\Box\,\vec{y}:\overrightarrow{\Box \, \TLLnt{A}}\,\mathsf{be}\,\vec{y}\,\mathsf{in}\,[ \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}}/\mathit{x_{\TLLmv{i}}} ]\TLLnt{t_{\TLLmv{i}}})]^{\overrightarrow{\Box \, \TLLnt{A}},\overrightarrow{\Box \, \TLLnt{B}}}
+      [\vec{y},\mathsf{let}_\Box\,\vec{y}:\overrightarrow{\Box \, \TLLnt{A}}\,\mathsf{be}\,\vec{y}\,\mathsf{in}\,[ \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}}/\mathit{x_{\TLLmv{i}}} ]\TLLnt{t})]^{\overrightarrow{\Box \, \TLLnt{A}},\Box \, \TLLnt{B}}
       \]
   Through straightforward calculations it is possible to show that
   this construction preserves identities and composition.
