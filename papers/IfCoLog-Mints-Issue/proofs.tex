@@ -9,7 +9,7 @@
   Suppose $[[G1 |- t1 : A]]$ and $[[G1, x : A,G2 |- t2 : B]]$.  We case
 split on the structure of the latter.
 \begin{itemize}
-\item[] Case.\\ 
+\item[] Case Identity.\\ 
   \begin{center}
     \begin{math}
       $$\mprset{flushleft}
@@ -264,7 +264,7 @@ following hold:
 \begin{proof}
   The first part holds by induction on $[[G |- t : A]]$, and the
   second by induction on $[[G |- t = s : A]]$.  We give a few cases of
-  each part here, but the others are similar.  Throughout the proof we
+  each part, as the others are similar.  Throughout the proof we
   drop semantic brackets on objects, and we assume without loss of
   generality that the interpretation of contexts are left associated.
   We begin with the first part.
@@ -274,15 +274,15 @@ following hold:
     \[
     \TLLdruletyXXax{}
     \]
-    It suffices to find a morphism $[[G]] \times [[A]] \mto^{f}
-    [[A]]$.  Choose $f = \pi_2$ (the $2$nd projection).
+    We need to provide a morphism $[[G]] \times [[A]] \mto^{f}
+    [[A]]$ and we choose $f = \pi_2$ (the $2$nd projection), as usual.
 
     \item[] Case.\\
     \[
     \TLLdruletyXXimpI{}
     \]
     By the induction hypothesis we know that there is a morphism
-    $[[G]] \times [[A]] \mto^f [[B]]$.  Then it suffices to find a
+    $[[G]] \times [[A]] \mto^f [[B]]$.  Then we need  to find a
     morphism $[[G]] \mto^{g} ([[A -> B]])$.  Choose $g =
     \mathsf{curry}(f)$ where $\mathsf{curry} :
     \mathsf{Hom}_{\cat{C}}([[A x B]],[[C]]) \mto
@@ -295,13 +295,13 @@ following hold:
     \]
 
     By the induction hypothesis we have the family of morphisms $[[G]]
-    \mto^{f_1} [[Box A1]], \ldots, [[G]] \mto^{f_k} [[Box Ak]]$, and
-    $[[Box A1]] \times \cdots \times [[Box Ak]] \mto^f [[B]]$.  It
-    suffices to find a morphism $[[G]] \mto^{g} [[B]]$.  Choose $g =
+    \mto^{f_1} [[Box A1]], \ldots, [[G]] \mto^{f_k} [[Box Ak]]$, and a given morphism
+    $[[Box A1]] \times \cdots \times [[Box Ak]] \mto^f [[B]]$.  We need 
+     to find a morphism $[[G]] \mto^{g} [[B]]$.  As in previous work, we choose $g =
     \langle f_1;\delta_{[[A1]]},\ldots,f_k;\delta_{[[Ak]]} \rangle;\mathsf{m};\Box f$, where $\langle -,-\rangle :
     \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_1]]) \times \cdots \times
     \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_k]]) \mto \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_1]]
-    \times \cdots \times [[Box A_k]])$ exists because $\cat{C}$ is cartesian.
+    \times \cdots \times [[Box A_k]])$ exists because $\cat{C}$ is cartesian and we make the simplifying assumption that $\Box$ is an endofunctor.
 
   \item[] Case.\\
     \[
@@ -359,10 +359,9 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
   with two comonads, one for $\Box$ and one for $\BBox$, internal to
   $\sf{TCS4}$ where the objects are types and the morphisms are
   $\alpha$-equivalence classes of terms in context $[[G |- t : A]]$.
-  This category is called the syntactic category.
+  This category is called the syntactic category for this specific type theory.
 
-  Showing that this syntactic category is cartesian closed is well
-  know, but we illustrate the proof by giving the case for the $\Box$
+  Showing that this syntactic category is cartesian closed is well known, but we illustrate the proof by describing the case of the $\Box$
   comonad.
 
   We denote a morphism $[[G |- t : A]]$ by the $\alpha$-equivalence
@@ -387,7 +386,7 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
   Using basic facts about substitution one can show that composition
   preserves identity and is associative.
 
-  We first much show that $\Box$ is an endofunctor on the syntactic
+  We first must show that $\Box$ is an endofunctor on the syntactic
   category.  Suppose we have the morphism
   $[\vec{x},t]^{\vec{A},\vec{B}}$.  Then we must construct a morphism
   $[\vec{y},t']^{\overrightarrow{[[Box A]]},\overrightarrow{[[Box
