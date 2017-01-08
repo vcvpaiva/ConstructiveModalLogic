@@ -57,7 +57,7 @@ modalities using dual contexts we need a monoidal adjunction.
  \item The  monad $(\Diamond, \eta, \mu, \st{A}{B})$, induced by the adjunction $F \dashv G$,   is $\Box$-strong.
   \end{enumerate}
 \end{definition}
-Recall that a {\textit{monoidal}} comonad $\Box$ implies that there is a natural transformation $m\colon \Box A\times \Box B\to \Box (A\times B)$ (and $m_{\top}\colon \top \to \Box \top$) satisfying the coherence conditions described in page 23 of \cite{bierman2000}. We need to recall as well that by a monad being $\Box$-strong, we mean that there is a \textit{strenght} natural transformation $st_{A,B}\colon \Box A\times \Diamond B\to \Diamond(\Box A\times B)$ satisfying the four equations in page 27 of \cite{bierman2000}.This natural transformation is required to model the Fisher-Servi axioms, which are a weakening of the duality between $\Box$ and $\Diamond$ that the classical systems satisfy.
+Recall that a {\textit{monoidal}} comonad $\Box$ implies that there is a natural transformation $m\colon \Box A\times \Box B\to \Box (A\times B)$ (and $m_{\top}\colon \top \to \Box \top$) satisfying the coherence conditions described in page 23 of \cite{bierman2000}. Recall as well that by a monad being $\Box$-strong, we mean that there is a \textit{strenght} natural transformation $st_{A,B}\colon \Box A\times \Diamond B\to \Diamond(\Box A\times B)$ satisfying the four equations in page 27 of \cite{bierman2000}. These two natural transformations are required to model the Fisher-Servi axioms, which are a weakening of the duality between $\Box$ and $\Diamond$ that the classical modalities satisfy.
 
 Finally we consider two pairs of modalities (or two adjunctions),
 intertwined, as in tense logic.
@@ -68,9 +68,11 @@ $\sf{TCDS4}$ is a cartesian closed category $\cal{C}$ as above,
 together with two intertwined adjunctions $(\bLozenge\dashv \Box,
 \Diamond\dashv \blacksquare)$.  The adjunctions $(\bLozenge\dashv
 \Box)$ and $(\Diamond\dashv \blacksquare)$ on $\cal{C}$ are connected
-by Fisher-Servi axioms, namely $\Diamond (A\to B)\to (\Box A\to
+by the Fisher-Servi axioms, namely $\Diamond (A\to B)\to (\Box A\to
 \Diamond B)$ and $(\Diamond A\to \Box B)\to \Box (A\to B)$.
 \end{definition}
+The point to note here is that the Fisher-Servi axioms have many other presentations. In particular preposition 2.1 in page 4 of \cite{dzik2010} shows that the axioms can be rewritten in terms of the units/co-units of the intertwined double monoidal adjunction.
+
 
 This model is more general than the system, $\sf{TCS4}$, given above
 in that it contains two possibility modalities, which we do not deal
@@ -127,7 +129,7 @@ following hold:
   The first part holds by induction on $[[G |- t : A]]$, and the
   second by induction on $[[G |- t = s : A]]$, but uses the first
   part.  Please see Appendix~\ref{subsec:proof_of_soundness_of_tcs4}
-  for the complete proof.  
+  for the  proof.  
 \end{proof}
 
 We  have completeness of the tense modal categories when the model is restricted to box modalities only.
