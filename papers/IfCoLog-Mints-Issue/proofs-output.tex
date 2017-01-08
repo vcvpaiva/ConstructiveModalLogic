@@ -61,7 +61,7 @@
   by the definition of substitution $\Gamma_{{\mathrm{1}}}  \TLLsym{,}  \Gamma_{{\mathrm{2}}}  \vdash  \TLLsym{[}  \TLLnt{t_{{\mathrm{1}}}}  \TLLsym{/}  \mathit{x}  \TLLsym{]}  \TLLsym{(}  \TLLnt{t'_{{\mathrm{1}}}} \, \TLLnt{t'_{{\mathrm{2}}}}  \TLLsym{)}  \TLLsym{:}  \TLLnt{C_{{\mathrm{2}}}}$ holds.
   
   
-\item[] Case. $\Box$ Introduction.\\ 
+\item[] Case $\Box$ Introduction.\\ 
   \begin{center}
     \scriptsize
     \begin{math}
@@ -148,14 +148,14 @@ following hold:
   We begin with the first part.
 
   \begin{itemize}
-  \item[] Case.\\
+  \item[] Case Identity.\\
     \[
     \TLLdruletyXXax{}
     \]
     We need to provide a morphism $\Gamma \times \TLLnt{A} \mto^{f}
     \TLLnt{A}$ and we choose $f = \pi_2$ (the $2$nd projection), as usual.
 
-    \item[] Case.\\
+    \item[] Case Implication Introduction.\\
     \[
     \TLLdruletyXXimpI{}
     \]
@@ -167,7 +167,7 @@ following hold:
     \mathsf{Hom}_{\cat{C}}(\TLLnt{A},\TLLnt{B}  \to  \TLLnt{C})$ is a natural isomorphism
     that exists because $\cat{C}$ is closed.
 
-  \item[] Case.\\
+  \item[] Case $\Box$ Introduction.\\
     \[
     \TLLdruletyXXboxI{}
     \]
@@ -181,7 +181,7 @@ following hold:
     \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{\TLLmv{k}}}) \mto \mathsf{Hom}_{\cat{C}}(\Gamma,\Box \, \TLLnt{A_{{\mathrm{1}}}}
     \times \cdots \times \Box \, \TLLnt{A_{\TLLmv{k}}})$ exists because $\cat{C}$ is cartesian and we make the simplifying assumption that $\Box$ is an endofunctor.
 
-  \item[] Case.\\
+  \item[] Case $\Box$ Elimination.\\
     \[
     \TLLdruletyXXboxE{}
     \]
@@ -193,7 +193,7 @@ following hold:
 
   We now turn to the second part:
   \begin{itemize}
-  \item[] Case.\\
+  \item[] Case Unboxing $\Box$.\\
     {\scriptsize
       \begin{mathpar}
         \TLLdruleeqXXunbox{}

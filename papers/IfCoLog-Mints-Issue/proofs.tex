@@ -63,7 +63,7 @@
   by the definition of substitution $[[G1,G2 |- [t1/x](t'1 t'2) : C2]]$ holds.
   
   
-\item[] Case. $\Box$ Introduction.\\ 
+\item[] Case $\Box$ Introduction.\\ 
   \begin{center}
     \scriptsize
     \begin{math}
@@ -150,14 +150,14 @@ following hold:
   We begin with the first part.
 
   \begin{itemize}
-  \item[] Case.\\
+  \item[] Case Identity.\\
     \[
     \TLLdruletyXXax{}
     \]
     We need to provide a morphism $[[G]] \times [[A]] \mto^{f}
     [[A]]$ and we choose $f = \pi_2$ (the $2$nd projection), as usual.
 
-    \item[] Case.\\
+    \item[] Case Implication Introduction.\\
     \[
     \TLLdruletyXXimpI{}
     \]
@@ -169,7 +169,7 @@ following hold:
     \mathsf{Hom}_{\cat{C}}([[A]],[[B -> C]])$ is a natural isomorphism
     that exists because $\cat{C}$ is closed.
 
-  \item[] Case.\\
+  \item[] Case $\Box$ Introduction.\\
     \[
     \TLLdruletyXXboxI{}
     \]
@@ -183,7 +183,7 @@ following hold:
     \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_k]]) \mto \mathsf{Hom}_{\cat{C}}([[G]],[[Box A_1]]
     \times \cdots \times [[Box A_k]])$ exists because $\cat{C}$ is cartesian and we make the simplifying assumption that $\Box$ is an endofunctor.
 
-  \item[] Case.\\
+  \item[] Case $\Box$ Elimination.\\
     \[
     \TLLdruletyXXboxE{}
     \]
@@ -195,7 +195,7 @@ following hold:
 
   We now turn to the second part:
   \begin{itemize}
-  \item[] Case.\\
+  \item[] Case Unboxing $\Box$.\\
     {\scriptsize
       \begin{mathpar}
         \TLLdruleeqXXunbox{}
