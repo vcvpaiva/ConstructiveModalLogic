@@ -358,7 +358,7 @@ rules are given  in Figure~\ref{fig:DCS4}. (We prefer to call it the dual contex
   \label{fig:DCS4}
 \end{figure}
 
-The main difference between the system {\sf{CS4}} and  the dual context formulation of {\sf{CS4}}  is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The previously difficult rule of $\Box$ introduction now insists that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions (that is, all the assumptions of this conclusion must be modal). This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it must have no assumptions whatsoever).
+The main difference between the system {\sf{CS4}} and  the dual context formulation of {\sf{CS4}}  is the fact that the context now has modal formulas and non-necessarily modal ones, separated by a semi-colon as in $\Gamma ; \Delta$. The previously difficult rule of $\Box$ introduction now says that to introduce a necessity operator $\Box$ on a conclusion, we need to have  an empty context of non-modal assumptions (that is, all the assumptions of this conclusion must be modal). This corresponds to the traditional idea that to prove something is necessarily the case, all its assumptions have to be also necessary (or it must have no assumptions whatsoever).
 
 These rules have been shown by Benton \cite{benton1995} and Barber \cite{barber1997} to correspond to an adjunction of the categories, in the case where the basis is Linear Logic and the modalities correspond to the exponentials.  
 Instead of Linear Logic, we deal with constructive modal logic and the adjunction is between functors corresponding to operators  $\Diamond \vdash \Box $.
@@ -369,7 +369,7 @@ Finally to get to the tense logic which is the main aim of this note, we need tw
 A   sequent calculus  system for this constructive tense logic is given by the rules in Figure \ref{fig:biCS4}.
 This can be  transformed into Natural Deduction in the style of \cite{bierman2000} as shown in Figure \ref{fig:NDCS4}. The problem is that the last two adjunction rules in Figure \ref{fig:biCS4} (that relate the two sets of modalities) are extremely badly-behaved proof-theoretically (no cut-elimination and no subformula property even for cut-free proofs), as discussed in page 35 of Benton's full report \cite{benton1995}. In fact they are the reason for moving to a dual context calculus, as explained in that paper and also  in Barber's work \cite{barber1997}. 
 
-The  dual context systems, as described in Barber and Benton's work, are proved equivalent to the system with a single modality operator, either `$!$' or `$\Box$'. This is because in Intuitionistic Linear Logic one is not usually interested in either \textit{why not?} `$?$' or `$\Diamond$'. (In Classical Linear Logic the possibility modality is defined by negation of the necessity modality, so this extension is easier to make \cite{paykin2014}.) Given that our main goal is to discuss categorical semantics, which we can do easily for the necessity modalities, in this note we  consider only two necessity-like modalities $\Box$ and $\blacksquare$, to begin with.
+The  dual context systems, as described in Barber and Benton's work, are proved equivalent to the system with a single modality operator, either `$!$' or `$\Box$'. This is because in Intuitionistic Linear Logic one is not usually interested in either \textit{why not?} `$?$' or `$\Diamond$'. (In Classical Linear Logic the possibility modality is defined by negation of the necessity modality, so this extension is easier to make \cite{paykin2014}.) Given that our main goal is to discuss categorical semantics, which we can do easily for the necessity modalities, in this note we  consider only two necessity-like modalities $\Box$ and $\blacksquare$.
 
 We would like to have a natural deduction version of the tense calculus in dual context style. A dual context-style presentation of a single necessity modality has been presented in Figure~\ref{fig:DCS4}. Now we need to add another necessity-like modality and discuss their interaction.  A preliminary attempt at such calculus is given in Figure \ref{fig:ND2CS4}.
 
@@ -604,7 +604,7 @@ the modalities of the same colour, namely, $(\bLozenge, \blacksquare)$ and $(\Di
 \end{figure}
 
 \subsection{Axioms}
-Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for the basic system intuitionistic logic $\sf{LJ}$,  any traditional set would do, plus the axioms for modalities, as well as the rules \textbf{modus ponens} and \textbf{necessitation} for the two necessity operators:
+Axiom sets for the system $\sf{TCS4}$ are easier to provide. We need a set for the basic system intuitionistic logic $\sf{LJ}$,  and any traditional set would do, plus the axioms for modalities, as well as the rules \textbf{modus ponens} and \textbf{necessitation} for the two necessity operators:
 \begin{figure}
   \begin{mdframed}
     \begin{center}
@@ -683,7 +683,7 @@ Reactive Programming (FRP) by Jeltsch \cite{jeltsch2012} and Jeffrey
 \cite{jeffrey2012}, independently. Both of these works consider
 Curry-Howard correspondents to temporal logic, but they tend to
 concentrate on the \textit{next} temporal operator, originally
-considered in LTL (Linear Temporal Logic) as suggested by Davies. The
+considered in LTL (Linear Temporal Logic), as suggested by Davies \cite{davies1996}. The
 temporal operators we consider are more abstract and one can hope that
 they may shed some light on the issues of FRP. But this is future
 work.

@@ -15,14 +15,8 @@ to the two sets of necessity and possibility operators.
 This setting is though different enough from the precursors we know
 about, to justify this note. First, as discussed elsewhere
 \cite{bierman2000}, we see no reason for the monads/comonads emerging
-from this setting to be \textbf{idempotent} operators, as they are in
-\cite{ghilardi1988} or \cite{makkai1995} (the idempotency
-simplification does not seen warranted by the proof theory). Secondly
-we see no reason to take our models as part of toposes, as we are not
-interested in the extra structure provided by toposes.  However, we
-also see no reason to confine ourselves to algebraic models such as
-Heyting algebras with operators, as degenerate posetal categories, as
-both \cite{dziketal2012} and \cite{Menni:2014} do. Different proofs of
+from this setting to be \textbf{idempotent} operators, as they are in \cite{ghilardi1988} or \cite{makkai1995} (the idempotency
+simplification does not seen warranted by the proof theory). Secondly we see no reason to take our models as part of toposes, as we are not interested in the extra structure provided by toposes.  However, we also see no reason to confine ourselves to algebraic models such as Heyting algebras with operators, as degenerate posetal categories, as both \cite{dziketal2012} and \cite{Menni:2014} do. Different proofs of
 the same theorem are important to us as they correspond to different
 morphisms in the category between the same objects. Thus we are
 interested in \textbf{proof relevant} semantics, not simply
@@ -63,6 +57,7 @@ modalities using dual contexts we need a monoidal adjunction.
  \item The  monad $(\Diamond, \eta, \mu, \st{A}{B})$, induced by the adjunction $F \dashv G$,   is $\Box$-strong.
   \end{enumerate}
 \end{definition}
+Recall that a {\textit{monoidal}} comonad $\Box$ implies that there is a natural transformation $m\colon \Box A\times \Box B\to \Box (A\times B)$ (and $m_{\true}\colon \true \to \Box \true$) satisfying the coherence conditions described in page 23 of \cite{bierman2000}. We need to recall as well that by a monad being $\Box$-strong, we mean that there is a \textit{strenght} natural transformation $st_{A,B}\colon \Box A\times \Diamond B\to \Diamond(\Box A\times B)$ satisfying the four equations in page 27 of \cite{bierman2000}.This natural transformation is required to model the Fisher-Servi axioms, which are a weakening of the duality between $\Box$ and $\Diamond$ that the classical systems satisfy.
 
 Finally we consider two pairs of modalities (or two adjunctions),
 intertwined, as in tense logic.
@@ -82,7 +77,7 @@ in that it contains two possibility modalities, which we do not deal
 with, in the type theory. These possibility operators could be treated
 as syntactic sugar for $\neg \Box \neg A$ (and respectively $\neg
 \blacksquare \neg A$), as they usually are in Intuitionistic Linear
-Logic, for instance. We refrain from doing so explictly and prefer to
+Logic, for instance. We refrain from doing so explicitly and prefer to
 consider the necessity-only fragment in the type theory, as this
 allows us to bypass the discussion of which possibility modality is
 more appropriate for each setting.  More importantly it allows us to
@@ -162,6 +157,6 @@ Categorical completeness requires providing an equivalence relation in
 the Lindenbaum algebra of the formulae, as usual in algebraic
 semantics. The basic calculations, for traditional algebraic semantics
 in Heyting algebras were provided, for instance, by Figallo et al in
-\cite{figallo2014}. \textit{Mutatis mutantis} these calculations will
+\cite{figallo2014} or Dzik et al in \cite{dzik2010}. \textit{Mutatis mutantis} these calculations will
 apply for our version of the system (no distribution of diamonds over
 disjunctions, no definibility of diamonds in terms of negated boxes).

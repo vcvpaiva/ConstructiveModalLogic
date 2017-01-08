@@ -144,10 +144,9 @@ following hold:
 \end{theorem*}
 \begin{proof}
   The first part holds by induction on $[[G |- t : A]]$, and the
-  second by induction on $[[G |- t = s : A]]$.  We give a few cases of
-  each part, as the others are similar.  Throughout the proof we
-  drop semantic brackets on objects, and we assume without loss of
-  generality that the interpretation of contexts are left associated.
+  second by induction on $[[G |- t = s : A]]$.  We give a few cases of each part, as the others are similar.  Throughout the proof we
+  drop semantic brackets on objects, and we assume, without loss of
+  generality, that the interpretation of contexts are left associated.
   We begin with the first part.
 
   \begin{itemize}
@@ -237,10 +236,10 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
 
 \begin{proof}
   This result can be shown by constructing a cartesian closed category
-  with two comonads, one for $\Box$ and one for $\BBox$, internal to
+  with two comonads, one for $\Box$ and one for $\BBox$, internal to the type theory
   $\sf{TCS4}$ where the objects are types and the morphisms are
   $\alpha$-equivalence classes of terms in context $[[G |- t : A]]$.
-  This category is called the syntactic category for this specific
+  This category is called the syntactic category for the $\sf{TCS4}$
   type theory.
 
   Showing that this syntactic category is cartesian closed is well
@@ -278,7 +277,7 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
     \[
       [\vec{y},\mathsf{let}_\Box\,\vec{y}:\overrightarrow{[[Box A]]}\,\mathsf{be}\,\vec{y}\,\mathsf{in}\,[ [[unbox yi]]/[[xi]] ][[t]])]^{\overrightarrow{[[Box A]]},[[Box B]]}
       \]
-  Through straightforward calculations it is possible to show that
+  Straightforward calculations  show that
   this construction preserves identities and composition.
 
   The unit of the comonad is defined as $[ y,[[unbox y]] ]^{[[Box
