@@ -142,10 +142,9 @@ following hold:
 \end{theorem*}
 \begin{proof}
   The first part holds by induction on $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$, and the
-  second by induction on $ \Gamma  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{A} $.  We give a few cases of
-  each part, as the others are similar.  Throughout the proof we
-  drop semantic brackets on objects, and we assume without loss of
-  generality that the interpretation of contexts are left associated.
+  second by induction on $ \Gamma  \vdash  \TLLnt{t}  =  \TLLnt{s}  :  \TLLnt{A} $.  We give a few cases of each part, as the others are similar.  Throughout the proof we
+  drop semantic brackets on objects, and we assume, without loss of
+  generality, that the interpretation of contexts are left associated.
   We begin with the first part.
 
   \begin{itemize}
@@ -235,10 +234,10 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
 
 \begin{proof}
   This result can be shown by constructing a cartesian closed category
-  with two comonads, one for $\Box$ and one for $\BBox$, internal to
+  with two comonads, one for $\Box$ and one for $\BBox$, internal to the type theory
   $\sf{TCS4}$ where the objects are types and the morphisms are
   $\alpha$-equivalence classes of terms in context $\Gamma  \vdash  \TLLnt{t}  \TLLsym{:}  \TLLnt{A}$.
-  This category is called the syntactic category for this specific
+  This category is called the syntactic category for the $\sf{TCS4}$
   type theory.
 
   Showing that this syntactic category is cartesian closed is well
@@ -276,7 +275,7 @@ $\sf{TCS4}$ $\;$ $\Gamma \vdash t = s \colon A$.
     \[
       [\vec{y},\mathsf{let}_\Box\,\vec{y}:\overrightarrow{\Box \, \TLLnt{A}}\,\mathsf{be}\,\vec{y}\,\mathsf{in}\,[ \mathsf{unbox}_\Box\, \, \mathit{y_{\TLLmv{i}}}/\mathit{x_{\TLLmv{i}}} ]\TLLnt{t})]^{\overrightarrow{\Box \, \TLLnt{A}},\Box \, \TLLnt{B}}
       \]
-  Through straightforward calculations it is possible to show that
+  Straightforward calculations  show that
   this construction preserves identities and composition.
 
   The unit of the comonad is defined as $[ y,\mathsf{unbox}_\Box\, \, \mathit{y} ]^{\Box \, \TLLnt{A},A}$.  Next we need to define a morphism between $\Box \, \TLLnt{A}$ and $\Box \, \Box \, \TLLnt{A}$:
