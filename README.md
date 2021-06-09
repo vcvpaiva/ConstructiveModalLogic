@@ -63,7 +63,7 @@ In Procs. of the AAAI Workshop on Inference for Textual Question Answering, Pitt
 12. Hylo 2007 Proceedings of the Workshop (eds  Patrick Blackburn, Thomas Bolander, Torben Brauner, Valeria de Paiva and Joergen Villadsen). 
 Electr. Notes Theor. Comput. Sci. 174(6): 1-2 (2007).
 
-13.Textual Inference Logic: Take Two, 
+13. Textual Inference Logic: Take Two, 
 V de Paiva, D. G. Bobrow, C. Condoravdi, R. Crouch,  L. Karttunen, T. H. King, R. Nairn and A. Zaenen  
 Proceedings of the Workshop on Contexts and Ontologies, Representation and Reasoning, CONTEXT 2007.
 
@@ -76,7 +76,7 @@ H. Hausler, A. Rademaker e V. de Paiva, in ``Proceedings of Legal Ontologies and
 16. Constructive Description Logic, Hybrid-Style 
 V. de Paiva, H. Hausler e A. Rademaker, in  Proceedings of the International Workshop on Hybrid Logic and Applications (HyLo 2010), Aug 2010.
 
-17.Contextual Constructive Description Logics. 
+17. Contextual Constructive Description Logics. 
 Valeria de Paiva, Natasha Alechina. 
 ARCOE, 01 June 2011. Proceedings of the IJCAI-11 Workshop ARCOE-11: Automated Reasoning about Context and Ontology Evolution. 
 
