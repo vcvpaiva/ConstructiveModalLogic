@@ -1,8 +1,8 @@
 # Constructive Modal Logics 
 
-(including Hybrid and Description logics)
+This page lists my work in constructive modal logics, including Hybrid and Description logics, as they are in the same family.
 
-online bibliography started, needs updating
+I started an online bibliography, but  that needs updating
 
 https://docs.google.com/document/pub?id=1ASo__R-_Bzq9D9lGUo0xrfIxt_I9az7oqSg-wmP1K10
 
