@@ -1,5 +1,6 @@
-# Constructive Modal Logics (including Hybrid and Description logics)
+# Constructive Modal Logics 
 
+(including Hybrid and Description logics)
 online bibliography started, needs updating
 https://docs.google.com/document/pub?id=1ASo__R-_Bzq9D9lGUo0xrfIxt_I9az7oqSg-wmP1K10
 
