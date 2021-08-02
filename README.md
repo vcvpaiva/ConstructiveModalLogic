@@ -21,6 +21,7 @@ Journal of Functional Programming, 8(2):177-193. March 1998
  http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.1748
  
 4. Towards Constructive Hybrid Logic 
+(https://www.researchgate.net/publication/353646344_Towards_Constructive_Hybrid_Logic)
  T. Brauner and V. de Paiva, Presented at Methods for Modalities 3, LORIA, Nancy, France, September 22-23, 2003. 
  Full paper Technical report from the University of Roskilde, 2003.
  
