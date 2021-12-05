@@ -12,6 +12,9 @@ Studia Logica volume 65, pages 383–416 (2000)
 https://link.springer.com/article/10.1023/A:1005291931660
 (21 years later it still cost 40 dollars!)
 
+also Intuitionistic necessity revisited GM Bierman, VCV De Paiva School of Computer Science research reports-University of Birmingham CSR (1996)
+and 1992.
+
 2. Computational Types from a Logical Perspective I.
 N. Benton, G. Bierman and V. de Paiva 
 Journal of Functional Programming, 8(2):177-193. March 1998 
