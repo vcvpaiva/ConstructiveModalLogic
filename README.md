@@ -15,6 +15,7 @@ https://link.springer.com/article/10.1023/A:1005291931660
 2. Computational Types from a Logical Perspective I.
 N. Benton, G. Bierman and V. de Paiva 
 Journal of Functional Programming, 8(2):177-193. March 1998 
+https://www.researchgate.net/publication/220676670_Computational_Types_from_a_Logical_Perspective
 
 3. Extended Curry-Howard Correspondence for a Basic Constructive Modal Logic (2001)
  Gianluigi Bellin , Valeria de Paiva , Eike Ritter 
