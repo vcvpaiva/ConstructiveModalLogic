@@ -12,6 +12,8 @@ Studia Logica volume 65, pages 383–416 (2000)
 https://link.springer.com/article/10.1023/A:1005291931660
 (21 years later it still cost 40 dollars!)
 
+https://www.researchgate.net/profile/Valeria-De-Paiva/publication/226515897_On_An_Intuitionistic_Modal_Logic/links/00b4951ed416906ccc000000/On-An-Intuitionistic-Modal-Logic.pdf
+
 also Intuitionistic necessity revisited GM Bierman, VCV De Paiva School of Computer Science research reports-University of Birmingham CSR (1996)
 and 1992.
 
