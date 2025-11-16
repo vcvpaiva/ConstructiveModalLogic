@@ -88,7 +88,7 @@ URL: https://doi.org/10.1007/3-540-44802-0\_21
 
 Technical Report CFIS-99-07, Cornell University.
 
-[URL](https://www.cs.cornell.edu/info/people/artemov/publ.html)
+URL: https://www.cs.cornell.edu/info/people/artemov/publ.html  (Selected publications)
 
 
 5. Steven Awodey, Lars Birkedal & Dana S. Scott — Local realizability toposes and a modal logic for computability (2002)
