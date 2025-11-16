@@ -66,7 +66,7 @@ relations usually interact in a non-trivial way.}
 
    In Computer Science Logic (CSL’01), LNCS 2142, pages 292–307, edited by L. Fribourg. Springer, 2001.
 
-URL: https://doi.org/10.1007/3-540-44802-0\_21
+URL: 
 
 ```bibtex
 @inproceedings{AlechinaMendlerPaivaRitter2001,
