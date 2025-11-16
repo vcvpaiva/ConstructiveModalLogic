@@ -46,6 +46,43 @@ doi = {https://doi.org/10.1016/j.jal.2005.06.007},
 url = {https://www.sciencedirect.com/science/article/pii/S1570868305000431},
 author = {Natasha Alechina and Dmitry Shkatov},
 keywords = {Intuitionistic modal logics, Decidibility},
-abstract = {We generalise the result of [H. Ganzinger, C. Meyer, M. Veanes, The two-variable guarded fragment with transitive relations, in: Proc. 14th IEEE Symposium on Logic in Computer Science, IEEE Computer Society Press, 1999, pp. 24–34] on decidability of the two variable monadic guarded fragment of first order logic with constraints on the guard relations expressible in monadic second order logic. In [H. Ganzinger, C. Meyer, M. Veanes, The two-variable guarded fragment with transitive relations, in: Proc. 14th IEEE Symposium on Logic in Computer Science, IEEE Computer Society Press, 1999, pp. 24–34], such constraints apply to one relation at a time. We modify their proof to obtain decidability for constraints involving several relations. Now we can use this result to prove decidability of multi-modal modal logics where conditions on accessibility relations involve more than one relation. Our main application is intuitionistic modal logic, where the intuitionistic and modal accessibility relations usually interact in a non-trivial way.}
+abstract = {We generalise the result of [H. Ganzinger, C. Meyer, M. Veanes, The two-variable guarded
+fragment with transitive relations, in: Proc. 14th IEEE Symposium on Logic in Computer Science, IEEE
+Computer Society Press, 1999, pp. 24–34] on decidability of the two variable monadic guarded fragment
+of first order logic with constraints on the guard relations expressible in monadic second order logic.
+In [H. Ganzinger, C. Meyer, M. Veanes, The two-variable guarded fragment with transitive relations,
+in: Proc. 14th IEEE Symposium on Logic in Computer Science, IEEE Computer Society Press, 1999, pp. 24–34],
+such constraints apply to one relation at a time. We modify their proof to obtain decidability for
+constraints involving several relations. Now we can use this result to prove decidability of multi-modal
+modal logics where conditions on accessibility relations involve more than one relation. Our main application
+is intuitionistic modal logic, where the intuitionistic and modal accessibility relations usually interact in a non-trivial way.}
 }
 ```
+
+3. Natasha Alechina, Michael Mendler, Valeria de Paiva & Eike Ritter — Categorical and Kripke Semantics for Constructive S4 Modal Logic (2001)
+
+In Computer Science Logic (CSL’01), LNCS 2142, pages 292–307, edited by L. Fribourg. Springer, 2001.
+URL: https://doi.org/10.1007/3-540-44802-0\_21
+
+```bibtex
+@inproceedings{AlechinaMendlerPaivaRitter2001,
+  author    = {Alechina, Natasha and Mendler, Michael and de Paiva, Valeria and Ritter, Eike},
+  title     = {Categorical and Kripke Semantics for Constructive S4 Modal Logic},
+  booktitle = {Computer Science Logic (CSL)},
+  year      = {2001},
+  editor    = {Fribourg, Laurent},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {2142},
+  pages     = {292--307},
+  publisher = {Springer},
+  doi       = {10.1007/3-540-44802-0\_21},
+  url       = {https://doi.org/10.1007/3-540-44802-0\_21}
+}
+
+```
+
+4. Sergei N. Artemov — Deep isomorphism of modal derivations and λ-terms (1999)
+
+Technical Report CFIS-99-07, Cornell University.
+
+URL: 
