@@ -29,7 +29,7 @@ In Methods for Modalities Workshop, LORIA, Nancy, France, 2003.
   booktitle = {Methods for Modalities Workshop},
   year      = {2003},
   address   = {LORIA, Nancy, France},
-  note      = {Workshop paper; no DOI found}
+  note      = {Workshop paper}
 }
 ```
 ```bibtex
