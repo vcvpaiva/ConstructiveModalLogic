@@ -22,6 +22,8 @@ URL: [https://doi.org/10.1017/S0960129501003309](https://doi.org/10.1017/S096012
 
 In Methods for Modalities Workshop, LORIA, Nancy, France, 2003.
 
+journal version URL: https://www.sciencedirect.com/science/article/pii/S1570868305000431
+
 ```bibtex
 @inproceedings{AlechinaShkatov2003,
   author    = {Alechina, Natasha and Shkatov, Dmitry},
@@ -66,7 +68,7 @@ relations usually interact in a non-trivial way.}
 
    In Computer Science Logic (CSL’01), LNCS 2142, pages 292–307, edited by L. Fribourg. Springer, 2001.
 
-URL: 
+URL: https://link.springer.com/chapter/10.1007/3-540-44802-0_21
 
 ```bibtex
 @inproceedings{AlechinaMendlerPaivaRitter2001,
@@ -80,7 +82,7 @@ URL:
   pages     = {292--307},
   publisher = {Springer},
   doi       = {10.1007/3-540-44802-0\_21},
-  url       = {https://doi.org/10.1007/3-540-44802-0\_21}
+  url       = {https://link.springer.com/chapter/10.1007/3-540-44802-0_21}
 }
 
 ```
@@ -95,7 +97,7 @@ URL: https://www.cs.cornell.edu/info/people/artemov/publ.html  (Selected publica
 5. Steven Awodey, Lars Birkedal & Dana S. Scott — Local realizability toposes and a modal logic for computability (2002)
 
 Mathematical Structures in Computer Science 12(3): 319–334.
-URL:
+URL: https://www.cmu.edu/dietrich/philosophy/docs/tech-reports/99_Awodey.pdf
 
 ```bibtex
 @article{AwodeyBirkedalScott2002,
@@ -111,11 +113,12 @@ URL:
 }
 ```
 
-6. Gianluigi Bellin, Valeria de Paiva & Eike Ritter —
+6. Gianluigi Bellin, Valeria de Paiva & Eike Ritter
+   
    Extended Curry–Howard Correspondence for a Basic Constructive Modal Logic (2001)
 
 In Methods for Modalities (M4M), Amsterdam, November 2001.
-URL:
+URL: https://www.researchgate.net/publication/2858332_Extended_Curry-Howard_Correspondence_for_a_Basic_Constructive_Modal_Logic
 
 ```bibtex
 @inproceedings{BellinDePaivaRitter2001,
@@ -125,14 +128,17 @@ URL:
   year      = {2001},
   address   = {Amsterdam, Netherlands},
   publisher = {CSLI / Workshop}, 
-  url       = {https://www.di.univr.it/~bellin/papers/CH\_M4M2001.pdf}
+  url       = {https://www.researchgate.net/publication/2858332_Extended_Curry-Howard_Correspondence_for_a_Basic_Constructive_Modal_Logic}
 }
 ```
 
-7. Zine-El-Abidine Benaissa, Eugenio Moggi, Walid Taha & Tim Sheard — Logical Modalities and Multi-Stage Programming (1999)
+7. Zine-El-Abidine Benaissa, Eugenio Moggi, Walid Taha & Tim Sheard
+   
+   Logical Modalities and Multi-Stage Programming (1999)
 
 In IMLA ’99 (Intuitionistic Modal Logic and Applications Workshop).
-URL:
+
+URL: https://person.dibris.unige.it/moggi-eugenio/ftp/imla99.pdf
 
 ```bibtex
 @inproceedings{BenaissaMoggiTahaSheard1999,
@@ -140,8 +146,8 @@ URL:
   title     = {Logical Modalities and Multi-Stage Programming},
   booktitle = {Workshop on Intuitionistic Modal Logic and Applications (IMLA)},
   year      = {1999},
-  note      = {Technical report / extended abstract; no formal proceedings found},
-  url       = {https://pure-oai.bham.ac.uk/ws/portalfiles/portal/118300749/1505.06896.pdf}
+  note      = {Technical report},
+  url       = {https://person.dibris.unige.it/moggi-eugenio/ftp/imla99.pdf}
 }
 ```
 
