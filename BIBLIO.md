@@ -109,3 +109,89 @@ URL:
   url       = {https://doi.org/10.1017/S0960129502003675}
 }
 ```
+
+6. Gianluigi Bellin, Valeria de Paiva & Eike Ritter —
+   Extended Curry–Howard Correspondence for a Basic Constructive Modal Logic (2001)
+
+In Methods for Modalities (M4M), Amsterdam, November 2001.
+URL:
+
+```bibtex
+@inproceedings{BellinDePaivaRitter2001,
+  author    = {Bellin, Gianluigi and de Paiva, Valeria and Ritter, Eike},
+  title     = {Extended Curry–Howard Correspondence for a Basic Constructive Modal Logic},
+  booktitle = {Methods for Modalities (M4M)},
+  year      = {2001},
+  address   = {Amsterdam, Netherlands},
+  publisher = {CSLI / Workshop}, 
+  url       = {https://www.di.univr.it/~bellin/papers/CH\_M4M2001.pdf}
+}
+```
+
+7. Zine-El-Abidine Benaissa, Eugenio Moggi, Walid Taha & Tim Sheard — Logical Modalities and Multi-Stage Programming (1999)
+
+In IMLA ’99 (Intuitionistic Modal Logic and Applications Workshop).
+URL:
+
+```bibtex
+@inproceedings{BenaissaMoggiTahaSheard1999,
+  author    = {Benaissa, Zine-El-Abidine and Moggi, Eugenio and Taha, Walid and Sheard, Tim},
+  title     = {Logical Modalities and Multi-Stage Programming},
+  booktitle = {Workshop on Intuitionistic Modal Logic and Applications (IMLA)},
+  year      = {1999},
+  note      = {Technical report / extended abstract; no formal proceedings found},
+  url       = {https://pure-oai.bham.ac.uk/ws/portalfiles/portal/118300749/1505.06896.pdf}
+}
+```
+
+8. M. Benevides & T. Maibaum — A Constructive Presentation for the Modal Connective of Necessity (1992)
+
+Journal of Logic and Computation 2(1): 31–50.
+
+```bibtex
+@article{BenevidesMaibaum1992,
+  author  = {Benevides, M. and Maibaum, T.},
+  title   = {A Constructive Presentation for the Modal Connective of Necessity},
+  journal = {Journal of Logic and Computation},
+  volume  = {2},
+  number  = {1},
+  pages   = {31--50},
+  year    = {1992}
+}
+```
+
+9. Nick Benton, Gavin Bierman & Valeria de Paiva —
+   Computational Types from a Logical Perspective I (1998)
+
+Journal of Functional Programming 8(2): 177–193.
+
+```bibtex
+@article{BentonBiermanDePaiva1998,
+  author    = {Benton, Nathan and Bierman, Gavin and de Paiva, Valeria},
+  title     = {Computational Types from a Logical Perspective I},
+  journal   = {Journal of Functional Programming},
+  volume    = {8},
+  number    = {2},
+  pages     = {177--193},
+  year      = {1998},
+  month     = mar
+}
+```
+
+10. Nick Benton, Gavin Bierman, Valeria de Paiva & Martin Hyland —
+    A Term Calculus for Intuitionistic Linear Logic (1993)
+
+In Lecture Notes in Computer Science, Vol. 664, Springer, 1993.
+
+```bibtex
+
+@inproceedings{BentonBiermanDePaivaHyland1993,
+  author    = {Benton, Nathan and Bierman, Gavin and de Paiva, Valeria and Hyland, Martin},
+  title     = {A Term Calculus for Intuitionistic Linear Logic},
+  booktitle = {Typed Lambda Calculus Conference},
+  year      = {1993},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {664},
+  publisher = {Springer}
+}
+```
