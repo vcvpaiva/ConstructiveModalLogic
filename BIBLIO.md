@@ -369,7 +369,8 @@ Notre Dame Mathematical Lectures, Vol. 6, University of Notre Dame, 1957.
 19.  Rowan Davies & Frank Pfenning — “A Modal Analysis of Staged Computation” (1996)
 
 In POPL ’96, pages 258–270.
-URL: https://doi.org/10.1145/237721.237805Rowan Davies & Frank Pfenning — “A Modal Analysis of Staged Computation” (2001)
+URL: 
+
 
 ```bibtex
 @inproceedings{DaviesPfenning1996POPL,
@@ -387,7 +388,7 @@ URL: https://doi.org/10.1145/237721.237805Rowan Davies & Frank Pfenning — “A
 20. Rowan Davies & Frank Pfenning — “A Modal Analysis of Staged Computation” (1996)
 Journal of the ACM 48(3): 555–604.
 
-URL: https://doi.org/10.1145/382780.382785
+URL: https://www.cs.cmu.edu/~fp/papers/jacm00.pdf
 
 ```bibtex
 @article{DaviesPfenning2001JACM,
