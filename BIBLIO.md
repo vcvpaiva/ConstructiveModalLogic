@@ -280,9 +280,9 @@ URL: https://www.researchgate.net/publication/226515897_On_An_Intuitionistic_Mod
 
 Presented at Methods for Modalities 3, LORIA, Nancy, France, Sept 22–23, 2003.
 
-Full paper: Technical Report, University of Roskilde, 2003.
+Technical Report, University of Roskilde, 2003.
 
-URL: https://www.researchgate.net/profile/Valeria-De-Paiva/publication/353646344_Towards_Constructive_Hybrid_Logic/links/610833ab1ca20f6f86f676ac/Towards-Constructive-Hybrid-Logic.pdf
+URL: https://www.researchgate.net/publication/353646344_Towards_Constructive_Hybrid_Logic
 
 ```bibtex
 @techreport{BraunerDePaiva2003,
@@ -291,7 +291,7 @@ URL: https://www.researchgate.net/profile/Valeria-De-Paiva/publication/353646344
   institution = {University of Roskilde},
   year        = {2003},
   note        = {Presented at Methods for Modalities 3, LORIA, Nancy},
-  url         = {https://forskning.ruc.dk/en/publications/towards-constructive-hybrid-logic-extended-abstract/}
+  url         = {https://www.researchgate.net/publication/353646344_Towards_Constructive_Hybrid_Logic}
 }
 ```
 15. Mirko Božić & Kosta Došen — “Models for Normal Intuitionistic Modal Logics” (1984)
