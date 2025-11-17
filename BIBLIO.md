@@ -294,7 +294,7 @@ URL: https://www.researchgate.net/publication/353646344_Towards_Constructive_Hyb
   url         = {https://www.researchgate.net/publication/353646344_Towards_Constructive_Hybrid_Logic}
 }
 ```
-15. Mirko Božić & Kosta Došen — “Models for Normal Intuitionistic Modal Logics” (1984)
+15. Milan Božić & Kosta Došen — “Models for Normal Intuitionistic Modal Logics” (1984)
 
 Studia Logica 43: 217–245, 1984.
 
@@ -302,7 +302,7 @@ URL: https://link.springer.com/article/10.1007/BF02429840
 
 ```bibtex
 @article{BozicDosen1984,
-  author    = {Bo\v{z}i\'{c}, Mirko and Do\v{s}en, Kosta},
+  author    = {Bo\v{z}i\'{c}, Milan and Do\v{s}en, Kosta},
   title     = {Models for Normal Intuitionistic Modal Logics},
   journal   = {Studia Logica},
   volume    = {43},
