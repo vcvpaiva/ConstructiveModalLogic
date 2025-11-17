@@ -238,7 +238,9 @@ URL: https://www.dpmms.cam.ac.uk/~jmeh1/Research/Pub91-00/bbdphcsl93.pdf
 
 Technical Report 262, University of Cambridge Computer Laboratory, August 1992.
 
-URL:
+URL: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-262.html
+
+    
 
 ```bibtex
 @techreport{BentonBiermanDePaivaHyland1992TR262,
@@ -248,6 +250,46 @@ URL:
   number      = {262},
   year        = {1992},
   month       = aug,
-  note        = {Technical Report 262}
+  note        = {Technical Report 262, 57 pages}
+}
+```
+
+13. Gavin Bierman & Valeria de Paiva —
+    “On an Intuitionistic Modal Logic” (2000)
+
+Studia Logica 65(3): 383–416, 2000.
+
+URL: https://doi.org/10.1023/A:1005291931660
+
+```bibtex
+@article{BiermanDePaiva2000,
+  author    = {Bierman, Gavin and de Paiva, Valeria},
+  title     = {On an Intuitionistic Modal Logic},
+  journal   = {Studia Logica},
+  volume    = {65},
+  number    = {3},
+  pages     = {383--416},
+  year      = {2000},
+  doi       = {10.1023/A:1005291931660},
+  url       = {https://doi.org/10.1023/A:1005291931660}
+}
+```
+
+14. Torben Braüner & Valeria de Paiva — “Towards Constructive Hybrid Logic” (2003)
+
+Presented at Methods for Modalities 3, LORIA, Nancy, France, Sept 22–23, 2003.
+
+Full paper: Technical Report, University of Roskilde, 2003.
+
+URL: https://tidsskrift.dk/brics/article/view/19855
+
+```bibtex
+@techreport{BraunerDePaiva2003,
+  author      = {Bra\"uner, Torben and de Paiva, Valeria},
+  title       = {Towards Constructive Hybrid Logic},
+  institution = {University of Roskilde},
+  year        = {2003},
+  note        = {Presented at Methods for Modalities 3, LORIA, Nancy},
+  url         = {https://tidsskrift.dk/brics/article/view/19855}
 }
 ```
