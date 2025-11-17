@@ -155,6 +155,8 @@ URL: https://person.dibris.unige.it/moggi-eugenio/ftp/imla99.pdf
 
 Journal of Logic and Computation 2(1): 31–50.
 
+URL: no free one found
+
 
 ```bibtex
 @article{BenevidesMaibaum1992,
@@ -174,7 +176,7 @@ Journal of Logic and Computation 2(1): 31–50.
 
 Journal of Functional Programming 8(2): 177–193. 
 
-[URL](https://nickbenton.name/jfp.pdf)
+URL: https://nickbenton.name/jfp.pdf
 
 ```bibtex
 @article{BentonBiermanDePaiva1998,
@@ -239,8 +241,7 @@ URL: https://www.dpmms.cam.ac.uk/~jmeh1/Research/Pub91-00/bbdphcsl93.pdf
 Technical Report 262, University of Cambridge Computer Laboratory, August 1992.
 
 URL: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-262.html
-
-    
+   
 
 ```bibtex
 @techreport{BentonBiermanDePaivaHyland1992TR262,
@@ -259,7 +260,7 @@ URL: https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-262.html
 
 Studia Logica 65(3): 383–416, 2000.
 
-URL: https://doi.org/10.1023/A:1005291931660
+URL: https://www.researchgate.net/publication/226515897_On_An_Intuitionistic_Modal_Logic
 
 ```bibtex
 @article{BiermanDePaiva2000,
@@ -281,7 +282,7 @@ Presented at Methods for Modalities 3, LORIA, Nancy, France, Sept 22–23, 2003.
 
 Full paper: Technical Report, University of Roskilde, 2003.
 
-URL: https://tidsskrift.dk/brics/article/view/19855
+URL: https://www.researchgate.net/profile/Valeria-De-Paiva/publication/353646344_Towards_Constructive_Hybrid_Logic/links/610833ab1ca20f6f86f676ac/Towards-Constructive-Hybrid-Logic.pdf
 
 ```bibtex
 @techreport{BraunerDePaiva2003,
@@ -290,6 +291,6 @@ URL: https://tidsskrift.dk/brics/article/view/19855
   institution = {University of Roskilde},
   year        = {2003},
   note        = {Presented at Methods for Modalities 3, LORIA, Nancy},
-  url         = {https://tidsskrift.dk/brics/article/view/19855}
+  url         = {https://forskning.ruc.dk/en/publications/towards-constructive-hybrid-logic-extended-abstract/}
 }
 ```
