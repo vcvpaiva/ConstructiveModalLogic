@@ -294,3 +294,85 @@ URL: https://www.researchgate.net/profile/Valeria-De-Paiva/publication/353646344
   url         = {https://forskning.ruc.dk/en/publications/towards-constructive-hybrid-logic-extended-abstract/}
 }
 ```
+15. Mirko Božić & Kosta Došen — “Models for Normal Intuitionistic Modal Logics” (1984)
+
+Studia Logica 43: 217–245, 1984.
+
+URL: https://doi.org/10.1007/BF01063805
+
+```bibtex
+@article{BozicDosen1984,
+  author    = {Bo\v{z}i\'{c}, Mirko and Do\v{s}en, Kosta},
+  title     = {Models for Normal Intuitionistic Modal Logics},
+  journal   = {Studia Logica},
+  volume    = {43},
+  pages     = {217--245},
+  year      = {1984},
+  doi       = {10.1007/BF01063805},
+  url       = {https://doi.org/10.1007/BF01063805}
+}
+```
+
+16. Cristiano Calcagno, Eugenio Moggi & Walid Taha —
+   “Closed Types as a Simple Approach to Safe Imperative Multi-Stage Programming” (2000)
+
+In ICALP 2000, pages 25–36.
+URL: https://doi.org/10.1007/3-540-45022-X_3
+
+```bibtex
+@inproceedings{CalcagnoMoggiTaha2000,
+  author    = {Calcagno, Cristiano and Moggi, Eugenio and Taha, Walid},
+  title     = {Closed Types as a Simple Approach to Safe Imperative Multi-Stage Programming},
+  booktitle = {Automata, Languages and Programming (ICALP)},
+  year      = {2000},
+  pages     = {25--36},
+  publisher = {Springer},
+  doi       = {10.1007/3-540-45022-X_3},
+  url       = {https://doi.org/10.1007/3-540-45022-X_3}
+}
+```
+
+17. Cristiano Calcagno & Eugenio Moggi — “Multi-Stage Imperative Languages: A Conservative Extension Result” (2000)
+
+In SAIG 2000, pages 92–107.
+
+URL: https://doi.org/10.1007/3-540-45341-5_6
+
+```bibtex
+@inproceedings{CalcagnoMoggi2000Conservative,
+  author    = {Calcagno, Cristiano and Moggi, Eugenio},
+  title     = {Multi-Stage Imperative Languages: A Conservative Extension Result},
+  booktitle = {Static Analysis of Intermediate Languages (SAIG)},
+  year      = {2000},
+  pages     = {92--107},
+  publisher = {Springer},
+  doi       = {10.1007/3-540-45341-5_6},
+  url       = {https://doi.org/10.1007/3-540-45341-5_6}
+}
+```
+@inproceedings{CalcagnoMoggi2000Conservative,
+  author    = {Calcagno, Cristiano and Moggi, Eugenio},
+  title     = {Multi-Stage Imperative Languages: A Conservative Extension Result},
+  booktitle = {Static Analysis of Intermediate Languages (SAIG)},
+  year      = {2000},
+  pages     = {92--107},
+  publisher = {Springer},
+  doi       = {10.1007/3-540-45341-5_6},
+  url       = {https://doi.org/10.1007/3-540-45341-5_6}
+}
+```
+18. Haskell B. Curry — A Theory of Formal Deducibility (2nd ed., 1957)
+
+Notre Dame Mathematical Lectures, Vol. 6, University of Notre Dame, 1957.
+
+```bibtex
+@book{Curry1957,
+  author    = {Curry, Haskell B.},
+  title     = {A Theory of Formal Deducibility},
+  series    = {Notre Dame Mathematical Lectures},
+  volume    = {6},
+  publisher = {University of Notre Dame},
+  edition   = {Second},
+  year      = {1957}
+}
+```
