@@ -298,7 +298,7 @@ URL: https://www.researchgate.net/publication/353646344_Towards_Constructive_Hyb
 
 Studia Logica 43: 217–245, 1984.
 
-URL: https://doi.org/10.1007/BF01063805
+URL: https://link.springer.com/article/10.1007/BF02429840
 
 ```bibtex
 @article{BozicDosen1984,
@@ -309,7 +309,7 @@ URL: https://doi.org/10.1007/BF01063805
   pages     = {217--245},
   year      = {1984},
   doi       = {10.1007/BF01063805},
-  url       = {https://doi.org/10.1007/BF01063805}
+  url       = {https://link.springer.com/article/10.1007/BF02429840}
 }
 ```
 
