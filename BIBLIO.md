@@ -1,7 +1,7 @@
 1. Peter Aczel — “The Russell–Prawitz Modality” (2001)
 
 Mathematical Structures in Computer Science 11(4): 541–554.
-URL: [https://doi.org/10.1017/S0960129501003309](https://doi.org/10.1017/S0960129501003309)
+URL: https://doi.org/10.1017/S0960129501003309
 
 ```bibtex
 @article{Aczel2001RussellPrawitz,
@@ -68,7 +68,7 @@ relations usually interact in a non-trivial way.}
 
    In Computer Science Logic (CSL’01), LNCS 2142, pages 292–307, edited by L. Fribourg. Springer, 2001.
 
-URL: https://link.springer.com/chapter/10.1007/3-540-44802-0_21
+URL: https://www.uni-bamberg.de/fileadmin/uni/fakultaeten/wiai_professuren/grundlagen_informatik/papersMM/conmodlog.pdf
 
 ```bibtex
 @inproceedings{AlechinaMendlerPaivaRitter2001,
