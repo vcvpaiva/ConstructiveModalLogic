@@ -190,12 +190,14 @@ Journal of Functional Programming 8(2): 177–193.
 ```
 
 10. Nick Benton, Gavin Bierman, Valeria de Paiva & Martin Hyland —
+    
     A Term Calculus for Intuitionistic Linear Logic (1993)
 
 In Lecture Notes in Computer Science, Vol. 664, Springer, 1993.
 
-```bibtex
+URL: https://www.dpmms.cam.ac.uk/~jmeh1/Research/Pub91-00/bbdphtlca93.pdf
 
+```bibtex
 @inproceedings{BentonBiermanDePaivaHyland1993,
   author    = {Benton, Nathan and Bierman, Gavin and de Paiva, Valeria and Hyland, Martin},
   title     = {A Term Calculus for Intuitionistic Linear Logic},
