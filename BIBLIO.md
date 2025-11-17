@@ -208,3 +208,26 @@ URL: https://www.dpmms.cam.ac.uk/~jmeh1/Research/Pub91-00/bbdphtlca93.pdf
   publisher = {Springer}
 }
 ```
+
+11. Nick Benton, Gavin Bierman, Valeria de Paiva & Martin Hyland
+
+ “Linear lambda-calculus and Categorical Models Revisited” (1993)
+
+In Computer Science Logic (CSL 1992), LNCS 702, Springer, 1993.
+URL: https://doi.org/10.1007/3-540-56992-8_22
+
+```bibtex
+@inproceedings{BentonBiermanDePaivaHyland1993Revisited,
+  author    = {Benton, N. and Bierman, G. and de Paiva, V. and Hyland, M.},
+  title     = {Linear Lambda-Calculus and Categorical Models Revisited},
+  booktitle = {Computer Science Logic},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {702},
+  pages     = {61--84},
+  year      = {1993},
+  publisher = {Springer},
+  doi       = {10.1007/3-540-56992-8_22},
+  url       = {https://doi.org/10.1007/3-540-56992-8_22}
+}
+```
+
