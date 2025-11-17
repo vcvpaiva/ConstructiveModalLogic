@@ -317,7 +317,7 @@ URL: https://link.springer.com/article/10.1007/BF02429840
    “Closed Types as a Simple Approach to Safe Imperative Multi-Stage Programming” (2000)
 
 In ICALP 2000, pages 25–36.
-URL: https://doi.org/10.1007/3-540-45022-X_3
+URL: 
 
 ```bibtex
 @inproceedings{CalcagnoMoggiTaha2000,
@@ -328,7 +328,7 @@ URL: https://doi.org/10.1007/3-540-45022-X_3
   pages     = {25--36},
   publisher = {Springer},
   doi       = {10.1007/3-540-45022-X_3},
-  url       = {https://doi.org/10.1007/3-540-45022-X_3}
+  url       = {https://link.springer.com/chapter/10.1007/3-540-45022-X_4}
 }
 ```
 
@@ -336,7 +336,7 @@ URL: https://doi.org/10.1007/3-540-45022-X_3
 
 In SAIG 2000, pages 92–107.
 
-URL: https://doi.org/10.1007/3-540-45341-5_6
+URL: 
 
 ```bibtex
 @inproceedings{CalcagnoMoggi2000Conservative,
@@ -350,17 +350,7 @@ URL: https://doi.org/10.1007/3-540-45341-5_6
   url       = {https://doi.org/10.1007/3-540-45341-5_6}
 }
 ```
-@inproceedings{CalcagnoMoggi2000Conservative,
-  author    = {Calcagno, Cristiano and Moggi, Eugenio},
-  title     = {Multi-Stage Imperative Languages: A Conservative Extension Result},
-  booktitle = {Static Analysis of Intermediate Languages (SAIG)},
-  year      = {2000},
-  pages     = {92--107},
-  publisher = {Springer},
-  doi       = {10.1007/3-540-45341-5_6},
-  url       = {https://doi.org/10.1007/3-540-45341-5_6}
-}
-```
+
 18. Haskell B. Curry — A Theory of Formal Deducibility (2nd ed., 1957)
 
 Notre Dame Mathematical Lectures, Vol. 6, University of Notre Dame, 1957.
