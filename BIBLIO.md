@@ -97,6 +97,7 @@ URL: https://www.cs.cornell.edu/info/people/artemov/publ.html  (Selected publica
 5. Steven Awodey, Lars Birkedal & Dana S. Scott — Local realizability toposes and a modal logic for computability (2002)
 
 Mathematical Structures in Computer Science 12(3): 319–334.
+
 URL: https://www.cmu.edu/dietrich/philosophy/docs/tech-reports/99_Awodey.pdf
 
 ```bibtex
@@ -118,6 +119,7 @@ URL: https://www.cmu.edu/dietrich/philosophy/docs/tech-reports/99_Awodey.pdf
    Extended Curry–Howard Correspondence for a Basic Constructive Modal Logic (2001)
 
 In Methods for Modalities (M4M), Amsterdam, November 2001.
+
 URL: https://www.researchgate.net/publication/2858332_Extended_Curry-Howard_Correspondence_for_a_Basic_Constructive_Modal_Logic
 
 ```bibtex
@@ -155,6 +157,7 @@ URL: https://person.dibris.unige.it/moggi-eugenio/ftp/imla99.pdf
 
 Journal of Logic and Computation 2(1): 31–50.
 
+
 ```bibtex
 @article{BenevidesMaibaum1992,
   author  = {Benevides, M. and Maibaum, T.},
@@ -168,9 +171,12 @@ Journal of Logic and Computation 2(1): 31–50.
 ```
 
 9. Nick Benton, Gavin Bierman & Valeria de Paiva —
+    
    Computational Types from a Logical Perspective I (1998)
 
-Journal of Functional Programming 8(2): 177–193.
+Journal of Functional Programming 8(2): 177–193. 
+
+[URL](https://nickbenton.name/jfp.pdf)
 
 ```bibtex
 @article{BentonBiermanDePaiva1998,
