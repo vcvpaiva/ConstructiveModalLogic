@@ -214,7 +214,8 @@ URL: https://www.dpmms.cam.ac.uk/~jmeh1/Research/Pub91-00/bbdphtlca93.pdf
  “Linear lambda-calculus and Categorical Models Revisited” (1993)
 
 In Computer Science Logic (CSL 1992), LNCS 702, Springer, 1993.
-URL: https://doi.org/10.1007/3-540-56992-8_22
+
+URL: https://www.dpmms.cam.ac.uk/~jmeh1/Research/Pub91-00/bbdphcsl93.pdf
 
 ```bibtex
 @inproceedings{BentonBiermanDePaivaHyland1993Revisited,
@@ -227,7 +228,26 @@ URL: https://doi.org/10.1007/3-540-56992-8_22
   year      = {1993},
   publisher = {Springer},
   doi       = {10.1007/3-540-56992-8_22},
-  url       = {https://doi.org/10.1007/3-540-56992-8_22}
+  url       = {https://link.springer.com/chapter/10.1007/3-540-56992-8_6}
 }
 ```
 
+12. Nick Benton, Gavin Bierman, Valeria de Paiva & Martin Hyland —
+
+“Term Assignment for Intuitionistic Linear Logic” (1992)
+
+Technical Report 262, University of Cambridge Computer Laboratory, August 1992.
+
+URL:
+
+```bibtex
+@techreport{BentonBiermanDePaivaHyland1992TR262,
+  author      = {Benton, N. and Bierman, G. and de Paiva, V. and Hyland, M.},
+  title       = {Term Assignment for Intuitionistic Linear Logic},
+  institution = {University of Cambridge, Computer Laboratory},
+  number      = {262},
+  year        = {1992},
+  month       = aug,
+  note        = {Technical Report 262}
+}
+```
