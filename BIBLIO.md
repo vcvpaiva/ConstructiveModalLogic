@@ -129,8 +129,7 @@ URL: https://www.researchgate.net/publication/2858332_Extended_Curry-Howard_Corr
   booktitle = {Methods for Modalities (M4M)},
   year      = {2001},
   address   = {Amsterdam, Netherlands},
-  publisher = {CSLI / Workshop}, 
-  url       = {https://www.researchgate.net/publication/2858332_Extended_Curry-Howard_Correspondence_for_a_Basic_Constructive_Modal_Logic}
+  publisher = {Workshop} 
 }
 ```
 
@@ -148,8 +147,7 @@ URL: https://person.dibris.unige.it/moggi-eugenio/ftp/imla99.pdf
   title     = {Logical Modalities and Multi-Stage Programming},
   booktitle = {Workshop on Intuitionistic Modal Logic and Applications (IMLA)},
   year      = {1999},
-  note      = {Technical report},
-  url       = {https://person.dibris.unige.it/moggi-eugenio/ftp/imla99.pdf}
+  note      = {Technical report}
 }
 ```
 
